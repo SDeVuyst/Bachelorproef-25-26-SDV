@@ -2,38 +2,76 @@
 %% Inleiding
 %%=============================================================================
 
+
+% ==============================================INLEIDING============================================== %
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
+% TODO
 
-De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
+% De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
 
-\begin{itemize}
-  \item context, achtergrond
-  \item afbakenen van het onderwerp
-  \item verantwoording van het onderwerp, methodologie
-  \item probleemstelling
-  \item onderzoeksdoelstelling
-  \item onderzoeksvraag
-  \item \ldots
-\end{itemize}
+% \begin{itemize}
+%   \item context, achtergrond
+%   \item afbakenen van het onderwerp
+%   \item verantwoording van het onderwerp, methodologie
+%   \item probleemstelling
+%   \item onderzoeksdoelstelling
+%   \item onderzoeksvraag
+%   \item \ldots
+% \end{itemize}
 
+
+% ===========================================PROBLEEMSTELLING========================================== %
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
 
-Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
+% Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
 
+In de huidige IT-sector vormen Unisys-mainframes nog steeds de kritieke infrastructuur voor organisaties die enorme hoeveelheden bedrijfskritische data verwerken. Desondanks stroomt er weinig nieuw talent door naar dit specifieke domein. Het beheer van deze systemen, en specifiek de rol van de Database Administrator (DBA), vereist een diepgaande kennis van de ClearPath-architectuur en DMSII-databanken. Deze expertise wijkt fundamenteel af van de kennis die wordt aangeboden in reguliere IT-opleidingen, die zich hoofdzakelijk richten op gedistribueerde systemen en relationele SQL-databases.
+
+Het kernprobleem is het ontbreken van een gestructureerd en eenduidig leertraject voor beginnende DBA's. Junior profielen die de sector betreden, worden geconfronteerd met een steile leercurve zonder helder gedefinieerde leerdoelen. Dit leidt tot een inefficiënt onboardingproces, waarbij de verantwoordelijkheid voor de opleiding volledig bij de ervaren senior DBA's komt te liggen, die zelf vaak kampen met een hoge werkdruk.
+
+Dit onderzoek biedt een directe meerwaarde voor de volgende concrete doelgroep:
+\begin{itemize}
+    \item \textbf{Onderwijsinstellingen (Hogescholen \\& Universiteiten)}: Zij kunnen het framework gebruiken om hun curriculum beter af te stemmen op de nichemarkt van mainframe-technologie, waardoor hun studenten een uniek voordeel krijgen op de arbeidsmarkt.
+    \item \textbf{Bedrijven met een Unisys-infrastructuur (zoals financiële instellingen en overheidsdiensten)}: Zij verkrijgen een gestandaardiseerd instrument om junior DBA's sneller en effectiever op te leiden, wat de continuïteit van hun kritieke systemen waarborgt.
+    \item \textbf{Junior IT-professionals en studenten}: Zij krijgen toegang tot een drempelverlagend platform dat de complexe materie van Unisys-mainframebeheer vertaalt naar kleinere, gestructureerde leerdoelen.
+\end{itemize}
+
+
+% ===========================================ONDERZOEKSVRAAG=========================================== %
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
 
-Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
+% Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
 
+Aan de hand van deze probleemstelling wordt er onderzoek gedaan naar de centrale onderzoeksvraag: 
+\textit{"Welke competenties zijn vereist voor een Database Administrator (DBA) Level 1 om doeltreffend te opereren binnen een Unisys mainframeomgeving, en op welke manier kunnen deze competenties worden geformaliseerd in een eenduidig en direct inzetbaar framework voor het onderwijs?"}\break
+Om tot een onderbouwd antwoord te komen, worden de volgende deelvragen behandeld:
+
+\begin{enumerate}
+    \item Welke technische competenties zijn noodzakelijk voor een DBA Level 1 binnen een Unisys mainframeomgeving?
+    \item Welke niet-\allowbreak technische (professionele) competenties zijn noodzakelijk voor een DBA Level 1?
+    \item Hoe worden DBA-\allowbreak competenties momenteel aangeleerd en geëvalueerd binnen bestaande onderwijs- of trainingsprogramma's?
+    \item Welke structuur en opbouw zijn geschikt om DBA Level 1-competenties te vertalen naar een eenduidig framework voor het onderwijs?
+    \item Aan welke eisen moet een competentieframework voldoen om direct inzetbaar te zijn binnen een onderwijscontext?
+\end{enumerate}
+
+% =======================================ONDERZOEKSDOELSTELLING======================================== %
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
-Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
+% Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
 
+Er wordt een onderbouwd competentieframework opgezet voor een Database Administrator Level 1 binnen een Unisys-omgeving. Dit framework structureert technische en niet-technische competenties aan de hand van de herziene Taxonomie van Bloom, waarbij leerdoelen specifiek worden afgestemd op de cognitieve niveaus 'onthouden', 'begrijpen' en 'toepassen'.
+Dit framework wordt weerspiegeld door een Proof-of-Concept (PoC) in de vorm van een interactieve website. Dit platform ontsluit het geformuleerde framework door theoretische modules te combineren met interactieve oefeningen. Hierdoor beschikken zowel studenten als docenten over een eenduidig instrument voor de opleiding en evaluatie van junior DBA's binnen de Unisys-niche.
+Om de effectiviteit van de PoC te meten, wordt een kwantitatieve evaluatie uitgevoerd bij de doel-groep. Hierbij wordt data verzameld aan de hand van een 5-punts Likert-schaal. De verwachting is dat alle onderdelen een score van minstens 4.0 behalen.
+
+
+% ================================================OPZET================================================ %
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
+% TODO
 
 % Het is gebruikelijk aan het einde van de inleiding een overzicht te
 % geven van de opbouw van de rest van de tekst. Deze sectie bevat al een aanzet
