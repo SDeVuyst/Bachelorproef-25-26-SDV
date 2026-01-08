@@ -1,51 +1,110 @@
 \chapter{\IfLanguageName{dutch}{Stand van zaken}{State of the art}}%
 \label{ch:stand-van-zaken}
 
-% Tip: Begin elk hoofdstuk met een paragraaf inleiding die beschrijft hoe
-% dit hoofdstuk past binnen het geheel van de bachelorproef. Geef in het
-% bijzonder aan wat de link is met het vorige en volgende hoofdstuk.
+In dit hoofdstuk wordt de theoretische basis gelegd voor het verdere onderzoek. 
+Er wordt gestart met een brede verkenning van de mainframe-sector en de huidige demografische verschuivingen, 
+waarna er specifiek wordt ingezoomd op de Unisys-architectuur en het DMSII-databasesysteem. 
+Tot slot worden de educatieve kaders besproken die als fundament dienen voor het te ontwikkelen competentieframework.
 
-% Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
+% ----------------------------------------------------------------------------------------------------- %
+\section{De Mainframe Wereld: Kritieke Infrastructuur in Transitie}
+\label{sec:mainframe-wereld}
 
-Dit hoofdstuk bevat je literatuurstudie. De inhoud gaat verder op de inleiding, maar zal het onderwerp van de bachelorproef *diepgaand* uitspitten. De bedoeling is dat de lezer na lezing van dit hoofdstuk helemaal op de hoogte is van de huidige stand van zaken (state-of-the-art) in het onderzoeksdomein. Iemand die niet vertrouwd is met het onderwerp, weet nu voldoende om de rest van het verhaal te kunnen volgen, zonder dat die er nog andere informatie moet over opzoeken \autocite{Pollefliet2011}.
+\subsection{Wat is een mainframe?}
 
-Je verwijst bij elke bewering die je doet, vakterm die je introduceert, enz.\ naar je bronnen. In \LaTeX{} kan dat met het commando \texttt{$\backslash${textcite\{\}}} of \texttt{$\backslash${autocite\{\}}}. Als argument van het commando geef je de ``sleutel'' van een ``record'' in een bibliografische databank in het Bib\LaTeX{}-formaat (een tekstbestand). Als je expliciet naar de auteur verwijst in de zin (narratieve referentie), gebruik je \texttt{$\backslash${}textcite\{\}}. Soms is de auteursnaam niet expliciet een onderdeel van de zin, dan gebruik je \texttt{$\backslash${}autocite\{\}} (referentie tussen haakjes). Dit gebruik je bv.~bij een citaat, of om in het bijschrift van een overgenomen afbeelding, broncode, tabel, enz. te verwijzen naar de bron. In de volgende paragraaf een voorbeeld van elk.
+Om de rol van een Database Administrator (DBA) binnen een mainframe-omgeving te kaderen, is het essentieel om eerst een mainframe te definiëren. 
+Volgens de definitie van \textcite{IBM2010} is een mainframe een server dat door bedrijven gebruikt om commerciële databases, transactieservers en applicaties te hosten die een hogere mate van beveiliging en beschikbaarheid vereisen dan doorgaans beschikbaar is op kleinere machines.
 
-\textcite{Knuth1998} schreef een van de standaardwerken over sorteer- en zoekalgoritmen. Experten zijn het erover eens dat cloud computing een interessante opportuniteit vormen, zowel voor gebruikers als voor dienstverleners op vlak van informatietechnologie~\autocite{Creeger2009}.
+Deze servers draaien op gespecialiseerde besturingssystemen zoals z/OS (IBM), ClearPath MCP of OS 2200 (Unisys) en in toenemende mate op specifieke mainframe-distributies van Linux (zoals LinuxONE). 
 
-Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je verwijst meteen naar een bron in de eerste zin die erop gebaseerd is, dus niet pas op het einde van een paragraaf.
+Deze besturingssystemen, en vaak ook de hardware waarop ze draaien, zijn inherent ontworpen met de strenge eisen van een mainframe-omgeving in gedachten, waarbij een combinatie van de volgende kenmerken centraal staan: \autocite{Ebbers2011}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{grail.jpg}
-  \caption[Voorbeeld figuur.]{\label{fig:grail}Voorbeeld van invoegen van een figuur. Zorg altijd voor een uitgebreid bijschrift dat de figuur volledig beschrijft zonder in de tekst te moeten gaan zoeken. Vergeet ook je bronvermelding niet!}
-\end{figure}
+\begin{itemize}
+    \item Compatibiliteit met System z\footnote{System Z is een overkoepelende naam voor een IBM Mainframe.}-besturingssystemen, -toepassingen en -gegevens.
+    \item Gecentraliseerde controle van bronnen.
+    \item Hardware en besturingssystemen die toegang tot schijfstations kunnen delen met
+          andere systemen, met automatische vergrendeling en bescherming tegen destructief
+          gelijktijdig gebruik van schijfgegevens.
+    \item Een werkwijze waarbij vaak gespecialiseerde medewerkers betrokken zijn die gebruikmaken van
+          gedetailleerde procedurehandboeken en zeer georganiseerde procedures voor
+          back-ups, herstel, training en noodherstel op een alternatieve locatie.
+    \item Hardware en besturingssystemen die routinematig werken met honderden of
+          duizenden gelijktijdige I/O-bewerkingen.
+    \item Clustertechnologieën waarmee de klant meerdere exemplaren van
+          het besturingssysteem als één systeem kan gebruiken. Deze configuratie, bekend als
+          Parallel Sysplex, is qua concept vergelijkbaar met een UNIX-cluster, maar maakt het mogelijk
+          om systemen naar behoefte toe te voegen of te verwijderen, terwijl applicaties blijven
+          draaien. Deze flexibiliteit stelt mainframeklanten in staat om nieuwe applicaties te introduceren
+          of het gebruik van bestaande applicaties te staken, in reactie op veranderingen in
+          de bedrijfsactiviteiten.
+    \item Extra mogelijkheden voor het delen van gegevens en bronnen. In een Parallel Sysplex is het bijvoorbeeld
+          mogelijk voor gebruikers van meerdere systemen om tegelijkertijd toegang te krijgen tot dezelfde
+          databases, waarbij de toegang tot de database op recordniveau wordt gecontroleerd.
+    \item Geoptimaliseerd voor I/O voor bedrijfsgerelateerde gegevensverwerkingstoepassingen
+          die ondersteuning bieden voor hogesnelheidsnetwerken en terabytes aan schijfopslag.
+\end{itemize}
 
-\begin{listing}
-  \begin{minted}{python}
-    import pandas as pd
-    import seaborn as sns
+Hoewel deze kenmerken specifiek door IBM zijn gedefinieerd, maken Unisys-mainframes gebruik van gelijkaardige technologieën en mechanismen.
 
-    penguins = sns.load_dataset('penguins')
-    sns.relplot(data=penguins, x="flipper_length_mm", y="bill_length_mm", hue="species")
-  \end{minted}
-  \caption[Voorbeeld codefragment]{Voorbeeld van het invoegen van een codefragment.}
-\end{listing}
+\subsection{Strategische relevantie in 2026}
 
-\lipsum[7-20]
+\subsection{De "Silver Tsunami" en de generatieshift}
 
-\begin{table}
-  \centering
-  \begin{tabular}{lcr}
-    \toprule
-    \textbf{Kolom 1} & \textbf{Kolom 2} & \textbf{Kolom 3} \\
-    $\alpha$         & $\beta$          & $\gamma$         \\
-    \midrule
-    A                & 10.230           & a                \\
-    B                & 45.678           & b                \\
-    C                & 99.987           & c                \\
-    \bottomrule
-  \end{tabular}
-  \caption[Voorbeeld tabel]{\label{tab:example}Voorbeeld van een tabel.}
-\end{table}
+\subsection{De Kenniskloof (Skills Gap) in het IT-onderwijs}
 
+% ----------------------------------------------------------------------------------------------------- %
+\section{Het Unisys ClearPath MCP Ecosysteem}
+\label{sec:unisys-ecosysteem}
+
+\subsection{De ClearPath Architectuur: E-mode en Stack-design}
+
+
+\subsection{Het Master Control Program (MCP)}
+
+\subsection{Onderscheid met gedistribueerde systemen}
+
+% ----------------------------------------------------------------------------------------------------- %
+\section{Data Management System II (DMSII)}
+\label{sec:dmsii}
+
+\subsection{Conceptuele basis: Het hiërarchische en netwerk-datamodel}
+
+\subsection{DASDL: Data and Structure Definition Language}
+
+\subsection{Fysieke organisatie en opslagmanagement}
+
+\subsection{DMSII versus Relationele Databases (SQL)}
+
+% ----------------------------------------------------------------------------------------------------- %
+\section{De Rol van de Database Administrator (DBA) Level 1}
+\label{sec:rol-dba}
+
+\subsection{Operationele kerntaken en verantwoordelijkheden}
+
+\subsection{De impact van data-integriteit in mainframe-omgevingen}
+
+\subsection{De noodzaak voor formalisering van het leertraject}
+
+% ----------------------------------------------------------------------------------------------------- %
+\section{Educatieve Theorieën voor Competentieontwikkeling}
+\label{sec:educatieve-theorieen}
+
+\subsection{De Herziene Taxonomie van Bloom}
+
+\subsection{Competentiegericht leren: Kennis, Vaardigheden en Attitude}
+
+\subsection{Microlearning en didactiek voor de nieuwe generatie}
+
+% ----------------------------------------------------------------------------------------------------- %
+\section{Bestaande Frameworks en Benchmarking}
+\label{sec:bestaande-frameworks}
+
+\subsection{Algemene IT-kaders: e-CF en SFIA}
+
+\subsection{Mainframe-specifieke kaders: Het IBM Z model}
+
+\subsection{De lacune voor het Unisys-platform}
+
+% ----------------------------------------------------------------------------------------------------- %
+\section{Conclusie: Richting een Unisys DBA-framework}
+\label{sec:conclusie-state-of-the-art}
