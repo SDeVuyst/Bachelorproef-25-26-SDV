@@ -6,7 +6,6 @@
 % ==============================================INLEIDING============================================== %
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
-% TODO
 
 % De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
 
@@ -27,16 +26,25 @@
 
 % Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
 
-In de huidige IT-sector vormen Unisys-mainframes nog steeds de kritieke infrastructuur voor organisaties die enorme hoeveelheden bedrijfskritische data verwerken. Desondanks stroomt er weinig nieuw talent door naar dit specifieke domein. Het beheer van deze systemen, en specifiek de rol van de Database Administrator (DBA), vereist een diepgaande kennis van de ClearPath-architectuur en DMSII-databanken. Deze expertise wijkt fundamenteel af van de kennis die wordt aangeboden in reguliere IT-opleidingen, die zich hoofdzakelijk richten op gedistribueerde systemen en relationele SQL-databases.
+In de huidige IT-sector vormen mainframes nog steeds de kritieke infrastructuur voor organisaties die enorme hoeveelheden bedrijfskritische data verwerken. 
+Hoewel het platform vaak geassocieerd wordt met een verouderde workforce, toont een recente survey van BMC \textcite{BMC2025} aan dat er een fundamentele generatieshift gaande is: 
+inmiddels identificeert 66\% van de mainframe-professionals zich als Millennial of Gen Z, een drastische stijging ten opzichte van de 37\% in 2018.
 
-Het kernprobleem is het ontbreken van een gestructureerd en eenduidig leertraject voor beginnende DBA's. Junior profielen die de sector betreden, worden geconfronteerd met een steile leercurve zonder helder gedefinieerde leerdoelen. Dit leidt tot een inefficiënt onboardingproces, waarbij de verantwoordelijkheid voor de opleiding volledig bij de ervaren senior DBA's komt te liggen, die zelf vaak kampen met een hoge werkdruk.
+Deze demografische kanteling brengt echter nieuwe uitdagingen met zich mee. De nieuwe generatie mainframe-professionals, waaronder Database Administrators, 
+hebben andere verwachtingen van de vaak verouderde infrastructuur en leerproces. Hierdoor stroomt er specifiek naar het Unisys-domein nog te weinig nieuw talent door.
+Een recente survey van \textcite{Kyndryl2025} toont dat 70\% van de organisaties moeite hebben met het vinden van multitalenten te vinden binnen de mainframeomgeving. 
+De rol van de Database Administrator (DBA) binnen deze omgeving vereist immers een diepgaande, specialistische kennis van de ClearPath-architectuur en DMSII-databanken 
+die fundamenteel afwijkt van de relationele SQL-standaarden die in het reguliere onderwijs worden aangeboden. 
+Het kernprobleem is dat de verschuiving in personeel niet gepaard is gegaan met een modernisering van het leertraject. 
+Junior profielen worden geconfronteerd met een steile leercurve zonder helder gedefinieerde leerdoelen, 
+wat het risico op een kennisvacuüm vergroot nu de ervaren Baby Boomers de sector definitief verlaten \autocite{BMC2025}.
 
-Dit onderzoek biedt een directe meerwaarde voor de volgende concrete doelgroep:
-\begin{itemize}
-    \item \textbf{Onderwijsinstellingen (Hogescholen \\& Universiteiten)}: Zij kunnen het framework gebruiken om hun curriculum beter af te stemmen op de nichemarkt van mainframe-technologie, waardoor hun studenten een uniek voordeel krijgen op de arbeidsmarkt.
-    \item \textbf{Bedrijven met een Unisys-infrastructuur (zoals financiële instellingen en overheidsdiensten)}: Zij verkrijgen een gestandaardiseerd instrument om junior DBA's sneller en effectiever op te leiden, wat de continuïteit van hun kritieke systemen waarborgt.
-    \item \textbf{Junior IT-professionals en studenten}: Zij krijgen toegang tot een drempelverlagend platform dat de complexe materie van Unisys-mainframebeheer vertaalt naar kleinere, gestructureerde leerdoelen.
-\end{itemize}
+% Dit onderzoek biedt een directe meerwaarde voor de volgende concrete doelgroep:
+% \begin{itemize}
+%     \item \textbf{Onderwijsinstellingen (Hogescholen \\& Universiteiten)}: Zij kunnen het framework gebruiken om hun curriculum beter af te stemmen op de nichemarkt van mainframe-technologie, waardoor hun studenten een uniek voordeel krijgen op de arbeidsmarkt.
+%     \item \textbf{Bedrijven met een Unisys-infrastructuur (zoals financiële instellingen en overheidsdiensten)}: Zij verkrijgen een gestandaardiseerd instrument om junior DBA's sneller en effectiever op te leiden, wat de continuïteit van hun kritieke systemen waarborgt.
+%     \item \textbf{Junior IT-professionals en studenten}: Zij krijgen toegang tot een drempelverlagend platform dat de complexe materie van Unisys-mainframebeheer vertaalt naar kleinere, gestructureerde leerdoelen.
+% \end{itemize}
 
 
 % ===========================================ONDERZOEKSVRAAG=========================================== %
@@ -63,7 +71,7 @@ Om tot een onderbouwd antwoord te komen, worden de volgende deelvragen behandeld
 
 % Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
 
-Er wordt een onderbouwd competentieframework opgezet voor een Database Administrator Level 1 binnen een Unisys-omgeving. Dit framework structureert technische en niet-technische competenties aan de hand van de herziene Taxonomie van Bloom, waarbij leerdoelen specifiek worden afgestemd op de cognitieve niveaus 'onthouden', 'begrijpen' en 'toepassen'.
+Er wordt een onderbouwd competentieframework opgezet voor een Database Administrator Level 1 binnen een Unisys-omgeving. Dit framework structureert technische en niet-technische competenties aan de hand van de herziene Taxonomie van Bloom, waarbij leerdoelen specifiek worden afgestemd op de cognitieve niveaus 'onthouden', 'begrijpen' en 'toepassen' \autocite{Anderson2001}.
 Dit framework wordt weerspiegeld door een Proof-of-Concept (PoC) in de vorm van een interactieve website. Dit platform ontsluit het geformuleerde framework door theoretische modules te combineren met interactieve oefeningen. Hierdoor beschikken zowel studenten als docenten over een eenduidig instrument voor de opleiding en evaluatie van junior DBA's binnen de Unisys-niche.
 Om de effectiviteit van de PoC te meten, wordt een kwantitatieve evaluatie uitgevoerd bij de doel-groep. Hierbij wordt data verzameld aan de hand van een 5-punts Likert-schaal. De verwachting is dat alle onderdelen een score van minstens 4.0 behalen.
 
