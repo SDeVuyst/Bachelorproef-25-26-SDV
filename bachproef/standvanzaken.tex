@@ -17,34 +17,25 @@ Volgens de definitie van \textcite{IBM2010} is een mainframe een server dat door
 
 Deze servers draaien op gespecialiseerde besturingssystemen zoals z/OS (IBM), ClearPath MCP of OS 2200 (Unisys) en in toenemende mate op specifieke mainframe-distributies van Linux (zoals LinuxONE). 
 
-Deze besturingssystemen, en vaak ook de hardware waarop ze draaien, zijn inherent ontworpen met de strenge eisen van een mainframe-omgeving in gedachten, waarbij een combinatie van de volgende kenmerken centraal staan: \autocite{Ebbers2011}
+Deze besturingssystemen, en vaak ook de hardware waarop ze draaien, zijn inherent ontworpen met de strenge eisen van een mainframe-omgeving in gedachten. Hoewel de onderstaande lijst niet exhaustief is, staan de volgende kenmerken centraal \autocite{Ebbers2011}:
 
 \begin{itemize}
-    \item Compatibiliteit met System z\footnote{System Z is een overkoepelende naam voor een IBM Mainframe.}-besturingssystemen, -toepassingen en -gegevens.
-    \item Gecentraliseerde controle van bronnen.
-    \item Hardware en besturingssystemen die toegang tot schijfstations kunnen delen met
-          andere systemen, met automatische vergrendeling en bescherming tegen destructief
-          gelijktijdig gebruik van schijfgegevens.
-    \item Een werkwijze waarbij vaak gespecialiseerde medewerkers betrokken zijn die gebruikmaken van
-          gedetailleerde procedurehandboeken en zeer georganiseerde procedures voor
-          back-ups, herstel, training en noodherstel op een alternatieve locatie.
-    \item Hardware en besturingssystemen die routinematig werken met honderden of
-          duizenden gelijktijdige I/O-bewerkingen.
-    \item Clustertechnologieën waarmee de klant meerdere exemplaren van
-          het besturingssysteem als één systeem kan gebruiken. Deze configuratie, bekend als
-          Parallel Sysplex, is qua concept vergelijkbaar met een UNIX-cluster, maar maakt het mogelijk
-          om systemen naar behoefte toe te voegen of te verwijderen, terwijl applicaties blijven
-          draaien. Deze flexibiliteit stelt mainframeklanten in staat om nieuwe applicaties te introduceren
-          of het gebruik van bestaande applicaties te staken, in reactie op veranderingen in
-          de bedrijfsactiviteiten.
-    \item Extra mogelijkheden voor het delen van gegevens en bronnen. In een Parallel Sysplex is het bijvoorbeeld
-          mogelijk voor gebruikers van meerdere systemen om tegelijkertijd toegang te krijgen tot dezelfde
-          databases, waarbij de toegang tot de database op recordniveau wordt gecontroleerd.
-    \item Geoptimaliseerd voor I/O voor bedrijfsgerelateerde gegevensverwerkingstoepassingen
-          die ondersteuning bieden voor hogesnelheidsnetwerken en terabytes aan schijfopslag.
+      \item \textbf{Betrouwbaarheid, beschikbaarheid en onderhoudsvriendelijkheid (RAS\footnote{Reliability, availability, and serviceability}):} \autocite{Ebbers2011}
+            \begin{itemize}
+                  \item Betrouwbaarheid: De hardwarecomponenten van het systeem beschikken over uitgebreide zelfcontrole- en zelfherstelcapaciteiten. De betrouwbaarheid van de software van het systeem is het resultaat van uitgebreide tests en de mogelijkheid om snel updates uit te voeren voor gedetecteerde problemen.
+                  \item Beschikbaarheid: Het systeem kan herstellen van een defect onderdeel zonder dat dit invloed heeft op de rest van het draaiende systeem. 
+                  \item Onderhoudsvriendelijkheid: Het systeem kan vaststellen waarom een storing is opgetreden.
+            \end{itemize}
+      \item \textbf{Beveiliging:} Kritieke gegevens moeten veilig worden
+            beheerd en gecontroleerd, en tegelijkertijd beschikbaar worden gesteld aan gebruikers
+            die bevoegd zijn om ze in te zien. De mainframecomputer heeft uitgebreide mogelijkheden om
+            de gegevens van het bedrijf tegelijkertijd te delen met meerdere gebruikers en toch te beschermen. \autocite{Ebbers2011}
+      \item \textbf{Schaalbaarheid:} Het vermogen van de hardware, software of een gedistribueerd
+            systeem om goed te blijven functioneren wanneer de omvang of het volume ervan verandert. \autocite{Ebbers2011}
+      \item \textbf{Blijvende compatibiliteit:} Het vermogen van een applicatie om in het systeem te werken
+            of het vermogen om met andere apparaten of programma's te werken \autocite{Ebbers2011}
 \end{itemize}
 
-Hoewel deze kenmerken specifiek door IBM zijn gedefinieerd, maken Unisys-mainframes gebruik van gelijkaardige technologieën en mechanismen.
 
 \subsection{Strategische relevantie in 2026}
 
