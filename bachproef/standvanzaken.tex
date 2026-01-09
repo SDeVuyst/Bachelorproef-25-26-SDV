@@ -71,17 +71,70 @@ Uit recent onderzoek \autocite{BMC2025} blijkt dat inmiddels 66\% van de mainfra
 Deze verschuiving gaat echter verder dan enkel de demografie. 80\% van de bedrijven hebben in 2025 hun strategie betreffende de mainframe aangepast om te modernizeren \autocite{Kyndryl2025}.
 16\% van dergelijke modernizatie projecten gaat over het verlaten van de mainframe, 34\% gaat voor meer integratie met de cloud en de resterende 43\% modernizeert op de mainframe zelf \autocite{Kyndryl2025}.
 
-\subsection{De Kenniskloof (Skills Gap) in het IT-onderwijs}
 
 % ----------------------------------------------------------------------------------------------------- %
-\section{Het Unisys ClearPath MCP Ecosysteem}
-\label{sec:unisys-ecosysteem}
+\section{Het Unisys databanken ecosysteem}
+\label{sec:db}
 
-\subsection{De ClearPath Architectuur: E-mode en Stack-design}
+%TODO
+Om dieper te kunnen inzoomen op de noden en gebreken van een beginnende DBA, moeten we eerst weten wat de huidige situatie is.
 
-\subsection{Het Master Control Program (MCP)}
+\subsection{Database Management System (DBMS)}
+Een Database Management System (DBMS) is software voor het opslaan en ophalen van gebruikersgegevens, rekening houdend met passende beveiligingsmaatregelen. 
+Het bestaat uit een groep programma's die de database manipuleren. 
+Het DBMS accepteert gegevensaanvragen van een applicatie en instrueert het besturingssysteem om de specifieke gegevens te leveren. 
+In grote systemen helpt een DBMS gebruikers en externe software bij het opslaan en ophalen van gegevens. \autocite{Nordeen2022}
 
-\subsection{Onderscheid met gedistribueerde systemen}
+%TODO meer uitleggen
+De taken van een DBMS zijn als volgt:
+\begin{itemize}
+      \item Maakt gegevens toegankelijker \autocite{AWS}
+      \item Beheert metadata \autocite{AWS}
+      \item Verzorgt back-up en herstel \autocite{AWS}
+      \item Biedt functies voor gebruikersbeheer \autocite{AWS}
+      \item Beheert prestaties voor schaalbaarheid \autocite{AWS}
+\end{itemize}
+
+\textcite{Nordeen2022} deelt DBMS ook op in de vier belangrijkste types:
+\begin{enumerate}
+      %TODO misschien is dit een beetje out of scope?
+      %TODO dit is een letterlijke vertaling van Nordeen2022 boek, misschien wat parafraseren.
+      \item \textbf{Hierarchical DBMS:} In een hiërarchisch databasemodel worden gegevens georganiseerd in een boomstructuur. 
+      Gegevens worden opgeslagen in een hiërarchisch formaat (top-down of bottom-up). 
+      Gegevens worden weergegeven via een ouder-kindrelatie (parent-child). %TODO in footnote een ref zetten naar ergens waar men meer info kan krijgen over parent-child relaties 
+      In een hiërarchisch DBMS kan een ouder meerdere kinderen hebben, maar hebben kinderen slechts één ouder. \autocite{Nordeen2022}
+      \item \textbf{Network Model:} Het netwerk-databasemodel staat toe dat elk kind meerdere ouders heeft. 
+      Dit helpt bij het modelleren van complexere relaties, zoals de many-to-many relatie tussen orders en onderdelen. 
+      In dit model worden entiteiten georganiseerd in een grafiek (graph) die via verschillende paden toegankelijk is. \autocite{Nordeen2022}
+      \item \textbf{Relational Model:} Het relationele model is het meest gebruikte DBMS-model omdat het een van de eenvoudigste is. 
+      Dit model is gebaseerd op het normaliseren van gegevens in de rijen en kolommen van tabellen. 
+      Gegevens in een relationeel model worden opgeslagen in vaste structuren en gemanipuleerd met behulp van SQL. \autocite{Nordeen2022}
+      \item \textbf{Object-Oriented Model:} In het objectgeoriënteerde model worden gegevens opgeslagen in de vorm van objecten. 
+      De structuur, genaamd klassen, geeft de gegevens daarin weer. 
+      Het is een component van DBMS die een database definieert als een verzameling objecten die zowel gegevenswaarden als bewerkingen (operations) opslaan. \autocite{Nordeen2022}
+\end{enumerate}
+%TODO
+Unisys mainframe dbs opgedeeld in 2 Management Systems: \autocite{Unisys2025}
+
+\begin{itemize}
+      \item Enterprise Database Server for ClearPath MCP: hierarchical \autocite{Unisysa}
+      \item Relational Database Server for ClearPath MCP: \autocite{Unisysb}
+\end{itemize}
+
+
+\subsection{Wat is een Database Administrator?}
+Een Database Administrator, of DBA, is verantwoordelijk voor het onderhoud, de beveiliging en de werking van databases en zorgt er ook voor dat gegevens correct worden opgeslagen en opgehaald.
+Daarnaast werken DBA's vaak samen met ontwikkelaars om nieuwe functies te ontwerpen en te implementeren en eventuele problemen op te lossen.
+Een DBA moet een goed begrip hebben van zowel technische als zakelijke behoeften. \autocite{Oracle2019}
+
+Binnen een Unisys-omgeving is de DBA verantwoordelijk voor het beheer van DMSII, 
+
+
+\subsection{Databases}
+
+
+\subsection{De noodzaak voor formalisering van het leertraject}
+
 
 % ----------------------------------------------------------------------------------------------------- %
 \section{Data Management System II (DMSII)}
@@ -95,15 +148,6 @@ Deze verschuiving gaat echter verder dan enkel de demografie. 80\% van de bedrij
 
 \subsection{DMSII versus Relationele Databases (SQL)}
 
-% ----------------------------------------------------------------------------------------------------- %
-\section{De Rol van de Database Administrator (DBA) Level 1}
-\label{sec:rol-dba}
-
-\subsection{Operationele kerntaken en verantwoordelijkheden}
-
-\subsection{De impact van data-integriteit in mainframe-omgevingen}
-
-\subsection{De noodzaak voor formalisering van het leertraject}
 
 % ----------------------------------------------------------------------------------------------------- %
 \section{Educatieve Theorieën voor Competentieontwikkeling}
@@ -115,6 +159,7 @@ Deze verschuiving gaat echter verder dan enkel de demografie. 80\% van de bedrij
 
 \subsection{Microlearning en didactiek voor de nieuwe generatie}
 
+
 % ----------------------------------------------------------------------------------------------------- %
 \section{Bestaande Frameworks en Benchmarking}
 \label{sec:bestaande-frameworks}
@@ -124,6 +169,7 @@ Deze verschuiving gaat echter verder dan enkel de demografie. 80\% van de bedrij
 \subsection{Mainframe-specifieke kaders: Het IBM Z model}
 
 \subsection{De lacune voor het Unisys-platform}
+
 
 % ----------------------------------------------------------------------------------------------------- %
 \section{Conclusie: Richting een Unisys DBA-framework}
