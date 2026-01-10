@@ -76,7 +76,7 @@ Deze verschuiving gaat echter verder dan enkel de demografie. 80\% van de bedrij
 \section{Het Unisys databanken ecosysteem}
 \label{sec:db}
 
-%TODO
+%TODO introductie van deze section
 Om dieper te kunnen inzoomen op de noden en gebreken van een beginnende DBA, moeten we eerst weten wat de huidige situatie is.
 
 \subsection{Database Management System (DBMS)}
@@ -85,68 +85,78 @@ Het bestaat uit een groep programma's die de database manipuleren.
 Het DBMS accepteert gegevensaanvragen van een applicatie en instrueert het besturingssysteem om de specifieke gegevens te leveren. 
 In grote systemen helpt een DBMS gebruikers en externe software bij het opslaan en ophalen van gegevens. \autocite{Nordeen2022}
 
-%TODO meer uitleggen
-De taken van een DBMS zijn als volgt:
+De taken van een DBMS zijn als volgt: \autocite{IBM}
 \begin{itemize}
-      \item Maakt gegevens toegankelijker \autocite{AWS}
-      \item Beheert metadata \autocite{AWS}
-      \item Verzorgt back-up en herstel \autocite{AWS}
-      \item Biedt functies voor gebruikersbeheer \autocite{AWS}
-      \item Beheert prestaties voor schaalbaarheid \autocite{AWS}
+
+      \item \textbf{Maakt gegevens toegankelijker:} Een browsergebaseerde interface in DBMS'en biedt gebruikers eenvoudige toegang tot gegevens via een webformulier, een direct dashboard of een gedistribueerd netwerk van een derde partij. 
+      Naast visuele tools kunnen gebruikers ook toegang krijgen tot gegevens en ermee werken via applicaties, een \textit{Data Manipulation Language (DML)}, query-talen of API-verbindingen.
+      Een DBMS biedt ook de tools en mechanismen om die gegevens naar behoefte te manipuleren, groeperen, aggregeren en transformeren. 
+      Gebruikers kunnen gegevens dynamisch wijzigen, zodat ze correct zijn gestructureerd en opgemaakt voor verschillende toepassingen.\autocite{AWS}
+      
+      \item \textbf{Beheert metadata:} Het DBMS onderhoudt woordenboeken waarin metadata of gegevens over gegevens worden opgeslagen, zoals gegevensstructuren, tabel- en kolomnamen, gegevenstypen, beperkingen, indexen en relaties. 
+      Hierdoor kunnen applicaties met gegevens werken op basis van structurele abstracties in plaats van complexe codering. \autocite{AWS}
+      
+      \item \textbf{Verzorgt back-up en herstel:} Het DBMS vereenvoudigt het back-upproces van databases door een intuïtieve interface te bieden voor het beheer van back-ups en snapshots. 
+      Databasebeheerders kunnen de back-ups opslaan op externe locaties, zoals cloudopslag, zodat ze in geval van incidenten snel kunnen worden hersteld. 
+      Sommige DBMS'en bieden ook automatische back-ups op vooraf bepaalde intervallen of continue back-ups. 
+      De meeste bieden hersteltools voor het volledig of gedeeltelijk herstellen van databases naar een eerdere staat met minimale inspanning. \autocite{AWS}
+      
+      \item \textbf{Biedt functies voor gebruikersbeheer:} Met een DBMS kunnen databasebeheerders databasegebruikers effectief beheren en gebruikersacties reguleren. 
+      Ze kunnen gebruikersaccounts configureren, beleid voor gegevenstoegang definiëren en beperkingen wijzigen om de toegang tot onderliggende gegevens te controleren. 
+      De basisgegevensbewerkingen zijn \textit{create, read, update, and delete (CRUD)}. De beheerder kan de beschikbaarheid van elke bewerking instellen op gebruikers-, rol- of groepsniveau. 
+      Veel DBM-systemen ondersteunen een \textit{Data Conrol Language (DCL)} om complexe toegangscontroles te definiëren. \autocite{AWS}
+      
+      \item \textbf{Beheert prestaties voor schaalbaarheid:} DBMS ondersteunt tienduizenden gelijktijdige gebruikers door verschillende van de volgende maatregelen te implementeren: \autocite{AWS}
+      \begin{itemize}
+            \item Indexoptimalisatie om de uitvoering van query's te versnellen, waardoor het minder vaak nodig is om volledige tabellen te scannen.
+            \item Queryoptimalisatie om SQL-query's te analyseren en het meest efficiënte uitvoeringsplan te selecteren, waardoor I/O en verwerkingstijd tot een minimum worden beperkt.
+            \item Partitionering en sharding om de werklast over meerdere databaseknooppunten of opslagpartities te verdelen, waardoor de responstijden van query's en de fouttolerantie worden verbeterd.
+            \item Parallelle uitvoering van query's, zodat taken gelijktijdig worden verwerkt op meerdere CPU's of knooppunten.
+            \item Replicatie van gegevens en load balancing over meerdere servers, waarbij lees- en schrijfverzoeken worden verdeeld om de responsiviteit van het systeem te behouden en gegevensverlies als gevolg van storingen te voorkomen.
+            \item Veel DBMS-software heeft ook ingebouwde cachingmogelijkheden, zodat veelgebruikte gegevens in het geheugen worden opgeslagen om de noodzaak van herhaalde schijftoegang te verminderen. 
+            Met geïntegreerde tools kunnen gebruikers hun gegevens verder monitoren, configureren en optimaliseren.
+      \end{itemize}
+
 \end{itemize}
 
-\textcite{Nordeen2022} deelt DBMS ook op in de vier belangrijkste types:
+\textcite{Nordeen2022} deelt DBMS ook op in de vier belangrijkste types: %TODO DBMS of datamodellen?
 \begin{enumerate}
-      %TODO misschien is dit een beetje out of scope?
       %TODO dit is een letterlijke vertaling van Nordeen2022 boek, misschien wat parafraseren.
-      \item \textbf{Hierarchical DBMS:} In een hiërarchisch databasemodel worden gegevens georganiseerd in een boomstructuur. 
+      \item \textbf{Hiërarchisch} In een hiërarchisch databasemodel worden gegevens georganiseerd in een boomstructuur. 
       Gegevens worden opgeslagen in een hiërarchisch formaat (top-down of bottom-up). 
-      Gegevens worden weergegeven via een ouder-kindrelatie (parent-child). %TODO in footnote een ref zetten naar ergens waar men meer info kan krijgen over parent-child relaties 
+      Gegevens worden weergegeven via een ouder-kindrelatie (parent-child).
       In een hiërarchisch DBMS kan een ouder meerdere kinderen hebben, maar hebben kinderen slechts één ouder. \autocite{Nordeen2022}
-      \item \textbf{Network Model:} Het netwerk-databasemodel staat toe dat elk kind meerdere ouders heeft. 
+      \item \textbf{Netwerk:} Het netwerk-databasemodel staat toe dat elk kind meerdere ouders heeft. 
       Dit helpt bij het modelleren van complexere relaties, zoals de many-to-many relatie tussen orders en onderdelen. 
       In dit model worden entiteiten georganiseerd in een grafiek (graph) die via verschillende paden toegankelijk is. \autocite{Nordeen2022}
-      \item \textbf{Relational Model:} Het relationele model is het meest gebruikte DBMS-model omdat het een van de eenvoudigste is. 
+      \item \textbf{Relationeel:} Het relationele model is het meest gebruikte DBMS-model omdat het een van de eenvoudigste is. 
       Dit model is gebaseerd op het normaliseren van gegevens in de rijen en kolommen van tabellen. 
       Gegevens in een relationeel model worden opgeslagen in vaste structuren en gemanipuleerd met behulp van SQL. \autocite{Nordeen2022}
-      \item \textbf{Object-Oriented Model:} In het objectgeoriënteerde model worden gegevens opgeslagen in de vorm van objecten. 
+      \item \textbf{Objectgeoriënteerd:} In het objectgeoriënteerde model worden gegevens opgeslagen in de vorm van objecten. 
       De structuur, genaamd klassen, geeft de gegevens daarin weer. 
       Het is een component van DBMS die een database definieert als een verzameling objecten die zowel gegevenswaarden als bewerkingen (operations) opslaan. \autocite{Nordeen2022}
 \end{enumerate}
-%TODO
-Unisys mainframe dbs opgedeeld in 2 Management Systems: \autocite{Unisys2025}
 
-\begin{itemize}
-      \item Enterprise Database Server for ClearPath MCP: hierarchical \autocite{Unisysa}
-      \item Relational Database Server for ClearPath MCP: \autocite{Unisysb}
-\end{itemize}
+Unisys mainframes ondersteunen twee native Database Management Systems: \autocite{Unisys2025}
+
+\subsubsection{Enterprise Database Server for ClearPath MCP}
+Enterprise Database Server voor ClearPath MCP biedt een zeer beschikbare omgeving die grote databases en online transactieverwerking met hoge volumes ondersteunt. 
+Het is geschikt voor installaties van vrijwel elke omvang. 
+Enterprise Database Server biedt uitzonderlijke flexibiliteit bij het ondersteunen van een breed scala aan datamodellen: hiërarchisch, netwerk, plat\footnote{\textcite{GeeksforGeeks2025} geeft meer uitleg over flat-file databanken.} of relationeel. 
+Enterprise Database Server ondersteunt ook verschillende technieken voor toegang tot informatie. 
+Het bevat validatie-, audit-/herstel- en toegangscontrolefuncties en ondersteunt optionele hulpprogramma's voor databaseanalyse, monitoring, integriteitscertificering, online reorganisatie en online archivering. \autocite{Unisysa}
+
+Hoewel de officiële naam is gewijzigd naar Enterprise Database Server, blijft de term DMSII in technische documentatie en softwarecomponenten nog veelvuldig in gebruik. \autocite{Unisysc}
+
+\subsubsection{Relational Database Server for ClearPath MCP}
+Relational Database Server voor ClearPath MCP biedt een omgeving met hoge beschikbaarheid, ontworpen ter ondersteuning van grote relationele databases en online transactieverwerking met hoge volumes. 
+Relational Database Server bevat diverse validatie-, audit-/herstel- en toegangscontrolefuncties die zijn ontworpen ter ondersteuning van bedrijfskritische toepassingen. \autocite{Unisysb}
 
 
 \subsection{Wat is een Database Administrator?}
 Een Database Administrator, of DBA, is verantwoordelijk voor het onderhoud, de beveiliging en de werking van databases en zorgt er ook voor dat gegevens correct worden opgeslagen en opgehaald.
 Daarnaast werken DBA's vaak samen met ontwikkelaars om nieuwe functies te ontwerpen en te implementeren en eventuele problemen op te lossen.
 Een DBA moet een goed begrip hebben van zowel technische als zakelijke behoeften. \autocite{Oracle2019}
-
-Binnen een Unisys-omgeving is de DBA verantwoordelijk voor het beheer van DMSII, 
-
-
-\subsection{Databases}
-
-
-\subsection{De noodzaak voor formalisering van het leertraject}
-
-
-% ----------------------------------------------------------------------------------------------------- %
-\section{Data Management System II (DMSII)}
-\label{sec:dmsii}
-
-\subsection{Conceptuele basis: Het hiërarchische en netwerk-datamodel}
-
-\subsection{DASDL: Data and Structure Definition Language}
-
-\subsection{Fysieke organisatie en opslagmanagement}
-
-\subsection{DMSII versus Relationele Databases (SQL)}
 
 
 % ----------------------------------------------------------------------------------------------------- %
