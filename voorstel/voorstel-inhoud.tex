@@ -1,93 +1,96 @@
 %---------- Inleiding ---------------------------------------------------------
-
-\section{Inleiding}
+\section{Inleiding}%
 \label{sec:inleiding}
 
-Binnen grote organisaties die bedrijfskritische informatiesystemen beheren, blijven mainframeplatformen een essentiële rol spelen. Ondanks de opkomst van cloud- en gedistribueerde systemen worden Unisys-\allowbreak mainframes nog steeds intensief ingezet in sectoren waar betrouwbaarheid, continuïteit en gegevensintegriteit cruciaal zijn, zoals financiën, overheid en logistiek. Het beheer van databanken binnen deze omgevingen vereist specifieke kennis en vaardigheden die afwijken van hedendaagse relationele of cloudgebaseerde databaseplatformen.
+De hedendaagse financiële en overheidssector rust op een fundament van decennia-oude technologie: de programmeertaal COBOL. 
+Ondanks de opkomst van moderne talen zoals Python of Go, wordt geschat dat wereldwijd nog steeds honderden miljarden regels COBOL-code in productie zijn. 
+Het beheer van deze kritieke infrastructuur komt echter in het gedrang door de 'silver tsunami': ervaren Mainframe-ontwikkelaars gaan massaal met pensioen, terwijl de instroom van nieuw talent stagneert. 
+Jonge IT-professionals, opgegroeid met moderne talen en interactieve leeromgevingen, ervaren een enorme drempel bij het betreden van het COBOL-ecosysteem.
 
-In de praktijk stellen organisaties vast dat het opleiden en inzetten van startende Database Administrators (DBA's) binnen een Unisys-\allowbreak mainframe\allowbreak context een uitdaging vormt. Junior profielen beschikken vaak over een algemene IT- of databankachtergrond, maar missen de specifieke technische en professionele competenties die noodzakelijk zijn om efficiënt en veilig te functioneren in een mainframeomgeving. Bovendien ontbreekt het binnen het onderwijs aan een duidelijk afgebakend en gestructureerd competentiekader dat deze vereisten vertaalt naar concrete leerdoelen en evaluatiecriteria.
+Het fundamentele probleem is de verouderde didactiek. Waar moderne programmeertalen aangeleerd worden via interactieve sandboxes, AI-gestuurde feedback en 'just-in-time' leerpaden, 
+is het COBOL-onderwijs vaak blijven steken in de methodieken van de vorige eeuw. 
+De leerstof is veelal gebaseerd op lijvige, statische PDF's, abstracte theoretische kaders en een gebrek aan visuele of interactieve componenten.
 
-Deze bachelorproef vertrekt vanuit een concrete bedrijfscontext waarin de nood bestaat aan een helder en toepasbaar competentieframework voor een DBA Level 1 binnen een Unisys mainframeomgeving. De doelgroep van dit onderzoek bestaat uit IT-professionals en opleidingsverantwoordelijken die betrokken zijn bij het opleiden, begeleiden of evalueren van beginnende DBA's, evenals onderwijsinstellingen die hun curriculum willen afstemmen op reële noden uit het werkveld.
+Deze traditionele benadering houdt geen rekening met de cognitieve behoeften van de hedendaagse junior ontwikkelaar, voor wie directe feedback en een gevoel van progressie cruciaal zijn. 
+De rigide syntaxis van COBOL wordt hierdoor niet alleen als moeilijk ervaren, maar ook als monotoon. 
+Hierdoor ontstaat een motivatiecrisis die de instroom naar kritieke IT-functies belemmert.
+
+Gamification, het strategisch inzetten van spelmechanismen zoals beloningssystemen, narratieve elementen en feedback-loops in een niet-spelcontext kan hiervoor een oplossing bieden.
+Door gebruik te maken van een interactieve website, opgesteld aan de hand van het Octalysis-framework kan de student de verschillende aspecten van COBOL leren. 
+Deze aspecten, zoals de verschillende \textit{divisions}, worden gradueel aangeleerd volgens levels.
+Er wordt verwacht dat de student al een stevige programmeerbasis heeft, aangezien COBOL geen taal is waarmee iemand zijn programmeercarriere start.
+
 
 Aan de hand van deze probleemstelling wordt er onderzoek gedaan naar de centrale onderzoeksvraag: 
-\textit{"Welke competenties zijn vereist voor een Database Administrator (DBA) Level 1 om doeltreffend te opereren binnen een Unisys mainframeomgeving, en op welke manier kunnen deze competenties worden geformaliseerd in een eenduidig en direct inzetbaar framework voor het onderwijs?"}\break
+\textit{"Hoe effectief is gamification bij het aanleren van COBOL aan junior developers die gewend zijn aan moderne talen zoals Python of Java?"}\break
 Om tot een onderbouwd antwoord te komen, worden de volgende deelvragen behandeld:
 
 \begin{enumerate}
-    \item Welke technische competenties zijn noodzakelijk voor een DBA Level 1 binnen een Unisys mainframeomgeving?
-    \item Welke niet-\allowbreak technische (professionele) competenties zijn noodzakelijk voor een DBA Level 1?
-    \item Hoe worden DBA-\allowbreak competenties momenteel aangeleerd en geëvalueerd binnen bestaande onderwijs- of trainingsprogramma's?
-    \item Welke structuur en opbouw zijn geschikt om DBA Level 1-competenties te vertalen naar een eenduidig framework voor het onderwijs?
-    \item Aan welke eisen moet een competentieframework voldoen om direct inzetbaar te zijn binnen een onderwijscontext?
+    \item Wat zijn de fundamentele verschillen in syntaxis en logica tussen COBOL en moderne talen (Java/Python)?
+    \item Welke gamification-elementen bestaan er en welke sluiten het best aan bij het leren van COBOL?
+    \item Welke specifieke barrières ervaren junior developers bij het aanleren van COBOL?
+    \item Hoe kan een gamified leeromgeving worden ontworpen die de abstracte logica van COBOL vertaalt naar interactieve uitdagingen?
+    \item Hoe verhoudt de leer-efficiëntie van een gamified methode zich tot traditionele documentatie-gebaseerde trainingen?
 \end{enumerate}
-De uiteindelijke onderzoeksdoelstelling van deze bachelorproef is het ontwikkelen van een tastbaar hulpmiddel voor het werkveld en het onderwijs. Het concrete eindresultaat is een \textbf{proof-of-concept in de vorm van een interactieve website}. Deze website dient als direct inzetbaar platform waar het geformuleerde competentie-framework wordt gepresenteerd, zodat zowel studenten als docenten en mentoren over een eenduidig instrument beschikken voor de opleiding en evaluatie van junior DBA's.
+
+Door spelmechanismen te integreren, wil dit onderzoek aantonen of de drempel voor COBOL-educatie verlaagd kan worden, de motivatie verhoogd kan worden en de leer-efficiëntie verbeterd kan worden ten opzichte van traditionele, statische lesmethoden.
+
 
 %---------- Stand van zaken ---------------------------------------------------
-
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie}
 
-Het opstellen van een competentieframework voor een \emph{Database Administrator Level 1} binnen een Unisys-\allowbreak omgeving vraagt om een kritische bestudering van bestaande competentiemodellen en relevante vakliteratuur, met bijzondere aandacht voor technologie-\allowbreak specifieke vereisten.
+\subsection{Gamification}
 
-Algemene competentiemodellen, waaronder het Skills Framework for the Information Age (SFIA), geven een systematisch overzicht van de kennis en vaardigheden die van IT-\allowbreak professionals worden verwacht.
-Hoewel databaseadministratie (DBA) binnen SFIA wordt behandeld, ontbreekt er een specifieke uitwerking voor Unisys-\allowbreak omgevingen. \autocite{SFIA2025} 
+Volgens \textcite{Deterding2011} is gamificatie het gebruik van game-ontwerpelementen in niet-game-contexten. 
+\textcite{Deterding2011} leggen hun definitie uit en stellen dat gamification meer met "gamen" \textit{(ludus)} dan met "playing" \textit{(paidia)} te maken heeft, er zijn namelijk regels die moeten worden gevolgd.
+Gamification  maakt  gebruik  van  elementen  uit  game-ontwerp,  maar  kan  niet  als  volwaardige  games  worden  beschouwd.
 
-\textcite{DEL2024} voerde eerder onderzoek uit naar een competentieframework voor een DBA Level 1, maar dit richtte zich specifiek op een \mbox{z/OS}-\allowbreak omgeving. Hoewel de fundamentele verantwoordelijkheden van een DBA, zoals het waarborgen van databeschikbaarheid en -beveiliging universeel zijn, verschillen de technische implementatie en de vereiste systeemkennis in een Unisys-\allowbreak omgeving aanzienlijk. Waar \mbox{z/OS} gebruikmaakt van specifieke subsystemen, is een Unisys-\allowbreak omgeving vaak gebaseerd op de ClearPath architectuur, waarbij databanken zoals MCP Enterprise Database Server (ook wel bekend als DMSII) \autocite{Unisys2022} een centrale rol spelen.
+Om te verduidelijken welke elementen hieronder vallen, onderscheiden de auteurs vijf niveaus van gamedesign-elementen, geordend van concreet naar abstract:
+\begin{itemize} 
+    \item \textbf{Game interface design patterns:} Dit zijn de meest directe visuele oplossingen en interactiecomponenten, zoals badges, leaderboards en levels. 
+    \item \textbf{Game design patterns en mechanics:} Deze omvatten de terugkerende onderdelen van de gameplay die de interactie structureren, zoals tijdslimieten, beperkte middelen of het werken met beurten. 
+    \item \textbf{Game design principes en heuristieken:} Dit zijn evaluatieve richtlijnen om een ontwerp aan te pakken of te analyseren, zoals het bieden van duidelijke doelen of een variëteit aan spelstijlen. 
+    \item \textbf{Game modellen:} Dit betreft conceptuele modellen van game-componenten of de game-ervaring, zoals het MDA-model (Mechanics, Dynamics, Aesthetics). 
+    \item \textbf{Game design methoden:} Dit zijn de specifieke praktijken en ontwerpprocessen uit de gamedesignwereld, waaronder playtesting en playcentric design.
+\end{itemize}
 
-Om dit framework bruikbaar te maken voor het onderwijs, zal dit onderzoek tevens gebruikmaken van de herziene Taxonomie van Bloom. Dit stelt ons in staat om per competentie het gewenste cognitieve niveau vast te leggen. Hierbij wordt gefocust op niveaus zoals onthouden, begrijpen en toepassen, wat essentieel is voor een eenduidige profilering van een Level 1-DBA \autocite{Anderson2001}.
+Een meta-analyse studie van \textcite{Zhan2022} toont ook aan dat gamificatie een positieve impact heeft op het onderwijs in programmeren. 
+Gamificatie had met name het grootste effect op de motivatie en academische prestaties van studenten, gevolgd door het denkvermogen.
 
-% Voor literatuurverwijzingen zijn er twee belangrijke commando's:
-% \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
-%   geen onderdeel is van de zin.
-% \textcite{KEY} => Auteur (jaartal)  Gebruik dit als de auteursnaam wel een
-%   functie heeft in de zin (bv. ``Uit onderzoek door Doll & Hill (1954) bleek
-%   ...'')
+
+\subsection{COBOL}
+COBOL (Common Business Oriented Language), ontwikkeld aan het eind van de jaren 50, is een van de oudste hogere programmeertalen die nog steeds een cruciale rol speelt in de moderne IT-architectuur. 
+De taal staat bekend om zijn betrouwbaarheid, efficiëntie, schaalbaarheid en compatibiliteit. 
+Hoewel er tegenwoordig modernere talen bestaan, blijven miljarden regels bestaande code in COBOL in productie vanwege de hoge kosten, complexiteit en risico's die gepaard gaan met migratie naar andere platforms. 
+Hierdoor blijft de noodzaak voor COBOL-professionals groot, terwijl deze expertise steeds schaarser wordt door de vergrijzing van het huidige personeelsbestand \autocite{Upadhaya2023}
+
+Ondanks deze afhankelijkheid streven veel organisaties naar modernisering of de overstap naar alternatieve talen zoals Java. 
+Deze verschuiving is ook merkbaar in het onderwijs; er is een duidelijk gebrek aan academische cursussen die deze programmeertaal opnemen in hun curriculum \autocite{Upadhaya2023}.
+
 
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Dit onderzoek wordt uitgevoerd in fases, waarbij elke fase bijdraagt aan de ontwikkeling en validatie van een competentieframework voor een Database Administrator (DBA) Level 1 binnen een Unisys mainframeomgeving.
+Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
 
-\subsection{Fase 1: Literatuurstudie}
-In de eerste fase van het onderzoek wordt een uitgebreide literatuurstudie uitgevoerd. Het doel van deze fase is om de huidige stand van zaken in kaart te brengen met betrekking tot bestaande competentieframeworks en hun toepassingsgebied. Hierbij wordt nagegaan welke frameworks reeds bestaan, hoe deze zijn opgebouwd en welke tekortkomingen of beperkingen zij vertonen. Daarnaast worden relevante publicaties geanalyseerd die betrekking hebben op de vereiste competenties van een DBA Level 1. Deze analyse vormt de theoretische basis voor de verdere ontwikkeling van het voorgestelde competentieframework.
+Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
 
-\subsection{Fase 2: Interviews}
-Aanvullend op de literatuurstudie worden in de tweede fase semigestructureerde interviews afgenomen met professionals uit de mainframewereld, met een specifieke focus op experts die actief zijn binnen Unisys-\allowbreak omgevingen. Deze interviews hebben als doel inzicht te verkrijgen in de verwachtingen, verantwoordelijkheden en vereiste vaardigheden van een DBA Level 1 in de praktijk. De resultaten uit deze gesprekken dienen ter verfijning en validatie van de bevindingen uit de literatuurstudie.
+Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
 
-\subsection{Fase 3: Structureren van het competentieframework}
-Op basis van de resultaten uit de literatuurstudie en de interviews wordt in de derde fase het competentieframework gestructureerd. Hierbij wordt de herziene Taxonomie van Bloom \autocite{Anderson2001} gehanteerd om de competenties te koppelen aan specifieke cognitieve niveaus. Dit waarborgt dat de leerdoelen eenduidig zijn geformuleerd en aansluiten bij het instapniveau van een DBA Level 1 binnen een onderwijscontext.
+Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
 
-\subsection{Fase 4: Proof of Concept}
-In de vierde fase wordt een proof of concept (PoC) ontwikkeld in de vorm van een website. Deze PoC implementeert het ontwikkelde competentieframework en bevat zowel theoretische uitleg als praktische oefeningen. Het doel van deze fase is om na te gaan in welke mate het framework effectief kan worden vertaald naar een digitaal leerplatform dat bruikbaar is voor onderwijsdoeleinden.
+Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
 
-\subsection{Fase 5: Resultaten}
-Tijdens de vijfde fase wordt de proof of concept getest door een beperkte groep gebruikers. Op basis van hun ervaringen, feedback en observaties worden de resultaten geanalyseerd. Deze analyse biedt inzicht in de bruikbaarheid, duidelijkheid en effectiviteit van het voorgestelde competentieframework en de bijhorende PoC.
-
-\subsection{Fase 6: Conclusie}
-In de laatste fase worden de bevindingen uit het onderzoek samengebracht en wordt een algemene conclusie geformuleerd. Hierbij wordt gereflecteerd op de onderzoeksvraag en wordt nagegaan in welke mate de doelstellingen van het onderzoek zijn bereikt. Daarnaast worden mogelijke aanbevelingen voor toekomstig onderzoek en verdere optimalisatie van het framework besproken.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.2\textwidth]{flowchart.png}
-  \caption{Flowchart Methodologie}
-  \label{fig:flowchart_methodologie_png}
-\end{figure}
+Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
 
 %---------- Verwachte resultaten ----------------------------------------------
-\section{Verwacht resultaat en meerwaarde}
+\section{Verwacht resultaat, conclusie}%
 \label{sec:verwachte_resultaten}
 
-% Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
+Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
 
-% Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
+Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
 
-% Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
-
-Op basis van de uitgevoerde literatuurstudie en de interviews met professionals uit de Unisys-\allowbreak mainframewereld wordt verwacht dat dit onderzoek resulteert in een onderbouwd competentieframework voor een DBA Level 1. Dit framework zal technische en niet-technische competenties structureren volgens de herziene Taxonomie van Bloom \autocite{Anderson2001}, waardoor leerdoelen specifiek worden afgestemd op de cognitieve niveaus 'onthouden', 'begrijpen' en 'toepassen'.
-
-Daarnaast wordt verwacht dat het framework de kloof tussen algemene IT-opleidingen en de specifieke Unisys-niche dicht. De proof of concept (PoC), een educatieve website, zal de praktische inzetbaarheid van dit framework aantonen door theoretische modules te combineren met interactieve oefeningen.
-
-Om de effectiviteit van de PoC te meten, wordt een kwantitatieve evaluatie uitgevoerd bij de doelgroep. Hierbij wordt data verzameld aan de hand van een 5-punts Likert-schaal. De resultaten zullen worden gevisualiseerd in een staafdiagram, waarbij de X-as de criteria \textbf{gebruiksvriendelijkheid}, \textbf{relevantie van de leerstof} en \textbf{duidelijkheid van de oefeningen} bevat, en de Y-as de gemiddelde score weergeeft. De verwachting is dat alle onderdelen een score van minstens 4.0 behalen.
-
-Uit de kwalitatieve feedback wordt verwacht dat professionals de volledigheid van het framework bevestigen, terwijl studenten de website zullen waarderen als een drempelverlagend instrument voor een complex platform. De bachelorproef biedt hiermee een meerwaarde voor zowel het onderwijs als de industrie door een gestandaardiseerd kader te bieden voor de opleiding van junior mainframe-\allowbreak specialisten.
+Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
