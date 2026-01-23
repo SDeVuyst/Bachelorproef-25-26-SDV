@@ -4,25 +4,26 @@
 
 De hedendaagse financiële en overheidssector rust op een fundament van decennia-oude technologie: de programmeertaal COBOL. 
 Ondanks de opkomst van moderne talen zoals Python of Go, wordt geschat dat wereldwijd nog steeds honderden miljarden regels COBOL-code in productie zijn. 
-Het beheer van deze kritieke infrastructuur komt echter in het gedrang door de 'silver tsunami': ervaren Mainframe-ontwikkelaars gaan massaal met pensioen, terwijl de instroom van nieuw talent stagneert. 
+Het beheer van deze kritieke infrastructuur komt echter in het gedrang door de 'silver tsunami': ervaren Mainframe-ontwikkelaars gaan massaal met pensioen, 
+terwijl de instroom van nieuw talent stagneert. 
 Jonge IT-professionals, opgegroeid met moderne talen en interactieve leeromgevingen, ervaren een enorme drempel bij het betreden van het COBOL-ecosysteem.
 
-Het fundamentele probleem is de verouderde didactiek. Waar moderne programmeertalen aangeleerd worden via interactieve sandboxes, AI-gestuurde feedback en 'just-in-time' leerpaden, 
+Het fundamentele probleem is de verouderde didactiek. 
+Waar moderne programmeertalen aangeleerd worden via interactieve sandboxes, AI-gestuurde feedback en 'just-in-time' leerpaden, 
 is het COBOL-onderwijs vaak blijven steken in de methodieken van de vorige eeuw. 
-De leerstof is veelal gebaseerd op lijvige, statische PDF's, abstracte theoretische kaders en een gebrek aan visuele of interactieve componenten.
+De leerstof is veelal gebaseerd op PDF's, abstracte theoretische kaders en een gebrek aan visuele of interactieve componenten.
 
 Deze traditionele benadering houdt geen rekening met de cognitieve behoeften van de hedendaagse junior ontwikkelaar, voor wie directe feedback en een gevoel van progressie cruciaal zijn. 
 De rigide syntaxis van COBOL wordt hierdoor niet alleen als moeilijk ervaren, maar ook als monotoon. 
 Hierdoor ontstaat een motivatiecrisis die de instroom naar kritieke IT-functies belemmert.
 
-Gamification, het strategisch inzetten van spelmechanismen zoals beloningssystemen, narratieve elementen en feedback-loops in een niet-spelcontext kan hiervoor een oplossing bieden.
+Gamification, het strategisch inzetten van spelmechanismen zoals beloningssystemen, leaderboards en levels in een niet-spelcontext kan hiervoor een oplossing bieden.
 Door gebruik te maken van een interactieve website, opgesteld aan de hand van het Octalysis-framework kan de student de verschillende aspecten van COBOL leren. 
 Deze aspecten, zoals de verschillende \textit{divisions}, worden gradueel aangeleerd volgens levels.
 Er wordt verwacht dat de student al een stevige programmeerbasis heeft, aangezien COBOL geen taal is waarmee iemand zijn programmeercarriere start.
 
-
 Aan de hand van deze probleemstelling wordt er onderzoek gedaan naar de centrale onderzoeksvraag: 
-\textit{"Hoe effectief is gamification bij het aanleren van COBOL aan junior developers die gewend zijn aan moderne talen zoals Python of Java?"}\break
+\textit{"Hoe effectief is gamification bij het aanleren van COBOL aan junior developers die gewend zijn aan moderne talen zoals Python?"}\break
 Om tot een onderbouwd antwoord te komen, worden de volgende deelvragen behandeld:
 
 \begin{enumerate}
@@ -33,7 +34,8 @@ Om tot een onderbouwd antwoord te komen, worden de volgende deelvragen behandeld
     \item Hoe verhoudt de leer-efficiëntie van een gamified methode zich tot traditionele documentatie-gebaseerde trainingen?
 \end{enumerate}
 
-Door spelmechanismen te integreren, wil dit onderzoek aantonen of de drempel voor COBOL-educatie verlaagd kan worden, de motivatie verhoogd kan worden en de leer-efficiëntie verbeterd kan worden ten opzichte van traditionele, statische lesmethoden.
+Door spelmechanismen te integreren, wil dit onderzoek aantonen of de drempel voor COBOL-educatie verlaagd kan worden, 
+de motivatie verhoogd kan worden en de leer-efficiëntie verbeterd kan worden ten opzichte van de traditionele lesmethoden.
 
 
 %---------- Stand van zaken ---------------------------------------------------
@@ -55,9 +57,14 @@ Om te verduidelijken welke elementen hieronder vallen, onderscheiden de auteurs 
     \item \textbf{Game design methoden:} Dit zijn de specifieke praktijken en ontwerpprocessen uit de gamedesignwereld, waaronder playtesting en playcentric design.
 \end{itemize}
 
+Er is ook een populair framework dat specifiek kijkt naar de psychologische drijfveren achter deze gamedesign-elementen: het \textit{Octalysis-framework}, ontwikkeld door \textcite{Chou2015}. 
+Waar de definitie van \textcite{Deterding2011} zich sterk richt op de classificatie van elementen, vertrekt Chou vanuit het principe van \textit{Human-Focused Design}.
+Dit houdt in dat het ontwerp niet primair draait om de functionele elementen (zoals badges of leaderboards), maar om de manier waarop deze elementen inspelen op de menselijke motivatie en emoties.
+Het framework is opgebouwd rond acht fundamentele motivaties, de zogenaamde \textit{Core Drives}. 
+Deze \textit{Core Drives} bevatten 8 verschillende aspecten van de menselijke psychologie zoals \textit{Development \& Accomplishment}, \textit{Ownership}, \textit{Social Influence} etc. \autocite{Chou2015}
+
 Een meta-analyse studie van \textcite{Zhan2022} toont ook aan dat gamificatie een positieve impact heeft op het onderwijs in programmeren. 
 Gamificatie had met name het grootste effect op de motivatie en academische prestaties van studenten, gevolgd door het denkvermogen.
-
 
 \subsection{COBOL}
 COBOL (Common Business Oriented Language), ontwikkeld aan het eind van de jaren 50, is een van de oudste hogere programmeertalen die nog steeds een cruciale rol speelt in de moderne IT-architectuur. 
@@ -73,24 +80,61 @@ Deze verschuiving is ook merkbaar in het onderwijs; er is een duidelijk gebrek a
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
+Dit onderzoek volgt een ontwerpgerichte aanpak, waarbij theoretische inzichten over gamification worden vertaald naar een praktisch leerinstrument voor COBOL. 
+Het onderzoek is onderverdeeld in de volgende fasen:
 
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
+\subsection{Fase 1: Literatuurstudie} 
+In de eerste fase wordt een fundamentele analyse uitgevoerd op twee gebieden: 
+\begin{itemize} 
+    \item \textbf{COBOL-syntax en architectuur:} Een studie naar de unieke structuur van COBOL (zoals de rigide divisies) in vergelijking met moderne, objectgeoriënteerde talen zoals Python. 
+    Dit dient om de specifieke drempels voor studenten te identificeren.
+    \item \textbf{Gamification-frameworks:} Een analyse van bestaande methodes met een focus op het \textit{Octalysis-framework} van \textcite{Chou2015}. 
+    Hierbij worden de acht 'Core Drives' geëvalueerd op hun geschiktheid om intrinsieke en extrinsieke motivatie bij programmeurs te stimuleren.
+\end{itemize}
 
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
+\subsection{Fase 2: Ontwerp van Proof of Concept} 
+Op basis van de literatuurstudie wordt een prototype ontwikkeld in de vorm van een interactieve website.
+Afhankelijk van de bevindingen uit de literatuurstudie studie zal deze website bestaan uit verschillende levels, die elk een deel van COBOL-structuur zal behandelen.
+Zo kan level 1 de globale structuur zoals de \textit{Identification, Environment, Data} en \textit{Procedure Divisions} behandelen, terwijl latere levels ingaan op variabelen, string manipulatie etc.
 
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
+\subsection{Fase 3: Evaluatie en Resultaten}
+Na de realisatie van de PoC wordt de effectiviteit van het instrument getoetst door middel van een gebruikersonderzoek.
+De testpopulatie bestaat uit studenten Toegepaste Informatica, onderverdeeld in twee focusgroepen:
+\begin{enumerate}
+    \item \textbf{De referentiegroep:} Studenten met voorafgaande kennis van COBOL.
+    \item \textbf{De doelgroep:} Studenten zonder COBOL-ervaring, maar met kennis van moderne programmeertalen.
+\end{enumerate}
 
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
+De evaluatie vindt plaats via een \textit{mixed-methods} aanpak: kwantitatieve data wordt verzameld via de \textit{System Usability Scale (SUS)} voor gebruiksvriendelijkheid, terwijl kwalitatieve inzichten worden verkregen via een semi-gestructureerd interview of survey over de ervaren motivatie.
 
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
+\subsection{Fase 4: Conclusie}
+In de laatste fase worden de bevindingen uit het onderzoek samengebracht en wordt een algemene conclusie geformuleerd. 
+Hierbij wordt gereflecteerd op de onderzoeksvraag en wordt nagegaan in welke mate de doelstellingen van het onderzoek zijn bereikt.
+Daarnaast worden mogelijke aanbevelingen voor de tool gedaan.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.2\textwidth]{flowchart.png}
+  \caption{Tijdlijn Methodologie}
+  \label{fig:flowchart_methodologie_png}
+\end{figure}
+
 
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwacht resultaat, conclusie}%
 \label{sec:verwachte_resultaten}
 
-Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
+Er wordt verwacht dat de Proof of Concept een significant verschil zal maken in de leerervaring van beide testgroepen:
+\begin{itemize}
+    \item \textbf{Studenten zonder voorkennis:} De verwachting is dat gamificatie-elementen de drempelvrees voor de verouderde COBOL-syntax verlaagt.
+    \item \textbf{Studenten met voorkennis:} Voor deze groep zal de meerwaarde vermoedelijk liggen in de verhoogde \textit{engagement}. 
+    Waar de traditionele syntax als droog wordt ervaren, zorgt het Octalysis-framework voor een meer stimulerende leeromgeving.
+\end{itemize}
 
-Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
+Om de effectiviteit te meten, zal de \textit{System Usability Scale (SUS)} worden ingezet. 
+De hypothese is dat de PoC een SUS-score van minstens 70 zal behalen (bij beide groepen), wat duidt op een "goede"  bruikbaarheid.
+Bovendien wordt verwacht dat de kwalitatieve interviews zullen uitwijzen dat er een significant verhoogde motivatie is bij de testgebruikers.
 
-Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
+De meerwaarde van deze bachelorproef ligt in het overbruggen van de \textit{skills gap} in de IT-sector.
+COBOL is nog steeds kritiek voor de financiële wereld, maar de instroom van nieuw talent is laag.
+Dit onderzoek toont aan of moderne leermethodieken (gamificatie) ingezet kunnen worden om legacy-systemen aantrekkelijk te maken voor een nieuwe generatie ontwikkelaars.

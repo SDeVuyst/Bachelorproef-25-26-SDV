@@ -1,186 +1,50 @@
 \chapter{\IfLanguageName{dutch}{Stand van zaken}{State of the art}}%
 \label{ch:stand-van-zaken}
 
-In dit hoofdstuk wordt de theoretische basis gelegd voor het verdere onderzoek. 
-Er wordt gestart met een brede verkenning van de mainframe-sector en de huidige demografische verschuivingen, 
-waarna er specifiek wordt ingezoomd op de Unisys-architectuur en het DMSII-databasesysteem. 
-Tot slot worden de educatieve kaders besproken die als fundament dienen voor het te ontwikkelen competentieframework.
+% Tip: Begin elk hoofdstuk met een paragraaf inleiding die beschrijft hoe
+% dit hoofdstuk past binnen het geheel van de bachelorproef. Geef in het
+% bijzonder aan wat de link is met het vorige en volgende hoofdstuk.
 
-% ----------------------------------------------------------------------------------------------------- %
-\section{De Mainframe Wereld: Kritieke Infrastructuur in Transitie}
-\label{sec:mainframe-wereld}
+% Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
 
-\subsection{Wat is een mainframe?}
+Dit hoofdstuk bevat je literatuurstudie. De inhoud gaat verder op de inleiding, maar zal het onderwerp van de bachelorproef *diepgaand* uitspitten. De bedoeling is dat de lezer na lezing van dit hoofdstuk helemaal op de hoogte is van de huidige stand van zaken (state-of-the-art) in het onderzoeksdomein. Iemand die niet vertrouwd is met het onderwerp, weet nu voldoende om de rest van het verhaal te kunnen volgen, zonder dat die er nog andere informatie moet over opzoeken \autocite{Pollefliet2011}.
 
-Om de rol van een Database Administrator (DBA) binnen een mainframe-omgeving te kaderen, is het essentieel om eerst een mainframe te definiëren. 
-Volgens de definitie van \textcite{IBM2010} is een mainframe een server dat door bedrijven gebruikt om commerciële databases, transactieservers en applicaties te hosten die een hogere mate van beveiliging en beschikbaarheid vereisen dan doorgaans beschikbaar is op kleinere machines.
+Je verwijst bij elke bewering die je doet, vakterm die je introduceert, enz.\ naar je bronnen. In \LaTeX{} kan dat met het commando \texttt{$\backslash${textcite\{\}}} of \texttt{$\backslash${autocite\{\}}}. Als argument van het commando geef je de ``sleutel'' van een ``record'' in een bibliografische databank in het Bib\LaTeX{}-formaat (een tekstbestand). Als je expliciet naar de auteur verwijst in de zin (narratieve referentie), gebruik je \texttt{$\backslash${}textcite\{\}}. Soms is de auteursnaam niet expliciet een onderdeel van de zin, dan gebruik je \texttt{$\backslash${}autocite\{\}} (referentie tussen haakjes). Dit gebruik je bv.~bij een citaat, of om in het bijschrift van een overgenomen afbeelding, broncode, tabel, enz. te verwijzen naar de bron. In de volgende paragraaf een voorbeeld van elk.
 
-Deze servers draaien op gespecialiseerde besturingssystemen zoals z/OS (IBM), ClearPath MCP of OS 2200 (Unisys) en in toenemende mate op specifieke mainframe-distributies van Linux (zoals LinuxONE). 
+\textcite{Knuth1998} schreef een van de standaardwerken over sorteer- en zoekalgoritmen. Experten zijn het erover eens dat cloud computing een interessante opportuniteit vormen, zowel voor gebruikers als voor dienstverleners op vlak van informatietechnologie~\autocite{Creeger2009}.
 
-Deze besturingssystemen, en vaak ook de hardware waarop ze draaien, zijn inherent ontworpen met de strenge eisen van een mainframe-omgeving in gedachten. Hoewel de onderstaande lijst niet exhaustief is, staan de volgende kenmerken centraal \autocite{Ebbers2011}:
+Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je verwijst meteen naar een bron in de eerste zin die erop gebaseerd is, dus niet pas op het einde van een paragraaf.
 
-\begin{itemize}
-      \item \textbf{Betrouwbaarheid, beschikbaarheid en onderhoudsvriendelijkheid (RAS\footnote{Reliability, availability, and serviceability}):} \autocite{Ebbers2011}
-            \begin{itemize}
-                  \item Betrouwbaarheid: De hardwarecomponenten van het systeem beschikken over uitgebreide zelfcontrole- en zelfherstelcapaciteiten. De betrouwbaarheid van de software van het systeem is het resultaat van uitgebreide tests en de mogelijkheid om snel updates uit te voeren voor gedetecteerde problemen.
-                  \item Beschikbaarheid: Het systeem kan herstellen van een defect onderdeel zonder dat dit invloed heeft op de rest van het draaiende systeem. 
-                  \item Onderhoudsvriendelijkheid: Het systeem kan vaststellen waarom een storing is opgetreden.
-            \end{itemize}
-      \item \textbf{Beveiliging:} Kritieke gegevens moeten veilig worden
-            beheerd en gecontroleerd, en tegelijkertijd beschikbaar worden gesteld aan gebruikers
-            die bevoegd zijn om ze in te zien. De mainframecomputer heeft uitgebreide mogelijkheden om
-            de gegevens van het bedrijf tegelijkertijd te delen met meerdere gebruikers en toch te beschermen. \autocite{Ebbers2011}
-      \item \textbf{Schaalbaarheid:} Het vermogen van de hardware, software of een gedistribueerd
-            systeem om goed te blijven functioneren wanneer de omvang of het volume ervan verandert. \autocite{Ebbers2011}
-      \item \textbf{Blijvende compatibiliteit:} Het vermogen van een applicatie om in het systeem te werken
-            of het vermogen om met andere apparaten of programma's te werken \autocite{Ebbers2011}
-\end{itemize}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{grail.jpg}
+  \caption[Voorbeeld figuur.]{\label{fig:grail}Voorbeeld van invoegen van een figuur. Zorg altijd voor een uitgebreid bijschrift dat de figuur volledig beschrijft zonder in de tekst te moeten gaan zoeken. Vergeet ook je bronvermelding niet!}
+\end{figure}
 
-De opkomst van cloudcomputing in de jaren '90 leidde tot wijdverspreide voorspellingen over het verdwijnen van de mainframe. 
-Het bekendste voorbeeld hiervan is Stewart Alsop, die in 1991 voorspelde dat de laatste mainframe in 1996 zou worden uitgeschakeld \autocite{Alsop1991}.
-Inmiddels is echter het tegendeel waar gebleken en vormt het platform nog steeds de ruggengraat van de wereldwijde economie.
+\begin{listing}
+  \begin{minted}{python}
+    import pandas as pd
+    import seaborn as sns
 
+    penguins = sns.load_dataset('penguins')
+    sns.relplot(data=penguins, x="flipper_length_mm", y="bill_length_mm", hue="species")
+  \end{minted}
+  \caption[Voorbeeld codefragment]{Voorbeeld van het invoegen van een codefragment.}
+\end{listing}
 
-\subsection{Wie gebruikt mainframes?}
-De gebruikers van mainframes bevinden zich voornamelijk in sectoren waar verwerking van grote transactievolumes en extreme betrouwbaarheid cruciaal zijn: \autocite{IBM2022}
+\lipsum[7-20]
 
-\begin{itemize}
-      \item \textbf{Financiële instellingen:} Mainframes vormen de ruggengraat van het wereldwijde betalingsverkeer. Volgens \textcite{IBM2022a} maken 45 van de top 50 banken gebruik van hun systemen. 
-      Veel grote financiele instellingen zoals ING, Bank of China en de European Central Bank (ECB) maken ook gebruik van een Unisys mainframe \autocite{Unisys}.
-      %TODO blockchain? (https://www.ibm.com/think/topics/mainframe) Next-generation transactions and technologies like blockchain rely on mainframes for the speed, scale and security levels they provide.
-    
-      \item \textbf{Zorginstellingen:} De meest prominente verzekeringsmaatschappijen wereldwijd gebruiken mainframes om enorme hoeveelheden gevoelige gegevens, zoals persoonlijk identificeerbare informatie (PII) van patiënten, medische dossiers en factuurgegevens, veilig te verwerken. \autocite{IBM2022}
-
-      \item \textbf{Overheidsinstanties:} Veel cruciale overheidsdiensten, van wetshandhaving tot nationale veiligheid, vertrouwen op mainframesystemen voor de beste combinatie van veiligheid, prestaties en veerkracht. \autocite{IBM2022}
-      Bijvoorbeeld het Oostenrijks ministerie van Financiën, Bureau voor intellectuele eigendom van de Europese Unie (EUIPO) en Zwitsers ministerie van Grenscontrole maken gebruik van een Unisys mainframe \autocite{Unisys}.
-
-      \item \textbf{Retailsector:} Online retailers zijn afhankelijk van mainframesystemen voor de enorme verwerkingskracht die transacties op mobiele en andere apparaten op grote schaal ondersteunt \autocite{IBM2022}.
-
-      \item \textbf{...}
-\end{itemize}
-
-In een rapport van \textcite{Allied2022} werd de wereldwijde mainframemarkt in 2022 geschat op 2,9 miljard dollar en zal deze naar verwachting in 2032 5,6 miljard dollar bereiken, met een samengestelde jaarlijkse groei van 7,3\%.
-Bovendien bleek uit een onderzoek van het \textcite{Granger2021} dat mainframes bijna 70\% van de wereldwijde IT-workloads voor productie verwerken en dat 70\% van de ondervraagde leidinggevenden van mening is dat mainframe-gebaseerde applicaties centraal staan in hun bedrijfsstrategie.
-
-%TODO past deze sectie hier?
-\subsection{De generatieshift}
-Hoewel het mainframe een bewezen technologie is die al decennia lang ondernemingen ondersteunt, vindt er momenteel een fundamentele verschuiving plaats in wie dit platform beheert. 
-Waar de systemen voorheen het domein waren van de 'Baby Boomer'-generatie, is de langverwachte generatiewissel nu een feit. 
-Uit recent onderzoek \autocite{BMC2025} blijkt dat inmiddels 66\% van de mainframe-professionals tot de Millennials of Generatie Z behoort, terwijl het aandeel Boomers en Gen X is gekrompen tot minder dan de helft.
-
-Deze verschuiving gaat echter verder dan enkel de demografie. 80\% van de bedrijven hebben in 2025 hun strategie betreffende de mainframe aangepast om te modernizeren \autocite{Kyndryl2025}.
-16\% van dergelijke modernizatie projecten gaat over het verlaten van de mainframe, 34\% gaat voor meer integratie met de cloud en de resterende 43\% modernizeert op de mainframe zelf \autocite{Kyndryl2025}.
-
-
-% ----------------------------------------------------------------------------------------------------- %
-\section{Het Unisys databanken ecosysteem}
-\label{sec:db}
-
-%TODO introductie van deze section
-Om dieper te kunnen inzoomen op de noden en gebreken van een beginnende DBA, moeten we eerst weten wat de huidige situatie is.
-
-\subsection{Database Management System (DBMS)}
-Een Database Management System (DBMS) is software voor het opslaan en ophalen van gebruikersgegevens, rekening houdend met passende beveiligingsmaatregelen. 
-Het bestaat uit een groep programma's die de database manipuleren. 
-Het DBMS accepteert gegevensaanvragen van een applicatie en instrueert het besturingssysteem om de specifieke gegevens te leveren. 
-In grote systemen helpt een DBMS gebruikers en externe software bij het opslaan en ophalen van gegevens. \autocite{Nordeen2022}
-
-De taken van een DBMS zijn als volgt: \autocite{IBM}
-\begin{itemize}
-
-      \item \textbf{Maakt gegevens toegankelijker:} Een browsergebaseerde interface in DBMS'en biedt gebruikers eenvoudige toegang tot gegevens via een webformulier, een direct dashboard of een gedistribueerd netwerk van een derde partij. 
-      Naast visuele tools kunnen gebruikers ook toegang krijgen tot gegevens en ermee werken via applicaties, een \textit{Data Manipulation Language (DML)}, query-talen of API-verbindingen.
-      Een DBMS biedt ook de tools en mechanismen om die gegevens naar behoefte te manipuleren, groeperen, aggregeren en transformeren. 
-      Gebruikers kunnen gegevens dynamisch wijzigen, zodat ze correct zijn gestructureerd en opgemaakt voor verschillende toepassingen.\autocite{AWS}
-      
-      \item \textbf{Beheert metadata:} Het DBMS onderhoudt woordenboeken waarin metadata of gegevens over gegevens worden opgeslagen, zoals gegevensstructuren, tabel- en kolomnamen, gegevenstypen, beperkingen, indexen en relaties. 
-      Hierdoor kunnen applicaties met gegevens werken op basis van structurele abstracties in plaats van complexe codering. \autocite{AWS}
-      
-      \item \textbf{Verzorgt back-up en herstel:} Het DBMS vereenvoudigt het back-upproces van databases door een intuïtieve interface te bieden voor het beheer van back-ups en snapshots. 
-      Databasebeheerders kunnen de back-ups opslaan op externe locaties, zoals cloudopslag, zodat ze in geval van incidenten snel kunnen worden hersteld. 
-      Sommige DBMS'en bieden ook automatische back-ups op vooraf bepaalde intervallen of continue back-ups. 
-      De meeste bieden hersteltools voor het volledig of gedeeltelijk herstellen van databases naar een eerdere staat met minimale inspanning. \autocite{AWS}
-      
-      \item \textbf{Biedt functies voor gebruikersbeheer:} Met een DBMS kunnen databasebeheerders databasegebruikers effectief beheren en gebruikersacties reguleren. 
-      Ze kunnen gebruikersaccounts configureren, beleid voor gegevenstoegang definiëren en beperkingen wijzigen om de toegang tot onderliggende gegevens te controleren. 
-      De basisgegevensbewerkingen zijn \textit{create, read, update, and delete (CRUD)}. De beheerder kan de beschikbaarheid van elke bewerking instellen op gebruikers-, rol- of groepsniveau. 
-      Veel DBM-systemen ondersteunen een \textit{Data Conrol Language (DCL)} om complexe toegangscontroles te definiëren. \autocite{AWS}
-      
-      \item \textbf{Beheert prestaties voor schaalbaarheid:} DBMS ondersteunt tienduizenden gelijktijdige gebruikers door verschillende van de volgende maatregelen te implementeren: \autocite{AWS}
-      \begin{itemize}
-            \item Indexoptimalisatie om de uitvoering van query's te versnellen, waardoor het minder vaak nodig is om volledige tabellen te scannen.
-            \item Queryoptimalisatie om SQL-query's te analyseren en het meest efficiënte uitvoeringsplan te selecteren, waardoor I/O en verwerkingstijd tot een minimum worden beperkt.
-            \item Partitionering en sharding om de werklast over meerdere databaseknooppunten of opslagpartities te verdelen, waardoor de responstijden van query's en de fouttolerantie worden verbeterd.
-            \item Parallelle uitvoering van query's, zodat taken gelijktijdig worden verwerkt op meerdere CPU's of knooppunten.
-            \item Replicatie van gegevens en load balancing over meerdere servers, waarbij lees- en schrijfverzoeken worden verdeeld om de responsiviteit van het systeem te behouden en gegevensverlies als gevolg van storingen te voorkomen.
-            \item Veel DBMS-software heeft ook ingebouwde cachingmogelijkheden, zodat veelgebruikte gegevens in het geheugen worden opgeslagen om de noodzaak van herhaalde schijftoegang te verminderen. 
-            Met geïntegreerde tools kunnen gebruikers hun gegevens verder monitoren, configureren en optimaliseren.
-      \end{itemize}
-
-\end{itemize}
-
-\textcite{Nordeen2022} deelt DBMS ook op in de vier belangrijkste types: %TODO DBMS of datamodellen?
-\begin{enumerate}
-      %TODO dit is een letterlijke vertaling van Nordeen2022 boek, misschien wat parafraseren.
-      \item \textbf{Hiërarchisch} In een hiërarchisch databasemodel worden gegevens georganiseerd in een boomstructuur. 
-      Gegevens worden opgeslagen in een hiërarchisch formaat (top-down of bottom-up). 
-      Gegevens worden weergegeven via een ouder-kindrelatie (parent-child).
-      In een hiërarchisch DBMS kan een ouder meerdere kinderen hebben, maar hebben kinderen slechts één ouder. \autocite{Nordeen2022}
-      \item \textbf{Netwerk:} Het netwerk-databasemodel staat toe dat elk kind meerdere ouders heeft. 
-      Dit helpt bij het modelleren van complexere relaties, zoals de many-to-many relatie tussen orders en onderdelen. 
-      In dit model worden entiteiten georganiseerd in een grafiek (graph) die via verschillende paden toegankelijk is. \autocite{Nordeen2022}
-      \item \textbf{Relationeel:} Het relationele model is het meest gebruikte DBMS-model omdat het een van de eenvoudigste is. 
-      Dit model is gebaseerd op het normaliseren van gegevens in de rijen en kolommen van tabellen. 
-      Gegevens in een relationeel model worden opgeslagen in vaste structuren en gemanipuleerd met behulp van SQL. \autocite{Nordeen2022}
-      \item \textbf{Objectgeoriënteerd:} In het objectgeoriënteerde model worden gegevens opgeslagen in de vorm van objecten. 
-      De structuur, genaamd klassen, geeft de gegevens daarin weer. 
-      Het is een component van DBMS die een database definieert als een verzameling objecten die zowel gegevenswaarden als bewerkingen (operations) opslaan. \autocite{Nordeen2022}
-\end{enumerate}
-
-Unisys mainframes ondersteunen twee native Database Management Systems: \autocite{Unisys2025}
-
-\subsubsection{Enterprise Database Server for ClearPath MCP}
-Enterprise Database Server voor ClearPath MCP biedt een zeer beschikbare omgeving die grote databases en online transactieverwerking met hoge volumes ondersteunt. 
-Het is geschikt voor installaties van vrijwel elke omvang. 
-Enterprise Database Server biedt uitzonderlijke flexibiliteit bij het ondersteunen van een breed scala aan datamodellen: hiërarchisch, netwerk, plat\footnote{\textcite{GeeksforGeeks2025} geeft meer uitleg over flat-file databanken.} of relationeel. 
-Enterprise Database Server ondersteunt ook verschillende technieken voor toegang tot informatie. 
-Het bevat validatie-, audit-/herstel- en toegangscontrolefuncties en ondersteunt optionele hulpprogramma's voor databaseanalyse, monitoring, integriteitscertificering, online reorganisatie en online archivering. \autocite{Unisysa}
-
-Hoewel de officiële naam is gewijzigd naar Enterprise Database Server, blijft de term DMSII in technische documentatie en softwarecomponenten nog veelvuldig in gebruik. \autocite{Unisysc}
-
-\subsubsection{Relational Database Server for ClearPath MCP}
-Relational Database Server voor ClearPath MCP biedt een omgeving met hoge beschikbaarheid, ontworpen ter ondersteuning van grote relationele databases en online transactieverwerking met hoge volumes. 
-Relational Database Server bevat diverse validatie-, audit-/herstel- en toegangscontrolefuncties die zijn ontworpen ter ondersteuning van bedrijfskritische toepassingen. \autocite{Unisysb}
-
-
-\subsection{Wat is een Database Administrator?}
-Een Database Administrator, of DBA, is verantwoordelijk voor het onderhoud, de beveiliging en de werking van databases en zorgt er ook voor dat gegevens correct worden opgeslagen en opgehaald.
-Daarnaast werken DBA's vaak samen met ontwikkelaars om nieuwe functies te ontwerpen en te implementeren en eventuele problemen op te lossen.
-Een DBA moet een goed begrip hebben van zowel technische als zakelijke behoeften. \autocite{Oracle2019}
-
-
-% ----------------------------------------------------------------------------------------------------- %
-\section{Educatieve Theorieën voor Competentieontwikkeling}
-\label{sec:educatieve-theorieen}
-
-\subsection{De Herziene Taxonomie van Bloom}
-
-\subsection{Competentiegericht leren: Kennis, Vaardigheden en Attitude}
-
-\subsection{Microlearning en didactiek voor de nieuwe generatie}
-
-
-% ----------------------------------------------------------------------------------------------------- %
-\section{Bestaande Frameworks en Benchmarking}
-\label{sec:bestaande-frameworks}
-
-\subsection{Algemene IT-kaders: e-CF en SFIA}
-
-\subsection{Mainframe-specifieke kaders: Het IBM Z model}
-
-\subsection{De lacune voor het Unisys-platform}
-
-
-% ----------------------------------------------------------------------------------------------------- %
-\section{Conclusie: Richting een Unisys DBA-framework}
-\label{sec:conclusie-state-of-the-art}
+\begin{table}
+  \centering
+  \begin{tabular}{lcr}
+    \toprule
+    \textbf{Kolom 1} & \textbf{Kolom 2} & \textbf{Kolom 3} \\
+    $\alpha$         & $\beta$          & $\gamma$         \\
+    \midrule
+    A                & 10.230           & a                \\
+    B                & 45.678           & b                \\
+    C                & 99.987           & c                \\
+    \bottomrule
+  \end{tabular}
+  \caption[Voorbeeld tabel]{\label{tab:example}Voorbeeld van een tabel.}
+\end{table}
