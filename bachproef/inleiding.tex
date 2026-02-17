@@ -3,12 +3,14 @@
 %%=============================================================================
 
 
-% ==============================================INLEIDING============================================== %
+% ==============================================INLEIDING============================================== % TODO
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-% De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
-
+% De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. 
+% In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft.
+% Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. 
+% Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
 % \begin{itemize}
 %   \item context, achtergrond
 %   \item afbakenen van het onderwerp
@@ -19,67 +21,70 @@
 %   \item \ldots
 % \end{itemize}
 
+De hedendaagse financiële en overheidssector rust op een fundament van decennia-oude technologie: de programmeertaal COBOL. 
+Ondanks de opkomst van moderne talen zoals Python of Go, wordt geschat dat wereldwijd nog steeds honderden miljarden regels COBOL-code in productie zijn. \autocite{IBM2025}
+Het beheer van deze kritieke infrastructuur komt echter in het gedrang door de 'silver tsunami': ervaren Mainframe-ontwikkelaars gaan massaal met pensioen, terwijl de instroom van nieuw talent stagneert. 
+Jonge IT-professionals, opgegroeid met moderne talen en interactieve leeromgevingen, ervaren een enorme drempel bij het betreden van het COBOL-ecosysteem.
 
-% ===========================================PROBLEEMSTELLING========================================== %
+% ===========================================PROBLEEMSTELLING========================================== % TODO
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
 
-% Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
+% Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn.
+% Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. 
+% Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. 
+% Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
 
-In de huidige IT-sector vormen mainframes nog steeds de kritieke infrastructuur voor organisaties die enorme hoeveelheden bedrijfskritische data verwerken. 
-Hoewel het platform vaak geassocieerd wordt met een verouderde workforce, toont een recente survey van \textcite{BMC2025} aan dat er een fundamentele generatieshift gaande is: 
-inmiddels identificeert 66\% van de mainframe-professionals zich als Millennial of Gen Z, een drastische stijging ten opzichte van de 37\% in 2018.
+Het fundamentele probleem ligt niet enkel bij de taal zelf, maar bij de verouderde didactische methodieken die worden gehanteerd om COBOL aan te leren.
+Waar moderne programmeertalen worden onderwezen via interactieve sandboxes, \textit{just-in-time} leerpaden en AI-gestuurde feedback-loops, is het COBOL-onderwijs grotendeels blijven steken in de methodieken van de vorige eeuw. 
 
-Deze demografische kanteling brengt echter nieuwe uitdagingen met zich mee. De nieuwe generatie mainframe-professionals, waaronder Database Administrators, 
-hebben andere verwachtingen van de vaak verouderde infrastructuur en leerproces. Hierdoor stroomt er specifiek naar het Unisys-domein nog te weinig nieuw talent door.
-Een recente survey van \textcite{Kyndryl2025} toont dat 70\% van de organisaties moeite hebben met het vinden van multitalenten te vinden binnen de mainframeomgeving. 
-De rol van de Database Administrator (DBA) binnen deze omgeving vereist immers een diepgaande, specialistische kennis van de ClearPath-architectuur en DMSII-databanken 
-die fundamenteel afwijkt van de relationele SQL-standaarden die in het reguliere onderwijs worden aangeboden. 
-Het kernprobleem is dat de verschuiving in personeel niet gepaard is gegaan met een modernisering van het leertraject. 
-Junior profielen worden geconfronteerd met een steile leercurve zonder helder gedefinieerde leerdoelen, 
-wat het risico op een kennisvacuüm vergroot nu de ervaren Baby Boomers de sector definitief verlaten \autocite{BMC2025}.
+De huidige leerervaring wordt gekenmerkt door:
+\begin{itemize}
+    \item \textbf{Statische leermiddelen:} Een overdaad aan lijvige PDF-documentatie en abstracte theoretische kaders zonder direct resultaat.
+    \item \textbf{Gebrek aan visuele feedback:} De afwezigheid van moderne grafische interfaces maakt het leerproces abstract en droog.
+    \item \textbf{Cognitieve dissonantie:} De strikte regels en verbose syntax van COBOL botsen met de flexibiliteit die junior developers gewend zijn van hogere-orde talen zoals Python of Ruby.
+\end{itemize}
 
-% Dit onderzoek biedt een directe meerwaarde voor de volgende concrete doelgroep:
-% \begin{itemize}
-%     \item \textbf{Onderwijsinstellingen (Hogescholen \\& Universiteiten)}: Zij kunnen het framework gebruiken om hun curriculum beter af te stemmen op de nichemarkt van mainframe-technologie, waardoor hun studenten een uniek voordeel krijgen op de arbeidsmarkt.
-%     \item \textbf{Bedrijven met een Unisys-infrastructuur (zoals financiële instellingen en overheidsdiensten)}: Zij verkrijgen een gestandaardiseerd instrument om junior DBA's sneller en effectiever op te leiden, wat de continuïteit van hun kritieke systemen waarborgt.
-%     \item \textbf{Junior IT-professionals en studenten}: Zij krijgen toegang tot een drempelverlagend platform dat de complexe materie van Unisys-mainframebeheer vertaalt naar kleinere, gestructureerde leerdoelen.
-% \end{itemize}
+Deze traditionele benadering houdt geen rekening met de behoeften van de hedendaagse 'digital native' ontwikkelaar, 
+voor wie onmiddellijke feedback en een zichtbare progressie essentieel zijn voor motivatie. 
+Hierdoor ontstaat een motivatiecrisis: talentvolle ontwikkelaars haken af nog voordat ze de krachtige logica van het mainframe beheersen, wat leidt tot een kritiek tekort aan expertise bij banken, verzekeringsmaatschappijen en overheden.
 
+Gamification, het strategisch inzetten van spelmechanismen zoals beloningssystemen, leaderboards en levels in een niet-\allowbreak spelcontext kan hiervoor een oplossing bieden.
+Door gebruik te maken van een interactieve website, opgesteld aan de hand van het Octalysis-\allowbreak framework kan de student de verschillende aspecten van COBOL leren. 
+Deze aspecten, zoals de verschillende \textit{divisions}, worden gradueel aangeleerd volgens levels.
 
-% ===========================================ONDERZOEKSVRAAG=========================================== %
+% ===========================================ONDERZOEKSVRAAG=========================================== % DONE
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
 
 % Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
 
 Aan de hand van deze probleemstelling wordt er onderzoek gedaan naar de centrale onderzoeksvraag: 
-\textit{"Welke competenties zijn vereist voor een Database Administrator (DBA) Level 1 om doeltreffend te opereren binnen een Unisys mainframeomgeving, en op welke manier kunnen deze competenties worden geformaliseerd in een eenduidig en direct inzetbaar framework voor het onderwijs?"}\break
+\textit{"Hoe effectief is gamification bij het aanleren van COBOL aan junior developers die gewend zijn aan moderne talen zoals Python?"}\break
 Om tot een onderbouwd antwoord te komen, worden de volgende deelvragen behandeld:
 
 \begin{enumerate}
-    \item Welke technische competenties zijn noodzakelijk voor een DBA Level 1 binnen een Unisys mainframeomgeving?
-    \item Welke niet-\allowbreak technische (professionele) competenties zijn noodzakelijk voor een DBA Level 1?
-    \item Hoe worden DBA-\allowbreak competenties momenteel aangeleerd en geëvalueerd binnen bestaande onderwijs- of trainingsprogramma's?
-    \item Welke structuur en opbouw zijn geschikt om DBA Level 1-competenties te vertalen naar een eenduidig framework voor het onderwijs?
-    \item Aan welke eisen moet een competentieframework voldoen om direct inzetbaar te zijn binnen een onderwijscontext?
+    \item Wat zijn de uitdagingen in syntaxis en logica tussen COBOL en een moderne taal zoals Python?
+    \item Welke barrières ondervinden junior developers om COBOL te leren?
+    \item Welke gamification-elementen bestaan er en welke sluiten het best aan bij het leren van COBOL?
+    \item Hoe kan een gamified leeromgeving worden ontworpen die de abstracte logica van COBOL vertaalt naar interactieve uitdagingen?
+    \item Hoe verhoudt de leer-efficiëntie van een gamified methode zich tot traditionele documentatie gebaseerde trainingen?
 \end{enumerate}
 
-% =======================================ONDERZOEKSDOELSTELLING======================================== %
+% =======================================ONDERZOEKSDOELSTELLING======================================== % TODO
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
 % Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
+Het doel van deze bachelorproef is het ontwerpen en evalueren van een innovatieve leermethode die de instroom van mainframe-ontwikkelaars stimuleert. Het beoogde resultaat is tweeledig: 
+Ten eerste een theoretisch kader dat gamification (spelmechanismen in een niet-spelcontext) koppelt aan mainframe-educatie. 
+Ten tweede de ontwikkeling van een \textbf{Proof-of-Concept (PoC)} in de vorm van een interactieve webapplicatie. 
 
-Er wordt een onderbouwd competentieframework opgezet voor een Database Administrator Level 1 binnen een Unisys-omgeving. Dit framework structureert technische en niet-technische competenties aan de hand van de herziene Taxonomie van Bloom, waarbij leerdoelen specifiek worden afgestemd op de cognitieve niveaus 'onthouden', 'begrijpen' en 'toepassen' \autocite{Anderson2001}.
-Dit framework wordt weerspiegeld door een Proof-of-Concept (PoC) in de vorm van een interactieve website. Dit platform ontsluit het geformuleerde framework door theoretische modules te combineren met interactieve oefeningen. Hierdoor beschikken zowel studenten als docenten over een eenduidig instrument voor de opleiding en evaluatie van junior DBA's binnen de Unisys-niche.
-Om de effectiviteit van de PoC te meten, wordt een kwantitatieve evaluatie uitgevoerd bij de doel-groep. Hierbij wordt data verzameld aan de hand van een 5-punts Likert-schaal. De verwachting is dat alle onderdelen een score van minstens 4.0 behalen.
-
-
-% ================================================OPZET================================================ %
+Door gebruik te maken van het \textbf{Octalysis-framework} van Yu-kai Chou, zal de applicatie inspelen op intrinsieke motivatoren zoals \textit{Development \& Accomplishment} en \textit{Empowerment of Creativity}. 
+Het succes van dit onderzoek wordt gemeten aan de hand van de gebruikservaring en de snelheid waarmee proefpersonen de basisconcepten van COBOL succesvol weten toe te passen in vergelijking met klassieke methoden.
+% ================================================OPZET================================================ % TODO
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
-% TODO
 
 % Het is gebruikelijk aan het einde van de inleiding een overzicht te
 % geven van de opbouw van de rest van de tekst. Deze sectie bevat al een aanzet
