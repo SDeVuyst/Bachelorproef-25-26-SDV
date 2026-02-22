@@ -53,6 +53,7 @@ Deze verschuiving brengt echter een kritieke uitdaging met zich mee: een groeien
 Dit creëert een kloof op de arbeidsmarkt, waarbij er steeds minder programmeurs beschikbaar zijn die de complexe COBOL-applicaties kunnen beheren en updaten \autocite{IBM2025}.
 Voor een junior developer betekent dit niet alleen een taalkundige barrière, maar ook een verschuiving in de manier waarop zij met legacy-systemen moeten omgaan.
 
+% TODO: dit past misschien beter bij probleemstelling
 De noodzaak om deze nieuwe generatie aan te trekken en op te leiden is zichtbaar in de bedrijfsstrategieën. 
 80\% van de bedrijven heeft in 2025 hun mainframe-strategie aangepast met het oog op modernisering \autocite{Kyndryl2025}. 
 Van deze projecten is slechts 16\% gericht op het verlaten van het platform; de meerderheid kiest voor integratie met de cloud (34\%) of modernisering op het mainframe zelf (43\%) \autocite{Kyndryl2025}.
@@ -87,7 +88,7 @@ In tegenstelling tot Python-scripts, die vaak top-down worden uitgevoerd, volgt 
 
 \end{figure}
 
-Een COBOL programma bestaat uit 4 \textit{Divisions}:
+Een COBOL programma bestaat uit 4 \textit{Divisions}: \autocite{IBMMainframer2021}
 
 \begin{itemize}
     \item \textbf{IDENTIFICATION DIVISION:} Bevat de metadata. Het is de enige verplichte divisie waarin de \texttt{PROGRAM-ID} wordt gedefinieerd.
@@ -136,11 +137,11 @@ In dat geval wordt de variabele automatisch geïnitialiseerd met de standaardwaa
 
 Om een variabele nadien een nieuwe waarde te geven, wordt in COBOL de \texttt{MOVE}-instructie gebruikt:
 
-\begin{verbatim}
+\begin{lstlisting}[language=Cobol, caption={MOVE in COBOL}, label={lst:cobol_move}]
 MOVE 'JOS' TO NAME.
 MOVE 25 TO AGE.
 MOVE -123.45 TO PRICE.
-\end{verbatim}
+\end{lstlisting}
 
 \subsubsection{Waar worden PIC-clausules gebruikt?}
 
@@ -150,16 +151,16 @@ Ze definiëren daar de exacte structuur, lengte en het type van gegevensvelden.
 
 Een typisch voorbeeld in de \texttt{WORKING-STORAGE SECTION}:
 
-\begin{verbatim}
+\begin{lstlisting}[language=Cobol, caption={Voorbeeld van WORKING-STORAGE SECTION}, label={lst:cobol_ws}]
 DATA DIVISION.
 WORKING-STORAGE SECTION.
 01 PERSON.
    05 NAME      PIC X(10).
    05 AGE       PIC 9(3).
    05 SALARY    PIC S9(5)V99.
-\end{verbatim}
+\end{lstlisting}
 
-\subsection{Data Hiërarchie en Level Numbers}
+\subsubsection{Data Hiërarchie en Level Numbers}
 Waar een Python-ontwikkelaar een object of geneste \textit{dictionary} gebruikt, structureert een COBOL-ontwikkelaar data via een hiërarchie van \textit{level numbers}.
 
 \begin{itemize}
@@ -169,26 +170,15 @@ Waar een Python-ontwikkelaar een object of geneste \textit{dictionary} gebruikt,
     \item \textbf{Level 88:} Conditionele variabelen (Boolean-logica gekoppeld aan een waarde).
 \end{itemize}
 
-\begin{table}[h!]
-\centering
-\caption{Vergelijking van datastructuren}
-\label{tab:data-hiërarchie}
-\begin{tabular}{|p{7cm}|p{7cm}|}
-\hline
-\textbf{COBOL Record Structuur} & \textbf{Python Equivalent} \\ \hline
-
-% ===== RIJ 1 =====
-\begin{minipage}[t]{8cm}
-\begin{verbatim}
+\begin{lstlisting}[language=Cobol, caption={Voorbeeld record structuur in COBOL}, label={lst:cobol_record_structuur}]
 01  EMPLOYEE-DATA.
     05  EMP-ID      PIC 9(05).
     05  EMP-NAME.
         10 FIRST    PIC X(10).
         10 LAST     PIC X(10).
-\end{verbatim}
-\end{minipage} & 
-\begin{minipage}[t]{8cm}
-\begin{verbatim}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python, caption={Voorbeeld record structuur in Python}, label={lst:python_record_structuur}]
 employee = {
     "id": 12345,
     "name": {
@@ -196,72 +186,41 @@ employee = {
         "last": "Janssen"
     }
 }
-\end{verbatim}
-\end{minipage} \\ \hline
+\end{lstlisting}
 
-% ===== RIJ 2 =====
-\begin{minipage}[t]{8cm}
-\begin{verbatim}
-01  EMPLOYEE-DATA.
-    05  EMP-ID      PIC 9(05).
-    05  EMP-NAME.
-        10 FIRST    PIC X(10).
-        10 LAST     PIC X(10).
-\end{verbatim}
-\end{minipage} &
-\begin{minipage}[t]{8cm}
-\begin{verbatim}
-class EmployeeName:
-    def __init__(self, first, last):
-        self.first = first[:10]
-        self.last = last[:10]
+% TODO: iets over Object georienteerd zeggen
 
-class EmployeeData:
-    def __init__(self, emp_id, 
-                 first, last):
-        self.emp_id = int(
-            str(emp_id).zfill(5)
-        )
-        self.emp_name = EmployeeName(
-            first, last
-        )
-\end{verbatim}
-\end{minipage} \\ \hline
-
-\end{tabular}
-\end{table}
-
-
-% TODO: komt in welke section?
 \subsection{Conditionals}
 Het grootste verschil bij conditionele logica is de manier waarop de scope van een blok wordt afgesloten \autocite{IBM2023}.
 
-\begin{table}[h!]
-\centering
-\caption{Vergelijking van Conditionals}
-\label{tab:conditional-vergelijking}
-\begin{tabular}{|p{7cm}|p{7cm}|}
-\hline
-\textbf{COBOL (Expliciete terminators)} & \textbf{Python (Indentatie)} \\ \hline
-\begin{minipage}[t]{7cm}
-\begin{verbatim}
-IF AGE > 18
-    DISPLAY 'Adult'
-ELSE
-    DISPLAY 'Minor'
-END-IF.
-\end{verbatim}
-\end{minipage} & 
-\begin{minipage}[t]{7cm}
-\begin{verbatim}
+In COBOL moet de gebruikte variabele eerst gedeclareerd worden in de \texttt{DATA DIVISION}:
+
+\begin{lstlisting}[language=Cobol, caption={Conditional in COBOL}, label={lst:cobol_loop}]
+    IDENTIFICATION DIVISION.
+    PROGRAM-ID. CONDITIONAL-VB.
+
+    DATA DIVISION.
+    WORKING-STORAGE SECTION.
+    01 WS-VARIABLES.
+        05 AGE PIC 9(3) VALUE 0.
+
+    PROCEDURE DIVISION.
+    MAIN.
+        IF AGE > 18
+            DISPLAY 'Adult'
+        ELSE
+            DISPLAY 'Minor'
+        END-IF.
+        
+        STOP RUN.
+\end{lstlisting}
+
+\begin{lstlisting}[language=python, caption={Conditional in Python}, label={lst:python_conditional}]
 if age > 18:
     print("Adult")
 else:
     print("Minor")
-\end{verbatim}
-\end{minipage} \\ \hline
-\end{tabular}
-\end{table}
+\end{lstlisting}
 
 \subsubsection{Scope-valstrik}
 In Python bepaalt de indentatie visueel waar een \texttt{if}-blok eindigt. In COBOL is dit afhankelijk van terminators, wat tot gevaarlijke situaties kan leiden.
@@ -274,36 +233,79 @@ In Python bepaalt de indentatie visueel waar een \texttt{if}-blok eindigt. In CO
 \subsection{Loops}
 Waar Python iteratoren gebruikt, gebruikt COBOL het \texttt{PERFORM}-statement voor herhaling \autocite{Foundation2026}.
 
-\begin{table}[h!]
-\centering
-\caption{Vergelijking van Iteratie}
-\label{tab:loop-vergelijking}
-\begin{tabular}{|p{7cm}|p{7cm}|}
-\hline
-\textbf{COBOL (Perform)} & \textbf{Python (For-in)} \\ \hline
-\begin{minipage}[t]{7cm}
-\begin{verbatim}
-PERFORM VARYING I FROM 1 BY 1 
-    UNTIL I > 10
-    DISPLAY I
-END-PERFORM.
-\end{verbatim}
-\end{minipage} & 
-\begin{minipage}[t]{7cm}
-\begin{verbatim}
+In COBOL moet de teller eerst gedeclareerd worden in de \texttt{DATA DIVISION}:
+
+
+\begin{lstlisting}[language=Cobol, caption={Iteratie in COBOL}, label={lst:cobol_loop}]
+    IDENTIFICATION DIVISION.
+    PROGRAM-ID. LOOP-VB.
+
+    DATA DIVISION.
+    WORKING-STORAGE SECTION.
+    01 I PIC 9(2) VALUE 1.
+
+    PROCEDURE DIVISION.
+    MAIN.
+        PERFORM VARYING I FROM 1 BY 1 
+            UNTIL I > 10
+            DISPLAY I
+        END-PERFORM.
+        
+        STOP RUN.
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python, caption={Iteratie in Python}, label={lst:python_loop}]
 for i in range(1, 11):
     print(i)
-\end{verbatim}
-\end{minipage} \\ \hline
-\end{tabular}
-\end{table}
+\end{lstlisting}
 
 \subsection{Functies}
+Waar Python expliciete functies definieert met het \texttt{def}-keyword, werkt COBOL traditioneel met paragrafen of secties die worden aangeroepen via \texttt{PERFORM}. 
+In modernere COBOL-standaarden kan men ook gebruikmaken van \texttt{PROGRAM-ID} of \texttt{FUNCTION} \autocite{IBM2023}.
 
-% TODO
+\begin{lstlisting}[language=Cobol, caption={Functies in COBOL}, label={lst:cobol_functie}]
+    IDENTIFICATION DIVISION.
+    PROGRAM-ID. FUCNTIE-VB.
+
+    DATA DIVISION.
+    WORKING-STORAGE SECTION.
+    01 WS-VARIABLES.
+        05 NUM1    PIC 9(3) VALUE 5.
+        05 NUM2    PIC 9(3) VALUE 3.
+        05 RESULT  PIC 9(4) VALUE 0.
+
+    PROCEDURE DIVISION.
+
+    ADD-NUMBERS.
+        COMPUTE RESULT = NUM1 + NUM2.
+        STOP RUN.
+
+    MAIN.
+        PERFORM ADD-NUMBERS
+        DISPLAY RESULT
+        STOP RUN.
+
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python, caption={Functie in Python}, label={lst:python_functie}]
+def add_numbers(num1, num2):
+    return num1 + num2
+
+result = add_numbers(5, 3)
+print(result)
+\end{lstlisting}
+
+\subsubsection{Parameter- en Return-verschillen}
+Er bestaan fundamentele verschillen in hoe beide talen omgaan met parameters en returnwaarden:
+
+\begin{itemize}
+    \item \textbf{Python:} Ondersteunt expliciete parameters en een \texttt{return}-statement. Functies zijn first-class objects en kunnen worden doorgegeven als argument.
+    \item \textbf{COBOL (klassiek):} Werkt vaak met globale variabelen in de \texttt{WORKING-STORAGE SECTION}. De “returnwaarde” wordt meestal opgeslagen in een gedeelde variabele.
+    \item \textbf{Modern COBOL:} Ondersteunt formele parameter passing via \texttt{USING} en kan waarden teruggeven via \texttt{RETURNING}, maar blijft explicieter en verboser dan Python.
+\end{itemize}
 
 
-\subsection{Error Handling: De afwezigheid van Exceptions}
+\subsection{Error Handling}
 In Python is een \texttt{try-except} block de standaard. In COBOL bestaat dit concept niet native. Fouten worden afgehandeld via \textbf{Return Codes} of \textbf{File Status Codes}. 
 
 Wanneer een bestand wordt geopend, moet de programmeur handmatig de status controleren:
@@ -314,10 +316,7 @@ Wanneer een bestand wordt geopend, moet de programmeur handmatig de status contr
 \end{itemize}
 Dit vereist een veel actievere en defensievere programmeerstijl dan junioren gewend zijn in Python, waar een \texttt{FileNotFoundError} automatisch de executie stopt met een duidelijke melding.
 
-\subsection{OOP: Procedurele basis versus Object-Native}
-Python is gebouwd rond klassen. COBOL is gebouwd rond \textit{procedures}. Hoewel OO-COBOL bestaat, is het belangrijkste verschil voor de junior de \textbf{data-persistentie}. In Python leven objecten in de \textit{heap}. 
-In COBOL is de data vaak globaal binnen het programma (\texttt{WORKING-STORAGE}), wat betekent dat onbedoelde neveneffecten (side-effects) vaker voorkomen bij het aanroepen van verschillende \textit{Paragraphs}.
-
+% TODO: OOP?
 
 \section{Gamification}
 
