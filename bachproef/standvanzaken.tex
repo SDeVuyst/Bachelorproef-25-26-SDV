@@ -34,7 +34,7 @@ Ondanks de leeftijd van de taal, wordt de hoeveelheid COBOL-code in actieve prod
 
 Deze enorme codebase vormt de basis voor kritieke sectoren zoals:
 \begin{itemize}
-      \item \textbf{Financiële instellingen:} Mainframes verwerken naar schatting 85\% van het wereldwijde betalingsverkeer. 45 van de top 50 banken, waaronder instellingen zoals ING en de ECB, maken gebruik van deze systemen \autocite{IBM2022a, Unisys}.
+      \item \textbf{Financiële instellingen:} Mainframes verwerken naar schatting 85\% van het wereldwijde betalingsverkeer. 45 van de top 50 banken, waaronder instellingen zoals ING en de ECB, maken gebruik van deze systemen \autocite{IBM2022a}.
       \item \textbf{Overheid en Zorg:} Cruciale diensten zoals pensioenuitbetalingen, belastinginning en de beveiliging van patiëntgegevens rusten op COBOL-applicaties die door de jaren heen zijn geoptimaliseerd \autocite{IBM2022}.
       \item \textbf{Retail en Logistiek:} Grote retailers en logistieke bedrijven vertrouwen op de ongeëvenaarde verwerkingskracht voor voorraadbeheer en transactieverwerking op globale schaal.
 \end{itemize}
@@ -195,7 +195,7 @@ Het grootste verschil bij conditionele logica is de manier waarop de scope van e
 
 In COBOL moet de gebruikte variabele eerst gedeclareerd worden in de \texttt{DATA DIVISION}:
 
-\begin{lstlisting}[language=Cobol, caption={Conditional in COBOL}, label={lst:cobol_loop}]
+\begin{lstlisting}[language=Cobol, caption={Conditional in COBOL}, label={lst:cobol_conditional}]
     IDENTIFICATION DIVISION.
     PROGRAM-ID. CONDITIONAL-VB.
 
@@ -325,7 +325,34 @@ TODO: fix intro en definitie
 \textcite{Deterding2011} leggen hun definitie uit en stellen dat gamification meer met "gamen" \textit{(ludus)} dan met "playing" \textit{(paidia)} te maken heeft, er zijn namelijk regels die moeten worden gevolgd.
 Gamification  maakt  gebruik  van  elementen  uit  game-ontwerp,  maar  kan  niet  als  volwaardige  games  worden  beschouwd.
 
-\subsection{Bouwstenen van Gamification}
+\subsection{Game-elementen}
+
+Om gamification effectief toe te passen, worden specifieke bouwstenen uit games geïsoleerd en geïmplementeerd. 
+Deze elementen fungeren als de brug tussen de systeemregels en de psychologische behoeften van de gebruiker. 
+Volgens \textcite{KevinWerbach2020} kunnen deze elementen worden onderverdeeld in een hiërarchie van dynamieken, mechanieken en componenten. 
+De componenten zijn de meest zichtbare uitingen hiervan, vaak samengevat onder de noemer PBL.
+
+\subsubsection{Veelvoorkomende Game-elementen: PBL}
+
+De meest bekende en toegepaste elementen binnen gamification staan bekend als de PBL-triade: \textit{Points}, \textit{Badges} en \textit{Leaderboards} \autocite{KevinWerbach2020}.
+
+%TODO meer uitleg geven bij elk puntje, adhv for the win boek
+\begin{itemize}
+\item \textbf{Points (Punten):}
+\item \textbf{Badges (Badges/Trofeeën):} 
+\item \textbf{Leaderboards (Ranglijsten):}
+\end{itemize}
+
+\subsubsection{Naast PBL} %TODO
+Hoewel PBL-elementen eenvoudig te implementeren zijn, is voor een duurzame gedragsverandering vaak een diepere integratie van game-ontwerp nodig. Elementen die verder gaan dan louter beloningen zijn:
+
+\begin{itemize}
+\item \textbf{Narratief (Verhaal):} Het plaatsen van taken in een contextuele verhaallijn verhoogt de betekenisgeving en de emotionele betrokkenheid van de gebruiker \autocite{Kapp2012}.
+\item \textbf{Feedback-loops:} Constante en directe feedback zorgt ervoor dat gebruikers hun acties onmiddellijk kunnen aanpassen, wat essentieel is voor het leerproces en de flow-ervaring \autocite{Csikszentmihalyi1990}.
+\item \textbf{Progressiebalken:} Deze visuele hulpmiddelen maken de nabijheid van een doel tastbaar, wat inspeelt op de menselijke neiging om onvoltooide taken af te willen ronden \autocite{Zichermann2011}.
+\item \textbf{Avatars:} Een digitale representatie van de gebruiker bevordert de zelfexpressie en creëert een gevoel van aanwezigheid binnen het systeem \autocite{Werbach2012}.
+\end{itemize}
+\subsection{Frameworks}
 
 \subsubsection{MDA-framework}
 Het MDA-framework, een acroniem voor \textit{Mechanics}, \textit{Dynamics}, en \textit{Aesthetics}, is een formele methode die tracht de kloof tussen game-ontwerp, game-kritiek en technisch onderzoek te overbruggen \autocite{Hunicke2004}. 
@@ -343,34 +370,29 @@ Een fundamenteel aspect van dit raamwerk is het verschil in perspectief tussen d
 Waar de ontwerper begint bij de \textit{mechanics} om uiteindelijk een bepaalde \textit{aesthetic} te bereiken, ervaart de speler de game als eerste via de \textit{aesthetics}, die voortvloeien uit de \textit{dynamics} en de onderliggende \textit{mechanics} \autocite{Hunicke2004}. 
 \textcite{Hunicke2004} beargumenteren dat deze benadering helpt om "ervaringsgericht" in plaats van enkel "functiegericht" te ontwerpen.
 
+\subsubsection{Octalysis-framework}
+%TODO: iets zeggen over de PBL Fallacy
+Er is ook een populair framework dat specifiek kijkt naar de psychologische drijfveren achter deze gamedesign-\allowbreak elementen: het \textit{Octalysis-\allowbreak framework}, ontwikkeld door \textcite{Chou2015}. 
+Waar de definitie van \textcite{Deterding2011} zich sterk richt op de classificatie van elementen, vertrekt Chou vanuit het principe van \textit{Human-Focused Design}.
+Dit houdt in dat het ontwerp niet primair draait om de functionele elementen (zoals badges of leaderboards), maar om de manier waarop deze elementen inspelen op de menselijke motivatie en emoties.
+Het framework is opgebouwd rond acht fundamentele motivaties, de \textit{Core Drives}.
 
-\subsubsection{Veelvoorkomende Game-elementen: PBL} %TODO
-Points (Punten)
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{octalysis.jpg}
+  \caption{Octalysis Framework \autocite{Chou2015}}
+  \label{fig:octalysis}
+\end{figure}
 
-Badges (Badges/Trofeeën)
-
-Leaderboards (Ranglijsten)
-
-\subsubsection{Naast PBL} %TODO
-Narratief (verhaal), feedback-loops, progressiebalken en avatars.
 
 \subsection{Effectiviteit} %TODO
 
 \subsubsection{Gamification bij junior developers} %TODO
 
-\subsubsection{Succesfactoren en Valkuilen} %TODO
-
-
-\section{TODO}
-
-Er is ook een populair framework dat specifiek kijkt naar de psychologische drijfveren achter deze gamedesign-\allowbreak elementen: het \textit{Octalysis-\allowbreak framework}, ontwikkeld door \textcite{Chou2015}. 
-Waar de definitie van \textcite{Deterding2011} zich sterk richt op de classificatie van elementen, vertrekt Chou vanuit het principe van \textit{Human-Focused Design}.
-Dit houdt in dat het ontwerp niet primair draait om de functionele elementen (zoals badges of leaderboards), maar om de manier waarop deze elementen inspelen op de menselijke motivatie en emoties.
-Het framework is opgebouwd rond acht fundamentele motivaties, de \textit{Core Drives}. 
-Deze \textit{Core Drives} bevatten 8 verschillende aspecten van de menselijke psychologie zoals \textit{Development \& Accomplishment}, \textit{Ownership}, \textit{Social Influence} etc. \autocite{Chou2015}
-
 Een meta-analyse studie van \textcite{Zhan2022} toont ook aan dat gamification een positieve impact heeft op het onderwijs in programmeren. 
 Gamification had met name het grootste effect op de motivatie en academische prestaties van studenten, gevolgd door het denkvermogen.
 
+\subsubsection{Succesfactoren en Valkuilen} %TODO
 
-\section{hoe Effectiviteit meten} %TODO
+
+\subsection{hoe Effectiviteit meten} %TODO
