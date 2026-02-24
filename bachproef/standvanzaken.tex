@@ -2,7 +2,7 @@
 \label{ch:stand-van-zaken}
 
 In dit hoofdstuk wordt de theoretische basis gelegd voor het verdere onderzoek. 
-Er wordt gestart met een verkenning van de mainframe-sector en de de rol die COBOL daarin speelt
+%TODO
 
 % ----------------------------------------------------------------------------------------------------- %
 \section{De Mainframe Wereld: Kritieke Infrastructuur in Transitie}
@@ -63,7 +63,9 @@ Deze cijfers onderstrepen dat COBOL-expertise cruciaal blijft, maar dat de metho
 \section{COBOL versus Python}
 \label{sec:COBOL-versus-python}
 
-TODO: korte inleiding
+Om de barrières bloot te leggen waarmee junior developers het moeilijk mee hebben is het belangrijk om te weten hoe de opbouw van COBOL ineenzit aangezien de syntax en logica afwijkt van de moderne talen die vandaag de dag in het onderwijs aangeleerd worden.
+In dit hoofdstuk trekken we een vergelijking met Python. 
+Python dient hierbij als het ideale referentiepunt, aangezien het momenteel de meest gehanteerde taal is voor beginnende programmeurs vanwege de leesbaarheid en intuïtieve structuur.
 
 \subsection{Programmastructuur}
 In tegenstelling tot Python-scripts, die vaak top-down worden uitgevoerd, volgt een COBOL-programma een strak gedefinieerde structuur. \autocite{TutorialsPoint}
@@ -336,63 +338,88 @@ De componenten zijn de meest zichtbare uitingen hiervan, vaak samengevat onder d
 
 De meest bekende en toegepaste elementen binnen gamification staan bekend als de PBL-triade: \textit{Points}, \textit{Badges} en \textit{Leaderboards} \autocite{KevinWerbach2020}.
 
-%TODO meer uitleg geven bij elk puntje, adhv for the win boek
 \begin{itemize}
-\item \textbf{Points (Punten):}
-\item \textbf{Badges (Badges/Trofeeën):} 
-\item \textbf{Leaderboards (Ranglijsten):}
+    \item \textbf{Points (Punten):} In een gamified proces worden punten gebruikt om mensen aan te moedigen om dingen te doen door het verzamelen van punten te koppelen aan gewenste activiteiten. \autocite{KevinWerbach2020}
+    \item \textbf{Badges (Badges/Trofeeën):} Badges zijn een uitgebreidere versie van punten. Een badge is een visuele weergave van een prestatie binnen het gamified proces. \autocite{KevinWerbach2020}
+    \item \textbf{Leaderboards (Ranglijsten):} Volgens \textcite{KevinWerbach2020} zijn leaderboards zijn het meest problematische onderdeel van de PBL-triade. Hoewel ze motiveren door sociale vergelijking en zichtbare progressie, kunnen ze ook demotiveren wanneer de afstand tot de top te groot is. In zakelijke omgevingen leiden ze vaak tot ongewenst gedrag en verminderde prestaties, doordat de focus verschuift naar een destructieve competitie.
 \end{itemize}
 
-\subsubsection{Naast PBL} %TODO
-Hoewel PBL-elementen eenvoudig te implementeren zijn, is voor een duurzame gedragsverandering vaak een diepere integratie van game-ontwerp nodig. Elementen die verder gaan dan louter beloningen zijn:
+\subsubsection{Naast PBL}
+Hoewel veel gamification-implementaties zich beperken tot de PBL-triade, is dit volgens \textcite{KevinWerbach2020} slechts het startpunt. 
+Punten, badges en ranglijsten zijn populair omdat ze vertrouwd aanvoelen en eenvoudig te integreren zijn via bestaande software en bekende systemen, zoals loyaliteitsprogramma's.
+Echter, wie de volledige waarde uit gamification wil halen, moet verder kijken dan deze drie elementen alleen.
+Het blindelings vertrouwen op PBL's kan tot problemen leiden, omdat ze niet voor elk project de juiste oplossing bieden.
+Om een systeem te ontwerpen dat werkelijk functioneert als een spel, is het essentieel om dieper in te gaan op de onderliggende spelmechanieken en dynamieken die een ervaring intrinsiek motiverend maken. \autocite{KevinWerbach2020}
 
-\begin{itemize}
-\item \textbf{Narratief (Verhaal):} Het plaatsen van taken in een contextuele verhaallijn verhoogt de betekenisgeving en de emotionele betrokkenheid van de gebruiker \autocite{Kapp2012}.
-\item \textbf{Feedback-loops:} Constante en directe feedback zorgt ervoor dat gebruikers hun acties onmiddellijk kunnen aanpassen, wat essentieel is voor het leerproces en de flow-ervaring \autocite{Csikszentmihalyi1990}.
-\item \textbf{Progressiebalken:} Deze visuele hulpmiddelen maken de nabijheid van een doel tastbaar, wat inspeelt op de menselijke neiging om onvoltooide taken af te willen ronden \autocite{Zichermann2011}.
-\item \textbf{Avatars:} Een digitale representatie van de gebruiker bevordert de zelfexpressie en creëert een gevoel van aanwezigheid binnen het systeem \autocite{Werbach2012}.
-\end{itemize}
 \subsection{Frameworks}
+Om gamification succesvol te implementeren, volstaat het niet om enkel losse spel-elementen aan een bestaand proces toe te voegen. 
+Het risico van een dergelijke gefragmenteerde aanpak is de zogenaamde "PBL-fallacy": de misvatting dat de aanwezigheid van punten, badges en leaderboards automatisch leidt tot motivatie en betrokkenheid \autocite{KevinWerbach2020}.
+Om dit te voorkomen, maken ontwerpers gebruik van theoretische frameworks.
+
+Deze raamwerken bieden een gestructureerde methode om de interactie tussen de technische bouwstenen, de dynamiek van het systeem en de psychologische impact op de gebruiker te begrijpen. 
+Waar sommige modellen zich concentreren op de formele systeemarchitectuur, leggen andere de nadruk op de menselijke motivatie. 
+In dit onderdeel worden twee toonaangevende benaderingen besproken: het technisch georiënteerde MDA-framework en het op psychologie gebaseerde Octalysis-model.
 
 \subsubsection{MDA-framework}
-Het MDA-framework, een acroniem voor \textit{Mechanics}, \textit{Dynamics}, en \textit{Aesthetics}, is een formele methode die tracht de kloof tussen game-ontwerp, game-kritiek en technisch onderzoek te overbruggen \autocite{Hunicke2004}. 
-In tegenstelling tot traditionele media wordt de inhoud van een game gedefinieerd door het gedrag van het systeem in interactie met de speler \autocite{Hunicke2004}.
-\textcite{Hunicke2004} stellen dat games begrepen moeten worden als systemen die gedrag opbouwen via interactie, waarbij het raamwerk drie causale niveaus onderscheidt:
+Het MDA-framework, een acroniem voor \textit{Mechanics}, \textit{Dynamics}, en \textit{Aesthetics}, is een formele methode die tracht de kloof tussen game-ontwerp, game-kritiek en technisch onderzoek te overbruggen \autocite{Hunicke2004}.
+In tegenstelling tot passieve media zoals film of literatuur, wordt de inhoud van een game gedefinieerd door het interactieve gedrag van het systeem. 
+\textcite{Hunicke2004} stellen dat games begrepen moeten worden als systemen die ervaringen opbouwen via drie hiërarchische niveaus:
 
 \begin{itemize}
-    \item \textbf{Mechanics} beschrijft de specifieke componenten van de game op het niveau van data-representatie en algoritmen \autocite{Hunicke2004}. 
-    Dit omvat de acties, regels en controlemechanismen die de ontwerper aan de speler biedt \autocite{Hunicke2004}.
-    \item \textbf{Dynamics} beschrijft het \textit{run-time} gedrag van de mechanieken die inwerken op de input van de speler en elkaars output over een tijdsverloop \autocite{Hunicke2004}.
-    \item \textbf{Aesthetics} verwijst naar de gewenste emotionele reacties die bij de speler worden opgeroepen tijdens de interactie met het gamesysteem \autocite{Hunicke2004}.
+    \item \textbf{Mechanics (Mechanieken):} Dit zijn de fundamentele bouwstenen van de game op het niveau van data en algoritmen. 
+    Het omvat de regels, de fysica van de gamewereld en de specifieke acties die een speler kan uitvoeren (zoals springen, punten verdienen of een tijdslimiet). 
+    In een zakelijke gamification-context zijn dit bijvoorbeeld de algoritmen die bepalen wanneer een gebruiker een badge ontvangt. \autocite{Hunicke2004}.
+
+    \item \textbf{Dynamics (Dynamiek):} Dit beschrijft het \textit{run-time} gedrag van de mechanieken wanneer ze in werking treden door interactie van de speler. 
+    Dynamics ontstaan wanneer verschillende mechanics op elkaar inwerken. 
+    Een tijdslimiet (mechanic) gecombineerd met een ranglijst (mechanic) creëert bijvoorbeeld een gevoel van tijdsdruk en competitie (dynamics). 
+    Dit is het niveau waarop strategieën en speelstijlen van gebruikers zichtbaar worden. \autocite{Hunicke2004}
+
+    \item \textbf{Aesthetics (Esthetiek):} Dit verwijst niet naar het visuele aspect, maar naar de \textit{emotionele reactie} die bij de speler wordt opgeroepen. 
+    Het gaat om de "ervaring van plezier". 
+    \textcite{Hunicke2004} categoriseren dit verder in vormen zoals \textit{Sensation} (zintuiglijk genot), \textit{Fantasy} (onderdompeling in een andere wereld), \textit{Narrative} (het verhaal) en \textit{Challenge} (de voldoening van het overwinnen van hindernissen).
 \end{itemize}
 
-Een fundamenteel aspect van dit raamwerk is het verschil in perspectief tussen de ontwerper en de speler \autocite{Hunicke2004}. 
-Waar de ontwerper begint bij de \textit{mechanics} om uiteindelijk een bepaalde \textit{aesthetic} te bereiken, ervaart de speler de game als eerste via de \textit{aesthetics}, die voortvloeien uit de \textit{dynamics} en de onderliggende \textit{mechanics} \autocite{Hunicke2004}. 
-\textcite{Hunicke2004} beargumenteren dat deze benadering helpt om "ervaringsgericht" in plaats van enkel "functiegericht" te ontwerpen.
+Een cruciaal inzicht van dit raamwerk is de omgekeerde causaliteit tussen de ontwerper en de speler. 
+Er bestaat een lineair maar tegengesteld perspectief: \autocite{Hunicke2004}
 
-\subsubsection{Octalysis-framework}
-%TODO: iets zeggen over de PBL Fallacy
-Er is ook een populair framework dat specifiek kijkt naar de psychologische drijfveren achter deze gamedesign-\allowbreak elementen: het \textit{Octalysis-\allowbreak framework}, ontwikkeld door \textcite{Chou2015}. 
+\begin{enumerate}
+    \item \textbf{Het perspectief van de ontwerper (Top-down):} De ontwerper vertrekt vanuit de \textit{Mechanics}. 
+    Door regels en systemen te bouwen, hoopt de ontwerper dat er een bepaalde \textit{Dynamics} ontstaat die uiteindelijk leidt tot de gewenste \textit{Aesthetics} (de emotionele ervaring).
+    \item \textbf{Het perspectief van de speler (Bottom-up):} De speler ervaart de game in omgekeerde volgorde. 
+    De eerste kennismaking is de \textit{Aesthetics}. 
+    Pas door te spelen ontdekt de speler de \textit{Dynamics}, en pas na verloop van tijd begrijpt hij de onderliggende \textit{Mechanics} die alles aansturen.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{MDA.png}
+    \caption{Perspectief van Speler en Designer binnen het MDA-Framework \autocite{Hunicke2004}}
+    \label{fig:mda}
+\end{figure}
+
+Door deze gelaagdheid te erkennen, kunnen ontwikkelaars voorkomen dat ze louter "functiegericht" ontwerpen. 
+Het MDA-framework dwingt de ontwerper om na te denken over hoe een kleine wijziging in de code (Mechanics) de volledige emotionele beleving (Aesthetics) van de eindgebruiker kan beïnvloeden. \autocite{Hunicke2004}
+
+\subsubsection{Octalysis-framework} % TODO
+Een ander populair framework dat specifiek kijkt naar de psychologische drijfveren achter deze gamedesign-\allowbreak elementen: het \textit{Octalysis-\allowbreak framework}, ontwikkeld door \textcite{Chou2015}. 
 Waar de definitie van \textcite{Deterding2011} zich sterk richt op de classificatie van elementen, vertrekt Chou vanuit het principe van \textit{Human-Focused Design}.
 Dit houdt in dat het ontwerp niet primair draait om de functionele elementen (zoals badges of leaderboards), maar om de manier waarop deze elementen inspelen op de menselijke motivatie en emoties.
 Het framework is opgebouwd rond acht fundamentele motivaties, de \textit{Core Drives}.
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\textwidth]{octalysis.jpg}
-  \caption{Octalysis Framework \autocite{Chou2015}}
-  \label{fig:octalysis}
+    \centering
+    \includegraphics[width=0.8\textwidth]{octalysis.jpg}
+    \caption{Octalysis Framework \autocite{Chou2015}}
+    \label{fig:octalysis}
 \end{figure}
 
 
-\subsection{Effectiviteit} %TODO
-
+% =======================================================
 \subsubsection{Gamification bij junior developers} %TODO
 
 Een meta-analyse studie van \textcite{Zhan2022} toont ook aan dat gamification een positieve impact heeft op het onderwijs in programmeren. 
 Gamification had met name het grootste effect op de motivatie en academische prestaties van studenten, gevolgd door het denkvermogen.
-
-\subsubsection{Succesfactoren en Valkuilen} %TODO
 
 
 \subsection{hoe Effectiviteit meten} %TODO
