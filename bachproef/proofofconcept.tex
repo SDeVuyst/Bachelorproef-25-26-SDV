@@ -1,0 +1,354 @@
+%%=============================================================================
+%% Proof Of Concept
+%%=============================================================================
+
+
+% ==============================================POC============================================== %
+\chapter{\IfLanguageName{dutch}{Proof of Concept}{Proof of Concept}}%
+\label{ch:poc}
+
+Dit hoofdstuk beschrijft de concrete uitwerking van de Proof of Concept (PoC): een webapplicatie genaamd \textit{Learn COBOL} die COBOL-concepten aanreikt via een gamified leerpad, gekoppeld aan de Python-achtergrond van de doelgroep.
+De PoC is het tastbare artefact uit fase~2 van de methodologie (zie hoofdstuk~\ref{ch:methodologie}) en dient als basis voor de gebruikersevaluatie (interviews, observaties).
+
+\section{Doel en afbakening}
+
+\subsection{Functionele doelstelling}
+De applicatie moet junior developers op een gestructureerde manier laten kennismaken met typische COBOL-bouwstenen die in de literatuurstudie als drempelvormend naar voren kwamen: divisions, \texttt{PIC}-clausules, datahiërarchie, conditionele logica, iteraties, paragrafen en een eerste contactpunt met foutafhandeling rond bestanden (\texttt{FILE STATUS}).
+In plaats van een volledige compileromgeving wordt bewust gekozen voor \textbf{heuristische validatie}: de gebruiker krijgt per level een checklist van doelen; voldoet de ingediende code aan die patronen, dan wordt het level als geslaagd beschouwd.
+
+\subsection{Niet-doelen van de PoC}
+Om de scope beheersbaar te houden voor het onderzoek, behoren tot de bewuste \textit{niet-doelen}:
+\begin{itemize}
+    \item \textbf{Geen uitvoering van COBOL op een mainframe of in een echte runtime:} er wordt geen batchjob of transactieserver gevoed.
+    \item \textbf{Geen volledige taaldekking:} slechts zeven thematische levels; edge cases en dialectverschillen worden niet afgedekt.
+    \item \textbf{Geen formele correctheidsbewijs:} regex-gebaseerde checks kunnen zowel false positives als false negatives vertonen; de nadruk ligt op didactiek en motivatie, niet op certificerende nauwkeurigheid.
+\end{itemize}
+
+\section{Technische architectuur en technologiekeuzes}
+
+\subsection{Client: React, TypeScript en Vite}
+De front-end is gebouwd met \textbf{React~18} en \textbf{TypeScript}, gebundeld met \textbf{Vite}.
+Die combinatie is gekozen vanwege snelle iteratie tijdens het onderzoek, brede ondersteuning voor componentbibliotheken en type-veiligheid bij het modelleren van leveldefinities en validatieregels.
+
+\subsection{Backend en data: Supabase}
+\textbf{Supabase} (PostgreSQL + ingebouwde auth) fungeert als backend-as-a-service voor:
+\begin{itemize}
+    \item gebruikersauthenticatie en profielgegevens;
+    \item persistentie van levelpogingen (\texttt{level\_attempts}), punten en voltooide levels;
+    \item badge-toekenningen (\texttt{user\_badges}) en definities;
+    \item vriendenrelaties.
+\end{itemize}
+Deze keuze beperkt operationele complexiteit: er is geen eigen server te hosten voor standaard CRUD en row-level security kan op databaseniveau worden afgedwongen.
+
+\subsection{Databasemodel}
+\label{subsec:poc-db-schema}
+De client wordt gegenereerd tegen het Supabase-typescriptschema; hieronder volgt een samenvatting van de \textbf{publieke tabellen} en hun kolommen zoals ze in de PoC worden gebruikt.
+De rij \texttt{profiles} gebruikt \texttt{id} gelijk aan de gebruikers-id uit Supabase Auth (\texttt{auth.users}).
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\hline
+\textbf{Kolom} & \textbf{Betekenis} \\
+\hline
+\texttt{id} & Primaire sleutel; koppeling met auth-gebruiker. \\
+\texttt{username}, \texttt{email} & Weergavenaam en contact (e-mail uit registratie). \\
+\texttt{avatar\_url} & Optionele URL voor profielavatar. \\
+\texttt{total\_points}, \texttt{levels\_completed} & Geaggregeerde gamification-score en aantal uniek geslaagde levels. \\
+\texttt{streak\_days}, \texttt{weekly\_count}, \texttt{last\_relapse} & Velden voor streak-gedrag (uitbreidbaar in de applicatie). \\
+\texttt{last\_active\_at} & Tijdstip laatste relevante activiteit. \\
+\texttt{created\_at}, \texttt{updated\_at} & Auditvelden. \\
+\hline
+\end{tabularx}
+\caption{Structuur van de tabel \texttt{profiles}.}
+\label{tab:schema-profiles}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\hline
+\textbf{Kolom} & \textbf{Betekenis} \\
+\hline
+\texttt{id} & Unieke poging (één actieve sessie per user/level in de flow). \\
+\texttt{user\_id} & Eigenaar van de poging. \\
+\texttt{level\_id} & Identificator van het level (\texttt{"1"}--\texttt{"7"}). \\
+\texttt{started\_at}, \texttt{completed\_at} & Start en (bij succes) einde van de poging. \\
+\texttt{success} & Of het level minstens één keer geslaagd werd binnen deze poging. \\
+\texttt{submit\_count} & Aantal keer ``indienen''. \\
+\texttt{validation\_fail\_count} & Teller voor mislukte validaties (o.a.\ voor first-try bonus). \\
+\texttt{syntax\_error\_count} & Teller voor syntax-/signaaltelling (analytics en badges). \\
+\hline
+\end{tabularx}
+\caption{Structuur van de tabel \texttt{level\_attempts}.}
+\label{tab:schema-level-attempts}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\hline
+\textbf{Kolom} & \textbf{Betekenis} \\
+\hline
+\texttt{id} & Stabiele sleutel van de badge (bv.\ \texttt{four\_divisions}). \\
+\texttt{name} & Korte titel voor de UI. \\
+\texttt{description}, \texttt{how\_to\_earn} & Uitleg en hint hoe de badge te verdienen. \\
+\texttt{tier}, \texttt{difficulty} & Presentatie (zeldzaamheid, moeilijkheidsgraad). \\
+\texttt{icon\_key} & Mapping naar een icoon in de front-end. \\
+\hline
+\end{tabularx}
+\caption{Structuur van de tabel \texttt{badge\_definitions}.}
+\label{tab:schema-badge-definitions}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\hline
+\textbf{Kolom} & \textbf{Betekenis} \\
+\hline
+\texttt{user\_id}, \texttt{badge\_id} & Koppel tabel: welke gebruiker welke badge verdiende. \\
+\texttt{earned\_at} & Tijdstip van toekenning. \\
+\hline
+\end{tabularx}
+\caption{Structuur van de tabel \texttt{user\_badges}.}
+\label{tab:schema-user-badges}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\hline
+\textbf{Kolom} & \textbf{Betekenis} \\
+\hline
+\texttt{id} & Unieke vriendschapsrelatie of uitnodiging. \\
+\texttt{user\_id}, \texttt{friend\_id} & Verwijzingen naar \texttt{profiles.id}. \\
+\texttt{status} & Status van de relatie (bv.\ pending, accepted). \\
+\texttt{created\_at}, \texttt{updated\_at} & Auditvelden. \\
+\hline
+\end{tabularx}
+\caption{Structuur van de tabel \texttt{friendships}.}
+\label{tab:schema-friendships}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\hline
+\textbf{Kolom} & \textbf{Betekenis} \\
+\hline
+\texttt{id} & Uniek event. \\
+\texttt{user\_id} & Gebruiker die het event genereerde. \\
+\texttt{event\_type} & Soort gebeurtenis (bv.\ \texttt{level\_complete}, \texttt{level\_submit\_fail}, \texttt{session\_ping}). \\
+\texttt{metadata} & Optionele JSON-payload (level-id, fouten, enz.). \\
+\texttt{created\_at} & Tijdstip. \\
+\hline
+\end{tabularx}
+\caption{Structuur van de tabel \texttt{app\_events} (telemetrie / onderzoeksondersteuning).}
+\label{tab:schema-app-events}
+\end{table}
+
+Daarnaast is in Supabase een opgeslagen routine \texttt{increment\_relapse\_count} gedefinieerd die vanuit de applicatie kan worden aangeroepen voor streak-/relapse-logica; in de PoC ligt de nadruk op levels, punten en badges, maar het profiel bevat hiervoor reeds de nodige kolommen.
+
+\subsection{Code-editor: Monaco}
+Voor het bewerken van COBOL- en referentiecode wordt \textbf{Monaco Editor} (\texttt{@monaco-editor/react}) gebruikt---dezelfde kern als in Visual Studio Code.
+Voor COBOL is een \textbf{aangepaste taalregistratie} toegevoegd (keywords, commentaar \texttt{*>}, basis highlighting) omdat standaard Monaco geen eerste-klas COBOL-ondersteuning biedt.
+Zo blijft de editor herkenbaar voor de doelgroep zonder een zware desktop-IDE te vereisen.
+
+\subsection{Hosting en telemetrie}
+De applicatie kan statisch worden uitgerold (bijv.\ op Vercel).
+\textbf{Vercel Analytics} en \textbf{Speed Insights} zijn optioneel ingeschakeld voor aggregated performance- en gebruiksstatistieken; onderzoeksdata voor de thesis komen primair uit interviews, observaties en expliciete events in de applicatie (zoals level-submits), niet uit die analytics als enige bron.
+
+\section{Authenticatie, profiel en navigatie}
+
+\subsection{Registratie en sessies}
+Gebruikers registreren zich met e-mail en wachtwoord; na aanmelding wordt een profielrij gesynchroniseerd (gebruikersnaam, avatar, punten, voltooide levels).
+Routes onder \texttt{/dashboard}, \texttt{/learn}, \texttt{/leaderboard}, enz.\ zijn \textbf{beschermd}: zonder geldige sessie volgt redirect naar de loginpagina.
+Zo blijft voortgang gekoppeld aan een identiteit, wat nodig is voor leaderboard, badges en evaluatie.
+
+\subsection{Profiel en vrienden}
+Het profiel toont de identiteit van de gebruiker en linkt door naar vrienden en badges.
+Bezoek aan het profiel van een vriend gebeurt via een aparte route (\texttt{/profile/:friendId}), zodat sociale vergelijking binnen de PoC mogelijk is zonder volledig openbare gebruikerslijsten.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{poc-dashboard.png}
+\caption[Dashboard met voortgang en badges]{Het dashboard geeft een overzicht van het leerpad (voltooide levels), totale punten, een compacte leaderboard van vrienden en een voorproefje van behaalde badges.}
+\label{fig:poc-dashboard}
+\end{figure}
+
+\section{Het leerpad: zeven levels}
+
+\subsection{Volgorde en ontgrendeling}
+Levels zijn genummerd van 1 tot 7 en worden \textbf{sequentieel} vrijgegeven: level~$n$ is pas speelbaar wanneer level~$n-1$ minstens één keer succesvol is afgerond.
+Dat voorkomt dat beginners complexe concepten (bijv.\ \texttt{PERFORM}) zien voordat de programmaskelet en data-definities bekend zijn.
+
+\subsection{Inhoud per level}
+Elk level bevat een titel, korte samenvatting, \textbf{Python-hint} en een \textbf{Python-referentiesnippet} die het analogue denkbeeld schetst (bijv.\ dataclass versus \texttt{01}/\texttt{05}-hiërarchie).
+Daarnaast zijn er optioneel officiële documentatielinks (IBM COBOL for z/OS) en een korte COBOL-uitleg met voorbeeldfragmenten.
+De gebruiker start vanuit \textbf{starter code} met \texttt{TODO}-commentaar; zo is het duidelijk welke regels bewerkt moeten worden.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{8cm}|}
+\hline
+\textbf{Level} & \textbf{Thema} \\
+\hline
+1 & Vier divisions en minimale programmastructuur; \texttt{STOP RUN.} \\
+2 & \texttt{PIC}/\texttt{PICTURE}: numeriek (\texttt{9}), alfanumeriek (\texttt{X}), impliciete decimaal (\texttt{V}) \\
+3 & Datahiërarchie: level \texttt{01}, \texttt{05}, optioneel \texttt{77} \\
+4 & Conditionele logica: \texttt{IF}, \texttt{ELSE}, \texttt{END-IF} \\
+5 & Iteraties: \texttt{PERFORM VARYING \ldots\ UNTIL}, \texttt{END-PERFORM} \\
+6 & Paragrafen en \texttt{PERFORM} (niet alleen \texttt{PERFORM VARYING}) \\
+7 & \texttt{FILE STATUS} en status \texttt{35} (file not found) \\
+\hline
+\end{tabular}
+\caption{Overzicht van de zeven levels in de PoC.}
+\label{tab:poc-levels}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{poc-learn-overview.png}
+\caption[Learn-overzicht met voortgang en sloten]{Het learn-scherm toont alle levels met status (voltooid, beschikbaar, vergrendeld) en een voortgangsbalk gekoppeld aan het profiel.}
+\label{fig:poc-learn-overview}
+\end{figure}
+
+\section{Level-ervaring: editor, validatie en feedback}
+
+\subsection{Twee panelen: COBOL en Python}
+Tijdens het werken aan een level ziet de gebruiker het \textbf{COBOL-hoofdvenster} en een \textbf{Python-referentiekolom}.
+Die scheiding ondersteunt de didactische keuze uit de stand van zaken: expliciet koppelen van onbekende syntax aan bekende concepten.
+
+\subsection{Validatieproces}
+Bij ``indienen'' wordt de broncode geanalyseerd door \texttt{validateCobolLevelDetailed}: per level worden doelen omgezet naar \textbf{case-insensitive regex-checks} en eventuele aanvullende logica (bijv.\ volgorde van divisions).
+Het resultaat is een \textbf{checklist} met vinkjes of foutboodschappen; zo is feedback direct koppelbaar aan de leerdoelen in plaats van aan compilermeldingen.
+
+\subsection{Belangrijke ontwerpbeslissingen rond feedback}
+\begin{itemize}
+    \item \textbf{Geen integratie met een echte COBOL-compiler:} installatie en CI voor meerdere compilers zouden de PoC zwaar maken; bovendien verschillen foutmeldingen sterk per omgeving.
+    \item \textbf{Geen regelmarkeringen in Monaco voor mislukte checks:} decoraties in de editor zijn bewust uitgeschakeld om visuele ruis te beperken en de aandacht op de checklist te houden.
+    \item \textbf{Wel tellen van syntax-signalen} (keywords, structuur) voor analytics en ``clean run''-badges, naast de harde doelen.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{poc-level-editor.png}
+\caption[Level-scherm met editor en checklist]{Level-scherm met Monaco-editor, Python-referentie en checklist van doelen na validatie.}
+\label{fig:poc-level-editor}
+\end{figure}
+
+\subsection{Voorbeeld: level~1 (divisions)}
+De gebruiker moet onder meer de vier divisions en \texttt{STOP RUN.} bevatten.
+Een minimaal geslaagd fragment ziet er conceptueel als volgt uit:
+
+\begin{minted}[fontsize=\footnotesize,breaklines]{text}
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. HELLO.
+
+       ENVIRONMENT DIVISION.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       PROCEDURE DIVISION.
+           DISPLAY "OK".
+           STOP RUN.
+\end{minted}
+
+\section{Gamificatie en motivatie}
+
+\subsection{Punten en eerste-pogingbonus}
+Een geslaagd level levert \textbf{100 basispunten} op.
+Indien de \textbf{eerste} indiening voor dat level onmiddellijk slaagt---er was dus nog geen eerdere mislukte validatie binnen dezelfde poging-sessie---wordt een \textbf{bonus van 25 punten} toegekend.
+De UI toont dit expliciet in de ondertitel van de viering (zie verder).
+Herhaalt een gebruiker een reeds voltooid level, dan worden er geen extra punten meer bijgeschreven; de poging wordt wel gelogd in \texttt{level\_attempts}.
+
+\subsection{Badges en mijlpalen}
+Badge-metadata staat centraal in \texttt{badge\_definitions} (zie tabel~\ref{tab:schema-badge-definitions}); toekenningen gebeuren in \texttt{user\_badges}.
+Naast de \textbf{zeven inhoudsbadges} (één per level-thema, gekoppeld aan \texttt{LEVEL\_TO\_BADGE} in de code) kent de PoC een reeks \textbf{combinatieregels} die bij een eerste succes op een level in één transactie worden geëvalueerd:
+\begin{itemize}
+    \item \textbf{Eerste poging-succes:} badges \texttt{perfect\_streak} (schone run) en \texttt{first\_try\_success}.
+    \item \textbf{Voortgang:} badges wanneer minstens 1, 3 of alle 7 levels minstens één keer geslaagd zijn.
+    \item \textbf{Punten:} mijlpalen op cumulatieve \texttt{total\_points} (onder meer 1000, 2500 en 5000).
+    \item \textbf{Tempo:} ``speedrun''-badges als de tijd tussen \texttt{started\_at} en het succes onder een drempel ligt (30~s, 1~min, 5~min).
+\end{itemize}
+Op het dashboard en de badges-pagina tonen tooltips de tekst uit \texttt{how\_to\_earn}, zodat duidelijk is wat er nog te verdienen valt---dit ondersteunt \textit{development \& accomplishment} en ontdekkingsdrang binnen het Octalysis-kader.
+
+\subsection{Viering na een voltooid level (\texttt{LevelCelebration})}
+Bij de \textbf{eerste} succesvolle afronding van een level wordt een \texttt{celebrationTrigger} verhoogd; daardoor rendert de component \texttt{LevelCelebration} opnieuw en start de feedbacklus.
+
+\paragraph{Confetti.}
+De bibliotheek \textbf{canvas-confetti} vuurt \textbf{twee confetti-bursts} af met licht verschoven parameters (\texttt{particleCount}, \texttt{spread}, \texttt{origin.y}) en een korte pauze van ongeveer 280~ms ertussen.
+Zo ontstaat een merkbare ``klap'' zonder de pagina lang te blokkeren; de confetti gebruikt een hoge \texttt{zIndex} zodat ze boven de rest van de UI verschijnen.
+
+\paragraph{Ballonnen en tekst.}
+Bovenop de confetti verschijnen \textbf{zeven abstracte ballonnen} (afgeronde kolommen met gradiëntkleuren uit een vast palet), elk met een licht \textbf{gestaggerde} start (\texttt{delayMs}) en willekeurig uiteenlopende horizontale positie afgeleid van de trigger.
+Ze animeren met de CSS-keyframes \texttt{balloonPopUp}: kort inspringen van onder het scherm, uitzoemen naar volle grootte, daarna omhoog bewegen en uitfaden (ongeveer 900~ms per ballon).
+De titel ``Level $n$ compleet!'' en de ondertitel met punten gebruiken de keyframe \texttt{confettiTextIn} (fade/slide-in over ongeveer 420~ms).
+
+\paragraph{Duur en toegankelijkheid.}
+De overlay bedekt het volledige scherm maar heeft \texttt{pointer-events: none}, zodat de gebruiker niet per ongeluk klikken blokkeert.
+Na ongeveer \textbf{2400~ms} wordt de viering verborgen; de overlay blijft technisch aanwezig maar visueel weg.
+Parallel verschijnt een \textbf{toast} ``Level voltooid'' met dezelfde punttekst als de ondertitel van de viering.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{poc-celebration.png}
+\caption[Visuele beloning na een level]{Na een geslaagd level: confetti (twee bursts), ballonnen-animatie en titel/ondertitel met behaalde punten.}
+\label{fig:poc-celebration}
+\end{figure}
+
+\subsection{Overige micro-feedback}
+\begin{itemize}
+    \item \textbf{Pagina-ingang:} belangrijke schermen gebruiken een lichte \texttt{animate-fade-in} (CSS) zodat navigatie niet abrupt aanvoelt.
+    \item \textbf{Mislukte submit:} checklist-items en optioneel een fout-detailpaneel geven structurele feedback zonder confetti.
+    \item \textbf{Voltooid level:} onder de editor verschijnt een informatieve \texttt{Alert} dat het level af is maar dat oefenen met de code nog kan.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{poc-badges.png}
+\caption[Badges-collectie]{Overzicht van beschikbare en behaalde badges met toelichting.}
+\label{fig:poc-badges}
+\end{figure}
+
+\section{Leaderboard en vrienden}
+
+\subsection{Rangschikking}
+Het leaderboard rangschikt gebruikers op basis van onder meer totale punten en voltooide levels, met nadruk op de huidige gebruiker.
+In ontwikkelmodus kunnen deterministische dummy-rijen worden toegevoegd om een lege ranking te vermijden; in productie worden uitsluitend echte profielen getoond.
+
+\subsection{Realtime en sociale context}
+Vriendenlijsten worden ververst bij login; waar relevant wordt real-time inschrijving op wijzigingen gebruikt zodat uitnodigingen en status sneller zichtbaar zijn.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{poc-leaderboard.png}
+\caption[Leaderboard]{Leaderboard met ranking, punten en voltooide levels.}
+\label{fig:poc-leaderboard}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{poc-friends-profile.png}
+\caption[Vrienden en profiel]{Vriendenfunctionaliteit en/of bezoek aan een vriendenprofiel.}
+\label{fig:poc-friends-profile}
+\end{figure}
+
+\section{Gebruikersinterface: mainframe-esthetiek}
+
+Visueel is gekozen voor een \textbf{donker thema}, monospace accenten en ``strip''-componenten die herinneren aan terminal- en mainframe-terminologie (\texttt{WORKING-STORAGE}, \texttt{ENVIRONMENT DIVISION}, enz.).
+Dat draagt bij aan \textit{thema \& narratief} zonder een echte groene fosfor-CRT na te bootsen: leesbaarheid op moderne schermen blijft prioriteit (contrast, typografie, shadcn/ui-componenten).
+
+\section{Samenvatting}
+
+De PoC combineert een \textbf{gestructureerd leerpad} (zeven levels, sequentiële unlock), \textbf{Python-geankerde uitleg}, \textbf{directe checklist-feedback} op basis van heuristieken, en \textbf{gamificatie} (punten, mijlpaal- en speedrun-badges, confetti/ballon-viering, toasts, leaderboard, vrienden).
+Technisch rust ze op React/TypeScript, Monaco, Supabase (zie het databasemodel in sectie~\ref{subsec:poc-db-schema}) en optionele Vercel-telemetrie.
+De schermafdrukken in dit hoofdstuk illustreren de belangrijkste onderdelen van de PoC; vervang de bestanden in \texttt{graphics/} (repository-root) door scherpe exports van de uiteindelijke demo-omgeving vóór de finale indiening.
