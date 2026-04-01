@@ -215,7 +215,7 @@ Zo blijft de editor herkenbaar voor de doelgroep zonder een zware desktop-IDE te
 
 \subsection{Hosting en telemetrie}
 De applicatie kan statisch worden uitgerold (bijv.\ op Vercel).
-\textbf{Vercel Analytics} en \textbf{Speed Insights} zijn optioneel ingeschakeld voor aggregated performance- en gebruiksstatistieken; onderzoeksdata voor de thesis komen primair uit interviews, observaties en expliciete events in de applicatie (zoals level-submits), niet uit die analytics als enige bron.
+\textbf{Vercel Analytics} en \textbf{Speed Insights} zijn ingeschakeld voor aggregated performance- en gebruiksstatistieken; onderzoeksdata voor de thesis komen primair uit interviews, observaties en expliciete events in de applicatie (zoals level-submits), niet uit die analytics als enige bron.
 
 \section{Authenticatie en toegang}
 
@@ -293,9 +293,9 @@ De slot-iconografie en sequentiële vrijgave ondersteunen \textit{Scarcity \& Im
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.92\textwidth]{poc-learn-overview.png}
-\caption[Learn-overzicht]{Learn: voortgangscard en per level een card met status en doorgang naar de editor.}
-\label{fig:poc-learn-overview}
+\includegraphics[width=0.92\textwidth]{poc-learn.png}
+\caption[Learn]{Lijst van alle levels.}
+\label{fig:poc-celebration}
 \end{figure}
 
 \subsection{Level-editor (\texttt{/learn/:levelId})}
@@ -324,6 +324,7 @@ De ranking staat in één brede card met strip \texttt{SYSOUT - FULL RANKING} en
 Hier is vooral \textbf{L} (leaderboard) uit PBL aanwezig \autocite{KevinWerbach2020}, met het bekende spanningsveld tussen motivatie en demotivatie bij grote tussenstanden.
 De PoC markeert de huidige gebruiker en laat doorklikken naar profielen waar toegelaten.
 
+% TODO
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{poc-leaderboard.png}
@@ -366,16 +367,16 @@ Het \textbf{eigen profiel} toont identiteit, e-mail (alleen voor de eigenaar), a
 Cards gebruiken onder meer de strips \texttt{IDENTIFICATION DIVISION}, \texttt{DATA DIVISION} (progress), \texttt{LEADERBOARD - JOB STEP} en \texttt{BADGE REGISTRY} (figuur~\ref{fig:poc-profile-own}).
 \textit{Ownership \& Possession} en \textit{Development \& Accomplishment} domineren hier.
 
-\subsubsection{Profiel van een vriend (\texttt{/profile/:friendId})}
-Het \textbf{vriendenprofiel} deelt dezelfde presentatiecomponenten maar op een aparte route: geen e-mail, geen avatar-upload voor de andere gebruiker, wel vergelijking van punten en badges en acties zoals ``vriend verwijderen'' waar van toepassing (figuur~\ref{fig:poc-profile-friend}).
-Zo blijft de scheiding tussen ``mijn account'' en ``read-only blik op een ander'' ook in de thesis expliciet.
-
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{poc-profile-own.png}
 \caption[Eigen profiel]{Eigen profiel op \texttt{/profile}: account, avatar, voortgang en badges.}
 \label{fig:poc-profile-own}
 \end{figure}
+
+\subsubsection{Profiel van een vriend (\texttt{/profile/:friendId})}
+Het \textbf{vriendenprofiel} deelt dezelfde presentatiecomponenten maar op een aparte route: geen e-mail, geen avatar-upload voor de andere gebruiker, wel vergelijking van punten en badges en acties zoals ``vriend verwijderen'' waar van toepassing (figuur~\ref{fig:poc-profile-friend}).
+Zo blijft de scheiding tussen ``mijn account'' en ``read-only blik op een ander'' ook in de thesis expliciet.
 
 \begin{figure}[H]
 \centering
@@ -471,6 +472,7 @@ Bij de eerste succesvolle afronding van een level wordt een \texttt{celebrationT
 De overlay is niet-interactief (\texttt{pointer-events: none}) en verdwijnt na enkele seconden; parallel verschijnt een toast ``Level voltooid''.
 Deze esthetiek versterkt \textit{Challenge} en beloning op het moment van mastery (MDA: gewenste emotionele piek na mechanics) \autocite{Hunicke2004}.
 
+% TODO
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{poc-celebration.png}
@@ -488,5 +490,4 @@ Deze esthetiek versterkt \textit{Challenge} en beloning op het moment van master
 \section{Samenvatting}
 
 De PoC vertaalt de in hoofdstuk~\ref{ch:stand-van-zaken} beschreven gamification-principes naar concrete schermen: \textbf{PBL} is zichtbaar in punten, badges en leaderboards; \textbf{Octalysis} wordt bewust gevoed door strips, sequentiële levels, sociale kaarten en beloningsfeedback; \textbf{MDA} helpt om het onderscheid te maken tussen verborgen regels in code en databank enerzijds en de beleving van de gebruiker anderzijds \autocite{Hunicke2004}.
-Technisch rust de toepassing op React/TypeScript, Monaco, Supabase (sectie~\ref{subsec:poc-db-schema}) en optionele Vercel-telemetrie.
-Vervang de bestanden in \texttt{graphics/} door scherpe schermafdrukken van de uiteindelijke demo vóór de finale indiening; figuur~\ref{fig:poc-login} tot en met figuur~\ref{fig:poc-profile-friend} dekken de belangrijkste visuele momenten.
+Technisch rust de toepassing op React/TypeScript, Monaco, Supabase (sectie~\ref{subsec:poc-db-schema}) en Vercel.
