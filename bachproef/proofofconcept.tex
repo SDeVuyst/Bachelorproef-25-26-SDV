@@ -7,22 +7,22 @@
 \chapter{\IfLanguageName{dutch}{Proof of Concept}{Proof of Concept}}%
 \label{ch:poc}
 
-Dit hoofdstuk beschrijft de concrete uitwerking van de Proof of Concept (PoC): een webapplicatie genaamd \textit{Learn COBOL} die COBOL-concepten aanreikt via een gamified leerpad, gekoppeld aan de Python-achtergrond van de doelgroep.
+Dit hoofdstuk beschrijft de concrete uitwerking van de Proof of Concept (PoC): een webapplicatie genaamd \textit{Learn COBOL} die COBOL-concepten aanbiedt via een gamified leerpad, afgestemd op de Python-achtergrond van de doelgroep.
 De PoC is het tastbare artefact uit fase~2 van de methodologie (zie hoofdstuk~\ref{ch:methodologie}) en dient als basis voor de gebruikersevaluatie (interviews, observaties).
-De ontwerpkeuzes in de user interface sluiten aan bij de definities en raamwerken uit hoofdstuk~\ref{ch:stand-van-zaken}, in het bijzonder de PBL-triade (punten, badges, leaderboards), het Octalysis-model en het onderscheid tussen mechanieken, dynamieken en esthetiek binnen het MDA-framework \autocite{Hunicke2004}.
+De ontwerpkeuzes in de user interface sluiten aan bij de definities en raamwerken uit hoofdstuk~\ref{ch:stand-van-zaken}, in het bijzonder de PBL-triade (punten, badges, leaderboards), het Octalysis-model en het onderscheid tussen mechanieken, dynamieken en esthetiek binnen het MDA-framework.
 
 \section{Doel en afbakening}
 
 \subsection{Functionele doelstelling}
-De applicatie moet junior developers op een gestructureerde manier laten kennismaken met typische COBOL-bouwstenen die in de literatuurstudie als drempelvormend naar voren kwamen: divisions, \texttt{PIC}-clausules, datahiërarchie, conditionele logica, iteraties, paragrafen en een eerste contactpunt met foutafhandeling rond bestanden (\texttt{FILE STATUS}).
-In plaats van een volledige compileromgeving wordt bewust gekozen voor \textbf{heuristische validatie}: de gebruiker krijgt per level een checklist van doelen; voldoet de ingediende code aan die patronen, dan wordt het level als geslaagd beschouwd.
+De applicatie moet junior developers op een gestructureerde manier laten kennismaken met typische COBOL-bouwstenen die in de literatuurstudie gekozen werden: divisions, \texttt{PIC}-clausules, datahiërarchie, conditionele logica, iteraties, paragrafen en een eerste contactpunt met foutafhandeling rond bestanden (\texttt{FILE STATUS}).
+In plaats van een volledige compileromgeving wordt bewust gekozen voor \textit{heuristische validatie}: de gebruiker krijgt per level een checklist van doelen. Voldoet de ingediende code aan die patronen, dan wordt het level als geslaagd beschouwd.
 
 \subsection{Niet-doelen van de PoC}
 Om de scope beheersbaar te houden voor het onderzoek, behoren tot de bewuste \textit{niet-doelen}:
 \begin{itemize}
-    \item \textbf{Geen uitvoering van COBOL op een mainframe of in een echte runtime:} er wordt geen batchjob of transactieserver gevoed.
-    \item \textbf{Geen volledige taaldekking:} slechts zeven thematische levels; edge cases en dialectverschillen worden niet afgedekt.
-    \item \textbf{Geen formele correctheidsbewijs:} regex-gebaseerde checks kunnen zowel false positives als false negatives vertonen; de nadruk ligt op didactiek en motivatie, niet op certificerende nauwkeurigheid.
+    \item Geen uitvoering van COBOL op een mainframe of in een echte runtime: er is geen koppeling met een batchjob of transactieserver.
+    \item Geen volledige taaldekking: slechts zeven thematische levels. Edge cases en verschillen tussen COBOL-dialecten worden niet afgedekt.
+    \item Geen formele correctheidsbewijs: regex-gebaseerde checks kunnen zowel false positives als false negatives vertonen. De nadruk ligt op didactiek en motivatie, niet op foutloze correctheid.
 \end{itemize}
 
 \section{Theoretische verankering van de interface}
@@ -33,8 +33,8 @@ In deze PoC zijn die regels zichtbaar in de levelstructuur, validatieregels en h
 \textcite{KevinWerbach2020} benadrukken dat punten, badges en leaderboards (\textbf{PBL}) weliswaar de bekendste componenten zijn, maar dat zij slechts het topje van de ijsberg vormen: een volledige ervaring vraagt om aandacht voor onderliggende dynamieken en motivatie, niet om het blind stapelen van PBL (\textit{PBL-fallacy}).
 
 Het \textbf{Octalysis-model} van \textcite{Chou2015} koppelt ontwerpkeuzes aan acht \textit{Core Drives} (zie figuur~\ref{fig:octalysis} in hoofdstuk~\ref{ch:stand-van-zaken}).
-Tabel~\ref{tab:poc-octalysis-koppeling} vat samen hoe de PoC op een bewuste, beperkte manier op die drijfveren inspeelt.
-Dit hoofdstuk licht verder toe \textit{waar} dat gebeurt: in welke schermen, in welke kaarten (\textit{Card}-componenten) en welke tekst op de \textit{MainframeStrip}-balken de gebruiker krijgt.
+Tabel~\ref{tab:poc-octalysis-koppeling} vat samen hoe de PoC op een bewuste manier op die drijfveren inspeelt.
+Dit hoofdstuk licht verder toe waar dat gebeurt.
 
 \begin{table}[H]
 \centering
@@ -50,51 +50,51 @@ Development \& Accomplishment &
 Levels, voortgangsbalken, checklist met vinkjes, punten, badges, confetti na succes, rang en tiers op profiel en leaderboard. \\
 \hline
 Empowerment of Creativity \& Feedback &
-Monaco-editor, vrij invullen van code binnen opdracht; onmiddellijke validatie tegen leerdoelen (geen batch-wachttijd). \\
-\hline
+Vrij invullen van code binnen opdracht en onmiddellijke validatie tegen leerdoelen. \\
+    \hline
 Ownership \& Possession &
-Profiel met avatar, cumulatieve punten, badgeverzameling; ``jouw'' voortgang blijft gekoppeld aan het account. \\
+Profiel met avatar, cumulatieve punten, badgeverzameling. De gebruiker zijn voortgang blijft gekoppeld aan het account. \\
 \hline
 Social Influence \& Relatedness &
-Vriendenlijst, top drie vrienden op het dashboard, volledig leaderboard, profielen van vrienden (read-only). \\
+Vriendenlijst, top drie vrienden op het dashboard, volledig leaderboard, profielen van vrienden. \\
 \hline
 Scarcity \& Impatience &
-Sequentiële ontgrendeling van levels; badges die nog niet behaald zijn, visueel ``locked''. \\
+Sequentiële ontgrendeling van levels, badges die nog niet behaald zijn, zijn visueel vergrendeld. \\
 \hline
 Unpredictability \& Curiosity &
-Optionele tips en documentatielinks per level; variatie in badge-eisen (speedrun, mijlpalen). \\
+Optionele tips en documentatielinks per level, variatie in badge-eisen (speedrun, mijlpalen). \\
 \hline
 Loss \& Avoidance &
-Wordt spaarzaam ingezet: geen harde ``levens'' of reset van account; wel kan sociale vergelijking op het leaderboard als druk worden ervaren \autocite{KevinWerbach2020}. \\
+Wordt spaarzaam ingezet: geen harde ``levens'' of reset van account, wel kan sociale vergelijking op het leaderboard als druk worden ervaren \\
 \hline
 \end{tabularx}
 \caption{Koppeling van Octalysis Core Drives aan elementen van de PoC (zie \textcite{Chou2015}).}
 \label{tab:poc-octalysis-koppeling}
 \end{table}
 
-Vanuit het \textbf{MDA-perspectief} \autocite{Hunicke2004} zijn de \textit{mechanics} onder meer: Supabase-tabellen, validatiecode, puntberekening, badge-upserts.
+Vanuit het \textbf{MDA-perspectief} \autocite{Hunicke2004} zijn de \textit{mechanics} onder meer: validatiecode, puntberekening, badge-upserts.
 De \textit{dynamics} ontstaan tijdens gebruik: competitie om rang, het proberen van een first-try bonus, het vergelijken met vrienden.
 De beoogde \textit{aesthetics} (in de MDA-zin van emotionele ervaring) zijn onder meer \textit{Challenge} (levels overwinnen) en een lichte \textit{Fantasy} door het mainframe-thema.
 
 \section{Technische architectuur en technologiekeuzes}
 
 \subsection{Client: React, TypeScript en Vite}
-De front-end is gebouwd met \textbf{React~18} en \textbf{TypeScript}, gebundeld met \textbf{Vite}.
-Die combinatie is gekozen vanwege snelle iteratie tijdens het onderzoek, brede ondersteuning voor componentbibliotheken en type-veiligheid bij het modelleren van leveldefinities en validatieregels.
+De front-end is gebouwd met \textit{React~18} en \textit{TypeScript}, gebundeld met \textit{Vite}.
+Die combinatie is gekozen vanwege snelle iteratie tijdens het ontwikkelen van de PoC, brede ondersteuning voor componentbibliotheken en type-veiligheid bij het modelleren van leveldefinities en validatieregels.
 
 \subsection{Backend en data: Supabase}
 \textbf{Supabase} (PostgreSQL + ingebouwde auth) fungeert als backend-as-a-service voor:
 \begin{itemize}
-    \item gebruikersauthenticatie en profielgegevens;
-    \item persistentie van levelpogingen (\texttt{level\_attempts}), punten en voltooide levels;
-    \item badge-toekenningen (\texttt{user\_badges}) en definities;
-    \item vriendenrelaties.
+    \item gebruikersauthenticatie en profielgegevens
+    \item persistentie van levelpogingen (\texttt{level\_attempts}), punten en voltooide levels
+    \item badge-toekenningen (\texttt{user\_badges}) en definities
+    \item vriendenrelaties
 \end{itemize}
 Deze keuze beperkt operationele complexiteit: er is geen eigen server te hosten voor standaard CRUD en row-level security kan op databaseniveau worden afgedwongen.
 
 \subsection{Databasemodel}
 \label{subsec:poc-db-schema}
-De client wordt gegenereerd tegen het Supabase-typescriptschema; hieronder volgt een samenvatting van de \textbf{publieke tabellen} en hun kolommen zoals ze in de PoC worden gebruikt.
+De client wordt gegenereerd tegen het Supabase-typescriptschema. Hieronder volgt een samenvatting van de publieke tabellen en hun kolommen zoals ze in de PoC worden gebruikt.
 De rij \texttt{profiles} gebruikt \texttt{id} gelijk aan de gebruikers-id uit Supabase Auth (\texttt{auth.users}).
 
 \begin{table}[H]
@@ -104,7 +104,7 @@ De rij \texttt{profiles} gebruikt \texttt{id} gelijk aan de gebruikers-id uit Su
 \hline
 \textbf{Kolom} & \textbf{Betekenis} \\
 \hline
-\texttt{id} & Primaire sleutel; koppeling met auth-gebruiker. \\
+\texttt{id} & Primaire sleutel en koppeling met auth-gebruiker. \\
 \texttt{username}, \texttt{email} & Weergavenaam en contact (e-mail uit registratie). \\
 \texttt{avatar\_url} & Optionele URL voor profielavatar. \\
 \texttt{total\_points}, \texttt{levels\_completed} & Geaggregeerde gamification-score en aantal uniek geslaagde levels. \\
@@ -206,28 +206,27 @@ De rij \texttt{profiles} gebruikt \texttt{id} gelijk aan de gebruikers-id uit Su
 \label{tab:schema-app-events}
 \end{table}
 
-Daarnaast is in Supabase een opgeslagen routine \texttt{increment\_relapse\_count} gedefinieerd die vanuit de applicatie kan worden aangeroepen voor streak-/relapse-logica; in de PoC ligt de nadruk op levels, punten en badges, maar het profiel bevat hiervoor reeds de nodige kolommen.
+Daarnaast is in Supabase een opgeslagen routine \texttt{increment\_relapse\_count} gedefinieerd die vanuit de applicatie kan worden aangeroepen voor streak-/relapse-logica.
 
 \subsection{Code-editor: Monaco}
-Voor het bewerken van COBOL- en referentiecode wordt \textbf{Monaco Editor} (\texttt{@monaco-editor/react}) gebruikt: dezelfde kern als in Visual Studio Code.
-Voor COBOL is een \textbf{aangepaste taalregistratie} toegevoegd (keywords, commentaar \texttt{*>}, basis highlighting) omdat standaard Monaco geen eerste-klas COBOL-ondersteuning biedt.
+Voor het bewerken van COBOL- en referentiecode wordt \textit{Monaco Editor} (\texttt{@monaco-editor/react}) gebruikt: dezelfde kern als in Visual Studio Code.
+Voor COBOL is een aangepaste taalregistratie toegevoegd (keywords, commentaar \texttt{*>}, basis highlighting) omdat standaard Monaco geen eerste-klas COBOL-ondersteuning biedt.
 Zo blijft de editor herkenbaar voor de doelgroep zonder een zware desktop-IDE te vereisen.
 
 \subsection{Hosting en telemetrie}
-De applicatie kan statisch worden uitgerold (bijv.\ op Vercel).
-\textbf{Vercel Analytics} en \textbf{Speed Insights} zijn ingeschakeld voor aggregated performance- en gebruiksstatistieken; onderzoeksdata voor de thesis komen primair uit interviews, observaties en expliciete events in de applicatie (zoals level-submits), niet uit die analytics als enige bron.
-
+De applicatie kan statisch worden uitgerold. In dit geval wordt de PoC gehost op Vercel.
+\textit{Vercel Analytics} en \textit{Speed Insights} zijn ingeschakeld voor aggregated performance- en gebruiksstatistieken.
 \section{Authenticatie en toegang}
 
 \subsection{Registratie en sessies}
-Gebruikers registreren zich met e-mail en wachtwoord; na aanmelding wordt een profielrij gesynchroniseerd (gebruikersnaam, avatar, punten, voltooide levels).
-Routes onder \texttt{/dashboard}, \texttt{/learn}, \texttt{/leaderboard}, enz.\ zijn \textbf{beschermd}: zonder geldige sessie volgt redirect naar de loginpagina.
-Het login- en registratiescherm gebruikt een strak formulier in hetzelfde donkere thema als de rest van de app (geen aparte Card-raster zoals op het dashboard, wel consistente typografie en accentkleuren).
+Gebruikers registreren zich met e-mail en wachtwoord. Na aanmelding wordt een profielrij gesynchroniseerd (gebruikersnaam, avatar, punten, voltooide levels).
+Routes onder \texttt{/dashboard}, \texttt{/learn}, \texttt{/leaderboard}, enz.\ zijn beschermd: zonder geldige sessie volgt redirect naar de loginpagina.
+Het login- en registratiescherm gebruikt een strak formulier in hetzelfde donkere thema als de rest van de app.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{poc-login.png}
-\caption[Login]{Het login-scherm: toegangspoort tot de beschermde leeromgeving; esthetiek sluit aan bij het mainframe-thema (donker paneel, monospace accenten).}
+\caption[Login]{Het login-scherm.}
 \label{fig:poc-login}
 \end{figure}
 
@@ -235,13 +234,20 @@ Het login- en registratiescherm gebruikt een strak formulier in hetzelfde donker
 \label{sec:poc-ui-cards}
 
 \subsection{Patroon: Card en MainframeStrip}
-Herbruikbare \textbf{Card}-componenten (shadcn/ui) vormen het raster van bijna elk scherm.
-Bovenop elke card staat een \textbf{MainframeStrip}: een smalle balk met links en rechts monospace labels die bewust verwijzen naar mainframe-jargon (\texttt{SYSOUT}, \texttt{WORKING-STORAGE}, \texttt{PROCEDURE DIVISION}, enz.).
+Herbruikbare Card-componenten (\textit{shadcn/ui}) vormen het raster van bijna elk scherm.
+Bovenop elke card staat een MainframeStrip: een smalle balk met links en rechts monospace labels die bewust verwijzen naar mainframe-jargon (\texttt{SYSOUT}, \texttt{WORKING-STORAGE}, \texttt{PROCEDURE DIVISION}, enz.). Zie figuur~\ref{fig:poc-mainframestrip} voor een voorbeeld.
 Dat versterkt \textit{Epic Meaning \& Calling} en het narratief van ``werken op het stack'' zonder een echte terminal na te bootsen \autocite{Chou2015}.
 Binnen de card staat de inhoud: titels (\texttt{CardTitle}), voortgang (\texttt{Progress}), tabellen, badges en knoppen.
 
 Tabel~\ref{tab:poc-pbl-schermen} geeft per kernscherm aan hoe de PBL-triade \autocite{KevinWerbach2020} zichtbaar wordt.
 Details per scherm volgen in de volgende onderdelen.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{poc-mainframestrip.png}
+\caption[MainframeStrip]{Voorbeeld van MainframeStrip en Card}
+\label{fig:poc-mainframestrip}
+\end{figure}
 
 \begin{table}[H]
 \centering
@@ -273,10 +279,10 @@ Details per scherm volgen in de volgende onderdelen.
 Het dashboard aggregeert de belangrijkste motivators op één pagina (figuur~\ref{fig:poc-dashboard}).
 
 \begin{itemize}
-    \item \textbf{Card ``PROCEDURE DIVISION''} (\texttt{MainframeStrip}: \texttt{PROCEDURE DIVISION} / \texttt{LVL x/7}): toont het leerpad als voortgangsbalk en het aantal afgeronde levels. Dit ondersteunt \textit{Development \& Accomplishment} en maakt het einddoel (alle zeven levels) expliciet.
-    \item \textbf{Card ``STREAK SEGMENT''} (\texttt{STREAK SEGMENT} / dagen): visualiseert streak-gegevens uit het profiel; dient als lichte \textit{Loss \& Avoidance}- en gewoonte-anker binnen de beschikbare datakolommen.
-    \item \textbf{Card ``SOCIAL - FRIEND QUEUE''} (\texttt{SOCIAL - FRIEND QUEUE} / \texttt{TOP-3}): toont de drie vrienden met hoogste punten. Dit is een ingekorte leaderboard voor \textit{Social Influence \& Relatedness}.
-    \item \textbf{Card ``BADGE REGISTRY''} (\texttt{BADGE REGISTRY} / teller): toont een voorsmaak van behaalde badges en welke nog ``locked'' zijn, met tooltips op basis van \texttt{how\_to\_earn}. Dit is de \textbf{B} in PBL en verbindt met \textit{Ownership} (verzamelen).
+    \item ``PROCEDURE DIVISION'': toont het leerpad als voortgangsbalk en het aantal afgeronde levels. Dit ondersteunt \textit{Development \& Accomplishment} en maakt het einddoel (alle zeven levels) expliciet.
+    \item ``STREAK SEGMENT'': visualiseert streak-gegevens uit het profiel en dient als lichte \textit{Loss \& Avoidance}- en gewoonte-anker binnen de beschikbare datakolommen.
+    \item ``SOCIAL - FRIEND QUEUE'': toont de drie vrienden met hoogste punten. Dit is een ingekorte leaderboard voor \textit{Social Influence \& Relatedness}.
+    \item ``BADGE REGISTRY'': toont een voorsmaak van behaalde badges en welke nog ``locked'' zijn, met tooltips op basis van \texttt{how\_to\_earn}. Dit is de \textit{B} in PBL en verbindt met \textit{Ownership} (eigendom).
 \end{itemize}
 
 \begin{figure}[H]
@@ -287,29 +293,29 @@ Het dashboard aggregeert de belangrijkste motivators op één pagina (figuur~\re
 \end{figure}
 
 \subsection{Learn-catalogus (\texttt{/learn})}
-Bovenaan staat een \textbf{voortgangscard} (\texttt{WORKING-STORAGE - PROGRESS} / level-teller) met balk en \texttt{PTS}.
-Elk level heeft een \textbf{eigen card} met strip \texttt{LEVEL n - SEGMENT} en status \texttt{COMPLETE}, \texttt{PENDING} of \texttt{LOCKED}.
-De slot-iconografie en sequentiële vrijgave ondersteunen \textit{Scarcity \& Impatience} en maken het leerpad als ``missie'' leesbaar (figuur~\ref{fig:poc-learn-overview}).
+Bovenaan staat een voortgangscard  met balk en \texttt{PTS}.
+Elk level heeft een eigen card met strip \texttt{LEVEL n - SEGMENT} en status \texttt{COMPLETE}, \texttt{PENDING} of \texttt{LOCKED}.
+Het gebruik van het slot-icoon en sequentiële vrijgave ondersteunen \textit{Scarcity \& Impatience} en maken het leerpad als ``missie'' leesbaar (figuur~\ref{fig:poc-learn-overview}).
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{poc-learn.png}
 \caption[Learn]{Lijst van alle levels.}
-\label{fig:poc-celebration}
+\label{fig:poc-learn-overview}
 \end{figure}
 
 \subsection{Level-editor (\texttt{/learn/:levelId})}
-Dit is het dichtst bij de \textbf{mechanics} van het leren: de gebruiker schrijft code; de client valideert tegen leerdoelen.
-Het scherm combineert meerdere cards (figuur~\ref{fig:poc-level-editor}); onderstaande opsomming volgt de implementatie in de code.
+Dit is het dichtst bij de mechanics van het leren: de gebruiker schrijft code en de client valideert tegen de leerdoelen.
+Het scherm combineert meerdere cards (figuur~\ref{fig:poc-level-editor}). Onderstaande opsomming volgt de implementatie in de code.
 
 \begin{itemize}
-    \item \textbf{References (\texttt{REFERENCES - DOCS} / level-id):} COBOL-uitleg, voorbeelden en links naar IBM-documentatie. Ondersteunt \textit{Empowerment of Creativity \& Feedback} en cognitieve verwerving naast de editor.
-    \item \textbf{Segment-info (\texttt{SEGMENT - INFO}):} samenvatting en meta-informatie over het level.
-    \item \textbf{Badges this level (\texttt{BADGES - THIS LEVEL}):} welke badges met dit level geassocieerd zijn (o.a.\ inhoudsbadge, clean run). Koppelt \textbf{Badges} direct aan de actieve opdracht.
-    \item \textbf{Python-reference (\texttt{PYTHON - REFERENCE} / \texttt{READ-ONLY}):} het Python-vergelijkingsfragment; verankert het didactische kader uit hoofdstuk~\ref{ch:stand-van-zaken}.
-    \item \textbf{COBOL-editor (\texttt{COBOL - YOUR CODE} / \texttt{EDITABLE}):} Monaco met custom COBOL-highlighting; kern van \textit{Challenge}.
-    \item \textbf{Tips / documentatie (\texttt{DOCS - TIPS}):} inklapbare sectie met aanvullende hulp; voedt \textit{Unpredictability \& Curiosity} (optionele diepgang).
-    \item \textbf{Checklist (onder de editor):} objective checks na validatie; versterkt \textit{Development \& Accomplishment} door zichtbare deelwinsten.
+    \item \textbf{References:} COBOL-uitleg, voorbeelden en links naar IBM-documentatie. Ondersteunt \textit{Empowerment of Creativity \& Feedback} en cognitieve verwerving naast de editor.
+    \item \textbf{Segment-info:} samenvatting en meta-informatie over het level.
+    \item \textbf{Badges this level:} welke badges met dit level geassocieerd zijn (o.a.\ inhoudsbadge, clean run). Koppelt Badges direct aan de actieve opdracht.
+    \item \textbf{Python-reference:} De te-schrijven COBOL code vertaalt in Python.
+    \item \textbf{COBOL-editor:} Monaco met custom COBOL-highlighting, kern van \textit{Challenge}.
+    \item \textbf{Tips / documentatie):} inklapbare sectie met aanvullende hulp en ondersteunt \textit{Unpredictability \& Curiosity} (optionele diepgang).
+    \item \textbf{Checklist:} objective checks na validatie en versterkt \textit{Development \& Accomplishment} door zichtbare deelwinsten.
 \end{itemize}
 
 \begin{figure}[H]
@@ -320,11 +326,7 @@ Het scherm combineert meerdere cards (figuur~\ref{fig:poc-level-editor}); onders
 \end{figure}
 
 \subsection{Leaderboard (\texttt{/leaderboard})}
-De ranking staat in één brede card met strip \texttt{SYSOUT - FULL RANKING} en een tabel met gebruikers, punten en voltooide levels (figuur~\ref{fig:poc-leaderboard}).
-Hier is vooral \textbf{L} (leaderboard) uit PBL aanwezig \autocite{KevinWerbach2020}, met het bekende spanningsveld tussen motivatie en demotivatie bij grote tussenstanden.
-De PoC markeert de huidige gebruiker en laat doorklikken naar profielen waar toegelaten.
-
-% TODO
+TODO: wat uitleg hierbij
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{poc-leaderboard.png}
@@ -333,25 +335,25 @@ De PoC markeert de huidige gebruiker en laat doorklikken naar profielen waar toe
 \end{figure}
 
 \subsection{Vrienden (\texttt{/friends})}
-Dit scherm gebruikt \textbf{drie cards} naast elkaar (figuur~\ref{fig:poc-friends-page}):
+Dit scherm gebruikt drie cards naast elkaar (figuur~\ref{fig:poc-friends-page}):
 
 \begin{itemize}
-    \item \textbf{\texttt{FRIEND LIST - SYSIN}:} geaccepteerde vrienden met navigatie naar hun profiel. \textit{Social Influence \& Relatedness.}
-    \item \textbf{\texttt{USER SEARCH - CATALOG}:} zoeken naar gebruikers om uitnodigingen te sturen. Verlaagt frictie om het sociale netwerk uit te breiden.
-    \item \textbf{\texttt{PENDING - INPUT QUEUE}:} openstaande verzoeken; maakt pending state expliciet (sociale feedbacklus).
+    \item Lijst: geaccepteerde vrienden met navigatie naar hun profiel. \textit{Social Influence \& Relatedness.}
+    \item Toevoegen: zoeken naar gebruikers om uitnodigingen te sturen.
+    \item Verzoeken: openstaande verzoeken en maakt pending state expliciet (sociale feedbacklus).
 \end{itemize}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{poc-friends-page.png}
-\caption[Vriendenpagina]{Vrienden: drie duidelijk gescheiden cards (lijst, zoeken, wachtrij).}
+\caption[Vriendenpagina]{Vrienden: drie duidelijk gescheiden cards (lijst, toevoegen, verzoeken).}
 \label{fig:poc-friends-page}
 \end{figure}
 
 \subsection{Badges (\texttt{/badges})}
-De pagina opent met een \textbf{BADGE REGISTRY}-card met totaalteller; badges worden gegroepeerd volgens moeilijkheidsgraad met visuele accenten per tier (figuur~\ref{fig:poc-badges}).
-Behaalde badges worden onderscheiden van ``locked'' exemplaren; tooltips bevatten \texttt{how\_to\_earn}.
-Dit is de meest uitgebreide uitwerking van \textbf{Badges} binnen PBL en ondersteunt zowel \textit{Development \& Accomplishment} als \textit{Ownership \& Possession}.
+De pagina opent met een BADGE REGISTRY-card met totaalteller. Badges worden gegroepeerd volgens moeilijkheidsgraad met visuele accenten per tier (figuur~\ref{fig:poc-badges}).
+Behaalde badges worden onderscheiden van ``locked'' exemplaren en tooltips bevatten uitleg over hoe een badge kan behaald worden.
+Dit is de meest uitgebreide uitwerking van Badges binnen PBL en ondersteunt zowel \textit{Development \& Accomplishment} als \textit{Ownership \& Possession}.
 
 \begin{figure}[H]
 \centering
@@ -360,10 +362,10 @@ Dit is de meest uitgebreide uitwerking van \textbf{Badges} binnen PBL en onderst
 \label{fig:poc-badges}
 \end{figure}
 
-\subsection{Profiel: eigen account versus vriend}
+\subsection{Profiel}
 
 \subsubsection{Eigen profiel (\texttt{/profile})}
-Het \textbf{eigen profiel} toont identiteit, e-mail (alleen voor de eigenaar), avatar-upload, voortgang, globale rank, leaderboard-context en badge-preview.
+Het eigen profiel toont identiteit, e-mail, avatar-upload, voortgang, globale rank, leaderboard-context en badge-preview.
 Cards gebruiken onder meer de strips \texttt{IDENTIFICATION DIVISION}, \texttt{DATA DIVISION} (progress), \texttt{LEADERBOARD - JOB STEP} en \texttt{BADGE REGISTRY} (figuur~\ref{fig:poc-profile-own}).
 \textit{Ownership \& Possession} en \textit{Development \& Accomplishment} domineren hier.
 
@@ -374,39 +376,39 @@ Cards gebruiken onder meer de strips \texttt{IDENTIFICATION DIVISION}, \texttt{D
 \label{fig:poc-profile-own}
 \end{figure}
 
-\subsubsection{Profiel van een vriend (\texttt{/profile/:friendId})}
-Het \textbf{vriendenprofiel} deelt dezelfde presentatiecomponenten maar op een aparte route: geen e-mail, geen avatar-upload voor de andere gebruiker, wel vergelijking van punten en badges en acties zoals ``vriend verwijderen'' waar van toepassing (figuur~\ref{fig:poc-profile-friend}).
-Zo blijft de scheiding tussen ``mijn account'' en ``read-only blik op een ander'' ook in de thesis expliciet.
+\subsubsection{Profiel van een vriend (\texttt{/profile/:userId})}
+Het profiel van een andere gebruiker deelt dezelfde presentatiecomponenten maar op een aparte route: geen e-mail, geen avatar-upload voor de andere gebruiker, wel vergelijking van punten en badges en acties zoals ``vriend verwijderen'' waar van toepassing (figuur~\ref{fig:poc-profile-other}).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.92\textwidth]{poc-profile-friend.png}
-\caption[Profiel van een vriend]{Profiel van een vriend op \texttt{/profile/:friendId}: zelfde statistieken, andere rechten.}
-\label{fig:poc-profile-friend}
+\includegraphics[width=0.92\textwidth]{poc-profile-other.png}
+\caption[Profiel van een andere gebruiker]{Profiel van een andere gebruiker op \texttt{/profile/:userId}}
+\label{fig:poc-profile-other}
 \end{figure}
 
 \subsection{Esthetiek en leesbaarheid}
-De donkere achtergrond, monospace strips en zilveren of cyaan accenten op cards (\texttt{mainframe-panel-muted}, \texttt{mainframe-card-l-silver}, enz.) zijn bewust gekozen om een \textit{mainframe}-sfeer op te roepen zonder nostalgische CRT-nageboots die de leesbaarheid schaden.
-Dit sluit aan bij de esthetische laag binnen MDA: de speler ervaart eerst het thema en het visuele ritme; de onderliggende mechanieken (Supabase, validatie) blijven verborgen tot de gebruiker dieper gaat \autocite{Hunicke2004}.
+De donkere achtergrond, monospace strips en zilveren of cyaan accenten op cards zijn bewust gekozen om een \textit{mainframe}-sfeer op te roepen zonder de leesbaarheid te schaden.
+Dit sluit aan bij de esthetische laag binnen MDA: de speler ervaart eerst het thema en het visuele ritme. De onderliggende mechanieken blijven verborgen tot de gebruiker dieper gaat.
 
 \section{Het leerpad: zeven levels}
 
 \subsection{Volgorde en ontgrendeling}
-Levels zijn genummerd van 1 tot 7 en worden \textbf{sequentieel} vrijgegeven: level~$n$ is pas speelbaar wanneer level~$n-1$ minstens één keer succesvol is afgerond.
+Levels zijn genummerd van 1 tot 7 en worden sequentieel vrijgegeven: level~$n$ is pas speelbaar wanneer level~$n-1$ minstens één keer succesvol is afgerond.
 Dat voorkomt dat beginners complexe concepten (bijv.\ \texttt{PERFORM}) zien voordat de programmaskelet en data-definities bekend zijn.
 
-\subsection{Inhoud per level}
-Elk level bevat een titel, korte samenvatting, \textbf{Python-hint} en een \textbf{Python-referentiesnippet} die het analogue denkbeeld schetst (bijv.\ dataclass versus \texttt{01}/\texttt{05}-hiërarchie).
+\subsection{Gemeenschappelijke opzet}
+Elk level bevat een titel, korte samenvatting, Python-hint en een Python-referentiesnippet die het analogue denkbeeld schetst (bijv.\ dataclass versus \texttt{01}/\texttt{05}-hiërarchie).
 Daarnaast zijn er optioneel officiële documentatielinks (IBM COBOL for z/OS) en een korte COBOL-uitleg met voorbeeldfragmenten.
-De gebruiker start vanuit \textbf{starter code} met \texttt{TODO}-commentaar; zo is het duidelijk welke regels bewerkt moeten worden.
+De gebruiker start vanuit starter code met TODO-commentaar, zodat duidelijk is welke regels bewerkt moeten worden.
+De volgende subsecties beschrijven per level de inhoud, de validatiedoelen en de gekoppelde inhoudsbadge.
 
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|p{8cm}|}
 \hline
-\textbf{Level} & \textbf{Thema} \\
+\textbf{Level} & \textbf{Onderwerp} \\
 \hline
-1 & Vier divisions en minimale programmastructuur; \texttt{STOP RUN.} \\
+1 & Vier divisions en minimale programmastructuur, \texttt{STOP RUN.} \\
 2 & \texttt{PIC}/\texttt{PICTURE}: numeriek (\texttt{9}), alfanumeriek (\texttt{X}), impliciete decimaal (\texttt{V}) \\
 3 & Datahiërarchie: level \texttt{01}, \texttt{05}, optioneel \texttt{77} \\
 4 & Conditionele logica: \texttt{IF}, \texttt{ELSE}, \texttt{END-IF} \\
@@ -419,28 +421,17 @@ De gebruiker start vanuit \textbf{starter code} met \texttt{TODO}-commentaar; zo
 \label{tab:poc-levels}
 \end{table}
 
-\section{Level-ervaring: editor, validatie en feedback}
+\subsection{Level 1: De vier divisions}
+\label{subsec:poc-level-1}
 
-\subsection{Twee panelen: COBOL en Python}
-Tijdens het werken aan een level ziet de gebruiker het \textbf{COBOL-hoofdvenster} en een \textbf{Python-referentiekolom}.
-Die scheiding ondersteunt de didactische keuze uit de stand van zaken: expliciet koppelen van onbekende syntax aan bekende concepten.
+De gebruiker bouwt de verplichte boilerplate: Identification, Environment, Data en Procedure Division, en sluit de run af met \texttt{STOP RUN.} \\
+Python-parallel: één Python-bestand versus het strikt geordende blokkenmodel van COBOL (vergelijkbaar met het ordenen van imports, configuratie en \texttt{main()}). \\
+Validatiedoelen: aanwezigheid van alle vier divisions; een \texttt{STOP RUN.} aan het einde van de uitvoering. \\
+Inhoudsbadge: \texttt{four\_divisions}.
 
-\subsection{Validatieproces}
-Bij ``indienen'' wordt de broncode geanalyseerd door \texttt{validateCobolLevelDetailed}: per level worden doelen omgezet naar \textbf{case-insensitive regex-checks} en eventuele aanvullende logica (bijv.\ volgorde van divisions).
-Het resultaat is een \textbf{checklist} met vinkjes of foutboodschappen; zo is feedback direct koppelbaar aan de leerdoelen in plaats van aan compilermeldingen.
-
-\subsection{Belangrijke ontwerpbeslissingen rond feedback}
-\begin{itemize}
-    \item \textbf{Geen integratie met een echte COBOL-compiler:} installatie en CI voor meerdere compilers zouden de PoC zwaar maken; bovendien verschillen foutmeldingen sterk per omgeving.
-    \item \textbf{Geen regelmarkeringen in Monaco voor mislukte checks:} decoraties in de editor zijn bewust uitgeschakeld om visuele ruis te beperken en de aandacht op de checklist te houden.
-    \item \textbf{Wel tellen van syntax-signalen} (keywords, structuur) voor analytics en ``clean run''-badges, naast de harde doelen.
-\end{itemize}
-
-\subsection{Voorbeeld: level~1 (divisions)}
-De gebruiker moet onder meer de vier divisions en \texttt{STOP RUN.} bevatten.
 Een minimaal geslaagd fragment ziet er conceptueel als volgt uit:
 
-\begin{minted}[fontsize=\footnotesize,breaklines]{text}
+\begin{lstlisting}[language=Cobol, caption={Geslaagd fragment Level 1}, label={lst:cobol_level1}]
        IDENTIFICATION DIVISION.
        PROGRAM-ID. HELLO.
 
@@ -452,24 +443,90 @@ Een minimaal geslaagd fragment ziet er conceptueel als volgt uit:
        PROCEDURE DIVISION.
            DISPLAY "OK".
            STOP RUN.
-\end{minted}
+\end{lstlisting}
+
+\subsection{Level 2: PICTURE-clauses}
+\label{subsec:poc-level-2}
+
+Het level introduceert \texttt{PIC}/\texttt{PICTURE}: numeriek (\texttt{9}), alfanumeriek (\texttt{X}) en impliciete decimaal (\texttt{V}). \\
+Python-parallel: waar Python-types dynamisch zijn, legt PIC het opslagformaat vast (denk aan \texttt{int} versus \texttt{str}, maar op byte-niveau; \texttt{Decimal} voor impliciete decimalen). \\
+Validatiedoelen: minstens één \texttt{PIC} of \texttt{PICTURE} met \texttt{9}; minstens één met \texttt{X}; minstens één met \texttt{V} (bijv.\ \texttt{99V99}); minstens één veld binnen een \texttt{01}-structuur (\texttt{05} onder \texttt{01}). \\
+Inhoudsbadge: \texttt{picture\_clauses}.
+
+\subsection{Level 3: Data-hiërarchie}
+\label{subsec:poc-level-3}
+
+Focus op levelnummers \texttt{01}, \texttt{05} en optioneel \texttt{77} voor geneste records en standalone velden. \\
+Python-parallel: een \texttt{01}-groep met \texttt{05}-kinderen als dict of \texttt{dataclass} met geneste velden; \texttt{77} als los element naast het record. \\
+Validatiedoelen: minstens één \texttt{01}; minstens één \texttt{05} onder een record; optioneel een standalone \texttt{77}. \\
+Inhoudsbadge: \texttt{data\_hierarchy}.
+
+\subsection{Level 4: Conditionele logica}
+\label{subsec:poc-level-4}
+
+Conditionele uitvoering met \texttt{IF}, \texttt{ELSE} en expliciete scope-afsluiting via \texttt{END-IF}. \\
+Python-parallel: inspringing in Python versus expliciete \texttt{END-IF} om geneste takken leesbaar te houden. \\
+Validatiedoelen: aanwezigheid van \texttt{IF}, \texttt{END-IF} en minstens één \texttt{ELSE}. \\
+Inhoudsbadge: \texttt{conditional\_logic}.
+
+\subsection{Level 5: Iteraties}
+\label{subsec:poc-level-5}
+
+Herhaling met \texttt{PERFORM VARYING \ldots\ UNTIL} en afsluiting met \texttt{END-PERFORM}. \\
+Python-parallel: \texttt{for}- of \texttt{while}-lus; controlevariabele en stopconditie. \\
+Validatiedoelen: \texttt{PERFORM VARYING} en \texttt{UNTIL} moeten voorkomen. \\
+Inhoudsbadge: \texttt{iterations}.
+
+\subsection{Level 6: Paragrafen}
+\label{subsec:poc-level-6}
+
+Paragrafen als benoemde blokken in de \texttt{PROCEDURE DIVISION} en aanroep met \texttt{PERFORM} (niet alleen \texttt{PERFORM VARYING}). \\
+Python-parallel: functie zonder parameters; \texttt{PERFORM} als aanroep. \\
+Validatiedoelen: een paragraafnaam (kolom~8+) zoals \texttt{VERWERK}; aanroep met \texttt{PERFORM} buiten de \texttt{VARYING}-variant. \\
+Inhoudsbadge: \texttt{paragraphs}.
+
+\subsection{Level 7: Foutafhandeling (FILE STATUS)}
+\label{subsec:poc-level-7}
+
+Kennismaking met \textbf{\texttt{FILE STATUS}} en de statuscode \texttt{35} (file not found), als brug naar foutafhandeling rond bestanden. \\
+Python-parallel: \texttt{FileNotFoundError} en expliciet controleren van status na \texttt{OPEN}/\texttt{READ}. \\
+Validatiedoelen: \texttt{FILE STATUS} (of \texttt{FS} in passende context) in \texttt{FILE-CONTROL} of record; de waarde \texttt{35} als literal of in een vergelijking. \\
+Inhoudsbadge: \texttt{error\_handling}.
+
+\section{Level-ervaring: editor, validatie en feedback}
+
+\subsection{Twee panelen: COBOL en Python}
+Tijdens het werken aan een level ziet de gebruiker een Python-referentiekolom en het COBOL-hoofdvenster.
+Die scheiding ondersteunt de didactische keuze uit de stand van zaken: expliciet koppelen van onbekende syntax aan bekende concepten.
+
+\subsection{Validatieproces}
+Bij ``indienen'' wordt de broncode geanalyseerd door \texttt{validateCobolLevelDetailed}: per level worden doelen omgezet naar case-insensitive regex-checks en eventuele aanvullende logica (bijv.\ volgorde van divisions).
+Het resultaat is een checklist met vinkjes of foutboodschappen, zodat feedback direct koppelbaar is aan de leerdoelen in plaats van aan compilermeldingen.
+
+\subsection{Belangrijke ontwerpbeslissingen rond feedback}
+\begin{itemize}
+    \item \textbf{Geen integratie met een echte COBOL-compiler:} installatie en CI voor meerdere compilers zouden de PoC zwaar maken en bovendien verschillen foutmeldingen sterk per omgeving.
+    \item \textbf{Geen regelmarkeringen in Monaco voor mislukte checks:} decoraties in de editor zijn bewust uitgeschakeld om visuele ruis te beperken en de aandacht op de checklist te houden.
+    \item \textbf{Wel tellen van syntax-signalen} (keywords, structuur) voor analytics en ``clean run''-badges, naast de harde doelen.
+\end{itemize}
+
 
 \section{Gamificatie: punten, badges en viering}
 
 \subsection{Punten en eerste-pogingbonus}
-Een geslaagd level levert \textbf{100 basispunten} op (\textbf{P} in PBL).
-Indien de \textbf{eerste} indiening voor dat level onmiddellijk slaagt en er nog geen eerdere mislukte validatie binnen dezelfde poging-sessie plaatsvond, wordt een \textbf{bonus van 25 punten} toegekend.
+Een geslaagd level levert 100 basispunten op (\textit{P} in PBL).
+Indien de eerste indiening voor dat level onmiddellijk slaagt en er nog geen eerdere mislukte validatie binnen dezelfde poging-sessie plaatsvond, wordt een bonus van 25 punten toegekend.
 De UI toont dit in de ondertitel van de viering (zie figuur~\ref{fig:poc-celebration}).
-Herhaalt een gebruiker een reeds voltooid level, dan worden er geen extra punten meer bijgeschreven; de poging wordt wel gelogd in \texttt{level\_attempts}.
+Herhaalt een gebruiker een reeds voltooid level, dan worden er geen extra punten meer bijgeschreven. De poging wordt wel gelogd in \texttt{level\_attempts}.
 
 \subsection{Badges en mijlpalen}
-Badge-metadata staat centraal in \texttt{badge\_definitions} (zie tabel~\ref{tab:schema-badge-definitions}); toekenningen gebeuren in \texttt{user\_badges}.
-Naast de \textbf{zeven inhoudsbadges} (één per level-thema, gekoppeld aan \texttt{LEVEL\_TO\_BADGE} in de code) kent de PoC combinatieregels: first-try en clean run, voortgang over meerdere levels, puntenmijlpalen, speedrun-tijden en leaderboard-gerelateerde badges op het eigen profiel.
-Op het dashboard en de badges-pagina tonen tooltips de tekst uit \texttt{how\_to\_earn}; dit ondersteunt \textit{Development \& Accomplishment} en ontdekkingsdrang binnen het Octalysis-kader \autocite{Chou2015}.
+Badge-metadata staat centraal in \texttt{badge\_definitions} (zie tabel~\ref{tab:schema-badge-definitions}). Toekenningen gebeuren in \texttt{user\_badges}.
+Naast de zeven inhoudsbadges (één per level-thema, gekoppeld aan \texttt{LEVEL\_TO\_BADGE} in de code) kent de PoC combinatieregels: first-try en clean run, voortgang over meerdere levels, puntenmijlpalen, speedrun-tijden en leaderboard-gerelateerde badges op het eigen profiel.
+Op het dashboard en de badges-pagina tonen tooltips de tekst uit \texttt{how\_to\_earn}, wat \textit{Development \& Accomplishment} en ontdekkingsdrang binnen het Octalysis-kader ondersteunt \autocite{Chou2015}.
 
 \subsection{Viering na een voltooid level (\texttt{LevelCelebration})}
-Bij de eerste succesvolle afronding van een level wordt een \texttt{celebrationTrigger} verhoogd; de component \texttt{LevelCelebration} start confetti (bibliotheek \textbf{canvas-confetti}, twee bursts met korte pauze), ballonnen-animaties en een titel met puntensubtitel.
-De overlay is niet-interactief (\texttt{pointer-events: none}) en verdwijnt na enkele seconden; parallel verschijnt een toast ``Level voltooid''.
+Bij de eerste succesvolle afronding van een level wordt een \texttt{celebrationTrigger} verhoogd. De component \texttt{LevelCelebration} start confetti (bibliotheek \texttt{canvas-confetti}, twee bursts met korte pauze), ballonnen-animaties en een titel met puntensubtitel.
+De overlay is niet-interactief en verdwijnt na enkele seconden. Parallel verschijnt een toast ``Level voltooid''.
 Deze esthetiek versterkt \textit{Challenge} en beloning op het moment van mastery (MDA: gewenste emotionele piek na mechanics) \autocite{Hunicke2004}.
 
 % TODO
@@ -480,7 +537,7 @@ Deze esthetiek versterkt \textit{Challenge} en beloning op het moment van master
 \label{fig:poc-celebration}
 \end{figure}
 
-\subsection{Overige micro-feedback}
+\subsection{Overige micro-features}
 \begin{itemize}
     \item \textbf{Pagina-ingang:} belangrijke schermen gebruiken een lichte \texttt{animate-fade-in} zodat navigatie minder abrupt aanvoelt.
     \item \textbf{Mislukte submit:} checklist en detailtekst zonder confetti, zodat fouten cognitief gescheiden blijven van beloning.
@@ -489,5 +546,5 @@ Deze esthetiek versterkt \textit{Challenge} en beloning op het moment van master
 
 \section{Samenvatting}
 
-De PoC vertaalt de in hoofdstuk~\ref{ch:stand-van-zaken} beschreven gamification-principes naar concrete schermen: \textbf{PBL} is zichtbaar in punten, badges en leaderboards; \textbf{Octalysis} wordt bewust gevoed door strips, sequentiële levels, sociale kaarten en beloningsfeedback; \textbf{MDA} helpt om het onderscheid te maken tussen verborgen regels in code en databank enerzijds en de beleving van de gebruiker anderzijds \autocite{Hunicke2004}.
+De PoC vertaalt de in hoofdstuk~\ref{ch:stand-van-zaken} beschreven gamification-principes naar concrete schermen. \textit{PBL} wordt geïmplementeerd in punten, badges en leaderboards. \textit{Octalysis} wordt bewust ondersteund door strips, sequentiële levels, sociale kaarten en beloningsfeedback. \textit{MDA} helpt om het onderscheid te maken tussen verborgen regels in code en databank enerzijds en de beleving van de gebruiker anderzijds \autocite{Hunicke2004}.
 Technisch rust de toepassing op React/TypeScript, Monaco, Supabase (sectie~\ref{subsec:poc-db-schema}) en Vercel.
