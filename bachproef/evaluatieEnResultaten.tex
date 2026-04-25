@@ -2,5 +2,262 @@
 %% Evaluatie & Resultaten
 %%=============================================================================
 
-\chapter{\IfLanguageName{dutch}{Evaluatie & Resultaten}{Evaluation & Results}}%
+\chapter{\IfLanguageName{dutch}{Evaluatie \& Resultaten}{Evaluation \& Results}}
 \label{ch:evaluatie}
+
+Dit hoofdstuk beschrijft het evaluatieplan en de manier waarop resultaten verzameld en gerapporteerd worden. 
+Het doel is een onderbouwd antwoord te formuleren op de centrale onderzoeksvraag (sectie~\ref{sec:onderzoeksvraag}) en de deelvragen, 
+met een expliciete vergelijking tussen een \textbf{gamified leeromgeving} (de Proof-of-Concept uit hoofdstuk~\ref{ch:poc}) 
+en een \textbf{traditionele, documentatie-gebaseerde} aanpak (PDF-pack).
+
+\section{Doel en onderzoeksvragen}
+\label{sec:evaluatie-doel}
+
+De evaluatie heeft drie concrete doelstellingen:
+\begin{itemize}
+    \item \textbf{Leeruitkomst aantonen:} nagaan of deelnemers de basisconcepten van COBOL kunnen toepassen na het doorlopen van de leeractiviteiten.
+    \item \textbf{Leer-efficiëntie vergelijken (DV5):} nagaan hoe snel en met hoeveel iteraties deelnemers tot een correct resultaat komen met de PoC versus met traditionele documentatie.
+    \item \textbf{Gebruikservaring en motivatie duiden:} de bruikbaarheid van de PoC meten (SUS) en via interview/observatie verklaren welke elementen motiverend of demotiverend zijn.
+\end{itemize}
+
+De koppeling met de deelvragen uit sectie~\ref{sec:onderzoeksvraag} is als volgt. Een belangrijk onderscheid is dat sommige deelvragen \textbf{inhoudelijk} al beantwoord worden in eerdere hoofdstukken (literatuurstudie en PoC), terwijl dit hoofdstuk die antwoorden \textbf{empirisch ondersteunt} met gebruikerstesten.
+\begin{itemize}
+    \item \textbf{DV1 (uitdagingen in syntaxis en logica):} wordt primair behandeld in de literatuurstudie (hoofdstuk~\ref{ch:stand-van-zaken}). De evaluatie levert \textbf{aanvullende indicaties} via foutenpatronen en observaties (welke concepten blijken in de praktijk het lastigst).
+    \item \textbf{DV2 (barrières bij leren):} wordt in de literatuurstudie beschreven en in de PoC vertaald naar leerdoelen. De evaluatie valideert dit via \textbf{kwalitatieve duiding} (waar lopen beginners vast en waarom) en procesdata (iteraties per concept).
+    \item \textbf{DV3 (gamification-elementen en best passende elementen):} wordt theoretisch beantwoord in de literatuurstudie (PBL, Octalysis, MDA). De evaluatie toont \textbf{hoe deelnemers deze elementen ervaren} (motiverend/demotiverend) en welke effecten deelnemers zelf rapporteren.
+    \item \textbf{DV4 (ontwerp van gamified leeromgeving):} wordt concreet uitgewerkt in hoofdstuk~\ref{ch:poc}. De evaluatie toetst \textbf{bruikbaarheid en leerbaarheid} (SUS + observaties) en identificeert verbeterpunten.
+    \item \textbf{DV5 (leer-efficiëntie t.o.v.\ traditioneel):} wordt in dit hoofdstuk \textbf{expliciet en kwantitatief} beantwoord door PoC versus PDF-pack te vergelijken op tijd, succes en iteraties.
+\end{itemize}
+
+\section{Onderzoeksopzet}
+\label{sec:evaluatie-opzet}
+
+\subsection{Doelgroep en inclusiecriteria}
+\label{subsec:evaluatie-doelgroep}
+
+De doelgroep bestaat uit junior IT'ers in opleiding (studenten Toegepaste Informatica) die voornamelijk ervaring hebben met moderne programmeertalen (zoals Python) en \textbf{geen voorafgaande COBOL-kennis} hebben.
+
+\begin{itemize}
+    \item \textbf{Inclusie:} student TI of vergelijkbaar profiel; basis programmeerervaring; ervaring met minstens één moderne taal (bv.\ Python); bereid om taken uit te voeren en vragenlijsten/interview te doorlopen.
+    \item \textbf{Exclusie:} eerdere COBOL-cursus, professionele COBOL-ervaring, of aantoonbare ervaring met mainframe-COBOL buiten algemene oriëntatie.
+\end{itemize}
+
+\textbf{Praktisch (IRL):} tijdens rekrutering wordt een korte screening gebruikt om COBOL-voorkennis uit te sluiten (zie sectie~\ref{subsec:evaluatie-intake}).
+
+\subsection{Design: within-subject met counterbalancing}
+\label{subsec:evaluatie-design}
+
+Om de vergelijking met traditionele documentatie eerlijk te maken bij een beperkte steekproef, wordt een \textbf{within-subject} design gebruikt: elke deelnemer werkt zowel met de PoC als met het PDF-pack, maar op \textbf{verschillende conceptblokken}. Dit beperkt individuele verschillen (algemene programmeerskill, stress, taalvaardigheid) omdat elke deelnemer zijn eigen referentiepunt vormt.
+
+Om volgorde-effecten (leren/gewennen) te beperken, wordt \textbf{counterbalancing} toegepast:
+\begin{itemize}
+    \item \textbf{Groep 1 (PoC $\rightarrow$ PDF):} conceptblok A met PoC, conceptblok B met PDF-pack.
+    \item \textbf{Groep 2 (PDF $\rightarrow$ PoC):} conceptblok A met PDF-pack, conceptblok B met PoC.
+\end{itemize}
+
+\textbf{INVULLEN NA UITVOERING:} noteer het uiteindelijke aantal deelnemers per groep (\(n\)) en motiveer eventuele afwijkingen (uitval, no-shows).
+
+\subsection{Definitie van “traditioneel”: PDF-pack}
+\label{subsec:evaluatie-traditioneel}
+
+De traditionele conditie bestaat uit een \textbf{vast, reproduceerbaar PDF-pack} per conceptblok. Dit pack is bewust niet-interactief en bevat:
+\begin{itemize}
+    \item een beknopte uitleg (1--3 pagina's) over de relevante COBOL-concepten,
+    \item 1--2 voorbeeldsnippets,
+    \item een opdrachtomschrijving met dezelfde leerdoelen als de PoC-levels,
+    \item een correctheidschecklist/rubric (zodat evaluatie niet subjectief wordt).
+\end{itemize}
+
+\textbf{Praktisch (IRL):} maak het PDF-pack \textbf{vooraf} en gebruik voor elke deelnemer exact dezelfde versie. Neem de PDF op als bijlage of archiveer de versie (bestandsnaam + datum) zodat de studie reproduceerbaar blijft.
+
+\section{Taken: conceptblokken en mapping naar de PoC}
+\label{sec:evaluatie-taken}
+
+\subsection{Conceptblokken}
+De leerstof wordt opgesplitst in twee conceptblokken met vergelijkbare moeilijkheid, gebaseerd op de levelstructuur uit hoofdstuk~\ref{ch:poc}:
+\begin{itemize}
+    \item \textbf{Conceptblok A (Levels 1--3):} programmaskelet (vier divisions), \texttt{PIC}/\texttt{PICTURE} en datahiërarchie.
+    \item \textbf{Conceptblok B (Levels 4--6):} conditionele logica (\texttt{IF}/\texttt{ELSE}/\texttt{END-IF}), iteraties (\texttt{PERFORM VARYING}/\texttt{UNTIL}) en paragrafen + \texttt{PERFORM}.
+\end{itemize}
+
+Level~7 (file status) kan optioneel dienen als extra/bonusopdracht wanneer de timing het toelaat, maar wordt niet gebruikt in de kernvergelijking om de sessieduur te beperken.
+
+\subsection{Correctheidscriteria (rubric)}
+\label{subsec:evaluatie-rubric}
+
+Voor elk conceptblok wordt een rubric opgesteld die exact overeenkomt met de leerdoelen:
+\begin{itemize}
+    \item \textbf{PoC-conditie:} de bestaande validatieregels (heuristisch/regex) bepalen “geslaagd” of “niet geslaagd”.
+    \item \textbf{PDF-conditie:} dezelfde doelen worden omgezet naar een menselijke checklist (bv.\ “bevat alle divisions”, “bevat minstens één \texttt{PIC 9(...)}, één \texttt{PIC X(...)}, één impliciete decimaal met \texttt{V}”, enz.).
+\end{itemize}
+
+\textbf{Belangrijk:} in deze studie betekent “correct” dus: \textbf{voldoet aan vooraf gedefinieerde leerdoelen}, niet “compileert op een echte COBOL-runtime”. Dit sluit aan bij de afbakening van de PoC (hoofdstuk~\ref{ch:poc}).
+
+\section{Procedure (uitvoering in de praktijk)}
+\label{sec:evaluatie-procedure}
+
+\subsection{Intake en pre-survey}
+\label{subsec:evaluatie-intake}
+
+\textbf{Praktisch (IRL):} laat deelnemers vóór de taken een korte intake invullen (papier of online) met:
+\begin{itemize}
+    \item programmeerervaring (jaren/maanden), talen (incl.\ Python),
+    \item zelfinschatting (1--5) voor programmeren algemeen,
+    \item ervaring met interactieve leerplatformen,
+    \item \textbf{screening COBOL-voorkennis} (ja/nee + toelichting). Bij “ja”: participant uitsluiten.
+\end{itemize}
+
+\textbf{INVULLEN NA UITVOERING:} rapporteer de samenvatting van de deelnemerskenmerken (bv.\ gemiddelde programmeerervaring, meest voorkomende talen).
+
+\subsection{Sessiestructuur per deelnemer}
+\label{subsec:evaluatie-sessie}
+
+Elke sessie bestaat uit twee hoofdblokken (A en B), elk uitgevoerd met een andere methode (PoC of PDF) volgens het counterbalancing schema uit sectie~\ref{subsec:evaluatie-design}.
+
+\textbf{Aanbevolen tijdschema (richtlijn):}
+\begin{itemize}
+    \item 5 min: briefing + intake
+    \item 20 min: conceptblok 1 (PoC of PDF)
+    \item 3 min: korte post-taak vragen
+    \item 20 min: conceptblok 2 (PDF of PoC)
+    \item 3 min: korte post-taak vragen
+    \item 5 min: SUS (alleen voor PoC)
+    \item 10 min: kort interview + afsluiting
+\end{itemize}
+
+\textbf{Praktisch (IRL):} werk met een timer en stop een blok wanneer de tijd verstreken is. Noteer in dat geval “time-out” en markeer de taak als niet geslaagd binnen de limiet.
+
+\subsection{Post-taak vragen en interview}
+\label{subsec:evaluatie-interview}
+
+Na elk conceptblok beantwoordt de deelnemer korte Likert-items (1--5), bijvoorbeeld:
+\begin{itemize}
+    \item “Ik vond deze taak duidelijk.”
+    \item “Ik voelde me gemotiveerd om door te zetten.”
+    \item “Ik vond deze taak moeilijk.”
+\end{itemize}
+
+Na de volledige sessie:
+\begin{itemize}
+    \item \textbf{SUS} wordt afgenomen voor de PoC (sectie~\ref{sec:evaluatie-sus}).
+    \item Een semigestructureerd interview duidt verschillen tussen PoC en PDF: welke feedback hielp, waar lag frustratie, hoe werd progressie ervaren, en welke elementen droegen bij tot motivatie of afleiding.
+\end{itemize}
+
+\textbf{Praktisch (IRL):} neem het interview op (audio) of noteer woordelijk kernzinnen. Laat deelnemers toestemming geven (consent) en anonimiseer bij transcriptie.
+
+\section{Dataverzameling}
+\label{sec:evaluatie-data}
+
+\subsection{Kwantitatieve data}
+\label{subsec:evaluatie-kwant}
+
+De kwantitatieve dataverzameling bestaat uit:
+\begin{itemize}
+    \item \textbf{Tijd-tot-succes:} per conceptblok en per methode (PoC vs PDF).
+    \item \textbf{Succesratio:} geslaagd/niet geslaagd binnen de tijdslimiet.
+    \item \textbf{Iteraties/pogingen:}
+    \begin{itemize}
+        \item PoC: \texttt{submit\_count}, \texttt{validation\_fail\_count} en eventueel events uit \texttt{app\_events}.
+        \item PDF: een eenvoudige pogingenteller (deelnemer markeert bij elke “controle/aanpassing” een poging) of een observator noteert pogingen.
+    \end{itemize}
+    \item \textbf{SUS-score:} usability van de PoC.
+\end{itemize}
+
+\textbf{INVULLEN NA UITVOERING:} voeg een tabel toe met kernstatistieken (medianen/spreiding) per methode en conceptblok.
+
+\subsection{Kwalitatieve data}
+\label{subsec:evaluatie-kwal}
+
+Kwalitatieve data komt uit:
+\begin{itemize}
+    \item observaties (waar lopen beginners vast, welke misvattingen komen terug, welke UI-elementen worden gebruikt),
+    \item interviewantwoorden (ervaring met PoC vs PDF, motivatoren, barrières),
+    \item open antwoorden op post-taak vragen (indien gebruikt).
+\end{itemize}
+
+\textbf{INVULLEN NA UITVOERING:} voeg 5--10 representatieve, geanonimiseerde quotes toe die typische patronen illustreren.
+
+\section{System Usability Scale (SUS)}
+\label{sec:evaluatie-sus}
+
+De System Usability Scale (SUS) is een gestandaardiseerde vragenlijst met tien items op een Likert-schaal. De SUS wordt in deze studie gebruikt om de bruikbaarheid van de PoC te evalueren, als noodzakelijke randvoorwaarde voor leer-efficiëntie en motivatie.
+
+\textbf{Praktisch (IRL):} neem SUS af onmiddellijk na de PoC-interactie (op het einde van de sessie) om recall bias te beperken.
+
+\textbf{INVULLEN NA UITVOERING:}
+\begin{itemize}
+    \item rapporteer de gemiddelde SUS-score, mediaan en spreiding (bv.\ interkwartielafstand),
+    \item vermeld het aantal deelnemers (\(n\)),
+    \item interpreteer beknopt (bijv.\ “onder/ongeveer/boven gemiddeld”), zonder overinterpretatie bij kleine steekproef.
+\end{itemize}
+
+\section{Analyseplan}
+\label{sec:evaluatie-analyse}
+
+\subsection{Kwantitatieve analyse}
+\label{subsec:evaluatie-analyse-kwant}
+
+De kwantitatieve analyse is beschrijvend en vergelijkend:
+\begin{itemize}
+    \item per methode en conceptblok: succesratio, tijd-tot-succes, aantal iteraties,
+    \item vergelijking PoC versus PDF per conceptblok (bij voorkeur medianen en visualisaties zoals boxplots).
+\end{itemize}
+
+\textbf{INVULLEN NA UITVOERING:} voeg minstens één figuur toe die PoC vs PDF visueel vergelijkt (tijd of iteraties) en verwijs ernaar in de tekst.
+
+\subsection{Kwalitatieve analyse}
+\label{subsec:evaluatie-analyse-kwal}
+
+Interview- en observatiedata worden verwerkt via thematische analyse:
+\begin{itemize}
+    \item initiale codering (barrières, feedback, progressie, frustratie, motivatie),
+    \item clusteren naar thema's (bv.\ “directe feedback”, “zichtbare progressie”, “cognitieve dissonantie met COBOL-structuur”),
+    \item koppeling van thema's aan de theoretische kaders uit hoofdstuk~\ref{ch:stand-van-zaken} (PBL, Octalysis, MDA) waar dat helpt om effecten te verklaren.
+\end{itemize}
+
+\section{Resultaten (in te vullen na uitvoering)}
+\label{sec:evaluatie-resultaten}
+
+\subsection{Deelnemers}
+\textbf{INVULLEN NA UITVOERING:}
+\begin{itemize}
+    \item aantal deelnemers totaal en per counterbalancing groep,
+    \item samenvatting programmeerervaring,
+    \item bevestiging dat COBOL-voorkennis uitgesloten is.
+\end{itemize}
+
+\subsection{Prestatie en leer-efficiëntie (PoC vs PDF)}
+\textbf{INVULLEN NA UITVOERING:}
+\begin{itemize}
+    \item tabel: succesratio en tijd per conceptblok en methode,
+    \item tabel of figuur: iteraties (PoC submit/fail vs PDF pogingen),
+    \item korte interpretatie gelinkt aan DV5.
+\end{itemize}
+
+\subsection{SUS-resultaten}
+\textbf{INVULLEN NA UITVOERING:} SUS-score(s) + interpretatie (sectie~\ref{sec:evaluatie-sus}).
+
+\subsection{Interview- en observatiethema's}
+\textbf{INVULLEN NA UITVOERING:}
+\begin{itemize}
+    \item 3--6 thema's met 1--2 quotes per thema,
+    \item expliciete link naar DV1--DV4 waar relevant.
+\end{itemize}
+
+\subsection{Antwoord per deelvraag}
+\textbf{INVULLEN NA UITVOERING:} geef per deelvraag (DV1--DV5) een beknopte synthese (1--3 zinnen).
+\begin{itemize}
+    \item Voor \textbf{DV1--DV4}: verwijs naar het hoofdstuk waar de deelvraag inhoudelijk beantwoord werd (literatuurstudie/PoC) en voeg toe welke \textbf{empirische observaties} uit de test dit ondersteunen of nuanceren.
+    \item Voor \textbf{DV5}: formuleer het antwoord primair op basis van de \textbf{PoC vs PDF} vergelijking in dit hoofdstuk.
+\end{itemize}
+
+\section{Validiteit, betrouwbaarheid en beperkingen}
+\label{sec:evaluatie-validiteit}
+
+Deze studie bevat een aantal bekende aandachtspunten:
+\begin{itemize}
+    \item \textbf{Carry-over effect:} deelnemers leren onvermijdelijk bij in het eerste blok. Counterbalancing vermindert maar elimineert dit niet volledig.
+    \item \textbf{Constructvaliditeit:} SUS meet bruikbaarheid, niet leerwinst. Daarom worden leeruitkomsten apart gemeten via taken en rubrics.
+    \item \textbf{Meetfouten door heuristische validatie:} de PoC valideert met patronen (regex), waardoor false positives/negatives mogelijk zijn. Dit wordt meegenomen als beperking en gemitigeerd via een rubric in de PDF-conditie.
+    \item \textbf{Externe validiteit:} studentencontext verschilt van een professionele mainframe-omgeving; de resultaten generaliseren vooral naar beginners in opleiding.
+\end{itemize}
