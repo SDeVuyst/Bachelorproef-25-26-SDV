@@ -1,8 +1,7 @@
 \chapter{\IfLanguageName{dutch}{Stand van zaken}{State of the art}}%
 \label{ch:stand-van-zaken}
 
-In dit hoofdstuk wordt de theoretische basis gelegd voor het verdere onderzoek. 
-%TODO
+In dit hoofdstuk wordt de theoretische basis gelegd voor het verdere onderzoek.
 
 % ----------------------------------------------------------------------------------------------------- %
 \section{De Mainframe Wereld: Kritieke Infrastructuur in Transitie}
@@ -74,10 +73,10 @@ In tegenstelling tot Python-scripts, die vaak top-down worden uitgevoerd, volgt 
 \centering
 \begin{minipage}{0.45\textwidth}
   \begin{itemize}
-    \item \textbf{Divisions:} De logische onderverdeling van de programmalogica. Een sectie is een verzameling van paragrafen.
-    \item \textbf{Paragraphs:} De onderverdeling van een sectie of divisie. Het is een door de gebruiker gedefinieerde of vooraf gedefinieerde naam gevolgd door een punt, en bestaat uit nul of meer zinnen.
-    \item \textbf{Sentences:} De combinatie van een of meer uitspraken. Zinnen komen alleen voor in de \textit{Procedure Division}. Een zin moet eindigen met een punt.
-    \item \textbf{Statements:} zinvolle COBOL-instructies die bepaalde bewerkingen uitvoeren.
+    \item \textbf{Divisions:} Het hoogste structuurniveau: de vier \texttt{DIVISION}-blokken waarin een programma is opgebouwd. Waar de standaard dat voorschrijft, wordt een division verder onderverdeeld in \textbf{Sections} (koppen eindigend op \texttt{SECTION.}), die \emph{binnen} die division vallen---niet te verwarren met een division zelf. Voorbeelden zijn \texttt{WORKING-STORAGE SECTION} en \texttt{FILE SECTION} in de \texttt{DATA DIVISION}.
+    \item \textbf{Paragraphs:} Benoemde blokken procedurele code in de \texttt{PROCEDURE DIVISION}: een door de programmeur of de taal gekozen naam gevolgd door een punt, met nul of meer \textbf{Sentences}. Paragraphs kunnen rechtstreeks onder de \texttt{PROCEDURE DIVISION} staan of gegroepeerd worden binnen een \textbf{Section} (die dan meerdere paragraphs omvat).
+    \item \textbf{Sentences:} De combinatie van een of meer statements. Sentences komen voor in de \texttt{PROCEDURE DIVISION}. Een sentence eindigt met een punt.
+    \item \textbf{Statements:} Uitvoerbare COBOL-instructies (\texttt{DISPLAY}, \texttt{MOVE}, \texttt{IF}, enz.) die concrete bewerkingen uitvoeren.
   \end{itemize}
 \end{minipage}
 \hfill
@@ -93,12 +92,30 @@ In tegenstelling tot Python-scripts, die vaak top-down worden uitgevoerd, volgt 
 Een COBOL programma bestaat uit 4 \textit{Divisions}: \autocite{IBMMainframer2021}
 
 \begin{itemize}
-    \item \textbf{IDENTIFICATION DIVISION:} Bevat de metadata. Het is de enige verplichte divisie waarin de \texttt{PROGRAM-ID} wordt gedefinieerd.
+    \item \textbf{IDENTIFICATION DIVISION:} Bevat de metadata. Het is de enige verplichte division waarin de \texttt{PROGRAM-ID} wordt gedefinieerd.
     Dit fungeert als de unieke naam waarmee het programma door het besturingssysteem (zoals z/OS) wordt aangeroepen.
     \item \textbf{ENVIRONMENT DIVISION:} Hier vindt de koppeling plaats tussen de logische programmastructuur en de fysieke hardware. In de \texttt{INPUT-OUTPUT SECTION} worden fysieke datasets (bestanden) gekoppeld aan interne namen. In Python gebeurt dit dynamisch via variabelen, maar in COBOL is dit een statische configuratie.
-    \item \textbf{DATA DIVISION:} De meest omvangrijke sectie voor databeheer. Hieronder valt de \texttt{WORKING-STORAGE SECTION}, waar elke variabele die het programma gebruikt, vooraf moet worden gealloceerd. COBOL kent geen \textit{garbage collection} of dynamische geheugenallocatie zoals Python \autocite{Ebbers2011}.
-    \item \textbf{PROCEDURE DIVISION:} De plaats waar de executabele algoritmen staan. Deze is onderverdeeld in \textit{Paragraphs} en \textit{Sections}, die dienen als de primaire eenheden voor logische groepering, bij gebrek aan native functies of klasses in de basisstructuur.
+    \item \textbf{DATA DIVISION:} Het omvangrijkste division-blok voor databeheer. Hieronder vallen onder meer \texttt{FILE SECTION} en \texttt{WORKING-STORAGE SECTION}: dat zijn \emph{sections} binnen deze division, met respectievelijk bestandsbeschrijvingen en werkvelden. In \texttt{WORKING-STORAGE SECTION} moet elke variabele die het programma gebruikt vooraf worden gedeclareerd. COBOL kent geen \textit{garbage collection} of dynamische geheugenallocatie zoals Python \autocite{Ebbers2011}.
+    \item \textbf{PROCEDURE DIVISION:} De division met de uitvoerbare algoritmen. Die worden gestructureerd met \textit{Sections} en \textit{Paragraphs} als primaire eenheden voor logische groepering, vergelijkbaar met routines, in afwezigheid van ingebouwde functies of klassen in de klassieke taalstructuur.
 \end{itemize}
+
+Listing~\ref{lst:cobol_hello_world} toont een minimaal \emph{Hello World}-programma.
+
+\begin{lstlisting}[language=Cobol, caption={COBOL Hello World}, label={lst:cobol_hello_world}]
+IDENTIFICATION DIVISION.
+PROGRAM-ID. HELLO-WORLD.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+
+01 WS-VARIABLES.
+05 GREETING PIC A(11) VALUE 'HELLO WORLD'.
+
+PROCEDURE DIVISION.
+MAIN.
+DISPLAY GREETING.
+STOP RUN.
+\end{lstlisting}
 
 \subsection{Datatypen en de PICTURE-clausule}
 In Python is een variabele een referentie naar een object in het geheugen. 
@@ -112,7 +129,7 @@ De meest voorkomende symbolen in een \texttt{PIC}-clausule zijn:
     \item \textbf{\texttt{9}} (Numeriek): Representeert exact één cijfer (0-9).
     \item \textbf{\texttt{X}} (Alfanumeriek): Representeert elk karakter (letter, cijfer, symbool).
     \item \textbf{\texttt{A}} (Alfabetisch): Enkel letters en spaties.
-    \item \textbf{\texttt{V}} (Impliciet decimaalteken): Geeft de positie van de komma aan zonder een fysieke byte te gebruiken. Dit is essentieel voor financiële berekeningen op mainframes.
+    \item \textbf{\texttt{V}} (Impliciet decimaalteken): Geeft de positie van de komma aan zonder een fysieke byte te gebruiken. Het gedeelte na \texttt{V} bestaat uit \texttt{9}-symbolen en telt hoeveel cijfers na de impliciete komma horen: \texttt{V99} betekent bijvoorbeeld twee fractionele cijfers (twee decimalen, zoals centen bij een bedrag). Dit is essentieel voor financiële berekeningen op mainframes.
     \item \textbf{\texttt{S}} (Sign): Geeft aan dat een numeriek veld een positief of negatief teken kan bevatten.
 \end{itemize}
 
@@ -123,8 +140,8 @@ De meest voorkomende symbolen in een \texttt{PIC}-clausule zijn:
     \begin{tabular}{|l|l|l|}
         \hline
         \textbf{Type} & \textbf{COBOL Definitie} & \textbf{Python Equivalent} \\ \hline
-        Integer & \texttt{05 AGE PIC 9(05) VALUE 12345} & \texttt{age = 12345} \\ \hline
-        String & \texttt{05 NAME PIC X(10) VALUE 'JOS'} & \texttt{name = "Jos"} \\ \hline
+        Integer & \texttt{05 AGE-IN-YEARS PIC 9(03) VALUE 021} & \texttt{age\_in\_years = 21} \\ \hline
+        String & \texttt{05 NAME PIC X(10) VALUE 'Jos'} & \texttt{name = "Jos"} \\ \hline
         Decimal & \texttt{05 PRICE PIC S9(5)V99 VALUE -123.45} & \texttt{price = -123.45} \\ \hline
     \end{tabular}
 \end{table}
@@ -140,7 +157,7 @@ In dat geval wordt de variabele automatisch geïnitialiseerd met de standaardwaa
 Om een variabele nadien een nieuwe waarde te geven, wordt in COBOL de \texttt{MOVE}-instructie gebruikt:
 
 \begin{lstlisting}[language=Cobol, caption={MOVE in COBOL}, label={lst:cobol_move}]
-MOVE 'JOS' TO NAME.
+MOVE 'Jos' TO NAME.
 MOVE 25 TO AGE.
 MOVE -123.45 TO PRICE.
 \end{lstlisting}
@@ -262,36 +279,36 @@ for i in range(1, 11):
 \end{lstlisting}
 
 \subsection{Functies}
-Waar Python expliciete functies definieert met het \texttt{def}-keyword, werkt COBOL traditioneel met paragrafen of secties die worden aangeroepen via \texttt{PERFORM}. 
+Waar Python expliciete functies definieert met het \texttt{def}-keyword, werkt COBOL traditioneel met paragraphs of sections die worden aangeroepen via \texttt{PERFORM}. 
 In modernere COBOL-standaarden kan men ook gebruikmaken van \texttt{PROGRAM-ID} of \texttt{FUNCTION} \autocite{IBM2023}.
 
 \begin{lstlisting}[language=Cobol, caption={Functies in COBOL}, label={lst:cobol_functie}]
     IDENTIFICATION DIVISION.
-    PROGRAM-ID. FUCNTIE-VB.
+    PROGRAM-ID. FUNCTION-EX.
 
     DATA DIVISION.
     WORKING-STORAGE SECTION.
     01 WS-VARIABLES.
-        05 NUM1    PIC 9(3) VALUE 5.
-        05 NUM2    PIC 9(3) VALUE 3.
+        05 NUM-1   PIC 9(3) VALUE 5.
+        05 NUM-2   PIC 9(3) VALUE 3.
         05 RESULT  PIC 9(4) VALUE 0.
 
     PROCEDURE DIVISION.
 
     ADD-NUMBERS.
-        COMPUTE RESULT = NUM1 + NUM2.
+        COMPUTE RESULT = NUM-1 + NUM-2.
         STOP RUN.
 
     MAIN.
-        PERFORM ADD-NUMBERS
+        PERFORM ADD-NUMBERS 
         DISPLAY RESULT
         STOP RUN.
 
 \end{lstlisting}
 
 \begin{lstlisting}[language=Python, caption={Functie in Python}, label={lst:python_functie}]
-def add_numbers(num1, num2):
-    return num1 + num2
+def add_numbers(num_1, num_2):
+    return num_1 + num_2
 
 result = add_numbers(5, 3)
 print(result)
@@ -339,7 +356,7 @@ De componenten zijn de meest zichtbare uitingen hiervan, vaak samengevat onder d
 De meest bekende en toegepaste elementen binnen gamification staan bekend als de PBL-triade: \textit{Points}, \textit{Badges} en \textit{Leaderboards} \autocite{KevinWerbach2020}.
 
 \begin{itemize}
-    \item \textbf{Points (Punten):} In een gamified proces worden punten gebruikt om mensen aan te moedigen om dingen te doen door het verzamelen van punten te koppelen aan gewenste activiteiten. \autocite{KevinWerbach2020}
+    \item \textbf{Points (Punten):} In een gamified proces worden gewenste activiteiten beloond met punten. Op die manier worden mensen aangemoedigd om die activiteiten uit te voeren. \autocite{KevinWerbach2020}
     \item \textbf{Badges (Badges/Trofeeën):} Badges zijn een uitgebreidere versie van punten. Een badge is een visuele weergave van een prestatie binnen het gamified proces. \autocite{KevinWerbach2020}
     \item \textbf{Leaderboards (Ranglijsten):} Volgens \textcite{KevinWerbach2020} zijn leaderboards het meest problematische onderdeel van de PBL-triade. Hoewel ze motiveren door sociale vergelijking en zichtbare progressie, kunnen ze ook demotiveren wanneer de afstand tot de top te groot is. In zakelijke omgevingen leiden ze vaak tot ongewenst gedrag en verminderde prestaties, doordat de focus verschuift naar een destructieve competitie.
 \end{itemize}
@@ -380,15 +397,16 @@ In tegenstelling tot passieve media zoals film of literatuur, wordt de inhoud va
     \textcite{Hunicke2004} categoriseert dit verder in vormen zoals \textit{Sensation} (zintuiglijk genot), \textit{Fantasy} (onderdompeling in een andere wereld), \textit{Narrative} (het verhaal) en \textit{Challenge} (de voldoening van het overwinnen van hindernissen).
 \end{itemize}
 
-Een cruciaal inzicht van dit raamwerk is de omgekeerde causaliteit tussen de ontwerper en de speler. 
-Er bestaat een lineair maar tegengesteld perspectief: \autocite{Hunicke2004}
+Een cruciaal inzicht van dit raamwerk is dat ontwerper en speler dezelfde drie MDA-facetten in tegengestelde volgorde naderen.
+Het gaat daarbij niet om een direct oorzakelijk verband tussen ontwerper en speler (alsof de één het gedrag van de ander ``veroorzaakt'' in die zin), maar om een omgekeerde volgorde van doorlopen en zichtbaarheid: de ontwerper focust eerst op de bouwstenen en hoopt zo een bepaalde ervaring te bereiken; de speler begint bij die ervaring en ontdekt pas geleidelijk hoe het systeem in elkaar zit.
+\textcite{Hunicke2004} beschrijven dit als twee complementaire perspectieven op dezelfde keten: top-down versus bottom-up:
 
 \begin{enumerate}
-    \item \textbf{Het perspectief van de ontwerper (Top-down):} De ontwerper vertrekt vanuit de \textit{Mechanics}. 
+    \item \textbf{Perspectief van de ontwerper (top-down):} De ontwerper vertrekt vanuit de \textit{Mechanics}.
     Door regels en systemen te bouwen, hoopt de ontwerper dat er een bepaalde \textit{Dynamics} ontstaat die uiteindelijk leidt tot de gewenste \textit{Aesthetics} (de emotionele ervaring).
-    \item \textbf{Het perspectief van de speler (Bottom-up):} De speler ervaart de game in omgekeerde volgorde. 
-    De eerste kennismaking is de \textit{Aesthetics}. 
-    Pas door te spelen ontdekt de speler de \textit{Dynamics}, en pas na verloop van tijd begrijpt hij de onderliggende \textit{Mechanics} die alles aansturen.
+    \item \textbf{Perspectief van de speler (bottom-up):} De speler doorloopt die facetten in tegenovergestelde richting.
+    De eerste kennismaking is de \textit{Aesthetics}.
+    Pas door te spelen worden de \textit{Dynamics} zichtbaar, en pas later (indien al) de onderliggende \textit{Mechanics} die het systeem aansturen.
 \end{enumerate}
 
 \begin{figure}[H]

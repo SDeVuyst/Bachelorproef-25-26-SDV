@@ -7,7 +7,7 @@
 \chapter{\IfLanguageName{dutch}{Proof of Concept}{Proof of Concept}}%
 \label{ch:poc}
 
-Dit hoofdstuk beschrijft de concrete uitwerking van de Proof of Concept (PoC): een webapplicatie genaamd \textit{Learn COBOL} die COBOL-concepten aanbiedt via een gamified leerpad, afgestemd op de Python-achtergrond van de doelgroep.
+Dit hoofdstuk beschrijft de concrete uitwerking van de Proof of Concept (PoC): een webapplicatie genaamd \textit{Learn COBOL} die COBOL-concepten aanbiedt via een gamified leerpad, afgestemd op een doelgroep met een Python-achtergrond.
 De PoC is het tastbare artefact uit fase~2 van de methodologie (zie hoofdstuk~\ref{ch:methodologie}) en dient als basis voor de gebruikersevaluatie (interviews, observaties).
 De ontwerpkeuzes in de user interface sluiten aan bij de definities en raamwerken uit hoofdstuk~\ref{ch:stand-van-zaken}, in het bijzonder de PBL-triade (punten, badges, leaderboards), het Octalysis-model en het onderscheid tussen mechanieken, dynamieken en esthetiek binnen het MDA-framework.
 
@@ -53,7 +53,7 @@ Empowerment of Creativity \& Feedback &
 Vrij invullen van code binnen opdracht en onmiddellijke validatie tegen leerdoelen. \\
     \hline
 Ownership \& Possession &
-Profiel met avatar, cumulatieve punten, badgeverzameling. De gebruiker zijn voortgang blijft gekoppeld aan het account. \\
+Profiel met avatar, cumulatieve punten, badgeverzameling. De voortgang van de gebruiker blijft gekoppeld aan het account. \\
 \hline
 Social Influence \& Relatedness &
 Vriendenlijst, top drie vrienden op het dashboard, volledig leaderboard, profielen van vrienden. \\
@@ -72,7 +72,7 @@ Wordt spaarzaam ingezet: geen harde ``levens'' of reset van account, wel kan soc
 \label{tab:poc-octalysis-koppeling}
 \end{table}
 
-Vanuit het \textbf{MDA-perspectief} \autocite{Hunicke2004} zijn de \textit{mechanics} onder meer: validatiecode, puntberekening, badge-upserts.
+Vanuit het \textbf{MDA-perspectief} \autocite{Hunicke2004} zijn de \textit{mechanics} onder meer: validatiecode, puntberekening, badge-upserts\footnote{\textit{Upsert} = \textit{update} + \textit{insert}
 De \textit{dynamics} ontstaan tijdens gebruik: competitie om rang, het proberen van een first-try bonus, het vergelijken met vrienden.
 De beoogde \textit{aesthetics} (in de MDA-zin van emotionele ervaring) zijn onder meer \textit{Challenge} (levels overwinnen) en een lichte \textit{Fantasy} door het mainframe-thema.
 
@@ -108,7 +108,7 @@ De rij \texttt{profiles} gebruikt \texttt{id} gelijk aan de gebruikers-id uit Su
 \texttt{username}, \texttt{email} & Weergavenaam en contact (e-mail uit registratie). \\
 \texttt{avatar\_url} & Optionele URL voor profielavatar. \\
 \texttt{total\_points}, \texttt{levels\_completed} & Geaggregeerde gamification-score en aantal uniek geslaagde levels. \\
-\texttt{streak\_days}, \texttt{weekly\_count}, \texttt{last\_relapse} & Velden voor streak-gedrag (uitbreidbaar in de applicatie). \\
+\texttt{streak\_days}, \texttt{weekly\_count}, \texttt{last\_relapse} & Velden voor streak-gedrag\footnotemark\ (uitbreidbaar in de applicatie). \\
 \texttt{last\_active\_at} & Tijdstip laatste relevante activiteit. \\
 \texttt{created\_at}, \texttt{updated\_at} & Auditvelden. \\
 \hline
@@ -116,6 +116,7 @@ De rij \texttt{profiles} gebruikt \texttt{id} gelijk aan de gebruikers-id uit Su
 \caption{Structuur van de tabel \texttt{profiles}.}
 \label{tab:schema-profiles}
 \end{table}
+\footnotetext{Een \textit{streak}: het consequent en herhaaldelijk uitvoeren van een bepaalde activiteit over een aaneengesloten periode.}
 
 \begin{table}[H]
 \centering
@@ -397,7 +398,7 @@ Levels zijn genummerd van 1 tot 7 en worden sequentieel vrijgegeven: level~$n$ i
 Dat voorkomt dat beginners complexe concepten (bijv.\ \texttt{PERFORM}) zien voordat de programmaskelet en data-definities bekend zijn.
 
 \subsection{Gemeenschappelijke opzet}
-Elk level bevat een titel, korte samenvatting, Python-hint en een Python-referentiesnippet die het analogue denkbeeld schetst (bijv.\ dataclass versus \texttt{01}/\texttt{05}-hiërarchie).
+Elk level bevat een titel, korte samenvatting, Python-hint en een Python-referentiesnippet die het analoge denkbeeld schetst (bijv.\ dataclass versus \texttt{01}/\texttt{05}-hiërarchie).
 Daarnaast zijn er optioneel officiële documentatielinks (IBM COBOL for z/OS) en een korte COBOL-uitleg met voorbeeldfragmenten.
 De gebruiker start vanuit starter code met TODO-commentaar, zodat duidelijk is welke regels bewerkt moeten worden.
 De volgende subsecties beschrijven per level de inhoud, de validatiedoelen en de gekoppelde inhoudsbadge.
