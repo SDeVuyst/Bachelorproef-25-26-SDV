@@ -8,7 +8,7 @@
 \label{ch:poc}
 
 Dit hoofdstuk beschrijft de concrete uitwerking van de Proof of Concept (PoC): een webapplicatie genaamd \textit{Learn COBOL} die COBOL-concepten aanbiedt via een gamified leerpad, afgestemd op een doelgroep met een Python-achtergrond.
-De PoC is het tastbare artefact uit fase~2 van de methodologie (zie hoofdstuk~\ref{ch:methodologie}) en dient als basis voor de gebruikersevaluatie (interviews, observaties).
+De PoC is het tastbare artefact uit fase~2 van de methodologie (zie hoofdstuk~\ref{ch:methodologie}) en dient als concreet artefact dat in hoofdstuk~\ref{ch:evaluatie} via een vergelijkende literatuurevaluatie tegen bestaand empirisch onderzoek wordt afgezet.
 De ontwerpkeuzes in de user interface sluiten aan bij de definities en raamwerken uit hoofdstuk~\ref{ch:stand-van-zaken}, in het bijzonder de PBL-triade (punten, badges, leaderboards), het Octalysis-model en het onderscheid tussen mechanieken, dynamieken en esthetiek binnen het MDA-framework.
 
 \section{Doel en afbakening}
@@ -148,7 +148,7 @@ Ter aanvulling op het entiteit-relatiediagram worden de tabellen hieronder in me
 \texttt{success} & Of het level minstens één keer geslaagd werd binnen deze poging. \\
 \texttt{submit\_count} & Aantal keer ``indienen''. \\
 \texttt{validation\_fail\_count} & Teller voor mislukte validaties (o.a.\ voor first-try bonus). \\
-\texttt{syntax\_error\_count} & Teller voor syntax-/signaaltelling (analytics en badges). \\
+\texttt{syntax\_error\_count} & Teller voor structurele/syntactische signalen die de validator afzonderlijk telt (bv.\ ontbrekende punten, foutieve indentatie). Wordt gebruikt om ``clean run''-badges toe te kennen wanneer een geslaagd level zonder dergelijke signalen werd ingediend. \\
 \hline
 \end{tabularx}
 \caption{Structuur van de tabel \texttt{level\_attempts}.}
@@ -165,7 +165,8 @@ Ter aanvulling op het entiteit-relatiediagram worden de tabellen hieronder in me
 \texttt{id} & Stabiele sleutel van de badge (bv.\ \texttt{four\_divisions}). \\
 \texttt{name} & Korte titel voor de UI. \\
 \texttt{description}, \texttt{how\_to\_earn} & Uitleg en hint hoe de badge te verdienen. \\
-\texttt{tier}, \texttt{difficulty} & Presentatie (zeldzaamheid, moeilijkheidsgraad). \\
+\texttt{tier} & Visuele zeldzaamheidsklasse (bv.\ \textit{bronze}, \textit{silver}, \textit{gold}, \textit{platinum}); bepaalt de kleurranden van de badge in de UI. \\
+\texttt{difficulty} & Logische moeilijkheidsgraad voor groepering op de \texttt{/badges}-pagina (bv.\ \textit{easy}, \textit{medium}, \textit{hard}); onafhankelijk van \texttt{tier} omdat een badge cosmetisch \textit{gold} kan zijn maar inhoudelijk \textit{easy} (en omgekeerd). \\
 \texttt{icon\_key} & Mapping naar een icoon in de front-end. \\
 \hline
 \end{tabularx}
@@ -219,25 +220,26 @@ Ter aanvulling op het entiteit-relatiediagram worden de tabellen hieronder in me
 \texttt{created\_at} & Tijdstip. \\
 \hline
 \end{tabularx}
-\caption{Structuur van de tabel \texttt{app\_events} (telemetrie / onderzoeksondersteuning).}
+\caption{Structuur van de tabel \texttt{app\_events} (telemetrie; voorzien voor een eventuele empirische opvolgstudie, niet gebruikt in deze bachelorproef).}
 \label{tab:schema-app-events}
 \end{table}
 
 Daarnaast is in Supabase een opgeslagen routine \texttt{increment\_relapse\_count} gedefinieerd die vanuit de applicatie kan worden aangeroepen voor streak-/relapse-logica.
 
 \subsection{Code-editor: Monaco}
-Voor het bewerken van COBOL- en referentiecode wordt \textit{Monaco Editor} (\texttt{@monaco-editor/react}) gebruikt: dezelfde kern als in Visual Studio Code.
+Voor het bewerken van de COBOL-code wordt \textit{Monaco Editor}\footnote{\url{https://github.com/microsoft/monaco-editor}} (via de React-binding \texttt{@monaco-editor/react}) gebruikt: dezelfde kern als in Visual Studio Code. De Python-referentiekolom naast de COBOL-editor is read-only en gebruikt dezelfde Monaco-component, zodat de visuele stijl van beide kolommen identiek blijft.
 Voor COBOL is een aangepaste taalregistratie toegevoegd (keywords, commentaar \texttt{*>}, basis highlighting) omdat standaard Monaco geen eerste-klas COBOL-ondersteuning biedt.
 Zo blijft de editor herkenbaar voor de doelgroep zonder een zware desktop-IDE te vereisen.
 
 \subsection{Hosting en telemetrie}
-De applicatie kan statisch worden uitgerold. In dit geval wordt de PoC gehost op Vercel.
-\textit{Vercel Analytics} en \textit{Speed Insights} zijn ingeschakeld voor aggregated performance- en gebruiksstatistieken.
+De applicatie kan statisch worden uitgerold. In dit geval wordt de PoC gehost op Vercel\footnote{\url{https://vercel.com/}}.
+\textit{Vercel Analytics} en \textit{Speed Insights} zijn ingeschakeld voor geaggregeerde performance- en bezoekstatistieken op platformniveau; deze metingen worden niet als onderzoeksdata gebruikt in deze bachelorproef en dienen enkel voor operationele opvolging van de gehoste PoC.
 \section{Authenticatie en toegang}
 
 \subsection{Registratie en sessies}
-Gebruikers registreren zich met e-mail en wachtwoord. Na aanmelding wordt een profielrij gesynchroniseerd (gebruikersnaam, avatar, punten, voltooide levels).
-Routes onder \texttt{/dashboard}, \texttt{/learn}, \texttt{/leaderboard}, enz.\ zijn beschermd: zonder geldige sessie volgt redirect naar de loginpagina.
+Gebruikers registreren zich met e-mail en wachtwoord via Supabase Auth. Bij eerste login wordt een rij in de tabel \texttt{profiles} aangemaakt waarvan de primaire sleutel \texttt{id} dezelfde UUID is als \texttt{auth.uid()} in Supabase, wat de basis vormt voor row-level security: elke gebruiker kan enkel de eigen profielrij en de eigen \texttt{level\_attempts}/\texttt{user\_badges} schrijven, terwijl publieke kolommen (gebruikersnaam, totaal punten, voltooide levels) leesbaar zijn voor het leaderboard en de vriendenpagina.
+E-mailverificatie is actief op het niveau van het Supabase-project; sessies worden lokaal bewaard via de standaard \texttt{supabase-js}-client (refresh token in \texttt{localStorage}, default geldigheid één week, automatische verlenging zolang de gebruiker actief is).
+Routes onder \texttt{/dashboard}, \texttt{/learn}, \texttt{/leaderboard}, enz.\ zijn beschermd: zonder geldige sessie volgt redirect naar de loginpagina. Bij accountverwijdering verwijdert Supabase via cascading foreign keys ook de bijhorende rijen in \texttt{level\_attempts}, \texttt{user\_badges} en \texttt{friendships}, zodat er geen dangling references achterblijven.
 Het login- en registratiescherm gebruikt een strak formulier in hetzelfde donkere thema als de rest van de app.
 
 \begin{figure}[H]
@@ -249,6 +251,8 @@ Het login- en registratiescherm gebruikt een strak formulier in hetzelfde donker
 
 \section{Gebruikersinterface: cards, strips en gamification}
 \label{sec:poc-ui-cards}
+
+In deze sectie worden de zeven kernschermen van \textit{Learn COBOL} besproken in de volgorde waarin een typische gebruiker ze tegenkomt: van het globale overzicht (dashboard) over de leercatalogus en de level-editor tot de sociale schermen (leaderboard, vrienden, badges) en het profiel. Voor elk scherm wordt aangegeven welke gamification-elementen het hoofdzakelijk operationaliseert en welke Octalysis Core Drives daarbij worden aangesproken.
 
 \subsection{Patroon: Card en MainframeStrip}
 Herbruikbare Card-componenten (\textit{shadcn/ui}) vormen het raster van bijna elk scherm.
@@ -331,7 +335,7 @@ Het scherm combineert meerdere cards (figuur~\ref{fig:poc-level-editor}). Onders
     \item \textbf{Badges this level:} welke badges met dit level geassocieerd zijn (o.a.\ inhoudsbadge, clean run). Koppelt Badges direct aan de actieve opdracht.
     \item \textbf{Python-reference:} De te-schrijven COBOL code vertaalt in Python.
     \item \textbf{COBOL-editor:} Monaco met custom COBOL-highlighting, kern van \textit{Challenge}.
-    \item \textbf{Tips / documentatie):} inklapbare sectie met aanvullende hulp en ondersteunt \textit{Unpredictability \& Curiosity} (optionele diepgang).
+    \item \textbf{Tips en documentatie:} inklapbare sectie met aanvullende hulp en ondersteunt \textit{Unpredictability \& Curiosity} (optionele diepgang).
     \item \textbf{Checklist:} objective checks na validatie en versterkt \textit{Development \& Accomplishment} door zichtbare deelwinsten.
 \end{itemize}
 
@@ -446,10 +450,12 @@ De volgende subsecties beschrijven per level de inhoud, de validatiedoelen en de
 \subsection{Level 1: De vier divisions}
 \label{subsec:poc-level-1}
 
-De gebruiker bouwt de verplichte boilerplate: Identification, Environment, Data en Procedure Division, en sluit de run af met \texttt{STOP RUN.} \\
-Python-parallel: één Python-bestand versus het strikt geordende blokkenmodel van COBOL (vergelijkbaar met het ordenen van imports, configuratie en \texttt{main()}). \\
-Validatiedoelen: aanwezigheid van alle vier divisions; een \texttt{STOP RUN.} aan het einde van de uitvoering. \\
-Inhoudsbadge: \texttt{four\_divisions}.
+\begin{description}
+    \item[Inhoud:] De gebruiker bouwt de verplichte boilerplate: Identification, Environment, Data en Procedure Division, en sluit de run af met \texttt{STOP RUN.}
+    \item[Python-parallel:] één Python-bestand versus het strikt geordende blokkenmodel van COBOL (vergelijkbaar met het ordenen van imports, configuratie en \texttt{main()}).
+    \item[Validatiedoelen:] aanwezigheid van alle vier divisions; een \texttt{STOP RUN.} aan het einde van de uitvoering.
+    \item[Inhoudsbadge:] \texttt{four\_divisions}.
+\end{description}
 
 Een minimaal geslaagd fragment ziet er conceptueel als volgt uit:
 
@@ -470,50 +476,62 @@ Een minimaal geslaagd fragment ziet er conceptueel als volgt uit:
 \subsection{Level 2: PICTURE-clauses}
 \label{subsec:poc-level-2}
 
-Het level introduceert \texttt{PIC}/\texttt{PICTURE}: numeriek (\texttt{9}), alfanumeriek (\texttt{X}) en impliciete decimaal (\texttt{V}). \\
-Python-parallel: waar Python-types dynamisch zijn, legt PIC het opslagformaat vast (denk aan \texttt{int} versus \texttt{str}, maar op byte-niveau; \texttt{Decimal} voor impliciete decimalen). \\
-Validatiedoelen: minstens één \texttt{PIC} of \texttt{PICTURE} met \texttt{9}; minstens één met \texttt{X}; minstens één met \texttt{V} (bijv.\ \texttt{99V99}); minstens één veld binnen een \texttt{01}-structuur (\texttt{05} onder \texttt{01}). \\
-Inhoudsbadge: \texttt{picture\_clauses}.
+\begin{description}
+    \item[Inhoud:] Het level introduceert \texttt{PIC}/\texttt{PICTURE}: numeriek (\texttt{9}), alfanumeriek (\texttt{X}) en impliciete decimaal (\texttt{V}).
+    \item[Python-parallel:] waar Python-types dynamisch zijn, legt PIC het opslagformaat vast (denk aan \texttt{int} versus \texttt{str}, maar op byte-niveau; \texttt{Decimal} voor impliciete decimalen).
+    \item[Validatiedoelen:] minstens één \texttt{PIC} of \texttt{PICTURE} met \texttt{9}; minstens één met \texttt{X}; minstens één met \texttt{V} (bijv.\ \texttt{99V99}); minstens één veld binnen een \texttt{01}-structuur (\texttt{05} onder \texttt{01}).
+    \item[Inhoudsbadge:] \texttt{picture\_clauses}.
+\end{description}
 
 \subsection{Level 3: Data-hiërarchie}
 \label{subsec:poc-level-3}
 
-Focus op levelnummers \texttt{01}, \texttt{05} en optioneel \texttt{77} voor geneste records en standalone velden. \\
-Python-parallel: een \texttt{01}-groep met \texttt{05}-kinderen als dict of \texttt{dataclass} met geneste velden; \texttt{77} als los element naast het record. \\
-Validatiedoelen: minstens één \texttt{01}; minstens één \texttt{05} onder een record; optioneel een standalone \texttt{77}. \\
-Inhoudsbadge: \texttt{data\_hierarchy}.
+\begin{description}
+    \item[Inhoud:] Focus op levelnummers \texttt{01}, \texttt{05} en optioneel \texttt{77} voor geneste records en standalone velden.
+    \item[Python-parallel:] een \texttt{01}-groep met \texttt{05}-kinderen als dict of \texttt{dataclass} met geneste velden; \texttt{77} als los element naast het record.
+    \item[Validatiedoelen:] minstens één \texttt{01}; minstens één \texttt{05} onder een record; optioneel een standalone \texttt{77}.
+    \item[Inhoudsbadge:] \texttt{data\_hierarchy}.
+\end{description}
 
 \subsection{Level 4: Conditionele logica}
 \label{subsec:poc-level-4}
 
-Conditionele uitvoering met \texttt{IF}, \texttt{ELSE} en expliciete scope-afsluiting via \texttt{END-IF}. \\
-Python-parallel: inspringing in Python versus expliciete \texttt{END-IF} om geneste takken leesbaar te houden. \\
-Validatiedoelen: aanwezigheid van \texttt{IF}, \texttt{END-IF} en minstens één \texttt{ELSE}. \\
-Inhoudsbadge: \texttt{conditional\_logic}.
+\begin{description}
+    \item[Inhoud:] Conditionele uitvoering met \texttt{IF}, \texttt{ELSE} en expliciete scope-afsluiting via \texttt{END-IF}.
+    \item[Python-parallel:] inspringing in Python versus expliciete \texttt{END-IF} om geneste takken leesbaar te houden.
+    \item[Validatiedoelen:] aanwezigheid van \texttt{IF}, \texttt{END-IF} en minstens één \texttt{ELSE}.
+    \item[Inhoudsbadge:] \texttt{conditional\_logic}.
+\end{description}
 
 \subsection{Level 5: Iteraties}
 \label{subsec:poc-level-5}
 
-Herhaling met \texttt{PERFORM VARYING \ldots\ UNTIL} en afsluiting met \texttt{END-PERFORM}. \\
-Python-parallel: \texttt{for}- of \texttt{while}-lus; controlevariabele en stopconditie. \\
-Validatiedoelen: \texttt{PERFORM VARYING} en \texttt{UNTIL} moeten voorkomen. \\
-Inhoudsbadge: \texttt{iterations}.
+\begin{description}
+    \item[Inhoud:] Herhaling met \texttt{PERFORM VARYING \ldots\ UNTIL} en afsluiting met \texttt{END-PERFORM}.
+    \item[Python-parallel:] \texttt{for}- of \texttt{while}-lus; controlevariabele en stopconditie.
+    \item[Validatiedoelen:] \texttt{PERFORM VARYING} en \texttt{UNTIL} moeten voorkomen.
+    \item[Inhoudsbadge:] \texttt{iterations}.
+\end{description}
 
 \subsection{Level 6: Paragrafen}
 \label{subsec:poc-level-6}
 
-Paragrafen als benoemde blokken in de \texttt{PROCEDURE DIVISION} en aanroep met \texttt{PERFORM} (niet alleen \texttt{PERFORM VARYING}). \\
-Python-parallel: functie zonder parameters; \texttt{PERFORM} als aanroep. \\
-Validatiedoelen: een paragraafnaam (kolom~8+) zoals \texttt{VERWERK}; aanroep met \texttt{PERFORM} buiten de \texttt{VARYING}-variant. \\
-Inhoudsbadge: \texttt{paragraphs}.
+\begin{description}
+    \item[Inhoud:] Paragrafen als benoemde blokken in de \texttt{PROCEDURE DIVISION} en aanroep met \texttt{PERFORM} (niet alleen \texttt{PERFORM VARYING}).
+    \item[Python-parallel:] functie zonder parameters; \texttt{PERFORM} als aanroep.
+    \item[Validatiedoelen:] een paragraafnaam (kolom~8+) zoals \texttt{VERWERK}; aanroep met \texttt{PERFORM} buiten de \texttt{VARYING}-variant.
+    \item[Inhoudsbadge:] \texttt{paragraphs}.
+\end{description}
 
 \subsection{Level 7: Foutafhandeling (FILE STATUS)}
 \label{subsec:poc-level-7}
 
-Kennismaking met \textbf{\texttt{FILE STATUS}} en de statuscode \texttt{35} (file not found), als brug naar foutafhandeling rond bestanden. \\
-Python-parallel: \texttt{FileNotFoundError} en expliciet controleren van status na \texttt{OPEN}/\texttt{READ}. \\
-Validatiedoelen: \texttt{FILE STATUS} (of \texttt{FS} in passende context) in \texttt{FILE-CONTROL} of record; de waarde \texttt{35} als literal of in een vergelijking. \\
-Inhoudsbadge: \texttt{error\_handling}.
+\begin{description}
+    \item[Inhoud:] Kennismaking met \textbf{\texttt{FILE STATUS}} en de statuscode \texttt{35} (file not found), als brug naar foutafhandeling rond bestanden.
+    \item[Python-parallel:] \texttt{FileNotFoundError} en expliciet controleren van status na \texttt{OPEN}/\texttt{READ}.
+    \item[Validatiedoelen:] \texttt{FILE STATUS} (of \texttt{FS} in passende context) in \texttt{FILE-CONTROL} of record; de waarde \texttt{35} als literal of in een vergelijking.
+    \item[Inhoudsbadge:] \texttt{error\_handling}.
+\end{description}
 
 \section{Level-ervaring: editor, validatie en feedback}
 
@@ -566,7 +584,7 @@ De animaties zijn bewust kort en niet-blokkerend, zodat ze als positieve bekrach
     \item \textbf{Voltooid level:} een \texttt{Alert} meldt dat scores gelogd zijn maar oefenen nog kan.
 \end{itemize}
 
-\section{Samenvatting}
+\section{Tussenconclusie}
 
 De PoC vertaalt de in hoofdstuk~\ref{ch:stand-van-zaken} beschreven gamification-principes naar concrete schermen. \textit{PBL} wordt geïmplementeerd in punten, badges en leaderboards. \textit{Octalysis} wordt bewust ondersteund door strips, sequentiële levels, sociale kaarten en beloningsfeedback. \textit{MDA} helpt om het onderscheid te maken tussen verborgen regels in code en databank enerzijds en de beleving van de gebruiker anderzijds \autocite{Hunicke2004}.
 Technisch rust de toepassing op React/TypeScript, Monaco, Supabase (sectie~\ref{subsec:poc-db-schema}) en Vercel.

@@ -5,47 +5,27 @@
 \chapter{\IfLanguageName{dutch}{Methodologie}{Methodology}}%
 \label{ch:methodologie}
 
-%% In dit hoofstuk geef je een korte toelichting over hoe je te werk bent
-%% gegaan. Verdeel je onderzoek in grote fasen, en licht in elke fase toe wat
-%% de doelstelling was, welke deliverables daar uit gekomen zijn, en welke
-%% onderzoeksmethoden je daarbij toegepast hebt. Verantwoord waarom je
-%% op deze manier te werk gegaan bent.
-%% 
-%% Voorbeelden van zulke fasen zijn: literatuurstudie, opstellen van een
-%% requirements-analyse, opstellen long-list (bij vergelijkende studie),
-%% selectie van geschikte tools (bij vergelijkende studie, "short-list"),
-%% opzetten testopstelling/PoC, uitvoeren testen en verzamelen
-%% van resultaten, analyse van resultaten, ...
-%%
-%% !!!!! LET OP !!!!!
-%%
-%% Het is uitdrukkelijk NIET de bedoeling dat je het grootste deel van de corpus
-%% van je bachelorproef in dit hoofstuk verwerkt! Dit hoofdstuk is eerder een
-%% kort overzicht van je plan van aanpak.
-%%
-%% Maak voor elke fase (behalve het literatuuronderzoek) een NIEUW HOOFDSTUK aan
-%% en geef het een gepaste titel.
-
-%%=============================================================================
-%% Methodologie
-%%=============================================================================
-
 De centrale onderzoeksvraag vraagt om een gefaseerde, gestructureerde aanpak. Dit proces start op 1 maart 2026 en loopt tot de finale conclusie eind mei 2026. In dit hoofdstuk worden de doelstellingen, methoden en deliverables per fase toegelicht.
 
 \section{Fase 1: Literatuurstudie}
-De eerste fase vormt het theoretische fundament van de bachelorproef. De focus ligt hierbij op:
+De eerste fase vormt het theoretische fundament van de bachelorproef en focust op drie deelgebieden:
 \begin{itemize}
-    \item \textbf{Achtergrondinformatie:} Het huidige landschap bestuderen van junior COBOL developers.
+    \item \textbf{Achtergrondinformatie:} Het huidige landschap bestuderen van junior COBOL-developers en de mainframe-sector.
     \item \textbf{Syntaxisvergelijking:} Het identificeren van de grootste drempels voor junioren bij de overstap van Python naar COBOL.
-    \item \textbf{Gamification-analyse:} Het bestuderen van het Octalysis-framework en relevante spelmechanismen voor educatieve software.
+    \item \textbf{Gamification-analyse:} Het bestuderen van het Octalysis-framework, het MDA-framework, de PBL-triade en relevante meta-analyses over gamification in programmeeronderwijs.
 \end{itemize}
+
+\paragraph{Zoekstrategie en bronselectie.}
+De literatuur werd verzameld via Google Scholar, ScienceDirect, ACM Digital Library en de officiële IBM- en HOGENT-documentatieportalen. Gebruikte zoektermen omvatten onder meer \textit{``COBOL learning''}, \textit{``mainframe modernization''}, \textit{``gamification programming education''}, \textit{``Octalysis framework''} en \textit{``System Usability Scale''}. Voor empirische claims over de effectiviteit van gamification werd voorrang gegeven aan meta-analyses en peer-reviewed reviews boven losse case-studies, zodat conclusies niet op één enkele studie rusten. Voor cijfers over de mainframe-markt werd vertrouwd op recente surveyrapporten (Kyndryl, BMC, IBM Annual Report) gepubliceerd in 2021 of later, zodat de cijfers actueel blijven. Niet-academische tutorial-bronnen (zoals \textit{TutorialsPoint} of \textit{IBMMainframer}) worden enkel ingezet voor illustratieve syntaxvoorbeelden, nooit voor inhoudelijke claims.
+
 De resultaten van dit onderzoek bepalen de functionele vereisten voor de volgende fase.
 
 \section{Fase 2: Ontwerp en Ontwikkeling van de PoC}
-In deze fase wordt de theoretische kennis omgezet in een tastbaar product. 
+In deze fase wordt de theoretische kennis omgezet in een tastbaar product.
 \begin{itemize}
-    \item \textbf{Methodiek:} Er wordt gewerkt volgens een iteratief proces waarbij de abstracte logica van COBOL (zoals de \textit{Divisions} en \textit{PIC-clausules}) wordt vertaald naar gamified uitdagingen. 
-    \item \textbf{Deliverable:} Een interactieve webapplicatie die dient als Proof-of-Concept (PoC) voor de efficiëntiemeting.
+    \item \textbf{Methodiek:} Er wordt gewerkt volgens een iteratief proces in korte cycli van ongeveer een week, waarbij na elke cyclus de promotor en co-promotor de tussentijdse resultaten reviewen en bijsturen op het vlak van scope, didactische opbouw en gamification-elementen. Elke iteratie bestaat uit een ontwerpfase (papieren mockups of Figma-schetsen voor nieuwe schermen), een implementatiefase (React/TypeScript-componenten en Supabase-schema-migraties) en een interne testfase waarbij de auteur zelf alle levels doorloopt om regressies vroeg te detecteren.
+    \item \textbf{Volgorde van uitwerking:} eerst de kerninfrastructuur (auth, profielen, leveldefinities, validatieregels), daarna de gamification-laag (punten, badges, viering), en tot slot de sociale lagen (leaderboard, vrienden, profielen).
+    \item \textbf{Deliverable:} Een interactieve webapplicatie genaamd \textit{Learn COBOL} die dient als Proof-of-Concept (PoC).
 \end{itemize}
 
 \section{Fase 3: Evaluatie via vergelijkende literatuurstudie}
@@ -59,4 +39,4 @@ Na de oplevering van de PoC volgt een evaluatiefase waarin de gemaakte ontwerpke
 \end{itemize}
 
 \section{Fase 4: Conclusie}
-In de finale fase worden alle verzamelde data geanalyseerd en gesynthetiseerd. Dit resulteert in een definitief antwoord op de onderzoeksvraag en aanbevelingen voor de verdere modernisering van mainframe-onderwijs.
+In de finale fase worden de bevindingen uit de literatuurevaluatie gesynthetiseerd tot een definitief antwoord op de centrale onderzoeksvraag en de vijf deelvragen. Daarbij worden de implicaties voor het werkveld geformuleerd in de vorm van concrete aanbevelingen, en worden de beperkingen van de gekozen aanpak expliciet benoemd zodat een eventuele opvolger weet waar verder onderzoek wenselijk is.

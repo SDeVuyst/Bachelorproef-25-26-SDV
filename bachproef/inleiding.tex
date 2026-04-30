@@ -11,7 +11,7 @@
 %% onderzoeksdoelstelling en opzet van de bachelorproef.
 
 De hedendaagse financiële en overheidssector rust op een fundament van decennia-oude technologie: de programmeertaal COBOL. 
-Ondanks de opkomst van moderne talen zoals Python of Go, wordt geschat dat wereldwijd nog steeds honderden miljarden regels COBOL-code in productie zijn. \autocite{IBM2025}
+Ondanks de opkomst van moderne talen zoals Python of Go, wordt geschat dat wereldwijd nog steeds honderden miljarden regels COBOL-code in productie zijn \autocite{IBM2025}.
 Het beheer van deze kritieke infrastructuur komt echter in het gedrang door de 'silver tsunami': ervaren Mainframe-ontwikkelaars gaan massaal met pensioen, terwijl de instroom van nieuw talent stagneert. 
 Jonge IT-professionals, opgegroeid met moderne talen en interactieve leeromgevingen, ervaren een enorme drempel bij het betreden van het COBOL-ecosysteem.
 
@@ -19,13 +19,8 @@ Jonge IT-professionals, opgegroeid met moderne talen en interactieve leeromgevin
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
 
-% Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn.
-% Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. 
-% Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. 
-% Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
-
 Het fundamentele probleem ligt niet enkel bij de taal zelf, maar bij de verouderde didactische methodieken die worden gehanteerd om COBOL aan te leren.
-Waar moderne programmeertalen worden onderwezen via interactieve sandboxes, \textit{just-in-time} leerpaden en AI-gestuurde feedback-loops, is het COBOL-onderwijs grotendeels blijven steken in de methodieken van de vorige eeuw. 
+Waar moderne programmeertalen worden onderwezen via interactieve sandboxes en \textit{just-in-time} leerpaden, is het COBOL-onderwijs grotendeels blijven steken in de methodieken van de vorige eeuw. 
 
 De huidige leerervaring wordt gekenmerkt door:
 \begin{itemize}
@@ -39,14 +34,12 @@ voor wie onmiddellijke feedback en een zichtbare progressie essentieel zijn voor
 Hierdoor ontstaat een motivatiecrisis: talentvolle ontwikkelaars haken af nog voordat ze de krachtige logica van het mainframe beheersen, wat leidt tot een kritiek tekort aan expertise bij banken, verzekeringsmaatschappijen en overheden.
 
 Gamification, het strategisch inzetten van spelmechanismen zoals beloningssystemen, leaderboards en levels in een niet-\allowbreak spelcontext kan hiervoor een oplossing bieden.
-Door gebruik te maken van een interactieve website, opgesteld aan de hand van het Octalysis-\allowbreak framework kan de student de verschillende aspecten van COBOL leren. 
+Door gebruik te maken van een interactieve website, opgesteld aan de hand van het Octalysis-\allowbreak framework \autocite{Chou2015} kan de student de verschillende aspecten van COBOL leren. 
 Deze aspecten, zoals de verschillende \textit{divisions}, worden gradueel aangeleerd volgens levels.
 
-% ===========================================ONDERZOEKSVRAAG=========================================== % DONE
+% =========================================== ONDERZOEKSVRAAG =========================================== %
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
-
-% Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
 
 Aan de hand van deze probleemstelling wordt er onderzoek gedaan naar de centrale onderzoeksvraag: 
 \textit{"Hoe efficiënt is gamification bij het aanleren van COBOL aan junior developers die gewend zijn aan moderne talen zoals Python?"}\break
@@ -64,20 +57,15 @@ We zoeken een onderbouwd antwoord op die vraag. Daarom worden de volgende deelvr
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
-% Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
 Het doel van deze bachelorproef is het ontwerpen en evalueren van een innovatieve leermethode die de instroom van mainframe-ontwikkelaars stimuleert. Het beoogde resultaat is tweeledig: 
 Ten eerste een theoretisch kader dat gamification (spelmechanismen in een niet-spelcontext) koppelt aan mainframe-educatie. 
 Ten tweede de ontwikkeling van een \textbf{Proof-of-Concept (PoC)} in de vorm van een interactieve webapplicatie. 
 
-Door gebruik te maken van het \textbf{Octalysis-framework} van Yu-kai Chou, zal de applicatie inspelen op intrinsieke motivatoren zoals \textit{Development \& Accomplishment} en \textit{Empowerment of Creativity}. 
-Het succes van dit onderzoek wordt gemeten aan de hand van de gebruikservaring en de snelheid waarmee proefpersonen de basisconcepten van COBOL succesvol weten toe te passen in vergelijking met klassieke methoden.
+Door gebruik te maken van het \textbf{Octalysis-framework} \autocite{Chou2015}, zal de applicatie inspelen op intrinsieke motivatoren zoals \textit{Development \& Accomplishment} en \textit{Empowerment of Creativity}. 
+Het succes van dit onderzoek wordt afgemeten aan twee zaken: de mate waarin de gemaakte ontwerpkeuzes door bestaand empirisch onderzoek over gamification in programmeeronderwijs worden ondersteund, en de bruikbaarheid van de PoC als concreet startpunt voor een toekomstige empirische opvolgstudie.
 % ================================================ OPZET ================================================ %
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
-
-% Het is gebruikelijk aan het einde van de inleiding een overzicht te
-% geven van de opbouw van de rest van de tekst. Deze sectie bevat al een aanzet
-% die je kan aanvullen/aanpassen in functie van je eigen tekst.
 
 De rest van deze bachelorproef is als volgt opgebouwd:
 

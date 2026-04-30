@@ -35,7 +35,7 @@ Deze enorme codebase vormt de basis voor kritieke sectoren zoals:
 \begin{itemize}
       \item \textbf{Financiële instellingen:} Mainframes verwerken naar schatting 85\% van het wereldwijde betalingsverkeer. 45 van de top 50 banken, waaronder instellingen zoals ING en de ECB, maken gebruik van deze systemen \autocite{IBM2022a}.
       \item \textbf{Overheid en Zorg:} Cruciale diensten zoals pensioenuitbetalingen, belastinginning en de beveiliging van patiëntgegevens berusten op COBOL-applicaties die door de jaren heen zijn geoptimaliseerd \autocite{IBM2022}.
-      \item \textbf{Retail en Logistiek:} Grote retailers en logistieke bedrijven vertrouwen op de ongeëvenaarde verwerkingskracht voor voorraadbeheer en transactieverwerking op globale schaal.
+      \item \textbf{Retail en Logistiek:} Grote retailers en logistieke bedrijven gebruiken mainframes voor voorraadbeheer en transactieverwerking op globale schaal, omwille van de combinatie van hoge transactievolumes en betrouwbaarheid die ook in de financiële sector relevant is.
 \end{itemize}
 
 De marktwaarde onderstreept deze relevantie: in 2022 werd de mainframemarkt geschat op 2,9 miljard dollar, met een verwachte groei naar 5,6 miljard dollar in 2032 \autocite{Allied2022}. 
@@ -53,7 +53,7 @@ Dit creëert een kloof op de arbeidsmarkt, waarbij er steeds minder programmeurs
 Voor een junior developer betekent dit niet alleen een taalkundige barrière, maar ook een verschuiving in de manier waarop zij met legacy-systemen moeten omgaan.
 
 De noodzaak om deze nieuwe generatie aan te trekken en op te leiden is zichtbaar in de bedrijfsstrategieën. 
-80\% van de bedrijven heeft in 2025 hun mainframe-strategie aangepast met het oog op modernisering \autocite{Kyndryl2025}. 
+Volgens de \textit{2025 State of Mainframe Modernization Survey} van Kyndryl, een wereldwijde bevraging van mainframe-besluitvormers in grote organisaties, heeft 80\% van de bedrijven in 2025 hun mainframe-strategie aangepast met het oog op modernisering \autocite{Kyndryl2025}. 
 Van deze projecten is slechts 16\% gericht op het verlaten van het platform; de meerderheid kiest voor integratie met de cloud (34\%) of modernisering op het mainframe zelf (43\%) \autocite{Kyndryl2025}.
 Deze cijfers onderstrepen dat COBOL-expertise cruciaal blijft, maar dat de methode waarop deze kennis wordt overgedragen aan de nieuwe generatie developers moet evolueren.
 
@@ -66,7 +66,7 @@ Daarom lichten we in deze sectie toe hoe COBOL is gestructureerd en trekken we e
 Python dient daarbij als referentiepunt, omdat het voor beginnende programmeurs de meest gehanteerde taal is, met name vanwege de leesbaarheid en de intuïtieve structuur.
 
 \subsection{Programmastructuur}
-In tegenstelling tot Python-scripts, die vaak top-down worden uitgevoerd, volgt een COBOL-programma een strak gedefinieerde structuur. \autocite{TutorialsPoint}
+In tegenstelling tot Python-scripts, die vaak top-down worden uitgevoerd, volgt een COBOL-programma een strak gedefinieerde structuur \autocite{Ebbers2011}.
 
 \begin{figure}[H]
 \centering
@@ -88,7 +88,7 @@ In tegenstelling tot Python-scripts, die vaak top-down worden uitgevoerd, volgt 
 
 \end{figure}
 
-Een COBOL programma bestaat uit 4 \textit{Divisions}: \autocite{IBMMainframer2021}
+Een COBOL-programma bestaat uit vier \textit{Divisions} \autocite{IBM2023}:
 
 \begin{itemize}
     \item \textbf{IDENTIFICATION DIVISION:} Bevat de metadata. Het is de enige verplichte division waarin de \texttt{PROGRAM-ID} wordt gedefinieerd.
@@ -141,12 +141,12 @@ De meest voorkomende symbolen in een \texttt{PIC}-clausule zijn:
         \textbf{Type} & \textbf{COBOL Definitie} & \textbf{Python Equivalent} \\ \hline
         Integer & \texttt{05 AGE-IN-YEARS PIC 9(03) VALUE 021} & \texttt{age\_in\_years = 21} \\ \hline
         String & \texttt{05 NAME PIC X(10) VALUE 'Jos'} & \texttt{name = "Jos"} \\ \hline
-        Decimal & \texttt{05 PRICE PIC S9(5)V99 VALUE -123.45} & \texttt{price = -123.45} \\ \hline
+        Decimal & \texttt{05 PRICE PIC S9(5)V99 VALUE -123.45} & \texttt{price = Decimal('-123.45')} \\ \hline
     \end{tabular}
 \end{table}
 
 De \texttt{PIC}- of \texttt{PICTURE}-clausule kan ook worden geschreven zonder de \texttt{VALUE}-clausule. 
-In dat geval wordt de variabele automatisch geïnitialiseerd met de standaardwaarde van het opgegeven datatype. \autocite{IBMMainframer2021}
+In dat geval wordt de variabele automatisch geïnitialiseerd met de standaardwaarde van het opgegeven datatype \autocite{IBM2023}.
 
 \begin{itemize}
     \item Voor numerieke velden (bijvoorbeeld \texttt{PIC 9(5)}) wordt het veld geïnitialiseerd met nullen.
@@ -205,9 +205,6 @@ employee = {
     }
 }
 \end{lstlisting}
-
-%% Object-georiënteerd programmeren wordt apart behandeld in
-%% sectie~\ref{subsec:cobol-oop} (na 'Functies', vóór 'Error Handling').
 
 \subsection{Conditionals}
 Het grootste verschil bij conditionele logica is de manier waarop de scope van een blok wordt afgesloten \autocite{IBM2023}.
@@ -295,14 +292,13 @@ In modernere COBOL-standaarden kan men ook gebruikmaken van \texttt{PROGRAM-ID} 
 
     PROCEDURE DIVISION.
 
-    ADD-NUMBERS.
-        COMPUTE RESULT = NUM-1 + NUM-2.
-        STOP RUN.
-
     MAIN.
-        PERFORM ADD-NUMBERS 
+        PERFORM ADD-NUMBERS
         DISPLAY RESULT
         STOP RUN.
+
+    ADD-NUMBERS.
+        COMPUTE RESULT = NUM-1 + NUM-2.
 
 \end{lstlisting}
 
@@ -313,6 +309,8 @@ def add_numbers(num_1, num_2):
 result = add_numbers(5, 3)
 print(result)
 \end{lstlisting}
+
+Merk op dat COBOL hoofdletters en koppeltekens (\texttt{ADD-NUMBERS}) gebruikt voor identifiers, terwijl Python doorgaans \emph{snake\_case} met underscores hanteert (\texttt{add\_numbers}). Dit visuele verschil is voor een Python-georiënteerde junior klein maar consistent en helpt om bij het lezen van COBOL meteen te herkennen welke benamingen identifiers zijn.
 
 \subsubsection{Parameter- en Return-verschillen}
 Er bestaan fundamentele verschillen in hoe beide talen omgaan met parameters en returnwaarden:
@@ -370,12 +368,12 @@ De componenten zijn de meest zichtbare uitingen hiervan, vaak samengevat onder d
 
 \subsubsection{Veelvoorkomende Game-elementen: PBL}
 
-De meest bekende en toegepaste elementen binnen gamification staan bekend als de PBL-triade: \textit{Points}, \textit{Badges} en \textit{Leaderboards} \autocite{KevinWerbach2020}.
+De meest bekende en toegepaste elementen binnen gamification staan bekend als de PBL-triade: \textit{Points}, \textit{Badges} en \textit{Leaderboards} \autocite{KevinWerbach2020}. In een gamified proces worden gewenste activiteiten met deze drie componenten beloond, waardoor mensen worden aangemoedigd om die activiteiten uit te voeren.
 
 \begin{itemize}
-    \item \textbf{Points (Punten):} In een gamified proces worden gewenste activiteiten beloond met punten. Op die manier worden mensen aangemoedigd om die activiteiten uit te voeren. \autocite{KevinWerbach2020}
-    \item \textbf{Badges (Badges/Trofeeën):} Badges zijn een uitgebreidere versie van punten. Een badge is een visuele weergave van een prestatie binnen het gamified proces. \autocite{KevinWerbach2020}
-    \item \textbf{Leaderboards (Ranglijsten):} Volgens \textcite{KevinWerbach2020} zijn leaderboards het meest problematische onderdeel van de PBL-triade. Hoewel ze motiveren door sociale vergelijking en zichtbare progressie, kunnen ze ook demotiveren wanneer de afstand tot de top te groot is. In zakelijke omgevingen leiden ze vaak tot ongewenst gedrag en verminderde prestaties, doordat de focus verschuift naar een destructieve competitie.
+    \item \textbf{Points (Punten):} de meest directe vorm van beloning, gekoppeld aan concrete acties of mijlpalen.
+    \item \textbf{Badges:} een visuele weergave van een prestatie, vaak met een ontdekkingscomponent (welke badges er nog \textit{locked} zijn).
+    \item \textbf{Leaderboards (Ranglijsten):} volgens \textcite{KevinWerbach2020} het meest problematische onderdeel van de PBL-triade. Hoewel ze motiveren door sociale vergelijking en zichtbare progressie, kunnen ze ook demotiveren wanneer de afstand tot de top te groot is. In zakelijke omgevingen leiden ze vaak tot ongewenst gedrag en verminderde prestaties, doordat de focus verschuift naar een destructieve competitie.
 \end{itemize}
 
 \subsubsection{Naast PBL}
@@ -383,17 +381,18 @@ Hoewel veel gamification-implementaties zich beperken tot de PBL-triade, is dit 
 Punten, badges en ranglijsten zijn populair omdat ze vertrouwd aanvoelen en eenvoudig te integreren zijn via bestaande software en bekende systemen, zoals loyaliteitsprogramma's.
 Echter, wie de volledige waarde uit gamification wil halen, moet verder kijken dan deze drie elementen alleen.
 Het blindelings vertrouwen op PBL's kan tot problemen leiden, omdat ze niet voor elk project de juiste oplossing bieden.
-Het ontwerp van een systeem dat werkelijk als een spel functioneert, steunt op inzicht in de onderliggende spelmechanieken en dynamieken die een ervaring intrinsiek motiverend maken. \autocite{KevinWerbach2020}
+Het ontwerp van een systeem dat werkelijk als een spel functioneert, steunt op inzicht in de onderliggende spelmechanieken en dynamieken die een ervaring intrinsiek motiverend maken \autocite{KevinWerbach2020}.
 
 \subsubsection{Herhaling, beloning en spaced repetition}
 
-Waarom zou een gebruiker opnieuw aan een level beginnen na meerdere mislukte pogingen?\\ \\
+Waarom zou een gebruiker opnieuw aan een level beginnen na meerdere mislukte pogingen?
+
 Enerzijds speelt een \emph{intrinsieke} verwachting: elke (al dan niet geslaagde) poging geeft feedback over wat er misgelopen is.
 Daardoor wordt het mentale model van het level scherper: de gebruiker weet beter waar het misliep en wat de opdracht precies verlangt, zodat een volgende poging beter kan verlopen.
 Dit hoeft niet te betekenen dat het systeem na een mislukking bijkomende hulpmiddelen ontgrendelt; optionele ondersteuning (zoals tips of links naar documentatie) kan vanaf het begin in de interface staan, terwijl de gebruiker er bewust voor kan kiezen die niet te gebruiken.
 Anderzijds versterken \emph{extrinsieke} beloningen die typisch bij gamification horen het opnieuw proberen: punten (eventueel bonuspunten bij schonere of snellere prestaties), badges en andere zichtbare mijlpalen op een profiel, en ranglijsten die vooruitgang en vergelijking met anderen expliciet maken \autocite{KevinWerbach2020}.
 Die combinatie van vaardigheidsopbouw en concrete beloningsdoelen (punten, badges, zichtbare vooruitgang) sluit aan bij de Octalysis-\emph{Core Drive} \textit{Development \& Accomplishment} \autocite{Chou2015}.
-\\ \\
+
 Los van game-elementen is \emph{spaced repetition} (of het plannen van herhaling met toenemende tussenpozen) een breed gedragen strategie om feiten en procedures langer te onthouden; in de praktijk wordt die vaak ondersteund door digitale kaarten (bijvoorbeeld Anki).
 Onderliggend ligt het \emph{spacing effect} in de leerpsychologie: leren verspreid over meerdere sessies levert typisch betere retentie op dan het massaal herhalen van dezelfde stof in één blok \autocite{Cepeda2006}.
 Een gamified leerpad met levels en herhaalbare opdrachten kan daarmee worden gelezen als een vorm van \emph{distributed practice}: gebruikers krijgen herhaalde blootstelling aan dezelfde concepten.
@@ -415,12 +414,12 @@ In tegenstelling tot passieve media zoals film of literatuur, wordt de inhoud va
 \begin{itemize}
     \item \textbf{Mechanics (Mechanieken):} Dit zijn de fundamentele bouwstenen van de game op het niveau van data en algoritmen. 
     Het omvat de regels, de fysica van de gamewereld en de specifieke acties die een speler kan uitvoeren (zoals springen, punten verdienen of een tijdslimiet). 
-    In een zakelijke gamification-context zijn dit bijvoorbeeld de algoritmen die bepalen wanneer een gebruiker een badge ontvangt. \autocite{Hunicke2004}.
+    In een zakelijke gamification-context zijn dit bijvoorbeeld de algoritmen die bepalen wanneer een gebruiker een badge ontvangt \autocite{Hunicke2004}.
 
     \item \textbf{Dynamics (Dynamiek):} Dit beschrijft het \textit{run-time} gedrag van de mechanieken wanneer ze in werking treden door interactie van de speler. 
     Dynamics ontstaan wanneer verschillende mechanics op elkaar inwerken. 
     Een tijdslimiet (mechanic) gecombineerd met een ranglijst (mechanic) creëert bijvoorbeeld een gevoel van tijdsdruk en competitie (dynamics). 
-    Dit is het niveau waarop strategieën en speelstijlen van gebruikers zichtbaar worden. \autocite{Hunicke2004}
+    Dit is het niveau waarop strategieën en speelstijlen van gebruikers zichtbaar worden \autocite{Hunicke2004}.
 
     \item \textbf{Aesthetics (Esthetiek):} Dit verwijst niet naar het visuele aspect, maar naar de \textit{emotionele reactie} die bij de speler wordt opgeroepen. 
     Het gaat om de "ervaring van plezier". 
@@ -447,7 +446,7 @@ Het gaat daarbij niet om een direct oorzakelijk verband tussen ontwerper en spel
 \end{figure}
 
 Door deze gelaagdheid te erkennen, kunnen ontwikkelaars voorkomen dat ze louter "functiegericht" ontwerpen. 
-Het MDA-framework dwingt de ontwerper om na te denken over hoe een kleine wijziging in de code (Mechanics) de volledige emotionele beleving (Aesthetics) van de eindgebruiker kan beïnvloeden. \autocite{Hunicke2004}
+Het MDA-framework dwingt de ontwerper om na te denken over hoe een kleine wijziging in de code (Mechanics) de volledige emotionele beleving (Aesthetics) van de eindgebruiker kan beïnvloeden \autocite{Hunicke2004}.
 
 \subsubsection{Octalysis-framework}
 Een ander veelgebruikt raamwerk is het \textit{Octalysis-framework}, ontwikkeld door \textcite{Chou2015}. 
@@ -500,4 +499,4 @@ Voor COBOL ontbreekt deze infrastructuur grotendeels.
 De bestaande COBOL-leermiddelen zijn voornamelijk statisch: PDF-handleidingen (zoals de \textit{Enterprise COBOL Language Reference} \autocite{IBM2023}), tekstuele tutorials of klassieke video-cursussen \autocite{IBMMainframer2021}. 
 Interactieve, gamified omgevingen die specifiek gericht zijn op junior developers met een achtergrond in moderne talen, zijn nagenoeg afwezig. 
 Deze kloof tussen de leerverwachtingen van de doelgroep en het beschikbare aanbod vormt een kernmotivatie voor de Proof-of-Concept in hoofdstuk~\ref{ch:poc}: de gamified principes die hun nut elders bewezen hebben, worden hier toegepast op een taal waar dat tot nog toe nauwelijks gebeurde.
-Hoe de effectiviteit van die toepassing concreet wordt gemeten (via SUS, leeruitkomsten, tijd-tot-succes, iteraties en een kwalitatieve thematische analyse) wordt verder uitgewerkt in hoofdstuk~\ref{ch:evaluatie}.
+Hoe de plausibiliteit van die toepassing wordt geëvalueerd, namelijk via een vergelijkende literatuurstudie waarin elke ontwerpkeuze wordt afgezet tegen bestaand empirisch onderzoek, wordt verder uitgewerkt in hoofdstuk~\ref{ch:evaluatie}.
