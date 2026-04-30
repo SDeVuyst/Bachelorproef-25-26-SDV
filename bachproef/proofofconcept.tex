@@ -72,7 +72,7 @@ Wordt spaarzaam ingezet: geen harde ``levens'' of reset van account, wel kan soc
 \label{tab:poc-octalysis-koppeling}
 \end{table}
 
-Vanuit het \textbf{MDA-perspectief} \autocite{Hunicke2004} zijn de \textit{mechanics} onder meer: validatiecode, puntberekening, badge-upserts\footnote{\textit{Upsert} = \textit{update} + \textit{insert}
+Vanuit het \textbf{MDA-perspectief} \autocite{Hunicke2004} zijn de \textit{mechanics} onder meer: validatiecode, puntberekening, badge-upserts\footnote{Upsert = update + insert}
 De \textit{dynamics} ontstaan tijdens gebruik: competitie om rang, het proberen van een first-try bonus, het vergelijken met vrienden.
 De beoogde \textit{aesthetics} (in de MDA-zin van emotionele ervaring) zijn onder meer \textit{Challenge} (levels overwinnen) en een lichte \textit{Fantasy} door het mainframe-thema.
 
@@ -94,8 +94,23 @@ Deze keuze beperkt operationele complexiteit: er is geen eigen server te hosten 
 
 \subsection{Databasemodel}
 \label{subsec:poc-db-schema}
-De client wordt gegenereerd tegen het Supabase-typescriptschema. Hieronder volgt een samenvatting van de publieke tabellen en hun kolommen zoals ze in de PoC worden gebruikt.
-De rij \texttt{profiles} gebruikt \texttt{id} gelijk aan de gebruikers-id uit Supabase Auth (\texttt{auth.users}).
+Het databasemodel van \textit{Learn COBOL PoC} kun je ook als \textbf{entiteit-relatiediagram} lezen.
+De gebruiker komt overeen met één rij in \texttt{profiles}; de primaire sleutel \texttt{id} is tegelijk vreemde sleutel naar \texttt{auth.users} (Supabase Auth).
+Pogingen per level staan in \texttt{level\_attempts}. Daarin staan onder meer \texttt{success}, tijdstippen en tellers zoals \texttt{submit\_count} en \texttt{validation\_fail\_count}.
+Badge-types staan in \texttt{badge\_definitions}; wie wat verdiende, staat in \texttt{user\_badges}.
+Vriendschappen tussen gebruikers staat in \texttt{friendships} (met status pending of accepted, indien niet accepted wordt de rij verwijderd).
+Losse gebeurtenissen voor analyse en evaluatie staan in \texttt{app\_events}.
+
+Figuur~\ref{fig:poc-er-supabase} toont de beschreven diagram.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{supabase-schema.png}
+\caption{Entiteit-relatiediagram (\texttt{profiles}, \texttt{level\_attempts}, \texttt{badge\_definitions}, \texttt{user\_badges}, \texttt{friendships}, \texttt{app\_events}) van de Learning COBOL PoC; foreign keys o.a.\ naar \texttt{auth.users} en \texttt{profiles}.}
+\label{fig:poc-er-supabase}
+\end{figure}
+
+Ter aanvulling op het entiteit-relatiediagram worden de tabellen hieronder in meer detail besproken.
 
 \begin{table}[H]
 \centering

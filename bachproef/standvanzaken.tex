@@ -73,7 +73,7 @@ In tegenstelling tot Python-scripts, die vaak top-down worden uitgevoerd, volgt 
 \centering
 \begin{minipage}{0.45\textwidth}
   \begin{itemize}
-    \item \textbf{Divisions:} Het hoogste structuurniveau: de vier \texttt{DIVISION}-blokken waarin een programma is opgebouwd. Waar de standaard dat voorschrijft, wordt een division verder onderverdeeld in \textbf{Sections} (koppen eindigend op \texttt{SECTION.}), die \emph{binnen} die division vallen---niet te verwarren met een division zelf. Voorbeelden zijn \texttt{WORKING-STORAGE SECTION} en \texttt{FILE SECTION} in de \texttt{DATA DIVISION}.
+    \item \textbf{Divisions:} Het hoogste structuurniveau: de vier \texttt{DIVISION}-blokken waarin een programma is opgebouwd. Waar de standaard dat voorschrijft, wordt een division verder onderverdeeld in \textbf{Sections} (koppen eindigend op \texttt{SECTION.}), die \emph{binnen} die division vallen. Voorbeelden zijn \texttt{WORKING-STORAGE SECTION} en \texttt{FILE SECTION} in de \texttt{DATA DIVISION}.
     \item \textbf{Paragraphs:} Benoemde blokken procedurele code in de \texttt{PROCEDURE DIVISION}: een door de programmeur of de taal gekozen naam gevolgd door een punt, met nul of meer \textbf{Sentences}. Paragraphs kunnen rechtstreeks onder de \texttt{PROCEDURE DIVISION} staan of gegroepeerd worden binnen een \textbf{Section} (die dan meerdere paragraphs omvat).
     \item \textbf{Sentences:} De combinatie van een of meer statements. Sentences komen voor in de \texttt{PROCEDURE DIVISION}. Een sentence eindigt met een punt.
     \item \textbf{Statements:} Uitvoerbare COBOL-instructies (\texttt{DISPLAY}, \texttt{MOVE}, \texttt{IF}, enz.) die concrete bewerkingen uitvoeren.
