@@ -5,259 +5,220 @@
 \chapter{\IfLanguageName{dutch}{Evaluatie \& Resultaten}{Evaluation \& Results}}
 \label{ch:evaluatie}
 
-Dit hoofdstuk beschrijft het evaluatieplan en de manier waarop resultaten verzameld en gerapporteerd worden. 
-Het doel is een onderbouwd antwoord te formuleren op de centrale onderzoeksvraag (sectie~\ref{sec:onderzoeksvraag}) en de deelvragen, 
-met een expliciete vergelijking tussen een \textbf{gamified leeromgeving} (de Proof-of-Concept uit hoofdstuk~\ref{ch:poc}) 
-en een \textbf{traditionele, documentatie-gebaseerde} aanpak (PDF-pack).
+In dit hoofdstuk wordt de Proof-of-Concept uit hoofdstuk~\ref{ch:poc} geëvalueerd.
+Anders dan een klassieke gebruikersstudie met deelnemers, gebeurt die evaluatie hier via een \textbf{vergelijkende literatuurstudie}: 
+elke ontwerpkeuze in \textit{Learn COBOL} wordt afgezet tegen de empirische bevindingen van bestaand onderzoek over gamification, programmeeronderwijs en didactiek.
+Het doel is een onderbouwd antwoord te formuleren op de centrale onderzoeksvraag (sectie~\ref{sec:onderzoeksvraag}) en de deelvragen, zonder zelf nieuwe empirische data te genereren.
 
-\section{Doel en onderzoeksvragen}
+\section{Doel en aanpak van de evaluatie}
 \label{sec:evaluatie-doel}
 
-De evaluatie heeft drie concrete doelstellingen:
+De evaluatie heeft twee concrete doelstellingen:
 \begin{itemize}
-    \item \textbf{Leeruitkomst aantonen:} nagaan of deelnemers de basisconcepten van COBOL kunnen toepassen na het doorlopen van de leeractiviteiten.
-    \item \textbf{Leer-efficiëntie vergelijken (DV5):} nagaan hoe snel en met hoeveel iteraties deelnemers tot een correct resultaat komen met de PoC versus met traditionele documentatie.
-    \item \textbf{Gebruikservaring en motivatie duiden:} de bruikbaarheid van de PoC meten (SUS) en via interview/observatie verklaren welke elementen motiverend of demotiverend zijn.
+    \item \textbf{Plausibiliteit aantonen:} per gamification-element en per Octalysis Core Drive nagaan of de gemaakte ontwerpkeuze door de literatuur wordt ondersteund, gerelativeerd of tegengesproken.
+    \item \textbf{Antwoord op de deelvragen onderbouwen:} de inhoudelijke antwoorden uit hoofdstuk~\ref{ch:stand-van-zaken} en hoofdstuk~\ref{ch:poc} koppelen aan empirisch onderzoek over de effectiviteit van die keuzes.
 \end{itemize}
 
-De koppeling met de deelvragen uit sectie~\ref{sec:onderzoeksvraag} is als volgt. Een belangrijk onderscheid is dat sommige deelvragen \textbf{inhoudelijk} al beantwoord worden in eerdere hoofdstukken (literatuurstudie en PoC), terwijl dit hoofdstuk die antwoorden \textbf{empirisch ondersteunt} met gebruikerstesten.
-\begin{itemize}
-    \item \textbf{DV1 (uitdagingen in syntaxis en logica):} wordt primair behandeld in de literatuurstudie (hoofdstuk~\ref{ch:stand-van-zaken}). De evaluatie levert \textbf{aanvullende indicaties} via foutenpatronen en observaties (welke concepten blijken in de praktijk het lastigst).
-    \item \textbf{DV2 (barrières bij leren):} wordt in de literatuurstudie beschreven en in de PoC vertaald naar leerdoelen. De evaluatie valideert dit via \textbf{kwalitatieve duiding} (waar lopen beginners vast en waarom) en procesdata (iteraties per concept).
-    \item \textbf{DV3 (gamification-elementen en best passende elementen):} wordt theoretisch beantwoord in de literatuurstudie (PBL, Octalysis, MDA). De evaluatie toont \textbf{hoe deelnemers deze elementen ervaren} (motiverend/demotiverend) en welke effecten deelnemers zelf rapporteren.
-    \item \textbf{DV4 (ontwerp van gamified leeromgeving):} wordt concreet uitgewerkt in hoofdstuk~\ref{ch:poc}. De evaluatie toetst \textbf{bruikbaarheid en leerbaarheid} (SUS + observaties) en identificeert verbeterpunten.
-    \item \textbf{DV5 (leer-efficiëntie t.o.v.\ traditioneel):} wordt in dit hoofdstuk \textbf{expliciet en kwantitatief} beantwoord door PoC versus PDF-pack te vergelijken op tijd, succes en iteraties.
-\end{itemize}
+De koppeling met de deelvragen uit sectie~\ref{sec:onderzoeksvraag} is als volgt.
+DV1, DV2, DV3 en DV4 worden inhoudelijk al beantwoord in respectievelijk hoofdstuk~\ref{ch:stand-van-zaken} en hoofdstuk~\ref{ch:poc}.
+Dit hoofdstuk geeft die antwoorden hun \emph{empirische context} door telkens te tonen wat vergelijkbaar onderzoek over de relevante mechanismen rapporteert.
+DV5 wordt in dit hoofdstuk \emph{volledig} beantwoord, op basis van de meta-analyse van \textcite{Zhan2022} en het kwalitatieve verschil tussen interactieve en statische leertools beschreven in hoofdstuk~\ref{ch:stand-van-zaken}.
 
-\section{Onderzoeksopzet}
-\label{sec:evaluatie-opzet}
+\subsection{Waarom een literatuurevaluatie en geen gebruikersstudie?}
+\label{subsec:evaluatie-keuze}
 
-\subsection{Doelgroep en inclusiecriteria}
-\label{subsec:evaluatie-doelgroep}
-
-De doelgroep bestaat uit junior IT'ers in opleiding (studenten Toegepaste Informatica) die voornamelijk ervaring hebben met moderne programmeertalen (zoals Python) en \textbf{geen voorafgaande COBOL-kennis} hebben.
+Een volwaardige empirische vergelijking (binnen-subject design met counterbalancing tussen de PoC en een traditioneel PDF-pack) was de oorspronkelijke ambitie van dit onderzoek.
+Twee elementen maakten die opzet binnen het tijdsbestek van een bachelorproef niet haalbaar:
 
 \begin{itemize}
-    \item \textbf{Inclusie:} student TI of vergelijkbaar profiel; basis programmeerervaring; ervaring met minstens één moderne taal (bv.\ Python); bereid om taken uit te voeren en vragenlijsten/interview te doorlopen.
-    \item \textbf{Exclusie:} eerdere COBOL-cursus, professionele COBOL-ervaring, of aantoonbare ervaring met mainframe-COBOL buiten algemene oriëntatie.
+    \item \textbf{Rekrutering en planning.} Voldoende deelnemers vinden die aan de inclusiecriteria voldoen vraagt veel screening. De doelgroep bestaat uit junior IT'ers met Python-ervaring én zonder enige COBOL-kennis, en typisch wordt \(N \geq 12\) als minimum gehanteerd. Studenten van de Mainframe-keuzerichting moeten zelf worden uitgesloten, waardoor de overige studentenpopulatie beperkt is.
+    \item \textbf{Materiaal en uitvoering.} Een eerlijke vergelijking vereist een vooraf gevalideerd PDF-pack, intake-formulieren, een SUS-vragenlijst en interview-protocollen, samen met de tijd om sessies van bijna een uur per deelnemer te plannen, op te nemen en te transcriberen.
 \end{itemize}
 
-\textbf{Praktisch (IRL):} tijdens rekrutering wordt een korte screening gebruikt om COBOL-voorkennis uit te sluiten (zie sectie~\ref{subsec:evaluatie-intake}).
+In plaats van een ondermaatse pilot uit te voeren met \(n=2\) of \(n=3\) deelnemers, wat niet meer dan anekdotische signalen zou opleveren, is bewust gekozen voor een methodisch andere aanpak: 
+de ontwerpkeuzes van de PoC theoretisch \emph{kalibreren} tegen de bestaande empirische literatuur. 
+Deze aanpak maakt geen sterke causale claim over de effectiviteit van \textit{Learn COBOL} zelf, maar levert een conceptueel onderbouwde uitspraak: \emph{indien} de PoC ingezet wordt zoals beschreven, is het op basis van vergelijkbaar onderzoek aannemelijk dat de gamification-elementen een positief effect hebben op motivatie en leerwinst.
+Sectie~\ref{sec:evaluatie-beperkingen-empirisch} beschrijft hoe een empirische opvolgstudie er concreet zou kunnen uitzien.
 
-\subsection{Design: within-subject met counterbalancing}
-\label{subsec:evaluatie-design}
+\section{Methode van de literatuurevaluatie}
+\label{sec:evaluatie-methode}
 
-Bij een beperkte steekproef maakt een \textbf{within-subject} design de vergelijking met traditionele documentatie eerlijker: elke deelnemer werkt zowel met de PoC als met het PDF-pack, maar op \textbf{verschillende conceptblokken}. Zo worden individuele verschillen (algemene programmeerskill, stress, taalvaardigheid) ingeperkt, omdat elke deelnemer zijn eigen referentiepunt vormt.
+De evaluatie volgt een eenvoudig drie-staps-protocol per ontwerpkeuze:
 
-\textbf{Counterbalancing} beperkt volgorde-effecten (leren/gewennen):
+\begin{enumerate}
+    \item \textbf{Beschrijf de ontwerpkeuze} in de PoC zoals geïmplementeerd (zie hoofdstuk~\ref{ch:poc}).
+    \item \textbf{Identificeer een empirische claim} uit de literatuur die op die keuze van toepassing is. Bij voorkeur uit een meta-analyse of breed gedragen review, zodat de claim niet op één studie rust.
+    \item \textbf{Beoordeel de uitlijning} tussen de ontwerpkeuze en de claim: bevestigt de literatuur de keuze, nuanceert ze de keuze, of waarschuwt ze ertegen?
+\end{enumerate}
+
+De voornaamste bronnen voor stap~2 zijn de meta-analyse van \textcite{Zhan2022} (over gamification in programmeeronderwijs), het werk van \textcite{KevinWerbach2020} (over de PBL-triade en haar valkuilen), het Octalysis-framework van \textcite{Chou2015}, het MDA-framework van \textcite{Hunicke2004}, het overzicht van \textcite{Cepeda2006} over het spacing effect en de marktanalyse van COBOL-leermiddelen uit hoofdstuk~\ref{ch:stand-van-zaken}.
+
+\textbf{Wat deze evaluatie niet doet.}
+Ze meet géén leeruitkomsten op deelnemers, géén SUS-scores, géén tijd-tot-succes en géén iteratie-aantallen. 
+De resultatensectie geeft per ontwerpkeuze een \emph{verwacht effect} (richting + grootteklasse waar mogelijk), niet een gemeten effect. 
+Sectie~\ref{sec:evaluatie-beperkingen} bespreekt de gevolgen van die afbakening voor de interpretatie van de resultaten.
+
+\section{Evaluatie van de PBL-elementen}
+\label{sec:evaluatie-pbl}
+
+De PoC implementeert de drie klassieke PBL-componenten: punten (met first-try bonus), badges (zeven inhoudsbadges, plus combinatieregels rond clean run, mijlpalen en speedrun) en een leaderboard. 
+\textcite{KevinWerbach2020} benadrukken dat PBL het \emph{startpunt} van gamification is, niet het eindpunt: enkel een dunne PBL-laag op een bestaand systeem leggen (de zogenaamde \textit{PBL-fallacy}) leidt zelden tot duurzame motivatie. 
+De vraag is dus niet of PBL aanwezig is, maar of de drie elementen ingebed zijn in een breder ontwerp dat onderliggende motivatoren raakt.
+
+\paragraph{Punten en first-try bonus.}
+De keuze om een geslaagd level 100 punten op te leveren en een eerste correcte indiening 25 bonuspunten extra, sluit aan bij wat \textcite{KevinWerbach2020} beschrijven als ``zinvolle'' puntenstructuren: punten zijn gekoppeld aan een concrete prestatie en niet aan louter aanwezigheid. 
+De first-try bonus introduceert daarnaast een lichte \textit{Loss \& Avoidance}-prikkel \autocite{Chou2015}: door de bonus te missen verlies je een onmiddellijk zichtbaar voordeel, wat aanzet tot zorgvuldig lezen vóór indienen. 
+Deze keuze wordt door de literatuur ondersteund.
+
+\paragraph{Badges.}
+De PoC kent zeven inhoudsbadges (één per leerthema) plus combinatiebadges. 
+Dit komt overeen met de aanbevelingen van \textcite{KevinWerbach2020} dat badges twee functies moeten combineren: een \emph{erkenning}- en een \emph{ontdekkings}-functie (gebruikers willen weten welke badges er nog \textit{locked} zijn). 
+De \texttt{badge\_definitions}-tabel met expliciete \texttt{how\_to\_earn}-tekst (zie tabel~\ref{tab:schema-badge-definitions} in hoofdstuk~\ref{ch:poc}) operationaliseert beide functies.
+
+\paragraph{Leaderboard.}
+Dit is het meest betwiste PBL-element. \textcite{KevinWerbach2020} waarschuwen expliciet dat leaderboards in zakelijke contexten kunnen demotiveren wanneer de afstand tot de top te groot is, en in extreme gevallen zelfs ongewenst gedrag kunnen uitlokken. 
+De PoC mitigeert dit risico op twee manieren: het volledige leaderboard staat op een aparte route (\texttt{/leaderboard}), en het dashboard toont een ingekorte top-drie van vrienden in plaats van de globale top-N. 
+Deze gelaagde aanpak (globale ranking beschikbaar maar niet opdringerig, en een sociaal nabije ranking standaard zichtbaar) is consistent met het advies van \textcite{KevinWerbach2020} en met de \textit{Social Influence \& Relatedness} Core Drive van \textcite{Chou2015}.
+
+\paragraph{Tussentijdse conclusie.}
+De PBL-implementatie in \textit{Learn COBOL} vermijdt de PBL-fallacy door alle drie de elementen aan een bredere ontwerplaag te koppelen (zie sectie~\ref{sec:evaluatie-octalysis} en~\ref{sec:evaluatie-mda} hieronder).
+De keuzes worden door de literatuur over PBL ondersteund, met een specifieke voorzichtigheidsnota rond het leaderboard die de PoC actief afdwingt.
+
+\section{Evaluatie tegen het Octalysis-framework}
+\label{sec:evaluatie-octalysis}
+
+Het Octalysis-framework van \textcite{Chou2015} biedt acht \textit{Core Drives} (CD's) als checklist om te beoordelen of een gamified systeem gebalanceerd is.
+Tabel~\ref{tab:eval-octalysis} koppelt elk Core Drive aan de concrete ontwerpkeuzes in de PoC en aan de bijhorende literatuurclaim over de verwachte impact.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|p{3.2cm}|X|p{3cm}|}
+\hline
+\textbf{Core Drive} & \textbf{Operationalisatie in de PoC} & \textbf{Verwachte richting (literatuur)} \\
+\hline
+CD1 \textit{Epic Meaning \& Calling} &
+Mainframe-strips (\texttt{WORKING-STORAGE}, \texttt{PROCEDURE DIVISION}) en het narratief rond COBOL voor kritieke infrastructuur. &
+Positief, zwak \autocite{Chou2015} \\
+\hline
+CD2 \textit{Development \& Accomplishment} &
+Levels, voortgangsbalk, checklist met vinkjes, punten, badges, viering bij succes, rang en tier op profiel. &
+Positief, sterk \autocite{Zhan2022,KevinWerbach2020} \\
+\hline
+CD3 \textit{Empowerment of Creativity \& Feedback} &
+Vrije code-invoer met onmiddellijke validatie tegen leerdoelen via \texttt{validateCobolLevelDetailed}. &
+Positief, sterk \autocite{Zhan2022,Chou2015} \\
+\hline
+CD4 \textit{Ownership \& Possession} &
+Profielpagina met avatar, cumulatieve punten en badge-collectie gekoppeld aan het account. &
+Positief, matig \autocite{Chou2015} \\
+\hline
+CD5 \textit{Social Influence \& Relatedness} &
+Vriendenlijst, top-drie vrienden op het dashboard, volledig leaderboard, profielen van vrienden. &
+Polariserend \autocite{KevinWerbach2020} \\
+\hline
+CD6 \textit{Scarcity \& Impatience} &
+Sequentiële ontgrendeling van levels; \textit{locked} badges blijven zichtbaar maar onbereikbaar. &
+Positief, mits matig \autocite{Chou2015} \\
+\hline
+CD7 \textit{Unpredictability \& Curiosity} &
+Optionele tips en documentatielinks per level; variatie in badge-eisen (speedrun, mijlpalen). &
+Positief, zwak \autocite{Chou2015} \\
+\hline
+CD8 \textit{Loss \& Avoidance} &
+Bewust beperkt: geen ``levens'' of accountreset, alleen first-try bonus die verloren kan gaan en sociale vergelijking via leaderboard. &
+Risicovol bij overgebruik \autocite{Chou2015} \\
+\hline
+\end{tabularx}
+\caption{Mapping van Octalysis Core Drives op ontwerpkeuzes in \textit{Learn COBOL}, met de verwachte richting van het effect volgens de literatuur.}
+\label{tab:eval-octalysis}
+\end{table}
+
+\paragraph{White hat / black hat balans.}
+\textcite{Chou2015} adviseert een combinatie van \textit{White Hat} motivatoren (CD1, CD2, CD3: positief en versterkend) en \textit{Black Hat} motivatoren (CD6, CD7, CD8: gebaseerd op schaarste, nieuwsgierigheid en verliesangst). 
+De PoC is duidelijk White-Hat-zwaar: vier van de zes ``positief''-cellen in tabel~\ref{tab:eval-octalysis} liggen in CD1--CD3, terwijl de Black-Hat-CD's bewust matig of als risico zijn ingezet. 
+Dit profiel is geschikt voor een leeromgeving waar duurzame, intrinsieke motivatie belangrijker is dan kortstondige urgentie.
+
+\paragraph{Verwachte effectgrootte.}
+De meta-analyse van \textcite{Zhan2022} rapporteert voor gamification in programmeeronderwijs een gestandaardiseerd gemiddeld effect van ongeveer \(SMD = 0{,}77\) op studentmotivatie en \(\approx 0{,}75\) op academische prestaties, beide medium-tot-grote effecten. 
+Aangezien de PoC alle door Zhan beschreven kerncomponenten (punten, badges, levels, directe feedback, sociale vergelijking) implementeert, is het aannemelijk dat een eventuele empirische test minstens binnen dezelfde grootteorde zou vallen. 
+Deze voorspelling moet wel met voorbehoud gelezen worden: de meta-analyse aggregeert sterk uiteenlopende studies en contexten, en de overdraagbaarheid naar specifiek COBOL-onderwijs is niet getest.
+
+\section{Evaluatie via het MDA-perspectief}
+\label{sec:evaluatie-mda}
+
+Het MDA-framework \autocite{Hunicke2004} dwingt om na te denken over hoe \textit{mechanics} (regels en code) zich vertalen in \textit{dynamics} (gedrag tijdens gebruik) en uiteindelijk in \textit{aesthetics} (de emotionele beleving).
+
 \begin{itemize}
-    \item \textbf{Groep 1 (PoC $\rightarrow$ PDF):} conceptblok A met PoC, conceptblok B met PDF-pack.
-    \item \textbf{Groep 2 (PDF $\rightarrow$ PoC):} conceptblok A met PDF-pack, conceptblok B met PoC.
+    \item \textbf{Mechanics:} validatiecode (\texttt{validateCobolLevelDetailed}), puntberekening, badge-upserts in \texttt{user\_badges}, sequentiële ontgrendeling.
+    \item \textbf{Dynamics:} competitie om rang, het mikken op een first-try bonus, het vergelijken van eigen voortgang met die van vrienden, herhaalbaar oefenen van een level (zie spaced repetition hieronder).
+    \item \textbf{Aesthetics:} \textit{Challenge} (levels overwinnen) als dominante emotie, met een lichte \textit{Fantasy} via het mainframe-thema en \textit{Narrative} via de strips.
 \end{itemize}
 
-\textbf{INVULLEN NA UITVOERING:} noteer het uiteindelijke aantal deelnemers per groep (\(n\)) en motiveer eventuele afwijkingen (uitval, no-shows).
+De evaluatie levert hier vooral een kwalitatieve check op: zijn de mechanics ontworpen om de beoogde aesthetics te ondersteunen?
+Een puntensysteem zonder zichtbare voortgang zou bijvoorbeeld \textit{Challenge} fragmenteren; in de PoC zorgt de combinatie van checklist, voortgangsbalk en celebration-overlay ervoor dat \textit{Challenge} en de bijhorende beloning in dezelfde momenten gebeuren. 
+Dit ontwerpprincipe, mechanics laten convergeren naar één coherente emotionele beleving, is wat \textcite{Hunicke2004} ``the right kind of fun'' noemen.
 
-\subsection{Definitie van “traditioneel”: PDF-pack}
-\label{subsec:evaluatie-traditioneel}
+\section{Evaluatie van het didactische ontwerp}
+\label{sec:evaluatie-didactisch}
 
-De traditionele conditie bestaat uit een \textbf{vast, reproduceerbaar PDF-pack} per conceptblok. Dit pack is bewust niet-interactief en bevat:
+Naast de gamification-laag bevat de PoC een aantal expliciet didactische keuzes die los van Octalysis of MDA staan.
+
+\paragraph{Heuristische validatie en checklistfeedback.}
+De keuze om de PoC niet te koppelen aan een echte COBOL-compiler maar te valideren via regex-patronen op leerdoelen, levert twee voordelen op: feedback is direct (geen compilatietijd) en feedback is in dezelfde \emph{taal} geformuleerd als de opdracht (``alle vier divisions aanwezig'') in plaats van compilermeldingen die voor beginners cryptisch overkomen. 
+Onderzoek over interactieve programmeeromgevingen toont dat het type feedback minstens even belangrijk is als de aanwezigheid ervan: feedback die expliciet leerdoel-gericht is, wordt door beginners beter benut dan generieke foutmeldingen \autocite{Zhan2022}. 
+De tegenkant is een verlies aan correctheidsgarantie: de PoC kan code goedkeuren die in een echte compiler zou falen. Sectie~\ref{sec:evaluatie-beperkingen} komt hierop terug.
+
+\paragraph{Distributed practice en spacing effect.}
+De levelstructuur met herhaalbare opdrachten, badge-eisen die meerdere bezoeken vereisen (bv.\ speedrun), en het feit dat een voltooid level later opnieuw kan worden geopend, ondersteunen \emph{distributed practice}. 
+\textcite{Cepeda2006} beschrijven in hun overzicht van het \emph{spacing effect} dat leren over meerdere kortere sessies typisch betere lange-termijn retentie oplevert dan één blokje massaal oefenen. 
+Een gamified leerpad met streaks, mijlpalen en herhaalbare levels is in dat opzicht een betere container voor verspreide oefening dan een statisch PDF-document, dat doorgaans één keer wordt doorlopen.
+
+\paragraph{Interactiviteit versus statische COBOL-leermiddelen.}
+Hoofdstuk~\ref{ch:stand-van-zaken} stelde vast dat het bestaande COBOL-leeraanbod overwegend bestaat uit PDF-handleidingen \autocite{IBM2023} en tekstuele tutorials \autocite{IBMMainframer2021}, terwijl voor moderne talen interactieve omgevingen (Codecademy, Exercism, LeetCode, \ldots) standaard zijn. 
+De meta-analyse van \textcite{Zhan2022} bevestigt dat interactieve, gamified omgevingen beter scoren op zowel motivatie (\(SMD \approx 0{,}77\)) als academische prestaties (\(SMD \approx 0{,}75\)) ten opzichte van traditionele documentatie-gebaseerde lesmethoden. 
+\textit{Learn COBOL} dicht voor één specifieke taal de kloof tussen leerverwachting en leeraanbod die in het mainframe-onderwijs nog open ligt.
+
+\section{Synthese: antwoord per deelvraag}
+\label{sec:evaluatie-synthese}
+
+\begin{description}
+    \item[DV1: uitdagingen in syntaxis en logica.] Inhoudelijk beantwoord in hoofdstuk~\ref{ch:stand-van-zaken} (sectie~\ref{sec:COBOL-versus-python}). De voornaamste struikelblokken voor een Python-georiënteerde junior zijn de \texttt{PIC}-clausule (vooral met impliciete decimaal \texttt{V}), de hiërarchische level-numbers, de scope-valstrik met de punt (\texttt{.}) en de verbose programmastructuur. Object-georiënteerd programmeren bestaat sinds COBOL 2002 maar speelt in de praktijk een marginale rol \autocite{IBM2025a, Upadhaya2023}.
+
+    \item[DV2: barrières bij het leren.] Beschreven in hoofdstuk~\ref{ch:stand-van-zaken}. Bovenop de syntactische verschillen geldt de \emph{didactische barrière}: het bestaande COBOL-leermateriaal is overwegend statisch, terwijl de doelgroep gewend is aan interactieve sandboxes. Deze mismatch tussen leerverwachting en aanbod versterkt de instroomcrisis.
+
+    \item[DV3: gamification-elementen.] Het Octalysis-framework van \textcite{Chou2015} en de PBL-analyse van \textcite{KevinWerbach2020} blijken complementair. De evaluatie in dit hoofdstuk toont dat een White-Hat-zware combinatie (CD2 \textit{Development \& Accomplishment} + CD3 \textit{Empowerment of Creativity \& Feedback}) het sterkst aansluit bij het doel van duurzame leermotivatie, terwijl elementen rond \textit{Loss \& Avoidance} (CD8) bewust beperkt moeten blijven om beginners niet te ontmoedigen. Het leaderboard is een polariserend element en wordt in de PoC gelaagd ingezet (vriendentop op dashboard, volledige ranking op aparte route).
+
+    \item[DV4: ontwerp van een gamified leeromgeving.] Concreet uitgewerkt in hoofdstuk~\ref{ch:poc}. De evaluatie in dit hoofdstuk toont dat de zeven gegradeerde levels, de heuristische validatie via leerdoelchecklist, het puntensysteem met first-try bonus, de badge-architectuur, de sociale lagen en het mainframe-thema elk plausibel zijn op basis van bestaand onderzoek over gamification, programmeeronderwijs en didactiek. Geen van de gemaakte keuzes wordt door de geraadpleegde literatuur tegengesproken.
+
+    \item[DV5: leer-efficiëntie t.o.v.\ traditioneel.] Op basis van de literatuurevaluatie is het aannemelijk dat een gamified leeromgeving zoals \textit{Learn COBOL} hoger zou scoren dan een traditioneel PDF-pack op zowel motivatie als leeruitkomsten. De meta-analyse van \textcite{Zhan2022} rapporteert voor gamification in programmeeronderwijs medium-tot-grote effectgroottes (\(SMD \approx 0{,}77\) op motivatie, \(\approx 0{,}75\) op prestaties). Een definitief, kwantitatief antwoord op DV5 vereist een empirische opvolgstudie (zie sectie~\ref{sec:evaluatie-beperkingen-empirisch}); op basis van deze literatuurevaluatie luidt het voorlopige antwoord: \emph{positief, met een verwachte effectgrootte in de medium-tot-grote categorie}.
+\end{description}
+
+\section{Beperkingen}
+\label{sec:evaluatie-beperkingen}
+
+Een literatuurevaluatie heeft een aantal inherente beperkingen die expliciet vermeld moeten worden:
+
 \begin{itemize}
-    \item een beknopte uitleg (1--3 pagina's) over de relevante COBOL-concepten,
-    \item 1--2 voorbeeldsnippets,
-    \item een opdrachtomschrijving met dezelfde leerdoelen als de PoC-levels,
-    \item een correctheidschecklist/rubric (zodat evaluatie niet subjectief wordt).
+    \item \textbf{Geen empirische geldigheid voor de PoC zelf.} De resultaten ondersteunen de \emph{plausibiliteit} van de ontwerpkeuzes, maar tonen niet aan dat \textit{Learn COBOL} in de praktijk een hogere leer-efficiëntie haalt dan een statisch alternatief. Effectgroottes uit \textcite{Zhan2022} zijn aggregaten over heterogene studies en talen, niet over deze specifieke applicatie.
+    \item \textbf{Selectiebias in de literatuur.} De geraadpleegde meta-analyses focussen overwegend op moderne talen (Python, Java, Scratch, \ldots). Of de gemeten effecten zich op dezelfde manier voordoen bij een verbose, decennia-oude taal als COBOL is niet onderzocht.
+    \item \textbf{Confounding van interactiviteit en gamification.} De positieve effecten in \textcite{Zhan2022} ontstaan deels door interactiviteit op zich, niet enkel door gamification. Een gamified PoC en een hypothetische niet-gamified maar wel interactieve sandbox kunnen mogelijk vergelijkbaar scoren; deze evaluatie kan dat onderscheid niet maken.
+    \item \textbf{Heuristische validatie.} De PoC valideert COBOL-code via regex-patronen, niet via een echte compiler. False positives en false negatives zijn dus mogelijk; in een literatuurevaluatie kan deze beperking enkel benoemd worden, niet kwantitatief geschat.
+    \item \textbf{Geen meting van usability.} Een literatuurevaluatie kan de System Usability Scale niet vervangen. De bruikbaarheid van \textit{Learn COBOL}, een noodzakelijke randvoorwaarde voor leer-efficiëntie, blijft onbevestigd.
 \end{itemize}
 
-\textbf{Praktisch (IRL):} maak het PDF-pack \textbf{vooraf} en gebruik voor elke deelnemer exact dezelfde versie. Neem de PDF op als bijlage of archiveer de versie (bestandsnaam + datum) zodat de studie reproduceerbaar blijft.
+\section{Aanbevelingen voor empirische opvolging}
+\label{sec:evaluatie-beperkingen-empirisch}
 
-\section{Taken: conceptblokken en mapping naar de PoC}
-\label{sec:evaluatie-taken}
+De voornaamste aanbeveling die uit dit hoofdstuk volgt is logisch: een empirische opvolgstudie is wenselijk om de literatuur-gebaseerde voorspellingen te toetsen. 
+Onderstaande opzet schetst hoe zo'n studie er minimaal zou kunnen uitzien:
 
-\subsection{Conceptblokken}
-De leerstof wordt opgesplitst in twee conceptblokken met vergelijkbare moeilijkheid, gebaseerd op de levelstructuur uit hoofdstuk~\ref{ch:poc}:
 \begin{itemize}
-    \item \textbf{Conceptblok A (Levels 1--3):} programmaskelet (vier divisions), \texttt{PIC}/\texttt{PICTURE} en datahiërarchie.
-    \item \textbf{Conceptblok B (Levels 4--6):} conditionele logica (\texttt{IF}/\texttt{ELSE}/\texttt{END-IF}), iteraties (\texttt{PERFORM VARYING}/\texttt{UNTIL}) en paragrafen + \texttt{PERFORM}.
+    \item \textbf{Deelnemers:} \(N \geq 12\) junior IT'ers met Python-ervaring en zonder voorafgaande COBOL-kennis (uitsluiten van Mainframe-keuzerichting en mensen met professionele COBOL-ervaring).
+    \item \textbf{Design:} binnen-subject met counterbalancing tussen \textit{Learn COBOL} en een gelijkwaardig PDF-pack op twee conceptblokken (bv.\ levels 1--3 en 4--6 uit hoofdstuk~\ref{ch:poc}).
+    \item \textbf{Kwantitatieve metingen:} succesratio en tijd-tot-succes per conceptblok, aantal indieningen (\texttt{submit\_count}, \texttt{validation\_fail\_count}), en de System Usability Scale na de PoC-conditie. Voor SUS-interpretatie kan de adjectiefschaal van \textcite{Bangor2009} gebruikt worden.
+    \item \textbf{Kwalitatieve metingen:} korte semigestructureerde interviews na de sessie, gericht op feedback, motivatie en ervaren barrières.
+    \item \textbf{Tussenoplossingen.} Wanneer een volwaardige studie niet haalbaar blijkt, blijven twee tussenoplossingen mogelijk: een \emph{kleine pilot} (\(n = 3\)--\(5\)) levert indicatieve cijfers, of een \emph{expert walkthrough} met de promotor, co-promotor en een mainframe-professional levert kwalitatieve usability-observaties op.
 \end{itemize}
 
-Level~7 (file status) kan optioneel dienen als extra/bonusopdracht wanneer de timing het toelaat, maar wordt niet gebruikt in de kernvergelijking om de sessieduur te beperken.
-
-\subsection{Correctheidscriteria (rubric)}
-\label{subsec:evaluatie-rubric}
-
-Voor elk conceptblok wordt een rubric opgesteld die exact overeenkomt met de leerdoelen:
-\begin{itemize}
-    \item \textbf{PoC-conditie:} de bestaande validatieregels (heuristisch/regex) bepalen “geslaagd” of “niet geslaagd”.
-    \item \textbf{PDF-conditie:} dezelfde doelen worden omgezet naar een menselijke checklist (bv.\ “bevat alle divisions”, “bevat minstens één \texttt{PIC 9(...)}, één \texttt{PIC X(...)}, één impliciete decimaal met \texttt{V}”, enz.).
-\end{itemize}
-
-\textbf{Belangrijk:} in deze studie betekent “correct” dus: \textbf{voldoet aan vooraf gedefinieerde leerdoelen}, niet “compileert op een echte COBOL-runtime”. Dit sluit aan bij de afbakening van de PoC (hoofdstuk~\ref{ch:poc}).
-
-\section{Procedure (uitvoering in de praktijk)}
-\label{sec:evaluatie-procedure}
-
-\subsection{Intake en pre-survey}
-\label{subsec:evaluatie-intake}
-
-\textbf{Praktisch (IRL):} laat deelnemers vóór de taken een korte intake invullen (papier of online) met:
-\begin{itemize}
-    \item programmeerervaring (jaren/maanden), talen (incl.\ Python),
-    \item zelfinschatting (1--5) voor programmeren algemeen,
-    \item ervaring met interactieve leerplatformen,
-    \item \textbf{screening COBOL-voorkennis} (ja/nee + toelichting). Bij “ja”: participant uitsluiten.
-\end{itemize}
-
-\textbf{INVULLEN NA UITVOERING:} rapporteer de samenvatting van de deelnemerskenmerken (bv.\ gemiddelde programmeerervaring, meest voorkomende talen).
-
-\subsection{Sessiestructuur per deelnemer}
-\label{subsec:evaluatie-sessie}
-
-Elke sessie bestaat uit twee hoofdblokken (A en B), elk uitgevoerd met een andere methode (PoC of PDF) volgens het counterbalancing schema uit sectie~\ref{subsec:evaluatie-design}.
-
-\textbf{Aanbevolen tijdschema (richtlijn):}
-\begin{itemize}
-    \item 5 min: briefing + intake
-    \item 20 min: conceptblok 1 (PoC of PDF)
-    \item 3 min: korte post-taak vragen
-    \item 20 min: conceptblok 2 (PDF of PoC)
-    \item 3 min: korte post-taak vragen
-    \item 5 min: SUS (alleen voor PoC)
-    \item 10 min: kort interview + afsluiting
-\end{itemize}
-
-\textbf{Praktisch (IRL):} werk met een timer en stop een blok wanneer de tijd verstreken is. Noteer in dat geval “time-out” en markeer de taak als niet geslaagd binnen de limiet.
-
-\subsection{Post-taak vragen en interview}
-\label{subsec:evaluatie-interview}
-
-Na elk conceptblok beantwoordt de deelnemer korte Likert-items (1--5), bijvoorbeeld:
-\begin{itemize}
-    \item “Ik vond deze taak duidelijk.”
-    \item “Ik voelde me gemotiveerd om door te zetten.”
-    \item “Ik vond deze taak moeilijk.”
-\end{itemize}
-
-Na de volledige sessie:
-\begin{itemize}
-    \item \textbf{SUS} wordt afgenomen voor de PoC (sectie~\ref{sec:evaluatie-sus}).
-    \item Een semigestructureerd interview duidt verschillen tussen PoC en PDF: welke feedback hielp, waar lag frustratie, hoe werd progressie ervaren, en welke elementen droegen bij tot motivatie of afleiding.
-\end{itemize}
-
-\textbf{Praktisch (IRL):} neem het interview op (audio) of noteer woordelijk kernzinnen. Laat deelnemers toestemming geven (consent) en anonimiseer bij transcriptie.
-
-\section{Dataverzameling}
-\label{sec:evaluatie-data}
-
-\subsection{Kwantitatieve data}
-\label{subsec:evaluatie-kwant}
-
-De kwantitatieve dataverzameling bestaat uit:
-\begin{itemize}
-    \item \textbf{Tijd-tot-succes:} per conceptblok en per methode (PoC vs PDF).
-    \item \textbf{Succesratio:} geslaagd/niet geslaagd binnen de tijdslimiet.
-    \item \textbf{Iteraties/pogingen:}
-    \begin{itemize}
-        \item PoC: \texttt{submit\_count}, \texttt{validation\_fail\_count} en eventueel events uit \texttt{app\_events}.
-        \item PDF: een eenvoudige pogingenteller (deelnemer markeert bij elke “controle/aanpassing” een poging) of een observator noteert pogingen.
-    \end{itemize}
-    \item \textbf{SUS-score:} usability van de PoC.
-\end{itemize}
-
-\textbf{INVULLEN NA UITVOERING:} voeg een tabel toe met kernstatistieken (medianen/spreiding) per methode en conceptblok.
-
-\subsection{Kwalitatieve data}
-\label{subsec:evaluatie-kwal}
-
-Kwalitatieve data komt uit:
-\begin{itemize}
-    \item observaties (waar lopen beginners vast, welke misvattingen komen terug, welke UI-elementen worden gebruikt),
-    \item interviewantwoorden (ervaring met PoC vs PDF, motivatoren, barrières),
-    \item open antwoorden op post-taak vragen (indien gebruikt).
-\end{itemize}
-
-\textbf{INVULLEN NA UITVOERING:} voeg 5--10 representatieve, geanonimiseerde quotes toe die typische patronen illustreren.
-
-\section{System Usability Scale (SUS)}
-\label{sec:evaluatie-sus}
-
-De System Usability Scale (SUS) is een gestandaardiseerde vragenlijst met tien items op een Likert-schaal. De SUS wordt in deze studie gebruikt om de bruikbaarheid van de PoC te evalueren, als noodzakelijke randvoorwaarde voor leer-efficiëntie en motivatie.
-
-\textbf{Praktisch (IRL):} neem SUS af onmiddellijk na de PoC-interactie (op het einde van de sessie) om recall bias te beperken.
-
-\textbf{INVULLEN NA UITVOERING:}
-\begin{itemize}
-    \item rapporteer de gemiddelde SUS-score, mediaan en spreiding (bv.\ interkwartielafstand),
-    \item vermeld het aantal deelnemers (\(n\)),
-    \item interpreteer beknopt (bijv.\ “onder/ongeveer/boven gemiddeld”), zonder overinterpretatie bij kleine steekproef.
-\end{itemize}
-
-\section{Analyseplan}
-\label{sec:evaluatie-analyse}
-
-\subsection{Kwantitatieve analyse}
-\label{subsec:evaluatie-analyse-kwant}
-
-De kwantitatieve analyse is beschrijvend en vergelijkend:
-\begin{itemize}
-    \item per methode en conceptblok: succesratio, tijd-tot-succes, aantal iteraties,
-    \item vergelijking PoC versus PDF per conceptblok (bij voorkeur medianen en visualisaties zoals boxplots).
-\end{itemize}
-
-\textbf{INVULLEN NA UITVOERING:} voeg minstens één figuur toe die PoC vs PDF visueel vergelijkt (tijd of iteraties) en verwijs ernaar in de tekst.
-
-\subsection{Kwalitatieve analyse}
-\label{subsec:evaluatie-analyse-kwal}
-
-Interview- en observatiedata worden verwerkt via thematische analyse:
-\begin{itemize}
-    \item initiale codering (barrières, feedback, progressie, frustratie, motivatie),
-    \item clusteren naar thema's (bv.\ “directe feedback”, “zichtbare progressie”, “cognitieve dissonantie met COBOL-structuur”),
-    \item koppeling van thema's aan de theoretische kaders uit hoofdstuk~\ref{ch:stand-van-zaken} (PBL, Octalysis, MDA) waar dat helpt om effecten te verklaren.
-\end{itemize}
-
-\section{Resultaten (in te vullen na uitvoering)}
-\label{sec:evaluatie-resultaten}
-
-\subsection{Deelnemers}
-\textbf{INVULLEN NA UITVOERING:}
-\begin{itemize}
-    \item aantal deelnemers totaal en per counterbalancing groep,
-    \item samenvatting programmeerervaring,
-    \item bevestiging dat COBOL-voorkennis uitgesloten is.
-\end{itemize}
-
-\subsection{Prestatie en leer-efficiëntie (PoC vs PDF)}
-\textbf{INVULLEN NA UITVOERING:}
-\begin{itemize}
-    \item tabel: succesratio en tijd per conceptblok en methode,
-    \item tabel of figuur: iteraties (PoC submit/fail vs PDF pogingen),
-    \item korte interpretatie gelinkt aan DV5.
-\end{itemize}
-
-\subsection{SUS-resultaten}
-\textbf{INVULLEN NA UITVOERING:} SUS-score(s) + interpretatie (sectie~\ref{sec:evaluatie-sus}).
-
-\subsection{Interview- en observatiethema's}
-\textbf{INVULLEN NA UITVOERING:}
-\begin{itemize}
-    \item 3--6 thema's met 1--2 quotes per thema,
-    \item expliciete link naar DV1--DV4 waar relevant.
-\end{itemize}
-
-\subsection{Antwoord per deelvraag}
-\textbf{INVULLEN NA UITVOERING:} geef per deelvraag (DV1--DV5) een beknopte synthese (1--3 zinnen).
-\begin{itemize}
-    \item Voor \textbf{DV1--DV4}: verwijs naar het hoofdstuk waar de deelvraag inhoudelijk beantwoord werd (literatuurstudie/PoC) en voeg toe welke \textbf{empirische observaties} uit de test dit ondersteunen of nuanceren.
-    \item Voor \textbf{DV5}: formuleer het antwoord primair op basis van de \textbf{PoC vs PDF} vergelijking in dit hoofdstuk.
-\end{itemize}
-
-\section{Validiteit, betrouwbaarheid en beperkingen}
-\label{sec:evaluatie-validiteit}
-
-Deze studie bevat een aantal bekende aandachtspunten:
-\begin{itemize}
-    \item \textbf{Carry-over effect:} deelnemers leren onvermijdelijk bij in het eerste blok. Counterbalancing vermindert maar elimineert dit niet volledig.
-    \item \textbf{Constructvaliditeit:} SUS meet bruikbaarheid, niet leerwinst. Daarom worden leeruitkomsten apart gemeten via taken en rubrics.
-    \item \textbf{Meetfouten door heuristische validatie:} de PoC valideert met patronen (regex), waardoor false positives/negatives mogelijk zijn. Dit wordt meegenomen als beperking en gemitigeerd via een rubric in de PDF-conditie.
-    \item \textbf{Externe validiteit:} studentencontext verschilt van een professionele mainframe-omgeving; de resultaten generaliseren vooral naar beginners in opleiding.
-\end{itemize}
+Een dergelijke empirische opvolging valt buiten de scope van deze bachelorproef, maar de PoC, het databasemodel en de inzichten uit dit hoofdstuk vormen samen een bruikbaar startpunt.

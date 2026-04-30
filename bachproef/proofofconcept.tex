@@ -343,7 +343,12 @@ Het scherm combineert meerdere cards (figuur~\ref{fig:poc-level-editor}). Onders
 \end{figure}
 
 \subsection{Leaderboard (\texttt{/leaderboard})}
-TODO: wat uitleg hierbij
+Het leaderboard groepeert alle gebruikers in één brede card met de strip \texttt{LEADERBOARD - JOB STEP} en toont vier kolommen: rang, gebruikersnaam (klikbaar naar het publieke profiel), \texttt{total\_points} en het aantal voltooide levels. De ranking is aflopend op \texttt{total\_points} en wordt server-side opgehaald uit \texttt{profiles}, waardoor zowel vrienden als onbekende gebruikers vergelijkbaar worden.
+De rij van de actieve gebruiker wordt visueel gemarkeerd (cyaan accent) zodat de eigen positie meteen zichtbaar is, ook wanneer ze buiten de bovenste posities valt.
+
+Dit scherm is de meest expliciete uitwerking van de \textit{L} in PBL \autocite{KevinWerbach2020} en spreekt binnen het Octalysis-kader twee Core Drives aan: \textit{Social Influence \& Relatedness} (vergelijking met peers) en \textit{Development \& Accomplishment} (zichtbaar maken van vooruitgang) \autocite{Chou2015}.
+Conform de waarschuwing van \textcite{KevinWerbach2020} dat leaderboards kunnen demotiveren wanneer de afstand tot de top te groot is, wordt op het dashboard een ingekort \textit{friend leaderboard} (top drie vrienden) getoond als laagdrempelig alternatief; het volledige leaderboard blijft beschikbaar voor wie expliciet vergelijking opzoekt.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{poc-leaderboard.png}
@@ -528,7 +533,7 @@ Het resultaat is een checklist met vinkjes of foutboodschappen, zodat feedback d
 \end{itemize}
 
 
-\section{Gamificatie: punten, badges en viering}
+\section{Gamification: punten, badges en viering}
 
 \subsection{Punten en eerste-pogingbonus}
 Een geslaagd level levert 100 basispunten op (\textit{P} in PBL).
@@ -545,8 +550,8 @@ Op het dashboard en de badges-pagina tonen tooltips de tekst uit \texttt{how\_to
 Bij de eerste succesvolle afronding van een level wordt een \texttt{celebrationTrigger} verhoogd. De component \texttt{LevelCelebration} start confetti (bibliotheek \texttt{canvas-confetti}, twee bursts met korte pauze), ballonnen-animaties en een titel met puntensubtitel.
 De overlay is niet-interactief en verdwijnt na enkele seconden. Parallel verschijnt een toast ``Level voltooid''.
 Deze esthetiek versterkt \textit{Challenge} en beloning op het moment van mastery (MDA: gewenste emotionele piek na mechanics) \autocite{Hunicke2004}.
+De animaties zijn bewust kort en niet-blokkerend, zodat ze als positieve bekrachtiging fungeren zonder de gebruikersflow te onderbreken; bij herhaalde voltooiing van hetzelfde level wordt enkel een toast getoond om beloningsmoeheid te vermijden.
 
-% TODO
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{poc-celebration.png}

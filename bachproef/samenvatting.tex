@@ -2,36 +2,11 @@
 %% Samenvatting
 %%=============================================================================
 
-% TODO: De "abstract" of samenvatting is een kernachtige (~ 1 blz. voor een
-% thesis) synthese van het document.
-%
-% Een goede abstract biedt een kernachtig antwoord op volgende vragen:
-%
-% 1. Waarover gaat de bachelorproef?
-% 2. Waarom heb je er over geschreven?
-% 3. Hoe heb je het onderzoek uitgevoerd?
-% 4. Wat waren de resultaten? Wat blijkt uit je onderzoek?
-% 5. Wat betekenen je resultaten? Wat is de relevantie voor het werkveld?
-%
-% Daarom bestaat een abstract uit volgende componenten:
-%
-% - inleiding + kaderen thema
-% - probleemstelling
-% - (centrale) onderzoeksvraag
-% - onderzoeksdoelstelling
-% - methodologie
-% - resultaten (beperk tot de belangrijkste, relevant voor de onderzoeksvraag)
-% - conclusies, aanbevelingen, beperkingen
-%
-% LET OP! Een samenvatting is GEEN voorwoord!
-
 %%---------- Nederlandse samenvatting -----------------------------------------
 %
-% TODO: Als je je bachelorproef in het Engels schrijft, moet je eerst een
-% Nederlandse samenvatting invoegen. Haal daarvoor onderstaande code uit
-% commentaar.
-% Wie zijn bachelorproef in het Nederlands schrijft, kan dit negeren, de inhoud
-% wordt niet in het document ingevoegd.
+% Deze blok wordt enkel ingevoegd wanneer het document in het Engels wordt
+% gecompileerd. Wie de bachelorproef in het Nederlands schrijft, kan dit
+% negeren; de inhoud verschijnt dan niet in het document.
 
 \IfLanguageName{english}{%
 \selectlanguage{dutch}
@@ -45,4 +20,14 @@
 
 \chapter*{\IfLanguageName{dutch}{Samenvatting}{Abstract}}
 
-\lipsum[1-4]
+De financiële, overheids- en zorgsector vertrouwen wereldwijd op honderden miljarden regels COBOL-code die op mainframes draaien. Tegelijk gaan de ervaren COBOL-specialisten massaal met pensioen (de zogenaamde \textit{silver tsunami}), terwijl de instroom van nieuw talent stagneert. Junior developers, opgegroeid met interactieve sandboxes en directe feedback voor moderne talen zoals Python, ervaren een dubbele drempel: enerzijds de rigide syntax en logica van COBOL zelf, anderzijds een didactisch aanbod dat overwegend bestaat uit statische PDF-handleidingen en theoretische tutorials. Dit onderzoek vertrekt vanuit de hypothese dat \textit{gamification}, het gebruik van game-ontwerpelementen in een niet-spelcontext, deze instapdrempel kan verlagen.
+
+De centrale onderzoeksvraag luidt: \textit{``Hoe efficiënt is gamification bij het aanleren van COBOL aan junior developers die gewend zijn aan moderne talen zoals Python?''} Vijf deelvragen lichten respectievelijk de syntactische verschillen, de leerbarrières, de relevante gamification-elementen, het ontwerp van een gamified leeromgeving en de verhouding tot traditionele documentatie toe.
+
+Methodologisch is het onderzoek opgebouwd in vier fasen: een literatuurstudie over de mainframe-context, COBOL versus Python en gamification-frameworks (PBL-triade, MDA, Octalysis); de ontwikkeling van een Proof-of-Concept (PoC) in de vorm van een interactieve webapplicatie genaamd \textit{Learn COBOL}, met zeven gegradeerde levels, een Monaco-editor met aangepaste COBOL-highlighting, heuristische validatie via een leerdoelchecklist en een gamification-laag (punten, badges, leaderboard, vrienden, mainframe-thema); een vergelijkende literatuurevaluatie waarin elke ontwerpkeuze van de PoC wordt afgezet tegen empirisch onderzoek over gamification, programmeeronderwijs en didactiek; en een synthese in de conclusie.
+
+De keuze voor een literatuurevaluatie boven een eigen gebruikersstudie is bewust: het rekruteren van junior IT'ers met Python-ervaring én zonder voorafgaande COBOL-kennis (waaronder studenten van de Mainframe-keuzerichting expliciet uitgesloten worden) en het organiseren van sessies van bijna een uur per deelnemer overstijgt het tijdsbestek van een bachelorproef. Een ondermaatse pilot zou bovendien anekdotische cijfers opleveren in plaats van betrouwbare claims.
+
+De resultaten van de literatuurevaluatie zijn convergent: de gemaakte ontwerpkeuzes worden door de geraadpleegde literatuur ondersteund. De meta-analyse van \textcite{Zhan2022} rapporteert voor gamification in programmeeronderwijs medium-tot-grote effectgroottes (\(SMD \approx 0{,}77\) op motivatie, \(\approx 0{,}75\) op academische prestaties); aangezien de PoC de daarin beschreven kerncomponenten (punten, badges, levels, directe feedback, sociale vergelijking) implementeert, is een vergelijkbare grootteorde aannemelijk. De PBL-triade is gelaagd ingezet om de waarschuwing van \textcite{KevinWerbach2020} rond polariserende leaderboards te ondervangen, en de Core Drive-balans volgens \textcite{Chou2015} is bewust White-Hat-zwaar (gericht op duurzame leermotivatie) met een terughoudend gebruik van Black-Hat-elementen.
+
+De relevantie voor het werkveld is drieledig: een theoretisch kader dat gamification koppelt aan mainframe-onderwijs, een herbruikbare PoC voor HOGENT en partnerorganisaties, en een methodische blauwdruk voor een empirische opvolgstudie. Belangrijke beperkingen zijn dat een literatuurevaluatie geen empirische geldigheid voor de PoC zelf vaststelt, dat de meta-analyses overwegend over moderne talen gaan en dat de heuristische (regex-gebaseerde) validatie geen echte compiler vervangt. Aanbevelingen omvatten een hybride combinatie van interactiviteit en uitgebreide referentiedocumentatie, een voorzichtige inzet van leaderboards, en als logische volgende stap een binnen-subject vergelijking tussen de PoC en een statisch PDF-pack om de literatuur-gebaseerde voorspellingen empirisch te toetsen.

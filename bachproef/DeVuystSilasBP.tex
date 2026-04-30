@@ -10,8 +10,6 @@
 % - If you write your thesis in English (remark: only possible after getting
 %   explicit approval!), remove the option "dutch," or replace with "english".
 
-\usepackage{lipsum} % For blind text, can be removed after adding actual content
-
 %% Pictures to include in the text can be put in the graphics/ folder
 \graphicspath{{../graphics/}}
 
@@ -75,7 +73,7 @@
 \supervisor{Dhr. T. Desmedt}
 \cosupervisor{Dhr. S. Willems}
 \title[]%
-    {De efficiëntie van gamificatie bij het aanleren van COBOL aan junior developers.}
+    {De efficiëntie van gamification bij het aanleren van COBOL aan junior developers.}
 \academicyear{\advance\year by -1 \the\year--\advance\year by 1 \the\year}
 \examperiod{1}
 \degreesought{\IfLanguageName{dutch}{Professionele bachelor in de toegepaste informatica}{Bachelor of applied computer science}}
@@ -83,7 +81,9 @@
 %\institution{Internshipcompany BVBA.}
 
 %% Add global exceptions to the hyphenation here
-\hyphenation{back-slash}
+\hyphenation{back-slash back-end front-end main-frame Java-Script Type-Script
+    gami-fi-ca-tion gami-fied WORK-ING-STORAGE PRO-CE-DURE-DI-VI-SION
+    Octa-ly-sis sand-box}
 
 %% The bibliography (style and settings are  found in hogentthesis.cls)
 \addbibresource{bachproef.bib}            %% Bibliography file
@@ -138,10 +138,7 @@
 
 \listoflistings
 
-% Als je een lijst van afkortingen of termen wil toevoegen, dan hoort die
-% hier thuis. Gebruik bijvoorbeeld de ``glossaries'' package.
-% https://www.overleaf.com/learn/latex/Glossaries
-%TODO afkortingen lijst maken
+\input{afkortingen}
 
 %---------- Kern ---------------------------------------------------------------
 
@@ -173,19 +170,16 @@
 \chapter{Onderzoeksvoorstel}
 
 Het onderwerp van deze bachelorproef is gebaseerd op een onderzoeksvoorstel dat vooraf werd beoordeeld door de promotor. Dat voorstel is opgenomen in deze bijlage.
+Merk op dat de uitvoering op één belangrijk punt is geëvolueerd ten opzichte van het oorspronkelijke voorstel: de oorspronkelijk geplande gebruikersstudie met twee focusgroepen (referentie- en doelgroep) bleek binnen het tijdsbestek van de bachelorproef niet haalbaar (zie sectie~\ref{subsec:evaluatie-keuze}) en werd vervangen door een vergelijkende literatuurevaluatie waarin de ontwerpkeuzes van de PoC worden afgezet tegen bestaand empirisch onderzoek.
 
-%% TODO: 
-%\section*{Samenvatting}
-
-% Kopieer en plak hier de samenvatting (abstract) van je onderzoeksvoorstel.
-
-% Verwijzing naar het bestand met de inhoud van het onderzoeksvoorstel
 \input{../voorstel/voorstel-inhoud}
 
 %%---------- Andere bijlagen --------------------------------------------------
-% TODO: Voeg hier eventuele andere bijlagen toe. Bv. als je deze BP voor de
-% tweede keer indient, een overzicht van de verbeteringen t.o.v. het origineel.
-%\input{...}
+%% Plan B3 (vergelijkende literatuurevaluatie) gebruikt geen aanvullende
+%% studiematerialen. De skeleton-bestanden in bachproef/bijlagen/ (PDF-pack,
+%% SUS-vragenlijst) staan op de plank voor wie later alsnog een empirische
+%% opvolgstudie wil opzetten (zie sectie 'Aanbevelingen voor empirische
+%% opvolging' in het Evaluatie-hoofdstuk).
 
 %%---------- Backmatter, referentielijst ---------------------------------------
 

@@ -52,7 +52,6 @@ Deze verschuiving brengt echter een kritieke uitdaging met zich mee: een groeien
 Dit creëert een kloof op de arbeidsmarkt, waarbij er steeds minder programmeurs beschikbaar zijn die de complexe COBOL-applicaties kunnen beheren en updaten \autocite{IBM2025}.
 Voor een junior developer betekent dit niet alleen een taalkundige barrière, maar ook een verschuiving in de manier waarop zij met legacy-systemen moeten omgaan.
 
-% TODO: dit past misschien beter bij probleemstelling
 De noodzaak om deze nieuwe generatie aan te trekken en op te leiden is zichtbaar in de bedrijfsstrategieën. 
 80\% van de bedrijven heeft in 2025 hun mainframe-strategie aangepast met het oog op modernisering \autocite{Kyndryl2025}. 
 Van deze projecten is slechts 16\% gericht op het verlaten van het platform; de meerderheid kiest voor integratie met de cloud (34\%) of modernisering op het mainframe zelf (43\%) \autocite{Kyndryl2025}.
@@ -207,7 +206,8 @@ employee = {
 }
 \end{lstlisting}
 
-% TODO: iets over Object georienteerd zeggen
+%% Object-georiënteerd programmeren wordt apart behandeld in
+%% sectie~\ref{subsec:cobol-oop} (na 'Functies', vóór 'Error Handling').
 
 \subsection{Conditionals}
 Het grootste verschil bij conditionele logica is de manier waarop de scope van een blok wordt afgesloten \autocite{IBM2023}.
@@ -323,6 +323,21 @@ Er bestaan fundamentele verschillen in hoe beide talen omgaan met parameters en 
     \item \textbf{Modern COBOL:} Ondersteunt formele parameter passing via \texttt{USING} en kan waarden teruggeven via \texttt{RETURNING}, maar blijft explicieter en verboser dan Python.
 \end{itemize}
 
+\subsection{Object-georiënteerd programmeren}
+\label{subsec:cobol-oop}
+Een belangrijk verschil dat junior developers vaak verrast, is de plaats van \emph{object-orientatie} in beide talen. 
+In Python is alles een object: lists, functies en zelfs klassen zelf. 
+Klassedefinities (\texttt{class}), overerving en polymorfisme zijn een kernonderdeel van de taal en worden in zo goed als elk modern Python-programma aangetroffen.
+
+In COBOL is de situatie omgekeerd. 
+Klassieke COBOL is uitgesproken procedureel: programma's bestaan uit \texttt{DIVISION}-blokken, \texttt{SECTION}s en \texttt{PARAGRAPH}s die via \texttt{PERFORM} worden aangeroepen. 
+Sinds de standaard \textbf{COBOL 2002}, in IBM's compiler beschikbaar als \textit{Enterprise COBOL for z/OS}, ondersteunt de taal \emph{wel} object-georiënteerd programmeren via constructies zoals \texttt{CLASS-ID}, \texttt{METHOD-ID}, \texttt{INHERITS} en \texttt{INVOKE} \autocite{IBM2025a}. 
+Een klasse wordt als een afzonderlijk programma gedefinieerd; methodes worden gegroepeerd in een \texttt{METHOD-ID}-blok binnen die klasse en kunnen polymorf worden overschreven in subklassen.
+
+In de praktijk komen junior developers met deze constructies echter zelden in aanraking. 
+De overgrote meerderheid van de bestaande \textit{legacy} COBOL-codebases is geschreven vóór COBOL 2002 en blijft strikt procedureel. 
+Wie een mainframe-team binnenstapt, krijgt dus typisch eerst tienduizenden regels procedurele \texttt{PROCEDURE DIVISION}-code te zien, niet de OOP-uitbreidingen \autocite{IBM2025a, Upadhaya2023}. 
+Voor het ontwerp van een leeromgeving betekent dit dat OOP in COBOL eerder een randonderwerp is: een gamified leerpad voor beginners besteedt zijn beperkte tijd verstandiger aan de procedurele basisbouwstenen (divisions, \texttt{PIC}, conditionals, \texttt{PERFORM}, foutafhandeling) dan aan de OOP-syntax die ze zelden in productie zullen tegenkomen.
 
 \subsection{Error Handling}
 In Python is een \texttt{try-except} block de standaard. In COBOL bestaat dit concept niet native. Fouten worden afgehandeld via \textbf{Return Codes} of \textbf{File Status Codes}. 
@@ -335,14 +350,16 @@ Wanneer een bestand wordt geopend, moet de programmeur handmatig de status contr
 \end{itemize}
 Dit vereist een veel actievere en defensievere programmeerstijl dan junioren gewend zijn in Python, waar een \texttt{FileNotFoundError} automatisch de executie stopt met een duidelijke melding.
 
-% TODO: OOP?
-
 \section{Gamification}
+\label{sec:gamification}
 
-TODO: fix intro en definitie
-\textcite{Deterding2011} definiëren gamification als het gebruik van game-\allowbreak ontwerpelementen in niet-\allowbreak game contexten. 
-\textcite{Deterding2011} leggen hun definitie uit en stellen dat gamification meer met "gamen" \textit{(ludus)} dan met "playing" \textit{(paidia)} te maken heeft, er zijn namelijk regels die moeten worden gevolgd.
-Gamification  maakt  gebruik  van  elementen  uit  game-ontwerp,  maar  kan  niet  als  volwaardige  games  worden  beschouwd.
+De vorige secties tonen aan dat de syntactische en logische verschillen tussen COBOL en moderne talen zoals Python op zich al een leerdrempel vormen. 
+Bovendien botst de strakke, verbose schrijfstijl van COBOL met de leerverwachtingen van een nieuwe generatie ontwikkelaars, voor wie directe feedback en zichtbare progressie een vanzelfsprekend onderdeel zijn van het leerproces. 
+Om deze didactische kloof te overbruggen, vormt \textit{gamification} een veelgebruikte hedendaagse strategie: door spelelementen in te zetten in een educatieve context wordt geprobeerd zowel motivatie als leeruitkomsten te verhogen.
+
+\textcite{Deterding2011} definiëren gamification als het \textbf{gebruik van game-\allowbreak ontwerpelementen in niet-\allowbreak game contexten}. 
+Zij benadrukken dat gamification dichter aanleunt bij \textit{gamen} (\textit{ludus}, gestructureerd spel met regels) dan bij \textit{playing} (\textit{paidia}, vrij spel zonder strikte regels): er zijn duidelijke regels en doelen die de speler moet volgen. 
+Gamification maakt dus wel gebruik van elementen uit game-ontwerp, maar de resulterende toepassingen kunnen niet als volwaardige games worden beschouwd.
 
 \subsection{Game-elementen}
 
@@ -432,7 +449,7 @@ Het gaat daarbij niet om een direct oorzakelijk verband tussen ontwerper en spel
 Door deze gelaagdheid te erkennen, kunnen ontwikkelaars voorkomen dat ze louter "functiegericht" ontwerpen. 
 Het MDA-framework dwingt de ontwerper om na te denken over hoe een kleine wijziging in de code (Mechanics) de volledige emotionele beleving (Aesthetics) van de eindgebruiker kan beïnvloeden. \autocite{Hunicke2004}
 
-\subsubsection{Octalysis-framework} % TODO
+\subsubsection{Octalysis-framework}
 Een ander veelgebruikt raamwerk is het \textit{Octalysis-framework}, ontwikkeld door \textcite{Chou2015}. 
 Waar het MDA-framework focust op de systeemstructuur, vertrekt \textcite{Chou2015} vanuit het principe van \textit{Human-Focused Design}. 
 Dit houdt in dat het ontwerp niet primair draait om de functionele elementen, maar om de manier waarop deze inspelen op de menselijke psychologie en motivatie.
@@ -463,12 +480,24 @@ Door deze acht drijfveren te analyseren, kunnen ontwerpers bepalen of hun systee
 Chou maakt hierbij een onderscheid tussen \textit{White Hat} motivatie (positief en versterkend, zoals Core Drive 1, 2 en 3) en \textit{Black Hat} motivatie (gebaseerd op schaarste of angst voor verlies, zoals Core Drive 6, 7 en 8). 
 Een goed ontwerp gebruikt een combinatie van beide om zowel korte- als langetermijnbetrokkenheid te garanderen \autocite{Chou2015}.
 
+In een educatieve context vertaalt dit zich naar een aantal ontwerprichtlijnen. \textit{Development \& Accomplishment} (CD2) wordt geactiveerd door zichtbare progressie en gegradeerde uitdagingen, wat aansluit bij de levelstructuur uit hoofdstuk~\ref{ch:poc}. \textit{Empowerment of Creativity \& Feedback} (CD3) vraagt om opdrachten waarbij de student vrij kan experimenteren binnen een afgebakend kader, met directe terugkoppeling op de gemaakte keuzes; in een leeromgeving voor programmeren komt dit overeen met onmiddellijke validatie van ingediende code. \textit{Social Influence \& Relatedness} (CD5) wordt typisch ingevuld via leaderboards of peer-vergelijking, terwijl \textit{Scarcity} (CD6) en \textit{Loss Avoidance} (CD8) bewust spaarzaam worden ingezet om frustratie bij beginners te voorkomen. Ten opzichte van het MDA-framework \autocite{Hunicke2004} verschuift Octalysis daarmee de focus van de \emph{systeemarchitectuur} naar de \emph{psychologische impact} van die architectuur op de leerling, en biedt het een concreet checklist-gereedschap om gamified onderwijs op evenwicht te toetsen.
+
 
 % =======================================================
-\subsubsection{Gamification bij junior developers} %TODO
+\subsubsection{Gamification bij junior developers}
+\label{subsec:gamification-junior-devs}
 
-Een meta-analyse studie van \textcite{Zhan2022} toont ook aan dat gamification een positieve impact heeft op het onderwijs in programmeren. 
-Gamification had met name het grootste effect op de motivatie en academische prestaties van studenten, gevolgd door het denkvermogen.
+De vorige subsecties beschreven gamification op een algemeen niveau. Voor dit onderzoek is echter de \emph{specifieke} effectiviteit ervan in een programmeercontext relevant. 
+De meta-analyse van \textcite{Zhan2022}, op basis van studies in programmeeronderwijs, rapporteert een gestandaardiseerde gemiddelde effectgrootte van ongeveer \(SMD = 0{,}77\) op studentmotivatie en \(SMD = 0{,}75\) op academische prestaties. 
+Beide waarden vallen volgens conventionele richtlijnen in de \emph{medium-tot-grote} categorie en bevestigen dat de positieve invloed niet beperkt blijft tot oppervlakkige tevredenheid, maar zich vertaalt naar gemeten leerwinst. 
+Het kleinste effect werd gemeten op het denkvermogen, wat de auteurs deels toeschrijven aan de moeilijke meetbaarheid van hogere cognitieve vaardigheden binnen kortlopende studies.
 
+Deze bevindingen sluiten aan bij de marktrealiteit van moderne programmeertalen. 
+Voor talen zoals Python, JavaScript en Java bestaat er een uitgebreid gamified leerlandschap: platformen zoals \textit{Codecademy}, \textit{Exercism}, \textit{LeetCode}, \textit{Codewars} en \textit{CodeCombat} combineren interactieve sandboxes met punten, badges, levels en leaderboards. 
+Junior developers die opgroeien met deze tools verwachten een vergelijkbare leerervaring wanneer ze een nieuwe taal aanvatten.
 
-% \subsection{hoe Effectiviteit meten} %TODO
+Voor COBOL ontbreekt deze infrastructuur grotendeels. 
+De bestaande COBOL-leermiddelen zijn voornamelijk statisch: PDF-handleidingen (zoals de \textit{Enterprise COBOL Language Reference} \autocite{IBM2023}), tekstuele tutorials of klassieke video-cursussen \autocite{IBMMainframer2021}. 
+Interactieve, gamified omgevingen die specifiek gericht zijn op junior developers met een achtergrond in moderne talen, zijn nagenoeg afwezig. 
+Deze kloof tussen de leerverwachtingen van de doelgroep en het beschikbare aanbod vormt een kernmotivatie voor de Proof-of-Concept in hoofdstuk~\ref{ch:poc}: de gamified principes die hun nut elders bewezen hebben, worden hier toegepast op een taal waar dat tot nog toe nauwelijks gebeurde.
+Hoe de effectiviteit van die toepassing concreet wordt gemeten (via SUS, leeruitkomsten, tijd-tot-succes, iteraties en een kwalitatieve thematische analyse) wordt verder uitgewerkt in hoofdstuk~\ref{ch:evaluatie}.

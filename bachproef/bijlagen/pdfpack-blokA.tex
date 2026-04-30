@@ -1,0 +1,231 @@
+%%=============================================================================
+%% PDF-pack Conceptblok A (levels 1-3)
+%%
+%% Standalone document dat aan deelnemers wordt overhandigd in de "traditionele"
+%% conditie van de gebruikersstudie (zie hoofdstuk Evaluatie van de bachelorproef).
+%%
+%% Compileren: xelatex pdfpack-blokA.tex
+%%=============================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[dutch]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+\definecolor{cobolblue}{RGB}{0,80,140}
+\definecolor{lightgray}{RGB}{240,240,240}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{lightgray},
+    frame=single,
+    framesep=4pt,
+    framerule=0pt,
+    rulecolor=\color{lightgray},
+    breaklines=true,
+    columns=fullflexible,
+    keywordstyle=\color{cobolblue}\bfseries,
+    morekeywords={IDENTIFICATION,DIVISION,PROGRAM-ID,ENVIRONMENT,DATA,WORKING-STORAGE,
+        SECTION,PROCEDURE,STOP,RUN,DISPLAY,PIC,PICTURE,VALUE,MOVE,IF,ELSE,END-IF,
+        PERFORM,VARYING,UNTIL,END-PERFORM,COMPUTE,FILE,STATUS,SELECT,ASSIGN,FD,
+        OPEN,READ,CLOSE,INPUT,OUTPUT}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textsc{Learn COBOL \textbar\ PDF-pack Conceptblok A}}
+\fancyhead[R]{Pagina \thepage}
+\fancyfoot[C]{Bachelorproef Silas De Vuyst, HOGENT, 2025--2026}
+
+\titleformat{\section}{\Large\bfseries\color{cobolblue}}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+
+\hypersetup{colorlinks=true,linkcolor=cobolblue,urlcolor=cobolblue}
+
+\begin{document}
+
+%%---------- Titelpagina -----------------------------------------------------
+\begin{titlepage}
+\begin{center}
+\vspace*{2cm}
+{\Huge\bfseries Conceptblok A}\\[0.5cm]
+{\Large Programmaskelet, PICTURE-clausules en datahiërarchie}\\[2cm]
+
+{\large \textit{Traditioneel leermateriaal voor de gebruikersstudie}}\\[0.3cm]
+{\large Levels 1 tot en met 3}\\[3cm]
+
+\rule{\textwidth}{0.4pt}\\[0.5cm]
+\begin{minipage}{0.9\textwidth}
+\textbf{Voor de deelnemer:}
+Lees dit pakket aandachtig door en los daarna de opdracht op pagina~\pageref{sec:opdracht-A} op. 
+Je hebt 20~minuten om alle leerdoelen op de checklist (\,p.~\pageref{sec:rubric-A})\, te behalen. 
+Schrijf je code op papier of in een editor naar keuze, zonder gebruik van automatische validatietools. 
+Markeer telkens een nieuwe ``poging'' wanneer je je code aanpast en opnieuw wilt controleren.
+\end{minipage}\\
+\rule{\textwidth}{0.4pt}\\[1cm]
+
+\vfill
+\textbf{Bachelorproef Toegepaste Informatica} \\
+Silas De Vuyst \textbullet\ HOGENT \textbullet\ academiejaar 2025--2026
+\end{center}
+\end{titlepage}
+
+%%---------- Inhoud ----------------------------------------------------------
+\section{Inleiding}
+
+COBOL (\textit{Common Business Oriented Language}) is een procedurele programmeertaal uit 1960 die nog steeds aan de basis ligt van een groot deel van het wereldwijde betalings\-verkeer. 
+In dit conceptblok maak je kennis met de drie meest fundamentele bouwstenen die elk COBOL-programma gemeen heeft:
+
+\begin{enumerate}[label=(\arabic*)]
+    \item de strakke programmastructuur in vier \textbf{divisions},
+    \item de \textbf{\texttt{PICTURE}}-clausule die het opslagformaat van data vastlegt,
+    \item de \textbf{datahiërarchie} via level numbers.
+\end{enumerate}
+
+Daar waar relevant wordt een korte vergelijking met Python gemaakt, zodat je de nieuwe constructies kan koppelen aan wat je al kent.
+
+\section{Level 1: De vier divisions}
+
+Een COBOL-programma is opgebouwd uit vier verplichte \textbf{divisions}, in een vaste volgorde:
+
+\begin{description}[leftmargin=4cm,labelwidth=3.5cm,style=nextline]
+    \item[\texttt{IDENTIFICATION DIVISION}] Metadata van het programma. Verplicht is enkel \texttt{PROGRAM-ID}, dat als unieke naam fungeert.
+    \item[\texttt{ENVIRONMENT DIVISION}] Koppeling met de hardware/omgeving (bestanden, externe systemen). In eenvoudige programma's vaak leeg.
+    \item[\texttt{DATA DIVISION}] Declaratie van alle variabelen, in secties zoals \texttt{WORKING-STORAGE SECTION} en \texttt{FILE SECTION}.
+    \item[\texttt{PROCEDURE DIVISION}] De uitvoerbare logica, gestructureerd in \textit{paragraphs}. Eindigt met \texttt{STOP RUN.}
+\end{description}
+
+\textbf{Vergelijking met Python.} Een Python-script kent geen verplichte structuur: imports, functies en \texttt{main()} mogen door elkaar staan. In COBOL is de volgorde strikt en niet-onderhandelbaar.
+
+\subsection*{Voorbeeld}
+\begin{lstlisting}
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. HELLO.
+
+       ENVIRONMENT DIVISION.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       PROCEDURE DIVISION.
+           DISPLAY "OK".
+           STOP RUN.
+\end{lstlisting}
+
+\section{Level 2: De PICTURE-clausule}
+
+In Python is een variabele een verwijzing naar een object; het type wordt dynamisch bepaald. 
+In COBOL is een variabele een reeks bytes, en de \textbf{\texttt{PICTURE}}-clausule (afgekort \texttt{PIC}) bepaalt hoe die bytes geïnterpreteerd worden.
+
+De drie symbolen die je hier nodig hebt:
+
+\begin{itemize}
+    \item \textbf{\texttt{9}}: één numeriek cijfer (0--9). \texttt{PIC 9(03)} is dus een geheel getal van drie cijfers.
+    \item \textbf{\texttt{X}}: één alfanumeriek karakter. \texttt{PIC X(10)} is een tekenreeks van tien karakters.
+    \item \textbf{\texttt{V}}: \emph{impliciet} decimaalteken. \texttt{PIC 9(3)V99} reserveert drie cijfers voor het gehele deel en twee voor de decimalen, zonder dat de komma zelf een byte inneemt.
+\end{itemize}
+
+\subsection*{Voorbeeld}
+\begin{lstlisting}
+       01 KLANT.
+          05 NAAM     PIC X(20)   VALUE "Jan Janssens".
+          05 LEEFTIJD PIC 9(03)   VALUE 042.
+          05 SALDO    PIC 9(5)V99 VALUE 12345.67.
+\end{lstlisting}
+
+\textbf{Initialisatie zonder \texttt{VALUE}.} Numerieke velden worden automatisch op nullen gezet, alfanumerieke velden op spaties.
+
+\section{Level 3: Data-hiërarchie}
+
+COBOL gebruikt \textbf{level numbers} om een hiërarchische datastructuur op te bouwen, vergelijkbaar met geneste \texttt{dataclass}'es of \texttt{dict}'s in Python.
+
+\begin{itemize}
+    \item \textbf{Level \texttt{01}}: definieert een record (de wortel).
+    \item \textbf{Level \texttt{05}--\texttt{49}}: groepsitems en velden binnen het record.
+    \item \textbf{Level \texttt{77}}: een losstaande variabele die niet bij een record hoort.
+\end{itemize}
+
+\subsection*{Voorbeeld: Python versus COBOL}
+
+\begin{lstlisting}
+# Python
+employee = {
+    "id": 12345,
+    "name": {
+        "first": "Jan",
+        "last":  "Janssens"
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+       01 EMPLOYEE-DATA.
+          05 EMP-ID    PIC 9(05).
+          05 EMP-NAME.
+             10 FIRST  PIC X(10).
+             10 LAST   PIC X(10).
+\end{lstlisting}
+
+%%---------- Opdracht --------------------------------------------------------
+\newpage
+\section{Opdracht voor conceptblok A}
+\label{sec:opdracht-A}
+
+Schrijf één COBOL-programma met de naam \texttt{KLANT-INFO} dat \emph{alle} onderstaande leerdoelen tegelijkertijd realiseert. 
+Je hoeft de code niet uit te voeren: de evaluatie gebeurt op basis van de checklist hieronder.
+
+\begin{enumerate}
+    \item Bevat alle vier verplichte divisions in de juiste volgorde.
+    \item Eindigt de \texttt{PROCEDURE DIVISION} met \texttt{STOP RUN.}
+    \item Declareert minstens één numeriek veld met \texttt{PIC 9(\ldots{})}.
+    \item Declareert minstens één alfanumeriek veld met \texttt{PIC X(\ldots{})}.
+    \item Declareert minstens één veld met een impliciete decimaal (\texttt{V}), bijvoorbeeld voor een bedrag.
+    \item Bouwt minstens één hiërarchisch record met een \texttt{01}-niveau en minstens één geneste \texttt{05} (\textit{groep + subvelden}).
+\end{enumerate}
+
+\textbf{Praktisch.} Schrijf je oplossing op de volgende pagina (of in een editor naar keuze, mits je het resultaat printscreent of overneemt). 
+Markeer iedere keer dat je je code controleert tegen de uitleg en aanpast als één ``poging'', en houd zelf bij hoeveel pogingen je nodig had.
+
+%%---------- Rubric ----------------------------------------------------------
+\newpage
+\section{Zelfcontrole: rubric}
+\label{sec:rubric-A}
+
+Vink na het indienen aan welke leerdoelen je oplossing bereikt heeft. 
+Een leerdoel telt enkel als ``geslaagd'' wanneer het zonder voorbehoud aanwezig is in jouw code.
+
+\begin{tabularx}{\textwidth}{|c|X|}
+\hline
+\textbf{\#} & \textbf{Leerdoel} \\
+\hline
+$\square$ & 1. Alle vier divisions aanwezig en in de juiste volgorde. \\
+\hline
+$\square$ & 2. \texttt{PROCEDURE DIVISION} eindigt met \texttt{STOP RUN.} \\
+\hline
+$\square$ & 3. Minstens één veld met \texttt{PIC 9(\ldots{})}. \\
+\hline
+$\square$ & 4. Minstens één veld met \texttt{PIC X(\ldots{})}. \\
+\hline
+$\square$ & 5. Minstens één veld met impliciete decimaal (\texttt{V}). \\
+\hline
+$\square$ & 6. Minstens één \texttt{01}-record met geneste \texttt{05}-subvelden. \\
+\hline
+\end{tabularx}
+
+\bigskip
+\noindent\textbf{Aantal pogingen:}\ \rule{2cm}{0.4pt} \hfill \textbf{Tijd-tot-succes:}\ \rule{2cm}{0.4pt}~min
+
+\bigskip
+\noindent\textit{Dank voor je deelname.} Lever dit pakket en je oplossing in bij de onderzoeker.
+
+\end{document}
