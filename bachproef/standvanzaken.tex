@@ -98,9 +98,9 @@ Een COBOL-programma bestaat uit vier \textit{Divisions} \autocite{IBM2023}:
     \item \textbf{PROCEDURE DIVISION:} De division met de uitvoerbare algoritmen. Die worden gestructureerd met \textit{Sections} en \textit{Paragraphs} als primaire eenheden voor logische groepering, vergelijkbaar met routines, in afwezigheid van ingebouwde functies of klassen in de klassieke taalstructuur.
 \end{itemize}
 
-Listing~\ref{lst:cobol_hello_world} toont een minimaal \emph{Hello World}-programma.
+Codefragment~\ref{lst:cobol_hello_world} toont een minimaal \emph{Hello World}-programma.
 
-\begin{listing}
+\begin{listing}[H]
   \begin{minted}{cobolfree}
     IDENTIFICATION DIVISION.
     PROGRAM-ID. HELLO-WORLD.
@@ -159,7 +159,7 @@ In dat geval wordt de variabele automatisch geïnitialiseerd met de standaardwaa
 
 Om een variabele nadien een nieuwe waarde te geven, wordt in COBOL de \texttt{MOVE}-instructie gebruikt:
 
-\begin{listing}
+\begin{listing}[H]
   \begin{minted}{cobolfree}
     MOVE 'Jos' TO NAME.
     MOVE 25 TO AGE.
@@ -177,7 +177,7 @@ Ze definiëren daar de exacte structuur, lengte en het type van gegevensvelden.
 
 Een typisch voorbeeld in de \texttt{WORKING-STORAGE SECTION}:
 
-\begin{listing}
+\begin{listing}[H]
   \begin{minted}{cobolfree}
     DATA DIVISION.
     WORKING-STORAGE SECTION.
@@ -200,7 +200,7 @@ Waar een Python-ontwikkelaar een object of geneste \textit{dictionary} gebruikt,
     \item \textbf{Level 88:} Conditionele variabelen (Boolean-logica gekoppeld aan een waarde).
 \end{itemize}
 
-\begin{listing}
+\begin{listing}[H]
   \begin{minted}{cobolfree}
     01  EMPLOYEE-DATA.
         05  EMP-ID      PIC 9(05).
@@ -212,7 +212,7 @@ Waar een Python-ontwikkelaar een object of geneste \textit{dictionary} gebruikt,
   \label{lst:cobol_record_structuur}
 \end{listing}
 
-\begin{listing}
+\begin{listing}[H]
   \begin{minted}{python}
     employee = {
         "id": 12345,
@@ -231,7 +231,7 @@ Het grootste verschil bij conditionele logica is de manier waarop de scope van e
 
 In COBOL moet de gebruikte variabele eerst gedeclareerd worden in de \texttt{DATA DIVISION}:
 
-\begin{listing}
+\begin{listing}[H]
   \begin{minted}{cobolfree}
     IDENTIFICATION DIVISION.
     PROGRAM-ID. CONDITIONAL-VB.
@@ -255,7 +255,7 @@ In COBOL moet de gebruikte variabele eerst gedeclareerd worden in de \texttt{DAT
   \label{lst:cobol_conditional}
 \end{listing}
 
-\begin{listing}
+\begin{listing}[H]
   \begin{minted}{python}
     if age > 18:
         print("Adult")
@@ -280,7 +280,7 @@ Waar Python iteratoren gebruikt, gebruikt COBOL het \texttt{PERFORM}-statement v
 In COBOL moet de teller eerst gedeclareerd worden in de \texttt{DATA DIVISION}:
 
 
-\begin{listing}
+\begin{listing}[H]
   \begin{minted}{cobolfree}
     IDENTIFICATION DIVISION.
     PROGRAM-ID. LOOP-VB.
@@ -302,7 +302,7 @@ In COBOL moet de teller eerst gedeclareerd worden in de \texttt{DATA DIVISION}:
   \label{lst:cobol_loop}
 \end{listing}
 
-\begin{listing}
+\begin{listing}[H]
   \begin{minted}{python}
     for i in range(1, 11):
         print(i)
@@ -315,7 +315,7 @@ In COBOL moet de teller eerst gedeclareerd worden in de \texttt{DATA DIVISION}:
 Waar Python expliciete functies definieert met het \texttt{def}-keyword, werkt COBOL traditioneel met paragraphs of sections die worden aangeroepen via \texttt{PERFORM}. 
 In modernere COBOL-standaarden kan men ook gebruikmaken van \texttt{PROGRAM-ID} of \texttt{FUNCTION} \autocite{IBM2023}.
 
-\begin{listing}
+\begin{listing}[H]
   \begin{minted}{cobolfree}
     IDENTIFICATION DIVISION.
     PROGRAM-ID. FUNCTION-EX.
@@ -342,7 +342,7 @@ In modernere COBOL-standaarden kan men ook gebruikmaken van \texttt{PROGRAM-ID} 
   \label{lst:cobol_functie}
 \end{listing}
 
-\begin{listing}
+\begin{listing}[H]
   \begin{minted}{python}
     def add_numbers(num_1, num_2):
         return num_1 + num_2

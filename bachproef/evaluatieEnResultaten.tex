@@ -92,7 +92,7 @@ De rechterkolom hanteert een eenvoudige kwalitatieve schaal:
 \begin{itemize}
     \item \textbf{Positief, sterk}: meerdere meta-analyses of breed gedragen reviews rapporteren een (medium-tot-)grote effectgrootte op motivatie of leeruitkomsten in een vergelijkbare context.
     \item \textbf{Positief, matig}: één of meer empirische studies tonen een positief effect, maar er bestaat (nog) geen meta-analyse die het effect bevestigt.
-    \item \textbf{Positief, zwak}: literatuur rapporteert overwegend kleine of plausibele effecten, vaak op basis van case-studies of theoretisch onderbouwde verwachtingen.
+    \item \textbf{Positief, zwak}: literatuur rapporteert vooral kleine of plausibele effecten, vaak op basis van case-studies of theoretisch onderbouwde verwachtingen.
     \item \textbf{Polariserend}: literatuur rapporteert zowel positieve als negatieve effecten, afhankelijk van implementatiekeuzes en doelgroep.
     \item \textbf{Risicovol bij overgebruik}: literatuur waarschuwt expliciet dat overmatig gebruik leidt tot demotivatie of ongewenst gedrag; een matig of beperkt gebruik kan wel een positief effect hebben.
 \end{itemize}
@@ -182,7 +182,7 @@ De levelstructuur met herhaalbare opdrachten, badge-eisen die meerdere bezoeken 
 Een gamified leerpad met streaks, mijlpalen en herhaalbare levels is in dat opzicht een betere container voor verspreide oefening dan een statisch PDF-document, dat doorgaans één keer wordt doorlopen.
 
 \paragraph{Interactiviteit versus statische COBOL-leermiddelen.}
-Hoofdstuk~\ref{ch:stand-van-zaken} stelde vast dat het bestaande COBOL-leeraanbod overwegend bestaat uit PDF-handleidingen \autocite{IBM2023} en tekstuele tutorials \autocite{IBMMainframer2021}, terwijl voor moderne talen interactieve omgevingen (Codecademy, Exercism, LeetCode, \ldots) standaard zijn. 
+Hoofdstuk~\ref{ch:stand-van-zaken} stelde vast dat het bestaande COBOL-leeraanbod vooral bestaat uit PDF-handleidingen \autocite{IBM2023} en tekstuele tutorials \autocite{IBMMainframer2021}, terwijl voor moderne talen interactieve omgevingen (Codecademy, Exercism, LeetCode, \ldots) standaard zijn. 
 De meta-analyse van \textcite{Zhan2022} bevestigt dat interactieve, gamified omgevingen beter scoren op zowel motivatie (\(SMD \approx 0{,}77\)) als academische prestaties (\(SMD \approx 0{,}75\)) ten opzichte van traditionele documentatie-gebaseerde lesmethoden. 
 \textit{Learn COBOL} dicht voor één specifieke taal de kloof tussen leerverwachting en leeraanbod die in het mainframe-onderwijs nog open ligt.
 
@@ -192,13 +192,13 @@ De meta-analyse van \textcite{Zhan2022} bevestigt dat interactieve, gamified omg
 \begin{description}
     \item[DV1: uitdagingen in syntaxis en logica.] Inhoudelijk beantwoord in hoofdstuk~\ref{ch:stand-van-zaken} (sectie~\ref{sec:COBOL-versus-python}). De voornaamste struikelblokken voor een Python-georiënteerde junior zijn de \texttt{PIC}-clausule (vooral met impliciete decimaal \texttt{V}), de hiërarchische level-numbers, de scope-valstrik met de punt (\texttt{.}) en de verbose programmastructuur. Object-georiënteerd programmeren bestaat sinds COBOL 2002 maar speelt in de praktijk een marginale rol \autocite{IBM2025a, Upadhaya2023}.
 
-    \item[DV2: barrières bij het leren.] Beschreven in hoofdstuk~\ref{ch:stand-van-zaken}. Bovenop de syntactische verschillen geldt de \emph{didactische barrière}: het bestaande COBOL-leermateriaal is overwegend statisch, terwijl de doelgroep gewend is aan interactieve sandboxes. Deze mismatch tussen leerverwachting en aanbod versterkt de instroomcrisis.
+    \item[DV2: barrières bij het leren.] Beschreven in hoofdstuk~\ref{ch:stand-van-zaken}. Bovenop de syntactische verschillen geldt de \emph{didactische barrière}: het bestaande COBOL-leermateriaal is vooral statisch, terwijl de doelgroep gewend is aan interactieve sandboxes. Deze mismatch tussen leerverwachting en aanbod versterkt de instroomcrisis.
 
-    \item[DV3: gamification-elementen.] Het Octalysis-framework van \textcite{Chou2015} en de PBL-analyse van \textcite{KevinWerbach2020} blijken complementair. De evaluatie in dit hoofdstuk toont dat een White-Hat-zware combinatie (CD2 \textit{Development \& Accomplishment} + CD3 \textit{Empowerment of Creativity \& Feedback}) het sterkst aansluit bij het doel van duurzame leermotivatie, terwijl elementen rond \textit{Loss \& Avoidance} (CD8) bewust beperkt moeten blijven om beginners niet te ontmoedigen. Het leaderboard is een polariserend element en wordt in de PoC gelaagd ingezet (vriendentop op dashboard, volledige ranking op aparte route).
+    \item[DV3: gamification-elementen.] Het Octalysis-framework van \textcite{Chou2015} en de PBL-analyse van \textcite{KevinWerbach2020} blijken complementair. De evaluatie in dit hoofdstuk toont dat een White-Hat-zware combinatie (CD2 \textit{Development \& Accomplishment} + CD3 \textit{Empowerment of Creativity \& Feedback}) het sterkst aansluit bij het doel van duurzame leermotivatie, terwijl elementen rond \textit{Loss \& Avoidance} (CD8) bewust beperkt moeten blijven om beginners niet te ontmoedigen. Het leaderboard is een polariserend element en wordt in de PoC gelaagd ingezet.
 
     \item[DV4: ontwerp van een gamified leeromgeving.] Concreet uitgewerkt in hoofdstuk~\ref{ch:poc}. De evaluatie in dit hoofdstuk toont dat de zeven gegradeerde levels, de heuristische validatie via leerdoelchecklist, het puntensysteem met first-try bonus, de badge-architectuur, de sociale lagen en het mainframe-thema elk plausibel zijn op basis van bestaand onderzoek over gamification, programmeeronderwijs en didactiek. Geen van de gemaakte keuzes wordt door de geraadpleegde literatuur tegengesproken.
 
-    \item[DV5: leer-efficiëntie t.o.v.\ traditioneel.] Op basis van de literatuurevaluatie is het aannemelijk dat een gamified leeromgeving zoals \textit{Learn COBOL} hoger zou scoren dan een traditioneel PDF-pack op zowel motivatie als leeruitkomsten. De meta-analyse van \textcite{Zhan2022} rapporteert voor gamification in programmeeronderwijs medium-tot-grote effectgroottes (\(SMD \approx 0{,}77\) op motivatie, \(\approx 0{,}75\) op prestaties). Een definitief, kwantitatief antwoord op DV5 vereist een empirische opvolgstudie (zie sectie~\ref{sec:evaluatie-beperkingen-empirisch}); op basis van deze literatuurevaluatie luidt het voorlopige antwoord: \emph{positief, met een verwachte effectgrootte in de medium-tot-grote categorie}.
+    \item[DV5: leer-efficiëntie t.o.v.\ traditioneel.] Op basis van de literatuurevaluatie is het aannemelijk dat een gamified leeromgeving zoals \textit{Learn COBOL} hoger zou scoren dan een traditioneel PDF-pack op zowel motivatie als leeruitkomsten. De meta-analyse van \textcite{Zhan2022} rapporteert voor gamification in programmeeronderwijs medium-tot-grote effectgroottes (\(SMD \approx 0{,}77\) op motivatie, \(\approx 0{,}75\) op prestaties). Een definitief, kwantitatief antwoord op DV5 vereist een empirische opvolgstudie (zie sectie~\ref{sec:evaluatie-beperkingen-empirisch}).
 \end{description}
 
 \section{Beperkingen}
@@ -208,9 +208,9 @@ Een literatuurevaluatie heeft een aantal inherente beperkingen die expliciet ver
 
 \begin{itemize}
     \item \textbf{Geen empirische geldigheid voor de PoC zelf.} De resultaten ondersteunen de \emph{plausibiliteit} van de ontwerpkeuzes, maar tonen niet aan dat \textit{Learn COBOL} in de praktijk een hogere leer-efficiëntie haalt dan een statisch alternatief. Effectgroottes uit \textcite{Zhan2022} zijn aggregaten over heterogene studies en talen, niet over deze specifieke applicatie.
-    \item \textbf{Selectiebias in de literatuur.} De geraadpleegde meta-analyses focussen overwegend op moderne talen (Python, Java, Scratch, \ldots). Of de gemeten effecten zich op dezelfde manier voordoen bij een verbose, decennia-oude taal als COBOL is niet onderzocht.
-    \item \textbf{Confounding van interactiviteit en gamification.} De positieve effecten in \textcite{Zhan2022} ontstaan deels door interactiviteit op zich, niet enkel door gamification. Een gamified PoC en een hypothetische niet-gamified maar wel interactieve sandbox kunnen mogelijk vergelijkbaar scoren; deze evaluatie kan dat onderscheid niet maken.
-    \item \textbf{Heuristische validatie.} De PoC valideert COBOL-code via regex-patronen, niet via een echte compiler. False positives en false negatives zijn dus mogelijk; in een literatuurevaluatie kan deze beperking enkel benoemd worden, niet kwantitatief geschat.
+    \item \textbf{Selectiebias in de literatuur.} De geraadpleegde meta-analyses focussen vooral op moderne talen (Python, Java, Scratch, \ldots). Of de gemeten effecten zich op dezelfde manier voordoen bij een verbose, decennia-oude taal als COBOL is niet onderzocht.
+    \item \textbf{Confounding van interactiviteit en gamification.} De positieve effecten in \textcite{Zhan2022} ontstaan deels door interactiviteit op zich, niet enkel door gamification. Een gamified PoC en een hypothetische niet-gamified maar wel interactieve sandbox kunnen mogelijk vergelijkbaar scoren. Deze evaluatie kan dat onderscheid niet maken.
+    \item \textbf{Heuristische validatie.} De PoC valideert COBOL-code via regex-patronen, niet via een echte compiler. False positives en false negatives zijn dus mogelijk.
     \item \textbf{Geen meting van usability.} Een literatuurevaluatie kan de System Usability Scale niet vervangen. De bruikbaarheid van \textit{Learn COBOL}, een noodzakelijke randvoorwaarde voor leer-efficiëntie, blijft onbevestigd.
 \end{itemize}
 
@@ -225,7 +225,6 @@ Onderstaande opzet schetst hoe zo'n studie er minimaal zou kunnen uitzien:
     \item \textbf{Design:} binnen-subject met counterbalancing tussen \textit{Learn COBOL} en een gelijkwaardig PDF-pack op twee conceptblokken (bv.\ levels 1--3 en 4--6 uit hoofdstuk~\ref{ch:poc}).
     \item \textbf{Kwantitatieve metingen:} succesratio en tijd-tot-succes per conceptblok, aantal indieningen (\texttt{submit\_count}, \texttt{validation\_fail\_count}), en de System Usability Scale na de PoC-conditie. Voor SUS-interpretatie kan de adjectiefschaal van \textcite{Bangor2009} gebruikt worden.
     \item \textbf{Kwalitatieve metingen:} korte semigestructureerde interviews na de sessie, gericht op feedback, motivatie en ervaren barrières.
-    \item \textbf{Tussenoplossingen.} Wanneer een volwaardige studie niet haalbaar blijkt, blijven twee tussenoplossingen mogelijk: een \emph{kleine pilot} (\(n = 3\)--\(5\)) levert indicatieve cijfers, of een \emph{expert walkthrough} met de promotor, co-promotor en een mainframe-professional levert kwalitatieve usability-observaties op.
 \end{itemize}
 
 Een dergelijke empirische opvolging valt buiten de scope van deze bachelorproef, maar de PoC, het databasemodel en de inzichten uit dit hoofdstuk vormen samen een bruikbaar startpunt.
