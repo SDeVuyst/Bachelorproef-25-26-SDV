@@ -459,19 +459,23 @@ De volgende subsecties beschrijven per level de inhoud, de validatiedoelen en de
 
 Een minimaal geslaagd fragment ziet er conceptueel als volgt uit:
 
-\begin{lstlisting}[language=Cobol, caption={Geslaagd fragment Level 1}, label={lst:cobol_level1}]
-       IDENTIFICATION DIVISION.
-       PROGRAM-ID. HELLO.
+\begin{listing}
+  \begin{minted}{cobolfree}
+    IDENTIFICATION DIVISION.
+    PROGRAM-ID. HELLO.
 
-       ENVIRONMENT DIVISION.
+    ENVIRONMENT DIVISION.
 
-       DATA DIVISION.
-       WORKING-STORAGE SECTION.
+    DATA DIVISION.
+    WORKING-STORAGE SECTION.
 
-       PROCEDURE DIVISION.
-           DISPLAY "OK".
-           STOP RUN.
-\end{lstlisting}
+    PROCEDURE DIVISION.
+        DISPLAY "OK".
+        STOP RUN.
+  \end{minted}
+  \caption[Geslaagd fragment Level 1]{Geslaagd fragment Level 1.}
+  \label{lst:cobol_level1}
+\end{listing}
 
 \subsection{Level 2: PICTURE-clauses}
 \label{subsec:poc-level-2}

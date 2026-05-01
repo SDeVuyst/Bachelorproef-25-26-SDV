@@ -100,21 +100,25 @@ Een COBOL-programma bestaat uit vier \textit{Divisions} \autocite{IBM2023}:
 
 Listing~\ref{lst:cobol_hello_world} toont een minimaal \emph{Hello World}-programma.
 
-\begin{lstlisting}[language=Cobol, caption={Hello World in COBOL}, label={lst:cobol_hello_world}]
-IDENTIFICATION DIVISION.
-PROGRAM-ID. HELLO-WORLD.
+\begin{listing}
+  \begin{minted}{cobolfree}
+    IDENTIFICATION DIVISION.
+    PROGRAM-ID. HELLO-WORLD.
 
-DATA DIVISION.
-WORKING-STORAGE SECTION.
+    DATA DIVISION.
+    WORKING-STORAGE SECTION.
 
-01 WS-VARIABLES.
-05 GREETING PIC A(11) VALUE 'HELLO WORLD'.
+    01 WS-VARIABLES.
+    05 GREETING PIC A(11) VALUE 'HELLO WORLD'.
 
-PROCEDURE DIVISION.
-MAIN.
-DISPLAY GREETING.
-STOP RUN.
-\end{lstlisting}
+    PROCEDURE DIVISION.
+    MAIN.
+    DISPLAY GREETING.
+    STOP RUN.
+  \end{minted}
+  \caption[Hello World in COBOL]{Hello World in COBOL.}
+  \label{lst:cobol_hello_world}
+\end{listing}
 
 \subsection{Datatypen en de PICTURE-clausule}
 In Python is een variabele een referentie naar een object in het geheugen. 
@@ -155,11 +159,15 @@ In dat geval wordt de variabele automatisch geïnitialiseerd met de standaardwaa
 
 Om een variabele nadien een nieuwe waarde te geven, wordt in COBOL de \texttt{MOVE}-instructie gebruikt:
 
-\begin{lstlisting}[language=Cobol, caption={MOVE in COBOL}, label={lst:cobol_move}]
-MOVE 'Jos' TO NAME.
-MOVE 25 TO AGE.
-MOVE -123.45 TO PRICE.
-\end{lstlisting}
+\begin{listing}
+  \begin{minted}{cobolfree}
+    MOVE 'Jos' TO NAME.
+    MOVE 25 TO AGE.
+    MOVE -123.45 TO PRICE.
+  \end{minted}
+  \caption[MOVE in COBOL]{MOVE in COBOL.}
+  \label{lst:cobol_move}
+\end{listing}
 
 \subsubsection{Waar worden PIC-clausules gebruikt?}
 
@@ -169,14 +177,18 @@ Ze definiëren daar de exacte structuur, lengte en het type van gegevensvelden.
 
 Een typisch voorbeeld in de \texttt{WORKING-STORAGE SECTION}:
 
-\begin{lstlisting}[language=Cobol, caption={Voorbeeld van WORKING-STORAGE SECTION}, label={lst:cobol_ws}]
-DATA DIVISION.
-WORKING-STORAGE SECTION.
-01 PERSON.
-   05 NAME      PIC X(10).
-   05 AGE       PIC 9(3).
-   05 SALARY    PIC S9(5)V99.
-\end{lstlisting}
+\begin{listing}
+  \begin{minted}{cobolfree}
+    DATA DIVISION.
+    WORKING-STORAGE SECTION.
+    01 PERSON.
+       05 NAME      PIC X(10).
+       05 AGE       PIC 9(3).
+       05 SALARY    PIC S9(5)V99.
+  \end{minted}
+  \caption[Voorbeeld van WORKING-STORAGE SECTION]{Voorbeeld van WORKING-STORAGE SECTION.}
+  \label{lst:cobol_ws}
+\end{listing}
 
 \subsubsection{Data Hiërarchie en Level Numbers}
 Waar een Python-ontwikkelaar een object of geneste \textit{dictionary} gebruikt, structureert een COBOL-ontwikkelaar data via een hiërarchie van \textit{level numbers}.
@@ -188,30 +200,39 @@ Waar een Python-ontwikkelaar een object of geneste \textit{dictionary} gebruikt,
     \item \textbf{Level 88:} Conditionele variabelen (Boolean-logica gekoppeld aan een waarde).
 \end{itemize}
 
-\begin{lstlisting}[language=Cobol, caption={Voorbeeld record structuur in COBOL}, label={lst:cobol_record_structuur}]
-01  EMPLOYEE-DATA.
-    05  EMP-ID      PIC 9(05).
-    05  EMP-NAME.
-        10 FIRST    PIC X(10).
-        10 LAST     PIC X(10).
-\end{lstlisting}
+\begin{listing}
+  \begin{minted}{cobolfree}
+    01  EMPLOYEE-DATA.
+        05  EMP-ID      PIC 9(05).
+        05  EMP-NAME.
+            10 FIRST    PIC X(10).
+            10 LAST     PIC X(10).
+  \end{minted}
+  \caption[Voorbeeld record structuur in COBOL]{Voorbeeld record structuur in COBOL.}
+  \label{lst:cobol_record_structuur}
+\end{listing}
 
-\begin{lstlisting}[language=Python, caption={Voorbeeld record structuur in Python}, label={lst:python_record_structuur}]
-employee = {
-    "id": 12345,
-    "name": {
-        "first": "Jan",
-        "last": "Janssen"
+\begin{listing}
+  \begin{minted}{python}
+    employee = {
+        "id": 12345,
+        "name": {
+            "first": "Jan",
+            "last": "Janssen"
+        }
     }
-}
-\end{lstlisting}
+  \end{minted}
+  \caption[Voorbeeld record structuur in Python]{Voorbeeld record structuur in Python.}
+  \label{lst:python_record_structuur}
+\end{listing}
 
 \subsection{Conditionals}
 Het grootste verschil bij conditionele logica is de manier waarop de scope van een blok wordt afgesloten \autocite{IBM2023}.
 
 In COBOL moet de gebruikte variabele eerst gedeclareerd worden in de \texttt{DATA DIVISION}:
 
-\begin{lstlisting}[language=Cobol, caption={Conditional in COBOL}, label={lst:cobol_conditional}]
+\begin{listing}
+  \begin{minted}{cobolfree}
     IDENTIFICATION DIVISION.
     PROGRAM-ID. CONDITIONAL-VB.
 
@@ -227,16 +248,23 @@ In COBOL moet de gebruikte variabele eerst gedeclareerd worden in de \texttt{DAT
         ELSE
             DISPLAY 'Minor'
         END-IF.
-        
-        STOP RUN.
-\end{lstlisting}
 
-\begin{lstlisting}[language=python, caption={Conditional in Python}, label={lst:python_conditional}]
-if age > 18:
-    print("Adult")
-else:
-    print("Minor")
-\end{lstlisting}
+        STOP RUN.
+  \end{minted}
+  \caption[Conditional in COBOL]{Conditional in COBOL.}
+  \label{lst:cobol_conditional}
+\end{listing}
+
+\begin{listing}
+  \begin{minted}{python}
+    if age > 18:
+        print("Adult")
+    else:
+        print("Minor")
+  \end{minted}
+  \caption[Conditional in Python]{Conditional in Python.}
+  \label{lst:python_conditional}
+\end{listing}
 
 \subsubsection{Scope-valstrik}
 In Python bepaalt de indentatie visueel waar een \texttt{if}-blok eindigt. In COBOL is dit afhankelijk van terminators, wat tot gevaarlijke situaties kan leiden.
@@ -252,7 +280,8 @@ Waar Python iteratoren gebruikt, gebruikt COBOL het \texttt{PERFORM}-statement v
 In COBOL moet de teller eerst gedeclareerd worden in de \texttt{DATA DIVISION}:
 
 
-\begin{lstlisting}[language=Cobol, caption={Iteratie in COBOL}, label={lst:cobol_loop}]
+\begin{listing}
+  \begin{minted}{cobolfree}
     IDENTIFICATION DIVISION.
     PROGRAM-ID. LOOP-VB.
 
@@ -262,24 +291,32 @@ In COBOL moet de teller eerst gedeclareerd worden in de \texttt{DATA DIVISION}:
 
     PROCEDURE DIVISION.
     MAIN.
-        PERFORM VARYING I FROM 1 BY 1 
+        PERFORM VARYING I FROM 1 BY 1
             UNTIL I > 10
             DISPLAY I
         END-PERFORM.
-        
-        STOP RUN.
-\end{lstlisting}
 
-\begin{lstlisting}[language=Python, caption={Iteratie in Python}, label={lst:python_loop}]
-for i in range(1, 11):
-    print(i)
-\end{lstlisting}
+        STOP RUN.
+  \end{minted}
+  \caption[Iteratie in COBOL]{Iteratie in COBOL.}
+  \label{lst:cobol_loop}
+\end{listing}
+
+\begin{listing}
+  \begin{minted}{python}
+    for i in range(1, 11):
+        print(i)
+  \end{minted}
+  \caption[Iteratie in Python]{Iteratie in Python.}
+  \label{lst:python_loop}
+\end{listing}
 
 \subsection{Functies}
 Waar Python expliciete functies definieert met het \texttt{def}-keyword, werkt COBOL traditioneel met paragraphs of sections die worden aangeroepen via \texttt{PERFORM}. 
 In modernere COBOL-standaarden kan men ook gebruikmaken van \texttt{PROGRAM-ID} of \texttt{FUNCTION} \autocite{IBM2023}.
 
-\begin{lstlisting}[language=Cobol, caption={Functies in COBOL}, label={lst:cobol_functie}]
+\begin{listing}
+  \begin{minted}{cobolfree}
     IDENTIFICATION DIVISION.
     PROGRAM-ID. FUNCTION-EX.
 
@@ -300,15 +337,22 @@ In modernere COBOL-standaarden kan men ook gebruikmaken van \texttt{PROGRAM-ID} 
     ADD-NUMBERS.
         COMPUTE RESULT = NUM-1 + NUM-2.
 
-\end{lstlisting}
+  \end{minted}
+  \caption[Functies in COBOL]{Functies in COBOL.}
+  \label{lst:cobol_functie}
+\end{listing}
 
-\begin{lstlisting}[language=Python, caption={Functie in Python}, label={lst:python_functie}]
-def add_numbers(num_1, num_2):
-    return num_1 + num_2
+\begin{listing}
+  \begin{minted}{python}
+    def add_numbers(num_1, num_2):
+        return num_1 + num_2
 
-result = add_numbers(5, 3)
-print(result)
-\end{lstlisting}
+    result = add_numbers(5, 3)
+    print(result)
+  \end{minted}
+  \caption[Functie in Python]{Functie in Python.}
+  \label{lst:python_functie}
+\end{listing}
 
 Merk op dat COBOL hoofdletters en koppeltekens (\texttt{ADD-NUMBERS}) gebruikt voor identifiers, terwijl Python doorgaans \emph{snake\_case} met underscores hanteert (\texttt{add\_numbers}). Dit visuele verschil is voor een Python-georiënteerde junior klein maar consistent en helpt om bij het lezen van COBOL meteen te herkennen welke benamingen identifiers zijn.
 
