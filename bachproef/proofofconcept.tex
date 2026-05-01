@@ -96,9 +96,9 @@ Deze keuze beperkt operationele complexiteit: er is geen eigen server te hosten 
 \subsection{Databasemodel}
 \label{subsec:poc-db-schema}
 Het databasemodel van \textit{Learn COBOL PoC} kun je ook als entiteit-relatiediagram lezen.
-De gebruiker komt overeen met één rij in \texttt{profiles}; de primaire sleutel \texttt{id} is tegelijk vreemde sleutel naar \texttt{auth.users} (Supabase Auth).
+De gebruiker komt overeen met één rij in \texttt{profiles}. De primaire sleutel \texttt{id} is tegelijk vreemde sleutel naar \texttt{auth.users} (Supabase Auth).
 Pogingen per level staan in \texttt{level\_attempts}. Daarin staan onder meer \texttt{success}, tijdstippen en tellers zoals \texttt{submit\_count} en \texttt{validation\_fail\_count}.
-Badge-types staan in \texttt{badge\_definitions}; wie wat verdiende, staat in \texttt{user\_badges}.
+Badge-types staan in \texttt{badge\_definitions}. Wie wat verdiende, staat in \texttt{user\_badges}.
 Vriendschappen tussen gebruikers staat in \texttt{friendships} (met status pending of accepted, indien niet accepted wordt de rij verwijderd).
 Losse gebeurtenissen voor analyse en evaluatie staan in \texttt{app\_events}.
 
@@ -165,8 +165,8 @@ Ter aanvulling op het entiteit-relatiediagram worden de tabellen hieronder in me
 \texttt{id} & Stabiele sleutel van de badge (bv.\ \texttt{four\_divisions}). \\
 \texttt{name} & Korte titel voor de UI. \\
 \texttt{description}, \texttt{how\_to\_earn} & Uitleg en hint hoe de badge te verdienen. \\
-\texttt{tier} & Visuele zeldzaamheidsklasse (bv.\ \textit{bronze}, \textit{silver}, \textit{gold}, \textit{platinum}); bepaalt de kleurranden van de badge in de UI. \\
-\texttt{difficulty} & Logische moeilijkheidsgraad voor groepering op de \texttt{/badges}-pagina (bv.\ \textit{easy}, \textit{medium}, \textit{hard}); onafhankelijk van \texttt{tier} omdat een badge cosmetisch \textit{gold} kan zijn maar inhoudelijk \textit{easy} (en omgekeerd). \\
+\texttt{tier} & Visuele zeldzaamheidsklasse (bv.\ \textit{bronze}, \textit{silver}, \textit{gold}, \textit{platinum}). Dit bepaalt de kleurranden van de badge in de UI. \\
+\texttt{difficulty} & Logische moeilijkheidsgraad voor groepering op de \texttt{/badges}-pagina (bv.\ \textit{easy}, \textit{medium}, \textit{hard}). Dit staat onafhankelijk van \texttt{tier}, omdat een badge cosmetisch \textit{gold} kan zijn maar inhoudelijk \textit{easy} (en omgekeerd). \\
 \texttt{icon\_key} & Mapping naar een icoon in de front-end. \\
 \hline
 \end{tabularx}
@@ -220,7 +220,7 @@ Ter aanvulling op het entiteit-relatiediagram worden de tabellen hieronder in me
 \texttt{created\_at} & Tijdstip. \\
 \hline
 \end{tabularx}
-\caption{Structuur van de tabel \texttt{app\_events} (telemetrie; voorzien voor een eventuele empirische opvolgstudie, niet gebruikt in deze bachelorproef).}
+\caption{Structuur van de tabel \texttt{app\_events} (telemetrie. Voorzien voor een eventuele empirische opvolgstudie, niet gebruikt in deze bachelorproef).}
 \label{tab:schema-app-events}
 \end{table}
 
@@ -231,7 +231,7 @@ Zo blijft de editor herkenbaar voor de doelgroep zonder een zware desktop-IDE\fo
 
 \subsection{Hosting en telemetrie}
 De applicatie kan statisch worden uitgerold. In dit geval wordt de PoC gehost op Vercel\footnote{\url{https://vercel.com/}}.
-\textit{Vercel Analytics} en \textit{Speed Insights} zijn ingeschakeld voor geaggregeerde performance- en bezoekstatistieken op platformniveau; deze metingen worden niet als onderzoeksdata gebruikt in deze bachelorproef en dienen enkel voor operationele opvolging van de gehoste PoC.
+\textit{Vercel Analytics} en \textit{Speed Insights} zijn ingeschakeld voor geaggregeerde performance- en bezoekstatistieken op platformniveau. Deze metingen worden niet als onderzoeksdata gebruikt in deze bachelorproef en dienen enkel voor operationele opvolging van de gehoste PoC.
 \section{Authenticatie en toegang}
 
 \subsection{Registratie en sessies}
@@ -452,7 +452,7 @@ De volgende subsecties beschrijven per level de inhoud, de validatiedoelen en de
 \begin{description}
     \item[Inhoud:] De gebruiker bouwt de verplichte boilerplate: Identification, Environment, Data en Procedure Division, en sluit de run af met \texttt{STOP RUN.}
     \item[Python-parallel:] één Python-bestand versus het strikt geordende blokkenmodel van COBOL (vergelijkbaar met het ordenen van imports, configuratie en \texttt{main()}).
-    \item[Validatiedoelen:] aanwezigheid van alle vier divisions; een \texttt{STOP RUN.} aan het einde van de uitvoering.
+    \item[Validatiedoelen:] aanwezigheid van alle vier divisions. Een \texttt{STOP RUN.} aan het einde van de uitvoering.
     \item[Te verdienen badge:] \texttt{four\_divisions}.
 \end{description}
 
@@ -481,8 +481,8 @@ Een minimaal geslaagd fragment ziet er conceptueel als volgt uit:
 
 \begin{description}
     \item[Inhoud:] Het level introduceert \texttt{PIC}/\texttt{PICTURE}: numeriek (\texttt{9}), alfanumeriek (\texttt{X}) en impliciete decimaal (\texttt{V}).
-    \item[Python-parallel:] waar Python-types dynamisch zijn, legt PIC het opslagformaat vast (denk aan \texttt{int} versus \texttt{str}, maar op byte-niveau; \texttt{Decimal} voor impliciete decimalen).
-    \item[Validatiedoelen:] minstens één \texttt{PIC} of \texttt{PICTURE} met \texttt{9}; minstens één met \texttt{X}; minstens één met \texttt{V} (bijv.\ \texttt{99V99}); minstens één veld binnen een \texttt{01}-structuur (\texttt{05} onder \texttt{01}).
+    \item[Python-parallel:] waar Python-types dynamisch zijn, legt PIC het opslagformaat vast (denk aan \texttt{int} versus \texttt{str}, maar op byte-niveau). Ook \texttt{Decimal} is relevant voor impliciete decimalen.
+    \item[Validatiedoelen:] minstens één \texttt{PIC} of \texttt{PICTURE} met \texttt{9}. Minstens één met \texttt{X}. Minstens één met \texttt{V} (bijv.\ \texttt{99V99}). Minstens één veld binnen een \texttt{01}-structuur (\texttt{05} onder \texttt{01}).
     \item[Te verdienen badge:] \texttt{picture\_clauses}.
 \end{description}
 
@@ -491,8 +491,8 @@ Een minimaal geslaagd fragment ziet er conceptueel als volgt uit:
 
 \begin{description}
     \item[Inhoud:] Focus op levelnummers \texttt{01}, \texttt{05} en optioneel \texttt{77} voor geneste records en standalone velden.
-    \item[Python-parallel:] een \texttt{01}-groep met \texttt{05}-kinderen als dict of \texttt{dataclass} met geneste velden; \texttt{77} als los element naast het record.
-    \item[Validatiedoelen:] minstens één \texttt{01}; minstens één \texttt{05} onder een record; optioneel een standalone \texttt{77}.
+    \item[Python-parallel:] een \texttt{01}-groep met \texttt{05}-kinderen als dict of \texttt{dataclass} met geneste velden. \texttt{77} als los element naast het record.
+    \item[Validatiedoelen:] minstens één \texttt{01}. Minstens één \texttt{05} onder een record. Optioneel een standalone \texttt{77}.
     \item[Te verdienen badge:] \texttt{data\_hierarchy}.
 \end{description}
 
@@ -511,7 +511,7 @@ Een minimaal geslaagd fragment ziet er conceptueel als volgt uit:
 
 \begin{description}
     \item[Inhoud:] Herhaling met \texttt{PERFORM VARYING \ldots\ UNTIL} en afsluiting met \texttt{END-PERFORM}.
-    \item[Python-parallel:] \texttt{for}- of \texttt{while}-lus; controlevariabele en stopconditie.
+    \item[Python-parallel:] \texttt{for}- of \texttt{while}-lus. Controlevariabele en stopconditie.
     \item[Validatiedoelen:] \texttt{PERFORM VARYING} en \texttt{UNTIL} moeten voorkomen.
     \item[Te verdienen badge:] \texttt{iterations}.
 \end{description}
@@ -521,8 +521,8 @@ Een minimaal geslaagd fragment ziet er conceptueel als volgt uit:
 
 \begin{description}
     \item[Inhoud:] Paragrafen als benoemde blokken in de \texttt{PROCEDURE DIVISION} en aanroep met \texttt{PERFORM} (niet alleen \texttt{PERFORM VARYING}).
-    \item[Python-parallel:] functie zonder parameters; \texttt{PERFORM} als aanroep.
-    \item[Validatiedoelen:] een paragraafnaam (kolom~8+) zoals \texttt{VERWERK}; aanroep met \texttt{PERFORM} buiten de \texttt{VARYING}-variant.
+    \item[Python-parallel:] functie zonder parameters. \texttt{PERFORM} als aanroep.
+    \item[Validatiedoelen:] een paragraafnaam (kolom~8+) zoals \texttt{VERWERK}. Aanroep met \texttt{PERFORM} buiten de \texttt{VARYING}-variant.
     \item[Te verdienen badge:] \texttt{paragraphs}.
 \end{description}
 
@@ -532,7 +532,7 @@ Een minimaal geslaagd fragment ziet er conceptueel als volgt uit:
 \begin{description}
     \item[Inhoud:] Kennismaking met \textbf{\texttt{FILE STATUS}} en de statuscode \texttt{35} (file not found), als brug naar foutafhandeling rond bestanden.
     \item[Python-parallel:] \texttt{FileNotFoundError} en expliciet controleren van status na \texttt{OPEN}/\texttt{READ}.
-    \item[Validatiedoelen:] \texttt{FILE STATUS} (of \texttt{FS} in passende context) in \texttt{FILE-CONTROL} of record; de waarde \texttt{35} als literal of in een vergelijking.
+    \item[Validatiedoelen:] \texttt{FILE STATUS} (of \texttt{FS} in passende context) in \texttt{FILE-CONTROL} of record. De waarde \texttt{35} als literal of in een vergelijking.
     \item[Te verdienen badge:] \texttt{error\_handling}.
 \end{description}
 
@@ -571,7 +571,7 @@ Op het dashboard en de badges-pagina tonen tooltips hoe een speler de badge kan 
 Bij de eerste succesvolle afronding van een level wordt een \texttt{celebrationTrigger} verhoogd. De component \texttt{LevelCelebration} start confetti (bibliotheek \texttt{canvas-confetti}, twee bursts met korte pauze), ballonnen-animaties en een titel met puntensubtitel.
 De overlay is niet-interactief en verdwijnt na enkele seconden. Parallel verschijnt een toast ``Level voltooid''.
 Deze esthetiek versterkt \textit{Challenge} en beloning op het moment van mastery (MDA: gewenste emotionele piek na mechanics) \autocite{Hunicke2004}.
-De animaties zijn bewust kort en niet-blokkerend, zodat ze als positieve bekrachtiging fungeren zonder de gebruikersflow te onderbreken; bij herhaalde voltooiing van hetzelfde level wordt enkel een toast getoond om beloningsmoeheid te vermijden.
+De animaties zijn bewust kort en niet-blokkerend, zodat ze als positieve bekrachtiging fungeren zonder de gebruikersflow te onderbreken. Bij herhaalde voltooiing van hetzelfde level wordt enkel een toast getoond om beloningsmoeheid te vermijden.
 
 \begin{figure}[H]
 \centering
