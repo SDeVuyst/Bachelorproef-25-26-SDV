@@ -21,7 +21,7 @@ De hardware en software zijn inherent ontworpen met de strenge eisen van een ent
   \item \textbf{Onderhoudsvriendelijkheid (Serviceability):} Snelle foutdetectie en diagnose maken efficiënt beheer mogelijk.
 \end{itemize}
 
-Naast de RAS-kenmerken is \textbf{blijvende compatibiliteit} een cruciale pijler: het unieke vermogen om applicaties die decennia geleden zijn geschreven (vaak in COBOL), zonder grote wijzigingen te kunnen blijven draaien op de nieuwste generaties hardware.
+Naast de RAS-kenmerken is blijvende compatibiliteit een cruciale pijler: het unieke vermogen om applicaties die decennia geleden zijn geschreven (vaak in COBOL), zonder grote wijzigingen te kunnen blijven draaien op de nieuwste generaties hardware.
 
 Hoewel critici in de jaren '90, zoals Stewart Alsop, voorspelden dat de laatste mainframe in 1996 zou worden uitgeschakeld \autocite{Alsop1991}, vormt het platform vandaag de dag nog steeds de onzichtbare ruggengraat van de wereldeconomie.
 
@@ -373,7 +373,7 @@ Klassedefinities (\texttt{class}), overerving en polymorfisme zijn een kernonder
 
 In COBOL is de situatie omgekeerd. 
 Klassieke COBOL is uitgesproken procedureel: programma's bestaan uit \texttt{DIVISION}-blokken, \texttt{SECTION}s en \texttt{PARAGRAPH}s die via \texttt{PERFORM} worden aangeroepen. 
-Sinds de standaard \textbf{COBOL 2002}, in IBM's compiler beschikbaar als \textit{Enterprise COBOL for z/OS}, ondersteunt de taal \emph{wel} object-georiënteerd programmeren via constructies zoals \texttt{CLASS-ID}, \texttt{METHOD-ID}, \texttt{INHERITS} en \texttt{INVOKE} \autocite{IBM2025a}. 
+Sinds de standaard COBOL 2002, in IBM's compiler beschikbaar als \textit{Enterprise COBOL for z/OS}, ondersteunt de taal \emph{wel} object-georiënteerd programmeren via constructies zoals \texttt{CLASS-ID}, \texttt{METHOD-ID}, \texttt{INHERITS} en \texttt{INVOKE} \autocite{IBM2025a}. 
 Een klasse wordt als een afzonderlijk programma gedefinieerd; methodes worden gegroepeerd in een \texttt{METHOD-ID}-blok binnen die klasse en kunnen polymorf worden overschreven in subklassen.
 
 In de praktijk komen junior developers met deze constructies echter zelden in aanraking. 
@@ -382,7 +382,7 @@ Wie een mainframe-team binnenstapt, krijgt dus typisch eerst tienduizenden regel
 Voor het ontwerp van een leeromgeving betekent dit dat OOP in COBOL eerder een randonderwerp is: een gamified leerpad voor beginners besteedt zijn beperkte tijd verstandiger aan de procedurele basisbouwstenen (divisions, \texttt{PIC}, conditionals, \texttt{PERFORM}, foutafhandeling) dan aan de OOP-syntax die ze zelden in productie zullen tegenkomen.
 
 \subsection{Error Handling}
-In Python is een \texttt{try-except} block de standaard. In COBOL bestaat dit concept niet native. Fouten worden afgehandeld via \textbf{Return Codes} of \textbf{File Status Codes}. 
+In Python is een \texttt{try-except} block de standaard. In COBOL bestaat dit concept niet native. Fouten worden afgehandeld via \textit{Return Codes} of \textit{File Status Codes}. 
 
 Wanneer een bestand wordt geopend, moet de programmeur handmatig de status controleren:
 \begin{itemize}
@@ -399,7 +399,7 @@ De vorige secties tonen aan dat de syntactische en logische verschillen tussen C
 Bovendien botst de strakke, verbose schrijfstijl van COBOL met de leerverwachtingen van een nieuwe generatie ontwikkelaars, voor wie directe feedback en zichtbare progressie een vanzelfsprekend onderdeel zijn van het leerproces. 
 Om deze didactische kloof te overbruggen, vormt \textit{gamification} een veelgebruikte hedendaagse strategie: door spelelementen in te zetten in een educatieve context wordt geprobeerd zowel motivatie als leeruitkomsten te verhogen.
 
-\textcite{Deterding2011} definiëren gamification als het \textbf{gebruik van game-\allowbreak ontwerpelementen in niet-\allowbreak game contexten}. 
+\textcite{Deterding2011} definiëren gamification als het gebruik van game-\allowbreak ontwerpelementen in niet-\allowbreak game contexten. 
 Zij benadrukken dat gamification dichter aanleunt bij \textit{gamen} (\textit{ludus}, gestructureerd spel met regels) dan bij \textit{playing} (\textit{paidia}, vrij spel zonder strikte regels): er zijn duidelijke regels en doelen die de speler moet volgen. 
 Gamification maakt dus wel gebruik van elementen uit game-ontwerp, maar de resulterende toepassingen kunnen niet als volwaardige games worden beschouwd.
 
@@ -434,10 +434,11 @@ Waarom zou een gebruiker opnieuw aan een level beginnen na meerdere mislukte pog
 Enerzijds speelt een \emph{intrinsieke} verwachting: elke (al dan niet geslaagde) poging geeft feedback over wat er misgelopen is.
 Daardoor wordt het mentale model van het level scherper: de gebruiker weet beter waar het misliep en wat de opdracht precies verlangt, zodat een volgende poging beter kan verlopen.
 Dit hoeft niet te betekenen dat het systeem na een mislukking bijkomende hulpmiddelen ontgrendelt; optionele ondersteuning (zoals tips of links naar documentatie) kan vanaf het begin in de interface staan, terwijl de gebruiker er bewust voor kan kiezen die niet te gebruiken.
-Anderzijds versterken \emph{extrinsieke} beloningen die typisch bij gamification horen het opnieuw proberen: punten (eventueel bonuspunten bij schonere of snellere prestaties), badges en andere zichtbare mijlpalen op een profiel, en ranglijsten die vooruitgang en vergelijking met anderen expliciet maken \autocite{KevinWerbach2020}.
+Anderzijds versterken \emph{extrinsieke} beloningen die typisch bij gamification horen het opnieuw proberen: punten (eventueel bonuspunten bij betere of snellere prestaties), badges en andere zichtbare mijlpalen op een profiel, en ranglijsten die vooruitgang en vergelijking met anderen expliciet maken \autocite{KevinWerbach2020}.
 Die combinatie van vaardigheidsopbouw en concrete beloningsdoelen (punten, badges, zichtbare vooruitgang) sluit aan bij de Octalysis-\emph{Core Drive} \textit{Development \& Accomplishment} \autocite{Chou2015}.
 
-Los van game-elementen is \emph{spaced repetition} (of het plannen van herhaling met toenemende tussenpozen) een breed gedragen strategie om feiten en procedures langer te onthouden; in de praktijk wordt die vaak ondersteund door digitale kaarten (bijvoorbeeld Anki).
+Los van game-elementen is \emph{spaced repetition} (of het plannen van herhaling met toenemende onderbrekingen) een veel gebruikte strategie om feiten en procedures langer te onthouden. 
+In de praktijk wordt die vaak ondersteund door digitale kaarten (bijvoorbeeld Anki).
 Onderliggend ligt het \emph{spacing effect} in de leerpsychologie: leren verspreid over meerdere sessies levert typisch betere retentie op dan het massaal herhalen van dezelfde stof in één blok \autocite{Cepeda2006}.
 Een gamified leerpad met levels en herhaalbare opdrachten kan daarmee worden gelezen als een vorm van \emph{distributed practice}: gebruikers krijgen herhaalde blootstelling aan dezelfde concepten.
 
@@ -523,7 +524,12 @@ Door deze acht drijfveren te analyseren, kunnen ontwerpers bepalen of hun systee
 Chou maakt hierbij een onderscheid tussen \textit{White Hat} motivatie (positief en versterkend, zoals Core Drive 1, 2 en 3) en \textit{Black Hat} motivatie (gebaseerd op schaarste of angst voor verlies, zoals Core Drive 6, 7 en 8). 
 Een goed ontwerp gebruikt een combinatie van beide om zowel korte- als langetermijnbetrokkenheid te garanderen \autocite{Chou2015}.
 
-In een educatieve context vertaalt dit zich naar een aantal ontwerprichtlijnen. \textit{Development \& Accomplishment} (CD2) wordt geactiveerd door zichtbare progressie en gegradeerde uitdagingen, wat aansluit bij de levelstructuur uit hoofdstuk~\ref{ch:poc}. \textit{Empowerment of Creativity \& Feedback} (CD3) vraagt om opdrachten waarbij de student vrij kan experimenteren binnen een afgebakend kader, met directe terugkoppeling op de gemaakte keuzes; in een leeromgeving voor programmeren komt dit overeen met onmiddellijke validatie van ingediende code. \textit{Social Influence \& Relatedness} (CD5) wordt typisch ingevuld via leaderboards of peer-vergelijking, terwijl \textit{Scarcity} (CD6) en \textit{Loss Avoidance} (CD8) bewust spaarzaam worden ingezet om frustratie bij beginners te voorkomen. Ten opzichte van het MDA-framework \autocite{Hunicke2004} verschuift Octalysis daarmee de focus van de \emph{systeemarchitectuur} naar de \emph{psychologische impact} van die architectuur op de leerling, en biedt het een concreet checklist-gereedschap om gamified onderwijs op evenwicht te toetsen.
+In een educatieve context vertaalt dit zich naar een aantal ontwerprichtlijnen. 
+\textit{Development \& Accomplishment} (CD2) wordt gebruikt door zichtbare progressie en gegradeerde uitdagingen, wat aansluit bij de levelstructuur uit hoofdstuk~\ref{ch:poc}. 
+\textit{Empowerment of Creativity \& Feedback} (CD3) vraagt om opdrachten waarbij de student vrij kan experimenteren binnen een afgebakend kader, met directe terugkoppeling op de gemaakte keuzes. 
+In een leeromgeving voor programmeren komt dit overeen met onmiddellijke validatie van ingediende code. 
+\textit{Social Influence \& Relatedness} (CD5) wordt typisch ingevuld via leaderboards of peer-vergelijking, terwijl \textit{Scarcity} (CD6) en \textit{Loss Avoidance} (CD8) bewust spaarzaam worden ingezet om frustratie bij spelers te voorkomen. 
+Ten opzichte van het MDA-framework \autocite{Hunicke2004} verschuift Octalysis daarmee de focus van de \emph{systeemarchitectuur} naar de \emph{psychologische impact} van die architectuur op de speler.
 
 
 % =======================================================

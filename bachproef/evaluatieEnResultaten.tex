@@ -68,17 +68,15 @@ De vraag is dus niet of PBL aanwezig is, maar of de drie elementen ingebed zijn 
 \paragraph{Punten en first-try bonus.}
 De keuze om een geslaagd level 100 punten op te leveren en een eerste correcte indiening 25 bonuspunten extra, sluit aan bij wat \textcite{KevinWerbach2020} beschrijven als ``zinvolle'' puntenstructuren: punten zijn gekoppeld aan een concrete prestatie en niet aan louter aanwezigheid. 
 De first-try bonus introduceert daarnaast een lichte \textit{Loss \& Avoidance}-prikkel \autocite{Chou2015}: door de bonus te missen verlies je een onmiddellijk zichtbaar voordeel, wat aanzet tot zorgvuldig lezen vóór indienen. 
-Deze keuze wordt door de literatuur ondersteund.
 
 \paragraph{Badges.}
 De PoC kent zeven inhoudsbadges (één per leerthema) plus combinatiebadges. 
 Dit komt overeen met de aanbevelingen van \textcite{KevinWerbach2020} dat badges twee functies moeten combineren: een \emph{erkenning}- en een \emph{ontdekkings}-functie (gebruikers willen weten welke badges er nog \textit{locked} zijn). 
-De \texttt{badge\_definitions}-tabel met expliciete \texttt{how\_to\_earn}-tekst (zie tabel~\ref{tab:schema-badge-definitions} in hoofdstuk~\ref{ch:poc}) operationaliseert beide functies.
 
 \paragraph{Leaderboard.}
 Dit is het meest betwiste PBL-element. \textcite{KevinWerbach2020} waarschuwen expliciet dat leaderboards in zakelijke contexten kunnen demotiveren wanneer de afstand tot de top te groot is, en in extreme gevallen zelfs ongewenst gedrag kunnen uitlokken. 
 De PoC mitigeert dit risico op twee manieren: het volledige leaderboard staat op een aparte route (\texttt{/leaderboard}), en het dashboard toont een ingekorte top-drie van vrienden in plaats van de globale top-N. 
-Deze gelaagde aanpak (globale ranking beschikbaar maar niet opdringerig, en een sociaal nabije ranking standaard zichtbaar) is consistent met het advies van \textcite{KevinWerbach2020} en met de \textit{Social Influence \& Relatedness} Core Drive van \textcite{Chou2015}.
+Deze gelaagde aanpak is consistent met het advies van \textcite{KevinWerbach2020} en met de \textit{Social Influence \& Relatedness} Core Drive van \textcite{Chou2015}.
 
 \paragraph{Tussentijdse conclusie.}
 De PBL-implementatie in \textit{Learn COBOL} vermijdt de PBL-fallacy door alle drie de elementen aan een bredere ontwerplaag te koppelen (zie sectie~\ref{sec:evaluatie-octalysis} en~\ref{sec:evaluatie-mda} hieronder).
@@ -160,7 +158,7 @@ Het MDA-framework \autocite{Hunicke2004} dwingt om na te denken over hoe \textit
 
 \begin{itemize}
     \item \textbf{Mechanics:} validatiecode (\texttt{validateCobolLevelDetailed}), puntberekening, badge-upserts in \texttt{user\_badges}, sequentiële ontgrendeling.
-    \item \textbf{Dynamics:} competitie om rang, het mikken op een first-try bonus, het vergelijken van eigen voortgang met die van vrienden, herhaalbaar oefenen van een level (zie spaced repetition hieronder).
+    \item \textbf{Dynamics:} competitie om rang, het mikken op een first-try bonus, het vergelijken van eigen voortgang met die van vrienden, herhaalbaar oefenen van een level.
     \item \textbf{Aesthetics:} \textit{Challenge} (levels overwinnen) als dominante emotie, met een lichte \textit{Fantasy} via het mainframe-thema en \textit{Narrative} via de strips.
 \end{itemize}
 
