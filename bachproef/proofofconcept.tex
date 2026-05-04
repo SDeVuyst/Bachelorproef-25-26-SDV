@@ -73,7 +73,7 @@ Wordt spaarzaam ingezet: geen harde ``levens'' of reset van account, wel kan soc
 \label{tab:poc-octalysis-koppeling}
 \end{table}
 
-Vanuit het \textbf{MDA-perspectief} \autocite{Hunicke2004} zijn de \textit{mechanics} onder meer: validatiecode, puntberekening, badge-upserts\footnote{Upsert = update + insert}
+Vanuit het MDA-perspectief \autocite{Hunicke2004} zijn de \textit{mechanics} onder meer: validatiecode, puntberekening, badge-upserts\footnote{Upsert = update + insert}
 De \textit{dynamics} ontstaan tijdens gebruik: competitie om rang, het proberen van een first-try bonus, het vergelijken met vrienden.
 De beoogde \textit{aesthetics} (in de MDA-zin van emotionele ervaring) zijn onder meer \textit{Challenge} (levels overwinnen) en een lichte \textit{Fantasy} door het mainframe-thema.
 
@@ -84,7 +84,7 @@ De front-end is gebouwd met \textit{React~18} en \textit{TypeScript}, gebundeld 
 Die combinatie is gekozen vanwege snelle iteratie tijdens het ontwikkelen van de PoC, brede ondersteuning voor componentbibliotheken en type-veiligheid bij het modelleren van leveldefinities en validatieregels.
 
 \subsection{Backend en data: Supabase}
-\textbf{Supabase} (PostgreSQL + ingebouwde auth) fungeert als backend-as-a-service voor:
+Supabase (PostgreSQL + ingebouwde auth) fungeert als backend-as-a-service voor:
 \begin{itemize}
     \item gebruikersauthenticatie en profielgegevens
     \item persistentie van levelpogingen (\texttt{level\_attempts}), punten en voltooide levels
@@ -530,7 +530,7 @@ Een minimaal geslaagd fragment ziet er conceptueel als volgt uit:
 \label{subsec:poc-level-7}
 
 \begin{description}
-    \item[Inhoud:] Kennismaking met \textbf{\texttt{FILE STATUS}} en de statuscode \texttt{35} (file not found), als brug naar foutafhandeling rond bestanden.
+    \item[Inhoud:] Kennismaking met \texttt{FILE STATUS} en de statuscode \texttt{35} (file not found), als brug naar foutafhandeling rond bestanden.
     \item[Python-parallel:] \texttt{FileNotFoundError} en expliciet controleren van status na \texttt{OPEN}/\texttt{READ}.
     \item[Validatiedoelen:] \texttt{FILE STATUS} (of \texttt{FS} in passende context) in \texttt{FILE-CONTROL} of record. De waarde \texttt{35} als literal of in een vergelijking.
     \item[Te verdienen badge:] \texttt{error\_handling}.
