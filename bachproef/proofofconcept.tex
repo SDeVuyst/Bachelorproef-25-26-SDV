@@ -8,6 +8,7 @@
 \label{ch:poc}
 
 Dit hoofdstuk beschrijft de concrete uitwerking van de Proof of Concept (PoC): een webapplicatie genaamd \textit{Learn COBOL} die COBOL-concepten aanbiedt via een gamified leerpad, gericht op junior-developers met een python-achtergrond.
+Ontwerpalternatieven en de onderbouwing van deze aanpak staan in sectie~\ref{sec:poc-alternatieven}.
 De PoC is het tastbare resultaat uit fase~2 van de methodologie (zie hoofdstuk~\ref{ch:methodologie}) en wordt in hoofdstuk~\ref{ch:evaluatie} via een vergelijkende literatuurevaluatie tegen bestaand empirisch onderzoek afgezet.
 De ontwerpkeuzes in de user interface sluiten aan bij de definities en raamwerken uit hoofdstuk~\ref{ch:stand-van-zaken}, in het bijzonder de PBL-triade (punten, badges, leaderboards), het Octalysis-model en het onderscheid tussen mechanieken, dynamieken en esthetiek binnen het MDA-framework.
 
@@ -586,6 +587,43 @@ De animaties zijn bewust kort en niet-blokkerend, zodat ze als positieve bekrach
     \item \textbf{Mislukte submit:} checklist en detailtekst zonder confetti.
     \item \textbf{Voltooid level:} een \texttt{Alert} meldt dat scores gelogd zijn maar oefenen nog kan.
 \end{itemize}
+
+\section{Ontwerpalternatieven en motivering van de gekozen aanpak}%
+\label{sec:poc-alternatieven}
+
+Voor dezelfde onderzoeksvraag zijn meerdere ontwerptrajecten verdedigbaar.
+Deze sectie zet twee gangbare alternatieven tegenover het uiteindelijke ontwerp: telkens worden voordelen en nadelen benoemd, gevolgd door een synthese waarom de gekozen combinatie voor deze bachelorproef en doelgroep de beste balans geeft.
+
+\subsection{Alternatief A: narratieve gamification}
+Een eerste alternatief legt de nadruk op een doorlopend verhaal, rollen (\textit{quests}, ``tickets'' van een virtueel mainframe-team) of uitgebreide \textit{lore}, waarbij COBOL-oefeningen in missies worden verdeeld.
+
+\textbf{Voordelen:} sterke aanspraak op \textit{Epic Meaning \& Calling} binnen Octalysis \autocite{Chou2015}; kan engagement verhogen bij wie een game-framing apprecieert.
+
+\textbf{Nadelen:} als het verhaal niet nauw op de leerdoelen is afgestemd, leest de gebruiker vooral lange teksten zonder de taal effectief te leren.
+Scripts, dialogen en illustraties kosten ook veel tijd om te bouwen en bij te houden. Het is niet makkelijk om later uit te breiden of aan te passen.
+Bovendien tonen studies naar gamification in programmeeronderwijs vaak al effect met levels en snelle feedback, zonder gebruik te maken van verhalen of dialogen \autocite{Zhan2022}.
+
+\subsection{Alternatief B: platform gekoppeld aan echte compiler of mainframe-omgeving}
+Een tweede alternatief is de leerervaring te laten draaien rond een echte toolchain (lokale GNU~COBOL, remote compiler, of een platform zoals \textit{IBM Z Xplore} met hands-on challenges op mainframe-infrastructuur \autocite{IBMZXplore2026}).
+
+\textbf{Voordelen:} foutmeldingen en slagen zijn die van een echte compiler, wat dichter aansluit bij hoe foutopsporing en uitrol later in het werkveld verlopen.
+
+\textbf{Nadelen:} de technische complexiteit schiet omhoog.
+COBOL in professionele context is nauw verbonden met mainframes; programma's die op z/OS draaien met echte datasets en jobs zijn op een gewone pc niet één-op-één na te bootsen.
+Wel bestaan er compilers en simulators, maar die dekken dialecten, runtime en omgeving vaak slechts gedeeltelijk.
+Dit gaat gepaard met tragere feedback, hogere instapdrempel en meer operationeel risico, wat niet aansluit bij de vaststelling dat junioren gewend zijn aan snelle, sandbox-achtige interactie.
+
+% TODO: minder cringe herschrijven
+\subsection{Waarom het huidige ontwerp?}
+Het gekozen ontwerp werkt volledig in de browser: geen aparte installatie en geen mainframe-account nodig om te starten.
+Er wordt gewerkt met punten, badges en ranglijsten (PBL), maar die hoorden niet als los flutlaagje alleen: ze passen in een breder ontwerp volgens de Octalysis-drijfveren \autocite{Chou2015}.
+Daarmee wordt vermeden wat Werbach een dunne ``points layer'' noemt \autocite{KevinWerbach2020}.
+Tijdens de lessen staat naast de COBOL-code ook een Python-voorbeeld: zo kun je nieuwe syntax vergelijken met iets dat de doelgroep al kent.
+Of een level geslaagd is, zie je meteen via een checklist tegen de leerdoelen (patronen in de code), niet via een trage compiler.
+
+Zo kom je dichter bij wat juniors verwachten (direct oefenen met feedback) dan bij klassieke pdf-handleidingen, zonder dat deze bachelorproef groeit tot een groot verhaal of een lastige mainframe-uitrol.
+
+Er wordt bewust geen echte compiler gebruikt en ook niet de volledige taal geleerd; die keuzes horen bij de afbakening van de PoC en worden besproken in sectie~\ref{sec:poc-theorie} en in hoofdstuk~\ref{ch:evaluatie}.
 
 \section{Tussenconclusie}
 

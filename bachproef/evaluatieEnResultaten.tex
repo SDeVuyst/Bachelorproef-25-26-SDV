@@ -31,13 +31,13 @@ Twee elementen maakten die opzet binnen het tijdsbestek van een bachelorproef ni
 
 \begin{itemize}
     \item \textbf{Rekrutering en planning.} Voldoende deelnemers vinden die aan de inclusiecriteria voldoen vraagt veel screening. De doelgroep bestaat uit junior IT'ers met Python-ervaring én zonder enige COBOL-kennis, en typisch wordt \(N \geq 12\) als minimum gehanteerd. Studenten van de Mainframe-keuzerichting moeten zelf worden uitgesloten, waardoor de overige studentenpopulatie beperkt is.
-    \item \textbf{Materiaal en uitvoering.} Een eerlijke vergelijking vereist een vooraf gevalideerd PDF-pack, intake-formulieren, een SUS-vragenlijst en interview-protocollen, samen met de tijd om sessies van bijna een uur per deelnemer te plannen, op te nemen en te transcriberen.
+    \item \textbf{Materiaal en uitvoering.} Een eerlijke vergelijking vereist een vooraf gevalideerd PDF-pack, screening, gestandaardiseerde pre-\allowbreak en post-toetsen, vragenlijsten (SUS, motivatie) en voor elke deelnemer twee geplande sessies plus export van applicatielogs --- een keten die in deze bachelorproef niet volledig werd uitgevoerd.
 \end{itemize}
 
 In plaats van een ondermaatse pilot uit te voeren met \(n=2\) of \(n=3\) deelnemers, is bewust gekozen voor een andere aanpak: 
 de ontwerpkeuzes van de PoC theoretisch \emph{kalibreren} tegen de bestaande empirische literatuur. 
 Deze aanpak maakt geen sterke causale claim over de effectiviteit van \textit{Learn COBOL} zelf, maar levert een conceptueel onderbouwde uitspraak: \emph{indien} de PoC ingezet wordt zoals beschreven, is het op basis van vergelijkbaar onderzoek aannemelijk dat de gamification-elementen een positief effect hebben op motivatie en leerwinst.
-Sectie~\ref{sec:evaluatie-beperkingen-empirisch} beschrijft hoe een empirische opvolgstudie er concreet zou kunnen uitzien.
+Sectie~\ref{sec:evaluatie-pilotstudie} beschrijft een concreet ontwerp voor een pilotstudie om de PoC empirisch te valideren.
 
 \section{Methode van de literatuurevaluatie}
 \label{sec:evaluatie-methode}
@@ -195,3 +195,100 @@ Een literatuurevaluatie heeft een aantal inherente beperkingen die expliciet ver
     \item \textbf{Heuristische validatie.} De PoC valideert COBOL-code via regex-patronen, niet via een echte compiler. False positives en false negatives zijn dus mogelijk.
     \item \textbf{Geen meting van usability.} Een literatuurevaluatie kan de System Usability Scale niet vervangen. De bruikbaarheid van \textit{Learn COBOL}, een noodzakelijke randvoorwaarde voor leer-efficiëntie, blijft onbevestigd.
 \end{itemize}
+
+\section{Ontwerp van een pilotstudie ter validatie van de PoC}%
+\label{sec:evaluatie-pilotstudie}
+
+Hoewel kwalitatieve diepte-interviews buiten de scope van deze bachelorproef vallen, is voor een empirische validatie van \textit{Learn COBOL} wél een onderzoeksdesign nodig dat reproduceerbaar is en meerdere databronnen combineert.
+Onderstaand plan beschrijft een beknopte \emph{pilotstudie}: een haalbaarheids- en effectrichting-onderzoek met beperkte steekproef, bedoeld om voorbereidende evidentie te verzamelen en de meetketen te testen.
+
+\subsection{Doelstellingen}
+
+De pilot heeft twee gerichte doelen.
+Het primaire doel is nagaan of de PoC onder gecontroleerde omstandigheden ten minste equivalent presteert aan een statisch PDF-pack met dezelfde zeven leerthema's en volgorde als in hoofdstuk~\ref{ch:poc}, op vlak van korte-termijn leerwinst (conceptkennis) en motivatie of engagement tijdens het doorlopen van het materiaal.
+Het secundaire doel is het afdekken van randvoorwaarden: bruikbaarheid na de app-conditie (SUS), dropout en haalbaarheid van planning, en het verzamelen van objectieve gedragsdata uit de applicatie (tijden, pogingen) als aanvulling op vragenlijsten.
+
+\subsection{Doelgroep, inclusiecriteria en steekproef}
+
+\textbf{Doelgroep:} junior developers of IT-studenten met een Python-basis en geen voorafgaande formele COBOL-opleiding, conform de PoC-doelgroep.
+
+\textbf{Inclusie:} zelfgerapporteerd voldoende Python om de parallelle voorbeelden te volgen; bereidheid tot twee sessies met vaste tijdsbudget (\(\pm\) 45--60 minuten per conditie) en het invullen van pre- en post-metingen.
+
+\textbf{Exclusie:} deelnemers aan een Mainframe-/COBOL-specialisatie; professionele COBOL-ervaring; eerder gebruik van het PDF-materiaal of van \textit{Learn COBOL} vóór de meting.
+
+\textbf{Steekproefgrootte:} voor een pilot wordt \(N = 12\) tot \(20\) voltooide deelnames als streven gehanteerd (consistent met het minimum \(N \geq 12\) dat elders in deze tekst als ondergrens voor zinvolle spreiding wordt genoemd).
+Een kleinere pilot (\(N \approx 8\)--\(12\)) blijft mogelijk mits de interpretatie uitdrukkelijk exploratief blijft.
+
+\subsection{Onderzoeksopzet}
+
+Het ontwerp is binnen-proefpersoon (\textit{within-subject}) met twee condities: (A) \textit{Learn COBOL} en (B) het PDF-pack.
+Counterbalancing van de volgorde (A--B versus B--A) verdeelt vermoeidheidseffecten en voorkeurseffecten.
+Tussen beide condities wordt een wash-out van minstens 24 tot 48 uur voorzien om directe carry-over te beperken.
+Voor het PDF-pack wordt een tijd-op-taak-log gevraagd (zelfrapportage of eenvoudig logformulier), omdat er geen serverlogs beschikbaar zijn zoals voor de PoC.
+
+\subsection{Tijdslijn}
+
+Figuur~\ref{fig:pilot-tijdlijn} geeft een relatieve tijdslijn van vijf opeenvolgende weken vanaf de start van de pilotvoorbereiding.
+Concrete kalenderdata worden gekozen bij uitvoering; de volgorde van activiteiten blijft hetzelfde.
+
+\begin{figure}[H]
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+    font=\small,
+    tick/.style={thick},
+    lbl/.style={align=left, text width=3.15cm, inner sep=2pt}
+]
+    % Laatste mijlpaal niet samenvallen met de pijlpunt: as loopt door na week~5
+    \coordinate (A) at (-0.15,0);
+    \coordinate (END) at (14.25,0);
+    \draw[tick,-{Latex[length=2.8mm]}] (A) -- (END);
+    \foreach \x in {0, 4.05, 8.1, 11.6}
+        \draw (\x,-0.17) -- (\x,0.17);
+    % Afwisselend onder / boven de tijdslijn (tekstblokken)
+    \node[lbl, below=14pt] at (0,-0.17) {\textbf{Week~1}\\[3pt]
+        PDF-pack en toetsen afronden; informed consent; instrumenten pilot-testen buiten de steekproef.};
+    \node[lbl, above=14pt] at (4.05,0.17) {\textbf{Week~2}\\[3pt]
+        Screening, randomisatie volgorde condities; eerste sessies; pre-test vóór conditie~1.};
+    \node[lbl, below=14pt] at (8.1,-0.17) {\textbf{Week 3--4}\\[3pt]
+        Datacollectie: beide condities per deelnemer met wash-out; post-tests en motivatievragenlijsten na elke conditie.};
+    \node[lbl, above=14pt] at (11.6,0.17) {\textbf{Week~5}\\[3pt]
+        Optionele vertraagde toets; exit-enquête; export Supabase (\texttt{level\_attempts}, \texttt{app\_events}); pilotrapport.};
+\end{tikzpicture}%
+}%
+\caption{Relatieve tijdslijn van de pilotfase}%
+\label{fig:pilot-tijdlijn}
+\end{figure}
+
+\subsection{Meetinstrumenten}
+
+\paragraph{Kennis (pre- en post-test).}
+Vóór de eerste conditie volgt een pre-test met items gelinkt aan de zeven thema's uit tabel~\ref{tab:poc-levels}.
+Na elke conditie volgt een post-test met \emph{parallelle} (isomorfe) items om directe leerwinst per medium te vergelijken.
+Optioneel kan één vertraagde post-test (bijvoorbeeld een week na de laatste conditie) worden toegevoegd voor een ruwe retentie-indicator; dit verlengt wel de tijdsinvestering per deelnemer.
+
+\paragraph{Motivatie en belasting.}
+Na elke conditie wordt een verkorte schaal ingezet die in programmeeronderwijs gangbaar is, bijvoorbeeld een subset van de \textit{Intrinsic Motivation Inventory} (IMI) met dimensies zoals interesse/genot, ervaren competentie en inzet.
+Als aanvulling kan een ultrakorte belastingmeting (bijvoorbeeld geselecteerde schalen van NASA-TLX) inschatten hoe zwaar de cognitieve koers werd ervaren — relevant gegeven de verbose COBOL-syntax.
+
+\paragraph{Usability.}
+Na de PoC-conditie wordt de System Usability Scale (SUS, tien items) afgenomen.
+Interpretatie kan via de adjectiefbenchmark van \textcite{Bangor2009}.
+
+\paragraph{Gedrag en proces (zonder interviews).}
+Voor de PoC-conditie leveren bestaande tabellen objectieve maten: onder meer \(started\_at\) tot \(completed\_at\), \(submit\_count\), \(validation\_fail\_count\) en succes bij eerste indiening (zie hoofdstuk~\ref{ch:poc}).
+Voor het PDF-pack wordt proces alleen via tijd-op-taak en eventueel een korte checklist per sectie geschat.
+
+\paragraph{Minimale aanvullende feedback.}
+Een korte gestructureerde exit-enquête (beperkt aantal items en optioneel één open veld) vervangt geen diepte-interview maar vangt toch knelpunten en verwachtingen op.
+
+\subsection{Verwerking en interpretatie}
+
+Gegevens worden binnen-proefpersoon geanalyseerd: gemiddeld verschil tussen PoC en PDF op post-toets en vragenlijsten (gepaarde verschillen), met niet-parametrische toetsen of bootstrap bij kleine \(N\).
+Correlaties tussen motivatiescores en logdata zijn hoogstens \emph{exploratief}.
+Resultaten worden gerapporteerd als pilot: effectrichting, variabiliteit en lessen voor een grotere opvolgstudy — niet als definitief bewijs van superioriteit van één medium.
+
+\subsection{Verband met deze bachelorproef}
+
+De uitvoering van deze pilot valt buiten het tijdsbestek van deze tekst; ze materialiseert wel het ontbrekende stap tussen literatuur-gekalibreerde plausibiliteit en empirische toetsing op echte deelnemers.
+Het databasemodel van de PoC en de hier beschreven instrumenten sluiten direct op elkaar aan.
