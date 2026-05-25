@@ -5,39 +5,42 @@
 \chapter{\IfLanguageName{dutch}{Literatuurevaluatie van de Proof-of-Concept}{Literature-based evaluation of the Proof-of-Concept}}
 \label{ch:evaluatie}
 
-In dit hoofdstuk wordt de Proof-of-Concept uit hoofdstuk~\ref{ch:poc} geëvalueerd.
-Anders dan een klassieke gebruikersstudie met deelnemers, gebeurt die evaluatie hier via een vergelijkende literatuurstudie: 
-elke ontwerpkeuze in \textit{Learn COBOL} wordt afgezet tegen de empirische bevindingen van bestaand onderzoek over gamification, programmeeronderwijs en didactiek.
-Het doel is een onderbouwd antwoord te formuleren op de centrale onderzoeksvraag (sectie~\ref{sec:onderzoeksvraag}) en de deelvragen, zonder zelf nieuwe empirische data te genereren.
+In dit hoofdstuk wordt de Proof-of-Concept uit hoofdstuk~\ref{ch:poc} geëvalueerd in twee delen.
+Het eerste deel is een \emph{vergelijkende literatuurstudie} die in deze bachelorproef is uitgevoerd: elke ontwerpkeuze in \textit{Learn COBOL} wordt afgezet tegen empirische bevindingen over gamification, programmeeronderwijs en didactiek (secties~\ref{sec:evaluatie-methode}--\ref{sec:evaluatie-didactisch}).
+Het tweede deel is een \emph{uitgewerkt onderzoeksdesign} voor een pilotstudie waarin de PoC empirisch wordt vergeleken met een statisch PDF-pack met dezelfde leerthema's (sectie~\ref{sec:evaluatie-pilotstudie}).
+Die pilot is binnen het tijdsbestek van deze tekst niet uitgevoerd, maar maakt de oorspronkelijke empirische ambitie concreet en reproduceerbaar voor een opvolger.
+Samen leveren beide delen een onderbouwd antwoord op de centrale onderzoeksvraag (sectie~\ref{sec:onderzoeksvraag}) en de deelvragen: de literatuurevaluatie op theoretische plausibiliteit, het pilotontwerp op hoe die plausibiliteit met deelnemers getoetst kan worden.
 
 \section{Doel en aanpak van de evaluatie}
 \label{sec:evaluatie-doel}
 
-De evaluatie heeft twee concrete doelstellingen:
+De evaluatie heeft drie concrete doelstellingen:
 \begin{itemize}
     \item \textbf{Theoretische ondersteuning:} per gamification-element en per Octalysis Core Drive nagaan of de gemaakte ontwerpkeuze door de literatuur wordt ondersteund, gerelativeerd of tegengesproken.
-    \item \textbf{Antwoord op de deelvragen}
+    \item \textbf{Antwoord op de deelvragen, met name DV5:} inschatten in hoeverre \textit{Learn COBOL} plausibel efficiënter is dan een traditioneel PDF-pack, op basis van vergelijkbaar empirisch onderzoek.
+    \item \textbf{Voorbereiding van empirische validatie:} een reproduceerbaar pilotontwerp vastleggen zodat de literatuurhypotheses later met deelnemers getoetst kunnen worden.
 \end{itemize}
 
 De koppeling met de deelvragen uit sectie~\ref{sec:onderzoeksvraag} is als volgt.
 DV1, DV2, DV3 en DV4 worden inhoudelijk al beantwoord in respectievelijk hoofdstuk~\ref{ch:stand-van-zaken} en hoofdstuk~\ref{ch:poc}.
-DV5 wordt in dit hoofdstuk beantwoord, op basis van de meta-analyse van \textcite{Zhan2022} en het verschil tussen interactieve en statische leertools beschreven in hoofdstuk~\ref{ch:stand-van-zaken}.
+DV5 wordt in dit hoofdstuk beantwoord in twee stappen: eerst via de literatuurevaluatie (meta-analyse van \textcite{Zhan2022}, verschil tussen interactieve en statische leertools uit hoofdstuk~\ref{ch:stand-van-zaken}), daarna via het pilotontwerp dat beschrijft \emph{hoe} die vergelijking empirisch zou worden uitgevoerd.
 
-\subsection{Waarom een literatuurevaluatie en geen gebruikersstudie?}
+\subsection{Evaluatiestrategie: literatuurevaluatie en pilotontwerp}
 \label{subsec:evaluatie-keuze}
 
-Een volwaardige empirische vergelijking (binnen-subject design met counterbalancing tussen de PoC en een traditioneel PDF-pack) was de oorspronkelijke ambitie van dit onderzoek.
-Twee elementen maakten die opzet binnen het tijdsbestek van een bachelorproef niet haalbaar:
+De oorspronkelijke onderzoeksopzet voorzag een empirische vergelijking tussen de PoC en een traditioneel PDF-pack: een binnen-proefpersoon-design met counterbalancing, pre-\allowbreak/post-toetsen, motivatievragenlijsten, SUS en gedragslogs uit de applicatie.
+Dat volledige onderzoek kon binnen het tijdsbestek van deze bachelorproef niet worden uitgevoerd.
+Twee knelpunten bepaalden die keuze:
 
 \begin{itemize}
-    \item \textbf{Rekrutering en planning.} Voldoende deelnemers vinden die aan de inclusiecriteria voldoen vraagt veel screening. De doelgroep bestaat uit junior IT'ers met Python-ervaring én zonder enige COBOL-kennis, en typisch wordt \(N \geq 12\) als minimum gehanteerd. Studenten van de Mainframe-keuzerichting moeten zelf worden uitgesloten, waardoor de overige studentenpopulatie beperkt is.
-    \item \textbf{Materiaal en uitvoering.} Een eerlijke vergelijking vereist een vooraf gevalideerd PDF-pack, screening, gestandaardiseerde pre-\allowbreak en post-toetsen, vragenlijsten (SUS, motivatie) en voor elke deelnemer twee geplande sessies plus export van applicatielogs --- een keten die in deze bachelorproef niet volledig werd uitgevoerd.
+    \item \textbf{Rekrutering en planning.} Voldoende deelnemers vinden die aan de inclusiecriteria voldoen vraagt veel screening. De doelgroep bestaat uit junior IT'ers met Python-ervaring én zonder enige COBOL-kennis; voor een zinvolle spreiding wordt typisch \(N \geq 12\) als minimum gehanteerd. Studenten van de Mainframe-keuzerichting moeten worden uitgesloten, waardoor de overige studentenpopulatie beperkt is.
+    \item \textbf{Materiaal en uitvoering.} Een eerlijke vergelijking vereist een vooraf gevalideerd PDF-pack, screening, gestandaardiseerde instrumenten en voor elke deelnemer twee geplande sessies plus export van applicatielogs; die keten kon in deze bachelorproef niet volledig worden afgewerkt.
 \end{itemize}
 
-In plaats van een ondermaatse pilot uit te voeren met \(n=2\) of \(n=3\) deelnemers, is bewust gekozen voor een andere aanpak: 
-de ontwerpkeuzes van de PoC theoretisch \emph{kalibreren} tegen de bestaande empirische literatuur. 
-Deze aanpak maakt geen sterke causale claim over de effectiviteit van \textit{Learn COBOL} zelf, maar levert een conceptueel onderbouwde uitspraak: \emph{indien} de PoC ingezet wordt zoals beschreven, is het op basis van vergelijkbaar onderzoek aannemelijk dat de gamification-elementen een positief effect hebben op motivatie en leerwinst.
-Sectie~\ref{sec:evaluatie-pilotstudie} beschrijft een concreet ontwerp voor een pilotstudie om de PoC empirisch te valideren.
+In plaats van een onderbouwde pilot met slechts twee of drie deelnemers uit te voeren, is gekozen voor een tweeledige aanpak.
+\textbf{Literatuurevaluatie (uitgevoerd):} de ontwerpkeuzes van de PoC worden theoretisch \emph{gekalibreerd} tegen bestaande empirische literatuur.
+Die stap levert geen causale claim over \textit{Learn COBOL} zelf, wel een conceptueel onderbouwde uitspraak: \emph{indien} de PoC ingezet wordt zoals beschreven, is het op basis van vergelijkbaar onderzoek aannemelijk dat de gamification-elementen een positief effect hebben op motivatie en leerwinst.
+\textbf{Pilotontwerp (voorbereid, niet uitgevoerd):} sectie~\ref{sec:evaluatie-pilotstudie} beschrijft hetzelfde vergelijkende experiment in uitvoerbare vorm (doelgroep, steekproef, tijdslijn, meetinstrumenten en analyse), zodat een opvolger de empirische validatie kan overnemen zonder het onderzoeksplan opnieuw te moeten ontwerpen.
 
 \section{Methode van de literatuurevaluatie}
 \label{sec:evaluatie-methode}
@@ -52,13 +55,16 @@ De evaluatie volgt een eenvoudig drie-staps-protocol per ontwerpkeuze:
 
 De voornaamste bronnen voor stap~2 zijn de meta-analyse van \textcite{Zhan2022} (over gamification in programmeeronderwijs), het werk van \textcite{KevinWerbach2020} (over de PBL-triade en haar valkuilen), het Octalysis-framework van \textcite{Chou2015}, het MDA-framework van \textcite{Hunicke2004}, het overzicht van \textcite{Cepeda2006} over het spacing effect en de marktanalyse van COBOL-leermiddelen uit hoofdstuk~\ref{ch:stand-van-zaken}.
 
-\textbf{Wat deze evaluatie niet doet.}
-Ze meet géén leeruitkomsten op deelnemers, géén SUS-scores, géén tijd-tot-succes en géén iteratie-aantallen. 
-De resultatensectie geeft per ontwerpkeuze een \emph{verwacht effect}, niet een gemeten effect. 
-Sectie~\ref{sec:evaluatie-beperkingen} bespreekt wat deze beperkingen betekenen voor de interpretatie van de resultaten.
+\textbf{Wat de literatuurevaluatie niet doet.}
+Ze meet géén leeruitkomsten op deelnemers, géén SUS-scores, géén tijd-tot-succes en géén iteratie-aantallen.
+De secties~\ref{sec:evaluatie-pbl}--\ref{sec:evaluatie-didactisch} geven per ontwerpkeuze een \emph{verwacht effect}, niet een gemeten effect op gebruikers van \textit{Learn COBOL}.
+Sectie~\ref{sec:evaluatie-beperkingen} somt de implicaties daarvan op; sectie~\ref{sec:evaluatie-pilotstudie} beschrijft welke metingen de voorgestelde pilot wél zou afnemen.
 
 \section{Evaluatie van de PBL-elementen}
 \label{sec:evaluatie-pbl}
+
+Het protocol uit sectie~\ref{sec:evaluatie-methode} wordt hieronder toegepast op vier thema's: PBL, Octalysis, MDA en het didactische ontwerp.
+Per thema worden ontwerpkeuzes uit hoofdstuk~\ref{ch:poc} gekoppeld aan empirische claims; de verwachte effecten vormen input voor de hypothesen die de pilotstudie (sectie~\ref{sec:evaluatie-pilotstudie}) later zou toetsen.
 
 De PoC implementeert de drie klassieke PBL-componenten: punten (met first-try bonus), badges (zeven inhoudsbadges, plus combinatieregels rond clean run, mijlpalen en speedrun) en een leaderboard. 
 \textcite{KevinWerbach2020} benadrukken dat PBL het \emph{startpunt} van gamification is, niet het eindpunt: enkel een dunne PBL-laag op een bestaand systeem leggen (de zogenaamde \textit{PBL-fallacy}) leidt zelden tot duurzame motivatie. 
@@ -84,64 +90,28 @@ De keuzes worden door de literatuur over PBL ondersteund.
 \label{sec:evaluatie-octalysis}
 
 Het Octalysis-framework van \textcite{Chou2015} biedt acht \textit{Core Drives} (CD's) als checklist om te beoordelen of een gamified systeem gebalanceerd is.
-Tabel~\ref{tab:eval-octalysis} koppelt elk Core Drive aan de concrete ontwerpkeuzes in de PoC en aan de bijhorende literatuurclaim over de verwachte impact.
-De rechterkolom hanteert een eenvoudige kwalitatieve schaal:
-
-\begin{itemize}
-    \item \textbf{Positief, sterk}: meerdere meta-analyses of breed gedragen reviews rapporteren een (medium-tot-)grote effectgrootte op motivatie of leeruitkomsten in een vergelijkbare context.
-    \item \textbf{Positief, matig}: één of meer empirische studies tonen een positief effect, maar er bestaat (nog) geen meta-analyse die het effect bevestigt.
-    \item \textbf{Positief, zwak}: literatuur rapporteert vooral kleine of plausibele effecten, vaak op basis van case-studies of theoretisch onderbouwde verwachtingen.
-    \item \textbf{Polariserend}: literatuur rapporteert zowel positieve als negatieve effecten, afhankelijk van implementatiekeuzes en doelgroep.
-    \item \textbf{Risicovol bij overgebruik}: literatuur waarschuwt expliciet dat overmatig gebruik leidt tot demotivatie of ongewenst gedrag. Een matig of beperkt gebruik kan wel een positief effect hebben.
-\end{itemize}
+Tabel~\ref{tab:eval-octalysis} koppelt elk Core Drive aan de concrete ontwerpkeuzes in de PoC.
 
 \begin{table}[H]
 \centering
 \small
-\begin{tabularx}{\textwidth}{|p{3.2cm}|X|p{3cm}|}
-\hline
-\textbf{Core Drive} & \textbf{Operationalisatie in de PoC} & \textbf{Verwachte richting (literatuur)} \\
-\hline
-CD1 \textit{Epic Meaning \& Calling} &
-Mainframe-strips (\texttt{WORKING-STORAGE}, \texttt{PROCEDURE DIVISION}) en het narratief rond COBOL voor kritieke infrastructuur. &
-Positief, zwak \autocite{Chou2015} \\
-\hline
-CD2 \textit{Development \& Accomplishment} &
-Levels, voortgangsbalk, checklist met vinkjes, punten, badges, viering bij succes, rang en tier op profiel. &
-Positief, sterk \autocite{Zhan2022,KevinWerbach2020} \\
-\hline
-CD3 \textit{Empowerment of Creativity \& Feedback} &
-Vrije code-invoer met onmiddellijke validatie tegen leerdoelen via \texttt{validateCobolLevelDetailed}. &
-Positief, sterk \autocite{Zhan2022,Chou2015} \\
-\hline
-CD4 \textit{Ownership \& Possession} &
-Profielpagina met avatar, cumulatieve punten en badge-collectie gekoppeld aan het account. &
-Positief, matig \autocite{Chou2015} \\
-\hline
-CD5 \textit{Social Influence \& Relatedness} &
-Vriendenlijst, top-drie vrienden op het dashboard, volledig leaderboard, profielen van vrienden. &
-Polariserend \autocite{KevinWerbach2020} \\
-\hline
-CD6 \textit{Scarcity \& Impatience} &
-Sequentiële ontgrendeling van levels. \textit{locked} badges blijven zichtbaar maar onbereikbaar. &
-Positief, mits matig \autocite{Chou2015} \\
-\hline
-CD7 \textit{Unpredictability \& Curiosity} &
-Optionele tips en documentatielinks per level. Variatie in badge-eisen (speedrun, mijlpalen). &
-Positief, zwak \autocite{Chou2015} \\
-\hline
-CD8 \textit{Loss \& Avoidance} &
-Bewust beperkt: geen ``levens'' of accountreset, alleen first-try bonus die verloren kan gaan en sociale vergelijking via leaderboard. &
-Risicovol bij overgebruik \autocite{Chou2015} \\
-\hline
-\end{tabularx}
+\begin{enumerate}[label=\textbf{CD\arabic*}, leftmargin=*, itemsep=0.55em, topsep=0.4em]
+    \item \textit{Epic Meaning \& Calling}: mainframe-strips rond \texttt{WORKING-STORAGE} en \texttt{PROCEDURE DIVISION}; narratief dat COBOL kritieke infrastructuur draagt.
+    \item \textit{Development \& Accomplishment}: levels, voortgangsbalk, checklist met vinkjes, punten, badges, viering bij succes, rang en tier op het profiel.
+    \item \textit{Empowerment of Creativity \& Feedback}: vrije code-invoer met onmiddellijke validatie tegen leerdoelen (\texttt{validateCobolLevelDetailed}).
+    \item \textit{Ownership \& Possession}: profielpagina met avatar, cumulatieve punten en een badge-collectie gekoppeld aan het account.
+    \item \textit{Social Influence \& Relatedness}: vriendenlijst, top-drie vrienden op het dashboard, volledig leaderboard op een aparte route, profielen van vrienden.
+    \item \textit{Scarcity \& Impatience}: sequentiële ontgrendeling van levels; \textit{locked} badges blijven zichtbaar maar onbereikbaar.
+    \item \textit{Unpredictability \& Curiosity}: optionele tips en documentatielinks per level; variatie in badge-eisen (speedrun, mijlpalen).
+    \item \textit{Loss \& Avoidance}: bewust beperkt: geen ``levens'' of accountreset; enkel een first-try bonus die verloren kan gaan en lichte sociale vergelijking via het leaderboard.
+\end{enumerate}
 \caption{Mapping van Octalysis Core Drives op ontwerpkeuzes in \textit{Learn COBOL}}
 \label{tab:eval-octalysis}
 \end{table}
 
 \paragraph{White hat / black hat balans.}
 \textcite{Chou2015} adviseert een combinatie van \textit{White Hat} motivatoren (CD1, CD2, CD3: positief en versterkend) en \textit{Black Hat} motivatoren (CD6, CD7, CD8: gebaseerd op schaarste, nieuwsgierigheid en verliesangst). 
-De PoC is duidelijk White-Hat-zwaar: vier van de zes ``positief''-cellen in tabel~\ref{tab:eval-octalysis} liggen in CD1--CD3, terwijl de Black-Hat-CD's bewust matig of als risico zijn ingezet. 
+De PoC is duidelijk White-Hat-zwaar. Core Drives 1--3 (tabel~\ref{tab:eval-octalysis}) richten zich op voortgang, feedback en betekenis, terwijl CD6--CD8 bewust beperkt zijn ingezet. 
 
 \paragraph{Verwachte effectgrootte.}
 De meta-analyse van \textcite{Zhan2022} rapporteert voor gamification in programmeeronderwijs een gestandaardiseerd gemiddeld effect van ongeveer \(SMD = 0{,}77\) op studentmotivatie en \(\approx 0{,}75\) op academische prestaties, beide medium-tot-grote effecten. 
@@ -183,24 +153,28 @@ Hoofdstuk~\ref{ch:stand-van-zaken} stelde vast dat het bestaande COBOL-leeraanbo
 De meta-analyse van \textcite{Zhan2022} bevestigt dat interactieve, gamified omgevingen beter scoren op zowel motivatie (\(SMD \approx 0{,}77\)) als academische prestaties (\(SMD \approx 0{,}75\)) ten opzichte van traditionele documentatie-gebaseerde lesmethoden. 
 \textit{Learn COBOL} dicht voor één specifieke taal de kloof tussen leerverwachting en leeraanbod die in het mainframe-onderwijs nog open ligt.
 
-\section{Beperkingen}
+\section{Beperkingen van de literatuurevaluatie}
 \label{sec:evaluatie-beperkingen}
 
-Een literatuurevaluatie heeft een aantal inherente beperkingen die expliciet vermeld moeten worden:
+De literatuur-gebaseerde resultaten in secties~\ref{sec:evaluatie-pbl}--\ref{sec:evaluatie-didactisch} hebben inherente beperkingen.
+Die beperkingen zijn geen afwijzing van empirisch onderzoek; ze motiveren juist het pilotontwerp in sectie~\ref{sec:evaluatie-pilotstudie}.
 
 \begin{itemize}
-    \item \textbf{Geen empirische geldigheid voor de PoC zelf.} De resultaten ondersteunen de plausibiliteit van de ontwerpkeuzes, maar tonen niet aan dat \textit{Learn COBOL} in de praktijk een hogere leer-efficiëntie haalt dan een statisch alternatief.
-    \item \textbf{Selectiebias in de literatuur.} De geraadpleegde meta-analyses focussen vooral op moderne talen (Python, Java, Scratch, \ldots). Of de gemeten effecten zich op dezelfde manier voordoen bij een verbose, decennia-oude taal als COBOL is niet onderzocht.
-    \item \textbf{Confounding van interactiviteit en gamification.} De positieve effecten in \textcite{Zhan2022} ontstaan deels door interactiviteit op zich, niet enkel door gamification. Een gamified PoC en een hypothetische niet-gamified maar wel interactieve sandbox kunnen mogelijk vergelijkbaar scoren. Deze evaluatie kan dat onderscheid niet maken.
-    \item \textbf{Heuristische validatie.} De PoC valideert COBOL-code via regex-patronen, niet via een echte compiler. False positives en false negatives zijn dus mogelijk.
-    \item \textbf{Geen meting van usability.} Een literatuurevaluatie kan de System Usability Scale niet vervangen. De bruikbaarheid van \textit{Learn COBOL}, een noodzakelijke randvoorwaarde voor leer-efficiëntie, blijft onbevestigd.
+    \item \textbf{Geen empirische geldigheid voor de PoC zelf.} De resultaten ondersteunen de plausibiliteit van de ontwerpkeuzes, maar tonen niet aan dat \textit{Learn COBOL} in de praktijk een hogere leer-efficiëntie haalt dan een statisch alternatief. De pilot in sectie~\ref{sec:evaluatie-pilotstudie} is expliciet op die vergelijking gericht (pre-\allowbreak/post-toetsen per conditie).
+    \item \textbf{Selectiebias in de literatuur.} De geraadpleegde meta-analyses focussen vooral op moderne talen (Python, Java, Scratch, \ldots). Of de gemeten effecten zich op dezelfde manier voordoen bij een verbose, decennia-oude taal als COBOL is niet onderzocht; de pilot richt zich wel op COBOL-beginners binnen de PoC-doelgroep.
+    \item \textbf{Confounding van interactiviteit en gamification.} De positieve effecten in \textcite{Zhan2022} ontstaan deels door interactiviteit op zich, niet enkel door gamification. De voorgestelde pilot vergelijkt een interactieve gamified PoC met een statisch PDF-pack en reduceert daarmee een deel van het confounding-risico ten opzichte van louter literatuur extrapolatie.
+    \item \textbf{Heuristische validatie.} De PoC valideert COBOL-code via regex-patronen, niet via een echte compiler. False positives en false negatives zijn mogelijk; gedragslogs uit de pilot (\texttt{validation\_fail\_count}, pogingen per level) kunnen inzicht geven in hoe deelnemers met die feedback omgaan.
+    \item \textbf{Geen meting van usability.} Een literatuurevaluatie kan de System Usability Scale niet vervangen. In het pilotontwerp wordt SUS na de PoC-conditie afgenomen (sectie~\ref{sec:evaluatie-pilotstudie}, Meetinstrumenten).
 \end{itemize}
 
 \section{Ontwerp van een pilotstudie ter validatie van de PoC}%
 \label{sec:evaluatie-pilotstudie}
 
-Hoewel kwalitatieve diepte-interviews buiten de scope van deze bachelorproef vallen, is voor een empirische validatie van \textit{Learn COBOL} wél een onderzoeksdesign nodig dat reproduceerbaar is en meerdere databronnen combineert.
-Onderstaand plan beschrijft een beknopte \emph{pilotstudie}: een haalbaarheids- en effectrichting-onderzoek met beperkte steekproef, bedoeld om voorbereidende evidentie te verzamelen en de meetketen te testen.
+De literatuurevaluatie levert plausibiliteit; een empirische toets op echte deelnemers vereist het onderzoeksdesign dat hieronder wordt uitgewerkt.
+Het plan sluit aan op de oorspronkelijke onderzoeksopzet (PoC versus PDF-pack, zelfde zeven leerthema's) en op de beperkingen uit sectie~\ref{sec:evaluatie-beperkingen}.
+Kwalitatieve diepte-interviews vallen buiten de scope van deze bachelorproef; de pilot combineert wel gestandaardiseerde vragenlijsten, toetsen en objectieve applicatielogs.
+
+Onderstaand plan beschrijft een beknopte \emph{pilotstudie}: een haalbaarheids- en effectrichting-onderzoek met beperkte steekproef (\(N = 12\)--\(20\)), bedoeld om voorbereidende evidentie te verzamelen, de meetketen te testen en de hypotheses uit de literatuurevaluatie te confronteren met gebruikersdata.
 
 \subsection{Doelstellingen}
 
@@ -290,5 +264,8 @@ Resultaten worden gerapporteerd als pilot: effectrichting, variabiliteit en less
 
 \subsection{Verband met deze bachelorproef}
 
-De uitvoering van deze pilot valt buiten het tijdsbestek van deze tekst; ze materialiseert wel het ontbrekende stap tussen literatuur-gekalibreerde plausibiliteit en empirische toetsing op echte deelnemers.
-Het databasemodel van de PoC en de hier beschreven instrumenten sluiten direct op elkaar aan.
+De uitvoering van deze pilot valt buiten het tijdsbestek van deze tekst.
+In dit hoofdstuk is wel de literatuurevaluatie uitgevoerd (secties~\ref{sec:evaluatie-methode}--\ref{sec:evaluatie-didactisch}) en het empirische vervolg voorbereid.
+De pilot materialiseert daarmee de ontbrekende schakel tussen literatuur-gekalibreerde plausibiliteit en causale uitspraken over \textit{Learn COBOL} bij de doelgroep.
+Het databasemodel van de PoC (hoofdstuk~\ref{ch:poc}) en de hier beschreven instrumenten (pre-\allowbreak/post-toetsen, IMI-achtige schalen, SUS, \texttt{level\_attempts} en \texttt{app\_events}) sluiten direct op elkaar aan.
+Een opvolger kan het ontwerp overnemen zonder de onderzoekslijn van deze bachelorproef te herzien.

@@ -9,7 +9,7 @@
 
 Dit hoofdstuk beschrijft de concrete uitwerking van de Proof of Concept (PoC): een webapplicatie genaamd \textit{Learn COBOL} die COBOL-concepten aanbiedt via een gamified leerpad, gericht op junior-developers met een python-achtergrond.
 Ontwerpalternatieven en de onderbouwing van deze aanpak staan in sectie~\ref{sec:poc-alternatieven}.
-De PoC is het tastbare resultaat uit fase~2 van de methodologie (zie hoofdstuk~\ref{ch:methodologie}) en wordt in hoofdstuk~\ref{ch:evaluatie} via een vergelijkende literatuurevaluatie tegen bestaand empirisch onderzoek afgezet.
+De PoC is het tastbare resultaat uit fase~2 van de methodologie (zie hoofdstuk~\ref{ch:methodologie}) en wordt in hoofdstuk~\ref{ch:evaluatie} in twee delen geëvalueerd: een vergelijkende literatuurevaluatie tegen bestaand empirisch onderzoek en een uitgewerkt pilotontwerp voor empirische validatie tegen een statisch PDF-pack.
 De ontwerpkeuzes in de user interface sluiten aan bij de definities en raamwerken uit hoofdstuk~\ref{ch:stand-van-zaken}, in het bijzonder de PBL-triade (punten, badges, leaderboards), het Octalysis-model en het onderscheid tussen mechanieken, dynamieken en esthetiek binnen het MDA-framework.
 
 \section{Doel en afbakening}
@@ -77,6 +77,13 @@ Wordt spaarzaam ingezet: geen harde ``levens'' of reset van account, wel kan soc
 Vanuit het MDA-perspectief \autocite{Hunicke2004} zijn de \textit{mechanics} onder meer: validatiecode, puntberekening, badge-upserts\footnote{Upsert = update + insert}
 De \textit{dynamics} ontstaan tijdens gebruik: competitie om rang, het proberen van een first-try bonus, het vergelijken met vrienden.
 De beoogde \textit{aesthetics} (in de MDA-zin van emotionele ervaring) zijn onder meer \textit{Challenge} (levels overwinnen) en een lichte \textit{Fantasy} door het mainframe-thema.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{MDA-flow-poc.png}
+    \caption{Perspectief van Speler en Designer binnen het MDA-Framework toegepast op de PoC\autocite{Hunicke2004}}
+    \label{fig:mda-flow-poc}
+\end{figure}
 
 \section{Technische architectuur en technologiekeuzes}
 
@@ -588,42 +595,40 @@ De animaties zijn bewust kort en niet-blokkerend, zodat ze als positieve bekrach
     \item \textbf{Voltooid level:} een \texttt{Alert} meldt dat scores gelogd zijn maar oefenen nog kan.
 \end{itemize}
 
-\section{Ontwerpalternatieven en motivering van de gekozen aanpak}%
+\section{Ontwerpalternatieven}%
 \label{sec:poc-alternatieven}
 
 Voor dezelfde onderzoeksvraag zijn meerdere ontwerptrajecten verdedigbaar.
 Deze sectie zet twee gangbare alternatieven tegenover het uiteindelijke ontwerp: telkens worden voordelen en nadelen benoemd, gevolgd door een synthese waarom de gekozen combinatie voor deze bachelorproef en doelgroep de beste balans geeft.
+De argumentatie steunt onder meer op figuur~\ref{fig:zhan-meta-analysis} (hoofdstuk~\ref{ch:stand-van-zaken}): de meta-analyse van \textcite{Zhan2022} toont dat niet elk gamification-element evenveel bijdraagt aan motivatie en leerwinst in programmeeronderwijs.
 
 \subsection{Alternatief A: narratieve gamification}
-Een eerste alternatief legt de nadruk op een doorlopend verhaal, rollen (\textit{quests}, ``tickets'' van een virtueel mainframe-team) of uitgebreide \textit{lore}, waarbij COBOL-oefeningen in missies worden verdeeld.
+Een eerste alternatief legt de nadruk op een doorlopend verhaal, rollen en uitgebreide \textit{lore}, waarbij COBOL stap voor stap wordt aangeleerd.
 
-\textbf{Voordelen:} sterke aanspraak op \textit{Epic Meaning \& Calling} binnen Octalysis \autocite{Chou2015}; kan engagement verhogen bij wie een game-framing apprecieert.
+\textbf{Voordelen:} sterke aanspraak op \textit{Epic Meaning \& Calling} binnen Octalysis \autocite{Chou2015}.
 
 \textbf{Nadelen:} als het verhaal niet nauw op de leerdoelen is afgestemd, leest de gebruiker vooral lange teksten zonder de taal effectief te leren.
 Scripts, dialogen en illustraties kosten ook veel tijd om te bouwen en bij te houden. Het is niet makkelijk om later uit te breiden of aan te passen.
-Bovendien tonen studies naar gamification in programmeeronderwijs vaak al effect met levels en snelle feedback, zonder gebruik te maken van verhalen of dialogen \autocite{Zhan2022}.
+Bovendien tonen studies naar gamification in programmeeronderwijs al effect met levels en snelle feedback, zonder gebruik te maken van verhalen of dialogen \autocite{Zhan2022}.
+In figuur~\ref{fig:zhan-meta-analysis} valt de categorie \textit{role-playing} (\texttt{Ro}) op voor een bescheiden effect op academische prestaties, terwijl het effect op motivatie verwaarloosbaar is (\(g \approx 0{,}06\)).
+Tegelijk scoren \textit{puzzles/challenges} (\texttt{Pu}) het sterkst op motivatie (\(g \approx 1{,}72\)), wat een narratief zwaar ontwerp minder rationeel maakt voor de doelgroep van deze PoC.
 
 \subsection{Alternatief B: platform gekoppeld aan echte compiler of mainframe-omgeving}
-Een tweede alternatief is de leerervaring te laten draaien rond een echte toolchain (lokale GNU~COBOL, remote compiler, of een platform zoals \textit{IBM Z Xplore} met hands-on challenges op mainframe-infrastructuur \autocite{IBMZXplore2026}).
+Een tweede alternatief is de leerervaring zo dicht mogelijk te houden bij een echte mainframe omgeving (lokale GNU~COBOL, remote compiler, of een platform zoals \textit{IBM Z Xplore} met hands-on challenges op mainframe-infrastructuur \autocite{IBMZXplore2026}).
 
-\textbf{Voordelen:} foutmeldingen en slagen zijn die van een echte compiler, wat dichter aansluit bij hoe foutopsporing en uitrol later in het werkveld verlopen.
+\textbf{Voordelen:} foutmeldingen en succesvolle compilaties zijn die van een echte compiler, wat dichter aansluit bij hoe foutopsporing en uitrol later in het werkveld verlopen.
 
 \textbf{Nadelen:} de technische complexiteit schiet omhoog.
-COBOL in professionele context is nauw verbonden met mainframes; programma's die op z/OS draaien met echte datasets en jobs zijn op een gewone pc niet één-op-één na te bootsen.
+COBOL is nauw verbonden met mainframes. Programma's die op z/OS draaien met echte datasets en jobs zijn op een gewone pc niet één-op-één na te bootsen.
 Wel bestaan er compilers en simulators, maar die dekken dialecten, runtime en omgeving vaak slechts gedeeltelijk.
 Dit gaat gepaard met tragere feedback, hogere instapdrempel en meer operationeel risico, wat niet aansluit bij de vaststelling dat junioren gewend zijn aan snelle, sandbox-achtige interactie.
 
-% TODO: minder cringe herschrijven
 \subsection{Waarom het huidige ontwerp?}
-Het gekozen ontwerp werkt volledig in de browser: geen aparte installatie en geen mainframe-account nodig om te starten.
-Er wordt gewerkt met punten, badges en ranglijsten (PBL), maar die hoorden niet als los flutlaagje alleen: ze passen in een breder ontwerp volgens de Octalysis-drijfveren \autocite{Chou2015}.
-Daarmee wordt vermeden wat Werbach een dunne ``points layer'' noemt \autocite{KevinWerbach2020}.
-Tijdens de lessen staat naast de COBOL-code ook een Python-voorbeeld: zo kun je nieuwe syntax vergelijken met iets dat de doelgroep al kent.
-Of een level geslaagd is, zie je meteen via een checklist tegen de leerdoelen (patronen in de code), niet via een trage compiler.
-
-Zo kom je dichter bij wat juniors verwachten (direct oefenen met feedback) dan bij klassieke pdf-handleidingen, zonder dat deze bachelorproef groeit tot een groot verhaal of een lastige mainframe-uitrol.
-
-Er wordt bewust geen echte compiler gebruikt en ook niet de volledige taal geleerd; die keuzes horen bij de afbakening van de PoC en worden besproken in sectie~\ref{sec:poc-theorie} en in hoofdstuk~\ref{ch:evaluatie}.
+Het gekozen ontwerp werkt volledig in de browser. Er is geen aparte installatie of toegang tot een mainframe nodig om te starten.
+Door te werken met regex-checks is de PoC veel flexibeler en sneller te ontwikkelen dan een echte compiler.
+De kern van de leerervaring sluit aan bij de sterkste effecten in figuur~\ref{fig:zhan-meta-analysis}: gegradeerde levels met onmiddellijke validatie (\texttt{Pu}), punten en badges (\texttt{Rp}) en een beperkt, optioneel leaderboard (\texttt{Rs}) dat sociale vergelijking mogelijk maakt zonder het verhaal te domineren.
+Er wordt volop gebruik gemaakt van de besproken ontwerpkeuzes uit hoofdstuk~\ref{ch:stand-van-zaken}. 
+Hiernaast wordt er ook telkens een Python-voorbeeld getoond, zodat de gebruikers nieuwe syntax meteen kan vergelijken met een vertrouwde taal. 
 
 \section{Tussenconclusie}
 
