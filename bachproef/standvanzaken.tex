@@ -552,9 +552,20 @@ Deze nuancering motiveert een ontwerp dat prioriteit geeft aan uitdagingen met s
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{results_meta_analysis.jpg}
+    \medskip
+    {\centering\scriptsize
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{@{}p@{\hspace{1.5em}}c@{}}
+        \multicolumn{2}{c}{\textbf{Legende}} \\[0.25em]
+        \texttt{Rp:} role-play game & \texttt{AC:} Academic achievement \\
+        \texttt{Rs:} reasoning strategy game & \texttt{MO:} Motivation \\
+        \texttt{Pu:} puzzle game & \texttt{SK:} Thinking skills \\
+        \texttt{Ro:} robotic game & \texttt{CO:} Cognitive load \\
+    \end{tabular}\par}
     \caption[Effect per gamification-element]{Effectgroottes (\textit{Hedges' g}) van vier gamification-categorieën op vier leeruitkomsten in programmeeronderwijs, samengevat uit de meta-analyse van \textcite{Zhan2022}.}
     \label{fig:zhan-meta-analysis}
 \end{figure}
+
 
 Deze bevindingen sluiten aan bij de marktrealiteit van moderne programmeertalen. 
 Voor talen zoals Python, JavaScript en Java bestaat er een uitgebreid gamified leerlandschap: platformen zoals \textit{Codecademy}, \textit{Exercism}, \textit{LeetCode}, \textit{Codewars} en \textit{CodeCombat} combineren interactieve sandboxes met punten, badges, levels en leaderboards. 
@@ -562,7 +573,7 @@ Junior developers die opgroeien met deze tools verwachten een vergelijkbare leer
 
 Voor COBOL ontbreekt deze infrastructuur grotendeels. 
 De bestaande COBOL-leermiddelen zijn voornamelijk statisch: PDF-handleidingen (zoals de \textit{Enterprise COBOL Language Reference} \autocite{IBM2023}), tekstuele tutorials of klassieke video-cursussen \autocite{IBMMainframer2021}. 
-Daarnaast biedt IBM \textit{IBM Z Xplore} hands-on \textit{challenges} op mainframe-infrastructuur: naast algemene z/OS-onderwerpen komen hoger niveau ook COBOL-specifieke opdrachten aan bod, met digitale badges als beloning \autocite{IBMZXplore2026}.
-Interactieve, gamified omgevingen die specifiek gericht zijn op junior developers met een achtergrond in moderne talen, zijn nagenoeg afwezig. 
-Deze kloof tussen de leerverwachtingen van de doelgroep en het beschikbare aanbod vormt een kernmotivatie voor de Proof-of-Concept in hoofdstuk~\ref{ch:poc}: de gamified principes die hun nut elders bewezen hebben, worden hier toegepast op een taal waar dat tot nog toe nauwelijks gebeurde.
+Daarnaast biedt IBM \textit{IBM Z Xplore} hands-on \textit{challenges} op mainframe-infrastructuur: naast algemene z/OS-onderwerpen komen ook COBOL-specifieke opdrachten aan bod, met digitale badges en punten als beloning \autocite{IBMZXplore2026}.
+Interactieve, gamified omgevingen die specifiek gericht zijn op junior developers met een achtergrond in moderne talen, zijn afwezig. 
+Deze kloof tussen de leerverwachtingen van de doelgroep en het beschikbare aanbod vormt een kernmotivatie voor de Proof-of-Concept in hoofdstuk~\ref{ch:poc}: de gamified principes die hun nut elders bewezen hebben, worden hier toegepast op een taal waar dat tot nu toe nauwelijks gebeurde.
 In hoofdstuk~\ref{ch:evaluatie} wordt uitgewerkt hoe die toepassing aan de hand van de literatuur wordt onderbouwd: daar wordt per ontwerpkeuze besproken welke empirische studies voor die keuze relevant zijn.
