@@ -162,7 +162,7 @@ Om een variabele nadien een nieuwe waarde te geven, wordt in COBOL de \texttt{MO
 \begin{listing}[H]
   \begin{minted}{cobolfree}
     MOVE 'Jos' TO NAME.
-    MOVE 25 TO AGE.
+    MOVE 25 TO AGE-IN-YEARS.
     MOVE -123.45 TO PRICE.
   \end{minted}
   \caption[MOVE in COBOL]{MOVE in COBOL.}
@@ -234,7 +234,7 @@ In COBOL moet de gebruikte variabele eerst gedeclareerd worden in de \texttt{DAT
 \begin{listing}[H]
   \begin{minted}{cobolfree}
     IDENTIFICATION DIVISION.
-    PROGRAM-ID. CONDITIONAL-VB.
+    PROGRAM-ID. CONDITIONAL-EX.
 
     DATA DIVISION.
     WORKING-STORAGE SECTION.
@@ -283,7 +283,7 @@ In COBOL moet de teller eerst gedeclareerd worden in de \texttt{DATA DIVISION}:
 \begin{listing}[H]
   \begin{minted}{cobolfree}
     IDENTIFICATION DIVISION.
-    PROGRAM-ID. LOOP-VB.
+    PROGRAM-ID. LOOP-EX.
 
     DATA DIVISION.
     WORKING-STORAGE SECTION.
@@ -330,11 +330,11 @@ In modernere COBOL-standaarden kan men ook gebruikmaken van \texttt{PROGRAM-ID} 
     PROCEDURE DIVISION.
 
     MAIN.
-        PERFORM ADD-NUMBERS
+        PERFORM RESULT-AS-SUM-OF-NUM-1-AND-NUM-2
         DISPLAY RESULT
         STOP RUN.
 
-    ADD-NUMBERS.
+    RESULT-AS-SUM-OF-NUM-1-AND-NUM-2.
         COMPUTE RESULT = NUM-1 + NUM-2.
 
   \end{minted}
@@ -344,17 +344,17 @@ In modernere COBOL-standaarden kan men ook gebruikmaken van \texttt{PROGRAM-ID} 
 
 \begin{listing}[H]
   \begin{minted}{python}
-    def add_numbers(num_1, num_2):
+    def result_as_sum_of_num_1_and_num_2(num_1, num_2):
         return num_1 + num_2
 
-    result = add_numbers(5, 3)
+    result = result_as_sum_of_num_1_and_num_2(5, 3)
     print(result)
   \end{minted}
   \caption[Functie in Python]{Functie in Python.}
   \label{lst:python_functie}
 \end{listing}
 
-Merk op dat COBOL hoofdletters en koppeltekens (\texttt{ADD-NUMBERS}) gebruikt voor identifiers, terwijl Python doorgaans \emph{snake\_case} met underscores hanteert (\texttt{add\_numbers}). Dit visuele verschil is voor een Python-georiënteerde junior klein maar consistent en helpt om bij het lezen van COBOL meteen te herkennen welke benamingen identifiers zijn.
+Merk op dat COBOL hoofdletters en koppeltekens gebruikt voor identifiers, terwijl Python doorgaans \emph{snake\_case} met underscores hanteert. Dit visuele verschil is voor een Python-georiënteerde junior klein maar consistent en helpt om bij het lezen van COBOL meteen te herkennen welke benamingen identifiers zijn.
 
 \subsubsection{Parameter- en Return-verschillen}
 Er bestaan fundamentele verschillen in hoe beide talen omgaan met parameters en returnwaarden:
@@ -445,7 +445,7 @@ Een gamified leerpad met levels en herhaalbare opdrachten kan daarmee worden gel
 \subsection{Frameworks}
 Succesvolle implementatie van gamification volstaat niet met het toevoegen van losse spel-elementen aan een bestaand proces. 
 Het risico van een dergelijke gefragmenteerde aanpak is de zogenaamde \enquote{PBL-fallacy}: de misvatting dat de aanwezigheid van punten, badges en leaderboards automatisch leidt tot motivatie en betrokkenheid \autocite{KevinWerbach2020}.
-Daarom grijpen ontwerpers terug op theoretische frameworks.
+Daarom vallen ontwerpers terug op theoretische frameworks.
 
 Deze raamwerken bieden een gestructureerde methode om de interactie tussen de technische bouwstenen, de dynamiek van het systeem en de psychologische impact op de gebruiker te begrijpen. 
 Waar sommige modellen zich concentreren op de formele systeemarchitectuur, leggen andere de nadruk op de menselijke motivatie. 
@@ -473,22 +473,24 @@ In tegenstelling tot passieve media zoals film of literatuur, wordt de inhoud va
 
 Een cruciaal inzicht van dit raamwerk is dat ontwerper en speler dezelfde drie MDA-facetten in tegengestelde volgorde naderen.
 Het gaat daarbij niet om een direct oorzakelijk verband tussen ontwerper en speler (alsof de één het gedrag van de ander ``veroorzaakt'' in die zin), maar om een omgekeerde volgorde van doorlopen en zichtbaarheid: de ontwerper focust eerst op de bouwstenen en hoopt zo een bepaalde ervaring te bereiken. De speler begint bij die ervaring en ontdekt pas geleidelijk hoe het systeem in elkaar zit.
-\textcite{Hunicke2004} beschrijven dit als twee complementaire perspectieven op dezelfde keten: top-down versus bottom-up:
+\textcite{Hunicke2004} beschrijven dit als twee complementaire perspectieven op dezelfde keten: top-down versus bottom-up:\\
 
-\begin{enumerate}
-    \item \textbf{Perspectief van de ontwerper (top-down):} De ontwerper vertrekt vanuit de \textit{Mechanics}.
-    Door regels en systemen te bouwen, hoopt de ontwerper dat er een bepaalde \textit{Dynamics} ontstaat die uiteindelijk leidt tot de gewenste \textit{Aesthetics} (de emotionele ervaring).
-    \item \textbf{Perspectief van de speler (bottom-up):} De speler doorloopt die facetten in tegenovergestelde richting.
-    De eerste kennismaking is de \textit{Aesthetics}.
-    Pas door te spelen worden de \textit{Dynamics} zichtbaar, en pas later (indien al) de onderliggende \textit{Mechanics} die het systeem aansturen.
-\end{enumerate}
-
-\begin{figure}[H]
+\noindent
+\begin{minipage}[c]{0.66\textwidth}
+    \begin{enumerate}
+        \item \textbf{Perspectief van de ontwerper (top-down):} De ontwerper vertrekt vanuit de \textit{Mechanics}.
+        Door regels en systemen te bouwen, hoopt de ontwerper dat er een bepaalde \textit{Dynamics} ontstaat die uiteindelijk leidt tot de gewenste \textit{Aesthetics} (de emotionele ervaring).
+        \item \textbf{Perspectief van de speler (bottom-up):} De speler doorloopt die facetten in tegenovergestelde richting.
+        De eerste kennismaking is de \textit{Aesthetics}.
+        Pas door te spelen worden de \textit{Dynamics} zichtbaar, en pas later (indien al) de onderliggende \textit{Mechanics} die het systeem aansturen.
+    \end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.30\textwidth}
     \centering
-    \includegraphics[width=0.8\textwidth]{MDA.png}
-    \caption{Perspectief van Speler en Designer binnen het MDA-Framework \autocite{Hunicke2004}}
+    \includegraphics[height=8cm,keepaspectratio]{MDA-vert.png}\par
+    \captionof{figure}{Perspectief van Player en Designer binnen het MDA-Framework \autocite{Hunicke2004}}
     \label{fig:mda}
-\end{figure}
+\end{minipage}
 
 Door deze gelaagdheid te erkennen, kunnen ontwikkelaars voorkomen dat ze louter \enquote{functiegericht} ontwerpen. 
 Het MDA-framework dwingt de ontwerper om na te denken over hoe een kleine wijziging in de code (Mechanics) de volledige emotionele beleving (Aesthetics) van de eindgebruiker kan beïnvloeden \autocite{Hunicke2004}.
@@ -555,7 +557,7 @@ Deze nuancering motiveert een ontwerp dat prioriteit geeft aan uitdagingen met s
     \medskip
     {\centering\scriptsize
     \setlength{\tabcolsep}{4pt}
-    \begin{tabular}{@{}p@{\hspace{1.5em}}c@{}}
+    \begin{tabular}{@{}l@{\hspace{1.5em}}l@{}}
         \multicolumn{2}{c}{\textbf{Legende}} \\[0.25em]
         \texttt{Rp:} role-play game & \texttt{AC:} Academic achievement \\
         \texttt{Rs:} reasoning strategy game & \texttt{MO:} Motivation \\
