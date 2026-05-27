@@ -7,7 +7,7 @@
 
 In dit hoofdstuk wordt de Proof-of-Concept uit hoofdstuk~\ref{ch:poc} geëvalueerd in twee delen.
 Het eerste deel is een \emph{vergelijkende literatuurstudie} die in deze bachelorproef is uitgevoerd: elke ontwerpkeuze in \textit{Learn COBOL} wordt afgezet tegen empirische bevindingen over gamification, programmeeronderwijs en didactiek (secties~\ref{sec:evaluatie-methode}--\ref{sec:evaluatie-didactisch}).
-Het tweede deel is een \emph{uitgewerkt onderzoeksdesign} voor een pilotstudie waarin de PoC empirisch wordt vergeleken met een statisch PDF-pack met dezelfde leerthema's (sectie~\ref{sec:evaluatie-pilotstudie}).
+Het tweede deel is een \emph{uitgewerkt onderzoeksdesign} voor een pilotstudie waarin de PoC empirisch wordt vergeleken met traditionele methoden zoals een papieren cursus met dezelfde leerthema's (sectie~\ref{sec:evaluatie-pilotstudie}).
 Samen leveren beide delen een onderbouwd antwoord op de centrale onderzoeksvraag (sectie~\ref{sec:onderzoeksvraag}) en de deelvragen: de literatuurevaluatie op theoretische plausibiliteit, het pilotontwerp op hoe die plausibiliteit met deelnemers gemeten kan worden.
 
 \section{Doel en aanpak van de evaluatie}
@@ -16,7 +16,7 @@ Samen leveren beide delen een onderbouwd antwoord op de centrale onderzoeksvraag
 De evaluatie heeft drie concrete doelstellingen:
 \begin{itemize}
     \item \textbf{Theoretische ondersteuning:} per gamification-element en per Octalysis Core Drive nagaan of de gemaakte ontwerpkeuze door de literatuur wordt ondersteund, gerelativeerd of tegengesproken.
-    \item \textbf{Antwoord op de deelvragen, met name DV5:} inschatten in hoeverre \textit{Learn COBOL} plausibel efficiënter is dan een traditioneel PDF-pack, op basis van vergelijkbaar empirisch onderzoek.
+    \item \textbf{Antwoord op de deelvragen, met name DV5:} inschatten in hoeverre \textit{Learn COBOL} plausibel effectiever is dan traditionele methoden zoals een papieren cursus, op basis van vergelijkbaar empirisch onderzoek.
     \item \textbf{Voorbereiding van empirische validatie:} een reproduceerbaar pilotontwerp vastleggen zodat de literatuurhypotheses later met deelnemers gemeten kunnen worden.
 \end{itemize}
 
@@ -27,13 +27,13 @@ DV5 wordt in dit hoofdstuk beantwoord in twee stappen: eerst via de literatuurev
 \paragraph{Evaluatiestrategie: literatuurevaluatie en pilotontwerp}
 \label{subsec:evaluatie-keuze}
 
-De oorspronkelijke onderzoeksopzet voorzag een empirische vergelijking tussen de PoC en een traditioneel PDF-pack: een binnen-proefpersoon-design met counterbalancing, pre-\allowbreak/post-tests, motivatievragenlijsten, SUS en gedragslogs uit de applicatie.
+De oorspronkelijke onderzoeksopzet voorzag een empirische vergelijking tussen de PoC en traditionele methoden zoals een papieren cursus: twee groepen deelnemers leren elk één dag COBOL, één groep via de PoC en één groep via een papieren cursus, en hun resultaten op dezelfde kennistest worden vergeleken.
 Dat volledige onderzoek kon binnen het tijdsbestek van deze bachelorproef niet worden uitgevoerd.
 Twee knelpunten bepaalden die keuze:
 
 \begin{itemize}
     \item \textbf{Rekrutering en planning.} Voldoende deelnemers vinden die aan de inclusiecriteria voldoen vraagt veel screening. De doelgroep bestaat uit junior IT'ers met Python-ervaring én zonder enige COBOL-kennis. Voor een zinvolle spreiding wordt typisch \(N \geq 12\) als minimum gehanteerd.
-    \item \textbf{Materiaal en uitvoering.} Een eerlijke vergelijking vereist een vooraf gevalideerd PDF-pack, screening, gestandaardiseerde instrumenten en voor elke deelnemer twee geplande sessies plus export van applicatielogs.
+    \item \textbf{Materiaal en uitvoering.} Een eerlijke vergelijking vereist een vooraf gevalideerde papieren cursus, screening, gestandaardiseerde instrumenten en voor elke deelnemer twee geplande sessies plus export van applicatielogs.
 \end{itemize}
 
 In plaats van een onderbouwde pilot met slechts twee of drie deelnemers uit te voeren, is gekozen voor een tweeledige aanpak.
@@ -58,7 +58,7 @@ De voornaamste bronnen voor stap~2 zijn de meta-analyse van \textcite{Zhan2022} 
 
 
 \paragraph{Wat de literatuurevaluatie niet doet.}
-Ze meet géén leeruitkomsten op deelnemers, géén SUS-scores, géén tijd-tot-succes en géén iteratie-aantallen.
+Ze meet géén leeruitkomsten op deelnemers en levert dus géén testresultaten of andere directe metingen op gebruikers op.
 De secties~\ref{sec:evaluatie-pbl}--\ref{sec:evaluatie-didactisch} geven per ontwerpkeuze een \emph{verwacht effect}, niet een gemeten effect op gebruikers van \textit{Learn COBOL}.
 
 \section{Evaluatie van de PBL-elementen}
@@ -156,7 +156,7 @@ De literatuur-gebaseerde resultaten in secties~\ref{sec:evaluatie-pbl}--\ref{sec
 Die beperkingen zijn geen afwijzing van empirisch onderzoek, maar motiveren het pilotontwerp in sectie~\ref{sec:evaluatie-pilotstudie}.
 
 \begin{itemize}
-    \item \textbf{Geen empirische geldigheid voor de PoC zelf.} De resultaten ondersteunen de plausibiliteit van de ontwerpkeuzes, maar tonen niet aan dat \textit{Learn COBOL} in de praktijk een hogere leer-efficiëntie haalt dan een statisch alternatief.
+    \item \textbf{Geen empirische geldigheid voor de PoC zelf.} De resultaten ondersteunen de plausibiliteit van de ontwerpkeuzes, maar tonen niet aan dat \textit{Learn COBOL} in de praktijk een hogere leer-effectiviteit haalt dan een statisch alternatief.
     \item \textbf{Selectiebias in de literatuur.} De geraadpleegde meta-analyses focussen vooral op moderne talen (Python, Java, Scratch, \ldots). Of de gemeten effecten zich op dezelfde manier voordoen bij een verbose, decennia-oude taal als COBOL is niet onderzocht.
     \item \textbf{Confounding van interactiviteit en gamification.} De positieve effecten in \textcite{Zhan2022} ontstaan deels door interactiviteit op zich, niet enkel door gamification.
     \item \textbf{Heuristische validatie.} De PoC valideert COBOL-code via regex-patronen, niet via een echte compiler. False positives en false negatives zijn mogelijk.
@@ -166,34 +166,38 @@ Die beperkingen zijn geen afwijzing van empirisch onderzoek, maar motiveren het 
 \label{sec:evaluatie-pilotstudie}
 
 De literatuurevaluatie levert plausibiliteit. Een empirische meting op echte deelnemers vereist het onderzoeksdesign dat hieronder wordt uitgewerkt.
-Het plan sluit aan op de oorspronkelijke onderzoeksopzet (PoC versus PDF-pack, zelfde zeven leerthema's) en op de beperkingen uit sectie~\ref{sec:evaluatie-beperkingen}.
+Het plan sluit aan op de oorspronkelijke onderzoeksopzet (PoC versus papieren cursus, zelfde zeven leerthema's) en op de beperkingen uit sectie~\ref{sec:evaluatie-beperkingen}.
 
-Onderstaand plan beschrijft een beknopte pilotstudie met een beperkte steekproef (\(N = 12\)--\(20\)).
-Het is een haalbaarheids- en effectrichting-onderzoek.
-Het doel is voorbereidende evidentie te verzamelen, de meetketen te testen en de hypotheses uit de literatuurevaluatie te evalueren met gebruikersdata.
+Onderstaand plan beschrijft een beknopte pilotstudie met een beperkte steekproef (\(N = 12\) tot \(20\)).
+Het doel is na te gaan of de PoC tot betere leeruitkomsten leidt dan een klassieke aanpak na één leerdag.
+De vergelijking gebeurt op één enkele kennistest die beide groepen maken na hun leerdag.
 
 \subsection{Doelstellingen}
 
-De pilot heeft twee gerichte doelen.
-Het eerste doel is nagaan of de PoC onder gecontroleerde omstandigheden ten minste equivalent presteert aan een statisch PDF-pack met dezelfde zeven leerthema's en volgorde als in hoofdstuk~\ref{ch:poc}, op vlak van korte-termijn leerwinst (conceptkennis) en motivatie of engagement tijdens het doorlopen van het materiaal.
-Het tweede doel is om de praktische kant te bekijken: hoe gebruiksvriendelijk de app is (SUS), hoeveel deelnemers afhaken, of de planning haalbaar is, en welke objectieve gedragsgegevens we uit de app kunnen halen (zoals tijden en aantal pogingen) als aanvulling op de vragenlijsten.
+De pilot heeft één gericht doel: nagaan of de PoC tot betere leeruitkomsten leidt dan een klassieke aanpak na één leerdag.
+Concreet wordt vergeleken hoe deelnemers die één dag met de PoC werken scoren op dezelfde kennistest als deelnemers die één dag met een papieren cursus werken, met dezelfde zeven leerthema's en volgorde als in hoofdstuk~\ref{ch:poc}.
 
 \subsection{Doelgroep, inclusiecriteria en steekproef}
 
 \textbf{Doelgroep:} junior developers of IT-studenten met een Python-basis en geen voorafgaande formele COBOL-opleiding.
 
-\textbf{Inclusie:} zelfgerapporteerd voldoende Python om de parallelle voorbeelden te volgen, bereidheid tot twee sessies met vaste tijdsbudget (\(\pm\) 45--60 minuten per conditie) en het invullen van pre- en post-metingen.
+\textbf{Inclusie:} zelfgerapporteerd voldoende Python om de parallelle voorbeelden te volgen, en bereidheid om één leerdag en aansluitend de kennistest af te leggen.
 
 \textbf{Exclusie:} deelnemers aan een Mainframe-/COBOL-specialisatie, professionele COBOL-ervaring.
 
-\textbf{Steekproefgrootte:} We streven naar \(N = 12\) tot \(20\) deelnemers.
+\textbf{Steekproefgrootte:} We streven naar \(N = 12\) tot \(20\) deelnemers in totaal, ongeveer 6 tot 10 per groep.
 
 \subsection{Onderzoeksopzet}
 
-Het ontwerp is binnen-proefpersoon (\textit{within-subject}) met twee condities: (A) \textit{Learn COBOL} en (B) het PDF-pack.
-Counterbalancing van de volgorde (A--B versus B--A) verdeelt vermoeidheidseffecten en voorkeurseffecten.
-Tussen beide condities wordt een wash-out van minstens 24 tot 48 uur voorzien om directe carry-over te beperken.
-Voor het PDF-pack wordt een tijd-op-taak-log gevraagd (zelfrapportage of eenvoudig logformulier).
+Het ontwerp is tussen-proefpersoon. Dat wil zeggen dat elke deelnemer maar één van de twee leermethoden volgt, niet beide. Zo wordt vermeden dat de eerste methode de tweede meting beïnvloedt.
+
+De deelnemers worden willekeurig verdeeld over twee groepen:
+\begin{itemize}
+    \item \textbf{Groep A (klassiek):} leert COBOL gedurende één dag met traditionele methoden zoals een papieren cursus die dezelfde zeven leerthema's behandelt als in hoofdstuk~\ref{ch:poc}.
+    \item \textbf{Groep B (PoC):} leert COBOL gedurende één dag met \textit{Learn COBOL}, langs dezelfde zeven leerthema's in dezelfde volgorde.
+\end{itemize}
+
+Aan het eind van de leerdag maken beide groepen dezelfde kennistest over die zeven leerthema's. De primaire vergelijking is het gemiddelde testresultaat van groep A tegenover dat van groep B.
 
 \subsection{Tijdslijn}
 
@@ -213,13 +217,13 @@ Figuur~\ref{fig:pilot-tijdlijn} geeft een relatieve tijdslijn van vijf opeenvolg
     \foreach \x in {0, 4.05, 8.1, 11.6}
         \draw (\x,-0.17) -- (\x,0.17);
     \node[lbl, below=14pt] at (0,-0.17) {\textbf{Week~1}\\[3pt]
-        PDF-pack en tests afronden, informed consent, instrumenten pilot-testen buiten de steekproef.};
+        Papieren cursus en kennistest afronden, informed consent opstellen, instrumenten testen buiten de steekproef.};
     \node[lbl, above=14pt] at (4.05,0.17) {\textbf{Week~2}\\[3pt]
-        Screening, randomisatie volgorde condities, eerste sessies, pre-test vóór conditie~1.};
+        Screening van deelnemers en willekeurige toewijzing aan groep A of groep B.};
     \node[lbl, below=14pt] at (8.1,-0.17) {\textbf{Week 3--4}\\[3pt]
-        Datacollectie: beide condities per deelnemer met wash-out, post-tests en motivatievragenlijsten na elke conditie.};
+        Datacollectie: één leerdag per deelnemer in de toegewezen groep, gevolgd door de kennistest.};
     \node[lbl, above=14pt] at (11.6,0.17) {\textbf{Week~5}\\[3pt]
-        Optionele vertraagde test, exit-enquête, export serverlogs, pilotrapport.};
+        Analyse, vergelijking van de testresultaten tussen beide groepen en pilotrapport.};
 \end{tikzpicture}%
 }%
 \caption{Relatieve tijdslijn van de pilotfase}%
@@ -228,19 +232,7 @@ Figuur~\ref{fig:pilot-tijdlijn} geeft een relatieve tijdslijn van vijf opeenvolg
 
 \subsection{Meetinstrumenten}
 
-\paragraph{Kennis (pre- en post-test).}
-Vóór de eerste conditie volgt een pre-test met items gelinkt aan de zeven thema's uit tabel~\ref{tab:poc-levels}.
-Na elke conditie volgt een post-test met \emph{parallelle} (isomorfe) items om directe leerwinst per medium te vergelijken.
-Voordat deelnemers aan de eerste ronde beginnen, maken ze een pre-test. Deze test bevat vragen over de zeven thema's uit tabel \ref{tab:poc-levels}. 
-Na elke ronde volgt een post-test met vergelijkbare, gelijkwaardige vragen. Zo wordt er direct gemeten hoeveel de deelnemer per medium heeft geleerd.
+\paragraph{Kennistest na de leerdag.}
+Aan het eind van de leerdag legt elke deelnemer dezelfde kennistest af. Dat is een korte test met vragen over de zeven leerthema's uit tabel~\ref{tab:poc-levels}. Beide groepen krijgen exact dezelfde vragen, zodat de scores rechtstreeks vergelijkbaar zijn.
 
-\paragraph{Usability.}
-Na de PoC-conditie wordt de System Usability Scale (SUS, tien items) afgenomen.
-Interpretatie kan via de adjectiefbenchmark van \textcite{Bangor2009}.
-
-\paragraph{Gedrag en proces (zonder interviews).}
-Voor de PoC-conditie leveren bestaande tabellen objectieve maten: onder meer \(started\_at\) tot \(completed\_at\), \(submit\_count\), \(validation\_fail\_count\) en succes bij eerste indiening (zie hoofdstuk~\ref{ch:poc}).
-Voor het PDF-pack wordt proces alleen via tijd-op-taak en eventueel een korte checklist per sectie geschat.
-
-\paragraph{Minimale aanvullende feedback.}
-Een korte gestructureerde exit-enquête vervangt geen diepte-interview maar vangt toch knelpunten en verwachtingen op.
+De primaire uitkomstmaat is het gemiddelde aantal correct beantwoorde vragen per groep. Het verschil tussen beide groepsgemiddelden geeft een indicatie van de leer-effectiviteit van de PoC ten opzichte van de klassieke papieren cursus.
