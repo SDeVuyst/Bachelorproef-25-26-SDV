@@ -7,7 +7,7 @@
 \chapter{\IfLanguageName{dutch}{Proof of Concept}{Proof of Concept}}%
 \label{ch:poc}
 
-Dit hoofdstuk beschrijft de concrete uitwerking van de Proof of Concept (PoC): een webapplicatie genaamd \textit{Learn COBOL} die COBOL-concepten aanbiedt via een gamified leerpad, gericht op junior-developers met een python-achtergrond.
+Dit hoofdstuk beschrijft de concrete uitwerking van de Proof of Concept (PoC): een webapplicatie genaamd \textit{Learn COBOL} die COBOL-concepten aanbiedt via een gamified leerpad, gericht op junior developers met een Python-achtergrond.
 Ontwerpalternatieven en de onderbouwing van deze aanpak staan in sectie~\ref{sec:poc-alternatieven}.
 De PoC is het tastbare resultaat uit fase~2 van de methodologie (zie hoofdstuk~\ref{ch:methodologie}) en wordt in hoofdstuk~\ref{ch:evaluatie} in twee delen geëvalueerd: een vergelijkende literatuurevaluatie tegen bestaand empirisch onderzoek en een uitgewerkt pilotontwerp voor empirische validatie tegen traditionele methoden zoals een papieren cursus.
 De ontwerpkeuzes in de user interface sluiten aan bij de definities en raamwerken uit hoofdstuk~\ref{ch:stand-van-zaken}, in het bijzonder de PBL-triade (punten, badges, leaderboards), het Octalysis-model en het onderscheid tussen mechanieken, dynamieken en esthetiek binnen het MDA-framework.
@@ -67,7 +67,7 @@ Unpredictability \& Curiosity &
 Optionele tips en documentatielinks per level, variatie in badge-eisen (speedrun, mijlpalen). \\
 \hline
 Loss \& Avoidance &
-Wordt spaarzaam ingezet: geen harde ``levens'' of reset van account, wel kan sociale vergelijking op het leaderboard als druk worden ervaren \\
+Wordt spaarzaam ingezet: geen harde \enquote{levens} of reset van account, wel kan sociale vergelijking op het leaderboard als druk worden ervaren. \\
 \hline
 \end{tabularx}
 \caption{Koppeling van Octalysis Core Drives aan elementen van de PoC (zie \textcite{Chou2015}).}
@@ -106,11 +106,11 @@ Deze keuze beperkt operationele complexiteit: er is geen eigen server te hosten 
 Het databasemodel van \textit{Learn COBOL PoC} kun je ook als entiteit-relatiediagram lezen.
 De gebruiker komt overeen met één rij in \texttt{profiles}. De primaire sleutel \texttt{id} is tegelijk vreemde sleutel naar \texttt{auth.users} (Supabase Auth).
 Pogingen per level staan in \texttt{level\_attempts}. Daarin staan onder meer \texttt{success}, tijdstippen en tellers zoals \texttt{submit\_count} en \texttt{validation\_fail\_count}.
-Badge-types staan in \texttt{badge\_definitions}. Wie wat verdiende, staat in \texttt{user\_badges}.
-Vriendschappen tussen gebruikers staat in \texttt{friendships} (met status pending of accepted, indien niet accepted wordt de rij verwijderd).
+Badge-types staan in \texttt{badge\_\allowbreak definitions}. Wie wat verdiende, staat in \texttt{user\_badges}.
+Vriendschappen tussen gebruikers staan in \texttt{friendships} (met status pending of accepted; indien niet accepted wordt de rij verwijderd).
 Losse gebeurtenissen voor analyse en evaluatie staan in \texttt{app\_events}.
 
-Figuur~\ref{fig:poc-er-supabase} toont de beschreven diagram.
+Figuur~\ref{fig:poc-er-supabase} toont het beschreven diagram.
 
 \begin{figure}[H]
 \centering
@@ -320,7 +320,7 @@ Het dashboard aggregeert de belangrijkste motivators op één pagina (figuur~\re
 \end{figure}
 
 \subsection{Learn-catalogus (\texttt{/learn})}
-Bovenaan staat een voortgangscard  met balk en \texttt{PTS}.
+Bovenaan staat een voortgangscard met balk en \texttt{PTS}.
 Elk level heeft een eigen card met strip \texttt{LEVEL n - SEGMENT} en status \texttt{COMPLETE}, \texttt{PENDING} of \texttt{LOCKED}.
 Het gebruik van het slot-icoon en sequentiële vrijgave ondersteunen \textit{Scarcity \& Impatience} en maken het leerpad als ``missie'' leesbaar (figuur~\ref{fig:poc-learn-overview}).
 
@@ -339,7 +339,7 @@ Het scherm combineert meerdere cards (figuur~\ref{fig:poc-level-editor}). Onders
     \item \textbf{References:} COBOL-uitleg, voorbeelden en links naar IBM-documentatie. Ondersteunt \textit{Empowerment of Creativity \& Feedback} en cognitieve verwerving naast de editor.
     \item \textbf{Segment-info:} samenvatting en meta-informatie over het level.
     \item \textbf{Badges this level:} welke badges met dit level geassocieerd zijn (o.a.\ inhoudsbadge, clean run). Koppelt Badges direct aan de actieve opdracht.
-    \item \textbf{Python-reference:} De te-schrijven COBOL code vertaalt in Python.
+    \item \textbf{Python-reference:} De te schrijven COBOL-code, vertaald in Python.
     \item \textbf{COBOL-editor:} Monaco met custom COBOL-highlighting, kern van \textit{Challenge}.
     \item \textbf{Tips en documentatie:} inklapbare sectie met aanvullende hulp en ondersteunt \textit{Unpredictability \& Curiosity} (optionele diepgang).
     \item \textbf{Checklist:} objective checks na validatie en versterkt \textit{Development \& Accomplishment} door zichtbare deelwinsten.
@@ -430,10 +430,10 @@ Levels zijn genummerd van 1 tot 7 en worden sequentieel vrijgegeven: level~$n$ i
 Dat voorkomt dat beginners complexe concepten zien voordat de programmaskelet en data-definities bekend zijn.
 
 \subsection{Gemeenschappelijke opzet}
-Elk level bevat een titel, korte samenvatting, Python-hint en een Python-referentiesnippet.
+Elk level bevat een titel, korte samenvatting, Python-hint en een Python-\allowbreak referentiesnippet.
 Daarnaast zijn er optioneel officiële documentatielinks (IBM COBOL for z/OS) en een korte COBOL-uitleg met voorbeeldfragmenten.
 De gebruiker start vanuit starter code met TODO-commentaar, zodat duidelijk is welke regels bewerkt moeten worden.
-De volgende subsecties beschrijven per level de inhoud, de validatiedoelen en de Te verdienen badge.
+De volgende subsecties beschrijven per level de inhoud, de validatiedoelen en de te verdienen badge.
 
 \begin{table}[H]
 \centering
@@ -627,7 +627,7 @@ Dit gaat gepaard met tragere feedback, hogere instapdrempel en meer operationeel
 Het gekozen ontwerp werkt volledig in de browser. Er is geen aparte installatie of toegang tot een mainframe nodig om te starten.
 Door te werken met regex-checks is de PoC veel flexibeler en sneller te ontwikkelen dan een echte compiler.
 Er wordt volop gebruik gemaakt van de besproken ontwerpkeuzes uit hoofdstuk~\ref{ch:stand-van-zaken}. 
-Hiernaast wordt er ook telkens een Python-voorbeeld getoond, zodat de gebruikers nieuwe syntax meteen kan vergelijken met een vertrouwde taal. 
+Hiernaast wordt er ook telkens een Python-voorbeeld getoond, zodat de gebruiker nieuwe syntax meteen kan vergelijken met een vertrouwde taal. 
 
 \section{Tussenconclusie}
 
