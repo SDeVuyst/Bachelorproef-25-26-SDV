@@ -3,155 +3,108 @@
 % De effectiviteit van gamification bij het aanleren van COBOL aan junior
 % developers (Learn COBOL)
 %==============================================================================
-% Compileer met XeLaTeX (-shell-escape niet vereist). Bv.:
+% Compileer met XeLaTeX. Bv.:
 %   latexmk -xelatex presentatie.tex
 % Bronverwijzingen via biblatex/biber, hergebruik van bachproef.bib.
+% Stijl: https://github.com/HoGentTIN/latex-hogent-beamer
 
 \documentclass[aspectratio=169,11pt]{beamer}
 
-\usepackage{fontspec}
+%==============================================================================
+% Aanloop
+%==============================================================================
+
+\usetheme{hogent}
+\usecolortheme{hgwhite}
+
+% Reserveer ruimte voor paginanummer en HOGENT-logo in de footer
+\setbeamersize{text margin right=3.4cm}
+\setbeamercolor{page number in foot}{fg=black}
+\setbeamerfont{page number in foot}{size=\scriptsize}
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1cm,dp=0.9cm,leftskip=1em]{footline}
+    \usebeamercolor[fg]{page number in foot}%
+    \usebeamerfont{page number in foot}%
+    \insertframenumber/\inserttotalframenumber
+    \hfill
+    \begin{tikzpicture}[remember picture, overlay]
+      \node [anchor=south east, shift={(-\the\wd\logopart, \the\wd\logopart)},
+      inner sep=0, outer sep=0] at (current page.south east)%
+      {%
+        \includegraphics[height=\the\ht\logopart]{hogent_logo}%
+      };%
+    \end{tikzpicture}
+  \end{beamercolorbox}
+}
+
+\setbeamerfont{frametitle}{series=\bfseries,size=\Large}
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \vskip0.75ex
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=1em,rightskip=1em,dp=1.2ex]{frametitle}
+    \usebeamerfont{frametitle}\strut\insertframetitle\strut\par
+  \end{beamercolorbox}%
+  \vskip1.25ex
+}
+
 \usepackage{polyglossia}
 \setdefaultlanguage{dutch}
 
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,calc,shadows}
+\usetikzlibrary{arrows.meta,positioning,calc}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{listings}
 \usepackage{csquotes}
+\usepackage{hyperref}
 
-\graphicspath{{../graphics/}{../poster/graphics/}}
+\graphicspath{{graphics/}{../graphics/}{../poster/graphics/}}
 
 % Bronverwijzingen: volledige referentie als voetnoot op de dia
 \usepackage[backend=biber,style=numeric,sorting=none,maxbibnames=2,giveninits=true,
             url=false,doi=false,isbn=false,eprint=false]{biblatex}
 \addbibresource{../bachproef/bachproef.bib}
 \renewcommand{\autocite}{\footfullcite}
+% Voetnoten: enkel auteur en datum
+\DeclareCiteCommand{\footfullcite}[\mkbibfootnote]
+  {\usebibmacro{prenote}}
+  {%
+    \printnames{labelname}%
+    \setunit{\addcomma\space}%
+    \printfield{year}%
+  }
+  {\multicitedelim}
+  {}
 
 %------------------------------------------------------------------------------
-% HOGENT-kleuren en modern thema
+% Aanvullende opmaak (inhoud-specifiek)
 %------------------------------------------------------------------------------
-\definecolor{hgreen}{RGB}{22,176,165}
-\definecolor{hblue}{RGB}{76,162,213}
-\definecolor{hochre}{RGB}{250,188,50}
-\definecolor{horange}{RGB}{239,135,103}
-\definecolor{hpurple}{RGB}{187,144,189}
-\definecolor{hdark}{RGB}{38,50,56}
-\definecolor{hlight}{RGB}{248,250,251}
 
-\IfFontExistsTF{Segoe UI}{%
-  \setsansfont{Segoe UI}[
-    UprightFont = * ,
-    BoldFont = * Bold ,
-    ItalicFont = * Italic ,
-    BoldItalicFont = * Bold Italic
-  ]%
-}{%
-  \setsansfont{TeX Gyre Heros}%
-}
-
-\usetheme{default}
-\usecolortheme{default}
-\useinnertheme{default}
-\useoutertheme{default}
-
-\setbeamercolor{background canvas}{bg=hlight}
-\setbeamercolor{normal text}{fg=hdark,bg=hlight}
-\setbeamercolor{structure}{fg=hgreen}
-\setbeamercolor{frametitle}{fg=hdark,bg=hlight}
-\setbeamercolor{title}{fg=hdark}
-\setbeamercolor{subtitle}{fg=hdark!70}
-\setbeamercolor{author}{fg=hdark}
-\setbeamercolor{institute}{fg=hdark!65}
-\setbeamercolor{date}{fg=hdark!65}
-\setbeamercolor{block title}{fg=white,bg=hgreen}
-\setbeamercolor{block body}{fg=hdark,bg=white}
-\setbeamercolor{alerted text}{fg=horange}
-\setbeamercolor{footline}{fg=hdark!55,bg=hlight}
-
-\setbeamerfont{title}{series=\bfseries,size=\LARGE}
-\setbeamerfont{subtitle}{size=\large}
-\setbeamerfont{frametitle}{series=\bfseries,size=\large}
-\setbeamerfont{author}{size=\normalsize}
-\setbeamerfont{block title}{series=\bfseries,size=\normalsize}
-
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{frametitle}{%
-  \nointerlineskip
-  \vskip0.8ex
-  \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.65cm,rightskip=0.65cm,dp=1.1ex]{frametitle}%
-    {\color{hgreen}\vrule width 3.5pt height 1.45ex depth 0.35ex}\hspace{0.45em}%
-    \insertframetitle
-  \end{beamercolorbox}%
-  \vskip0.35ex
-  \hspace{0.65cm}{\color{hdark!12}\rule{0.92\paperwidth}{0.4pt}}%
-}
-\setbeamertemplate{footline}{%
-  \leavevmode
-  \begin{beamercolorbox}[wd=\paperwidth,ht=3.2ex,dp=1.1ex,leftskip=0.65cm,rightskip=0.65cm]{footline}%
-    {\tiny Silas De Vuyst\hfill Gamification en COBOL\hfill \insertframenumber/\inserttotalframenumber}\\[-0.35ex]
-    \begin{tikzpicture}
-      \pgfmathsetlengthmacro{\progressw}{\paperwidth-1.3cm}
-      \pgfmathsetlengthmacro{\progressdone}{\progressw*\insertframenumber/\inserttotalframenumber}
-      \fill[hdark!10] (0,0) rectangle (\progressw,2pt);
-      \fill[hgreen] (0,0) rectangle (\progressdone,2pt);
-    \end{tikzpicture}
-  \end{beamercolorbox}%
-}
-\setbeamertemplate{title page}{%
-  \begin{tikzpicture}[remember picture,overlay]
-    \fill[hgreen] (current page.north west) rectangle ([yshift=-0.55cm]current page.north east);
-    \fill[hblue!12] ([yshift=0.55cm]current page.south west) rectangle (current page.south east);
-  \end{tikzpicture}%
-  \vspace{2.8em}
-  \begingroup
-  \centering
-  {\usebeamerfont{title}\inserttitle\par}
-  \vskip0.85em
-  {\usebeamerfont{subtitle}\insertsubtitle\par}
-  \vskip2.2em
-  {\usebeamerfont{author}\insertauthor\par}
-  \vskip0.75em
-  {\usebeamerfont{institute}\insertinstitute\par}
-  \vskip0.75em
-  {\usebeamerfont{date}\insertdate\par}
-  \endgroup
-  \vfill
-}
-\setbeamertemplate{blocks}[rounded][shadow=false]
-\setbeamertemplate{itemize item}{\color{hgreen}\small$\blacktriangleright$}
-\setbeamertemplate{itemize subitem}{\color{hblue}\scriptsize$\circ$}
-\setbeamertemplate{enumerate item}{\color{hgreen}\bfseries\insertenumlabel.}
-\setbeamertemplate{bibliography item}{\insertbiblabel}
-\setbeamertemplate{footnote}{%
-  \parindent 1em\noindent\raggedright
-  \hbox to 1.8em{\hss\color{hgreen}\insertfootnotemark\kern0.3em}%
-  \tiny\insertfootnotetext\par
-}
-
-\newcommand{\statcard}[3]{%
+\newcommand{\statcard}[4]{%
   \begin{tikzpicture}
-    \node[rectangle, rounded corners=8pt, fill=#1, text=white,
-          text width=0.82\linewidth, minimum height=2.55cm,
-          align=center, inner sep=8pt, drop shadow={opacity=0.12,shadow xshift=0.5pt,shadow yshift=-1pt}] {%
-      {\Large\bfseries #2}\\[3pt]
-      {\tiny #3}%
+    \node[rectangle, rounded corners=6pt, fill=#1, text=white,
+          text width=3.15cm, minimum height=2.2cm,
+          align=center, inner sep=7pt] {%
+      {\normalsize\bfseries #2}\\[3pt]
+      {\scriptsize #3\ifstrempty{#4}{}{\footnotemark[#4]}}%
     };
   \end{tikzpicture}%
 }
 
-% Beperk de hoeveelheid die per overlay-stap verschijnt netjes
-% Compacte code-opmaak
+\newcommand{\statfootnotetext}[2]{%
+  \footnotetext[#1]{\citeauthor{#2}, \citeyear{#2}}%
+}
+
 \lstset{
   basicstyle=\ttfamily\scriptsize,
-  keywordstyle=\color{hblue}\bfseries,
-  commentstyle=\color{hgreen},
-  stringstyle=\color{horange},
+  keywordstyle=\color{hgblue}\bfseries,
+  commentstyle=\color{hgdarkgreen},
+  stringstyle=\color{hgorange},
   showstringspaces=false,
   columns=fullflexible,
   breaklines=true,
   frame=single,
-  rulecolor=\color{hdark!15},
+  rulecolor=\color{black!15},
   backgroundcolor=\color{white},
   aboveskip=4pt,
   belowskip=4pt,
@@ -160,7 +113,7 @@
 %------------------------------------------------------------------------------
 % Metadata
 %------------------------------------------------------------------------------
-\title[Gamification en COBOL]{De effectiviteit van gamification bij het aanleren van COBOL}
+\title[Gamification en COBOL]{De effectiviteit van gamification bij het aanleren van COBOL aan junior developers.}
 \subtitle{Learn COBOL, een gamified leerpad voor junior developers}
 \author{Silas De Vuyst}
 \institute{Bachelorproef toegepaste informatica, keuzerichting Mainframe\\ Promotor: dhr.\ T.\ Desmedt \quad Co-promotor: dhr.\ S.\ Willems}
@@ -170,10 +123,20 @@
 
 %==============================================================================
 \begin{frame}[plain]
-  \titlepage
-  \begin{center}
-    \footnotesize\color{hblue}\href{https://bap-cobol-gamification.vercel.app/}{bap-cobol-gamification.vercel.app}
-  \end{center}
+  \vspace*{1.6cm}
+  \hspace{5.5cm}%
+  \begin{minipage}[t]{0.9\paperwidth}
+    \raggedright
+    \usebeamerfont{title}\usebeamercolor{title}\inserttitle\par
+    \medskip
+    \usebeamerfont{subtitle}\usebeamercolor{subtitle}\insertsubtitle\par
+    \bigskip\bigskip
+    {\Large\bfseries\insertauthor\par}
+    \medskip
+    \insertdate\par
+    \vspace{1.2cm}
+    \small
+  \end{minipage}
 \end{frame}
 
 %==============================================================================
@@ -190,10 +153,9 @@
     \begin{column}{0.5\textwidth}
       \begin{enumerate}
         \setcounter{enumi}{4}
-        \item Proof-of-Concept: Learn COBOL
+        \item Proof-of-Concept en demo
         \item Evaluatie en resultaten
-        \item Conclusie en toekomstig onderzoek
-        \item Demo
+        \item Conclusie
       \end{enumerate}
     \end{column}
   \end{columns}
@@ -202,41 +164,44 @@
 %==============================================================================
 \section{Context}
 
-\begin{frame}{Context: de silver tsunami}
+\begin{frame}{Context}
+  \small
   \begin{itemize}
     \item De financiele en publieke sector draait op decennia-oude COBOL-code.
-    \item Naar schatting nog steeds \textbf{250 miljard regels} in productie \autocite{IBM2025}.
-    \item Ervaren specialisten gaan met pensioen, de instroom van nieuw talent stagneert: de \alert{silver tsunami} \autocite{IBM2025}.
+    \item Nog steeds \textbf{250 miljard regels} in productie\footnotemark[1].
+    \item Ervaren specialisten gaan met pensioen: de \alert{silver tsunami}\footnotemark[1].
   \end{itemize}
-  \vfill
-  \begin{columns}[c,onlytextwidth]
-    \column{0.235\textwidth}\centering\statcard{hgreen}{\large 250 mld}{regels COBOL in productie \autocite{IBM2025}}
-    \column{0.235\textwidth}\centering\statcard{hblue}{\large $\sim$85\%}{wereldwijd betalingsverkeer \autocite{IBM2022a}}
-    \column{0.235\textwidth}\centering\statcard{horange}{\large 2,9$\to$5,6}{mld \$ markt 2022 naar 2032 \autocite{Allied2022}}
-    \column{0.235\textwidth}\centering\statcard{hpurple}{\large 66\%}{pros zijn Millennial of Gen Z \autocite{BMC2025}}
-  \end{columns}
+  \vspace{0.4em}
+  \centering
+  \begin{tikzpicture}[scale=0.78, transform shape]
+    \node (c1) {\statcard{hgdarkgreen}{250 mld}{regels COBOL in productie}{1}};
+    \node[right=0.32cm of c1] (c2) {\statcard{hgblue}{$\sim$85\%}{wereldwijd betalingsverkeer}{2}};
+    \node[right=0.32cm of c2] (c3) {\statcard{hgorange}{2,9$\to$5,6}{mld \$ markt 2022--2032}{3}};
+    \node[right=0.32cm of c3] (c4) {\statcard{hgpurple}{66\%}{pros: Millennial of Gen Z}{4}};
+  \end{tikzpicture}
+  \statfootnotetext{1}{IBM2025}%
+  \statfootnotetext{2}{IBM2022}%
+  \statfootnotetext{3}{Allied2022}%
+  \statfootnotetext{4}{BMC2025}%
 \end{frame}
 
 %==============================================================================
-\begin{frame}{Probleemstelling: een didactische kloof}
-  \begin{block}{Het knelpunt ligt niet enkel bij de taal, maar bij de didactiek}
-    Moderne talen worden aangeleerd via interactieve sandboxes met directe feedback. COBOL-onderwijs blijft grotendeels statisch.
-  \end{block}
+\begin{frame}{Probleemstelling, een didactische kloof}
   \begin{itemize}
     \item \textbf{Statische leermiddelen:} lijvige PDF-handleidingen en abstracte theorie.
     \item \textbf{Weinig visuele feedback:} het leerproces voelt droog en abstract.
     \item \textbf{Cognitieve dissonantie:} de strikte, verbose syntax botst met de flexibiliteit die junioren van Python gewend zijn.
   \end{itemize}
-  \pause
-  \centering\medskip
-  \emph{Gevolg: talent haakt af nog voor het de logica van het mainframe beheerst.}
 \end{frame}
 
 %==============================================================================
 \begin{frame}{Onderzoeksvraag}
-  \begin{block}{Centrale onderzoeksvraag}
-    \itshape Hoe effectief is gamification bij het aanleren van COBOL aan junior developers die gewend zijn aan moderne talen zoals Python?
-  \end{block}
+  \begin{center}
+    \begin{minipage}{0.88\textwidth}
+        \centering\itshape Hoe effectief is gamification bij het aanleren van COBOL aan junior developers die gewend zijn aan moderne talen zoals Python?
+    \end{minipage}
+  \end{center}
+  \medskip
   \textbf{Deelvragen}
   \begin{enumerate}\small
     \item Welke uitdagingen in syntax en logica bestaan er tussen COBOL en Python?
@@ -276,190 +241,70 @@ MAIN.
 greeting = "HELLO WORLD"
 print(greeting)
 \end{lstlisting}
-      \medskip
-      \footnotesize Verschilpunten voor een junior \autocite{IBM2023}:
-      \begin{itemize}\footnotesize
-        \item strikte structuur van vier divisions
-        \item de \texttt{PIC}-clausule op byte-niveau
-        \item hierarchische level-numbers
-        \item de punt als scope-valstrik
-      \end{itemize}
     \end{column}
   \end{columns}
 \end{frame}
 
 %==============================================================================
-\section{Gamification}
 
-\begin{frame}{Gamification: drie kaders uit de literatuur}
-  \begin{columns}[T]
-    \begin{column}{0.33\textwidth}
-      \begin{block}{PBL-triade}
-        \footnotesize Points, Badges en Leaderboards. Het startpunt, niet het eindpunt \autocite{KevinWerbach2020}.
-      \end{block}
-    \end{column}
-    \begin{column}{0.33\textwidth}
-      \begin{block}{MDA}
-        \footnotesize Mechanics, Dynamics en Aesthetics. Code en regels vertalen zich in beleving \autocite{Hunicke2004}.
-      \end{block}
-    \end{column}
-    \begin{column}{0.33\textwidth}
-      \begin{block}{Octalysis}
-        \footnotesize Acht Core Drives. Human-Focused Design en de balans tussen White Hat en Black Hat \autocite{Chou2015}.
-      \end{block}
-    \end{column}
-  \end{columns}
+\begin{frame}{PBL-triade en MDA}
+  \footnotesize
+  \textbf{PBL-triade:} (Points, Badges, Leaderboards) \autocite{KevinWerbach2020}\\
+  Risico: de PBL-fallacy\\
+  \medskip
+  \textbf{MDA:} (Mechanics, Dynamics, Aesthetics) \autocite{Hunicke2004}\\
+  Ontwerper en speler benaderen hetzelfde systeem vanuit omgekeerde richting
+  \medskip
+  \centering\includegraphics[height=0.48\textheight,keepaspectratio]{MDA.png}
+\end{frame}
+
+\begin{frame}{Octalysis}
+  \centering\includegraphics[height=0.9\textheight,keepaspectratio]{octalysis.jpg}
   \vfill
-  \footnotesize Gevaar bij alle drie: de \alert{PBL-fallacy}, de misvatting dat een dunne laag punten en badges een systeem vanzelf motiverend maakt \autocite{KevinWerbach2020,Chou2015}.
+  \scriptsize\mbox{}\autocite{Chou2015}
 \end{frame}
 
 %==============================================================================
-\begin{frame}{Welke elementen werken? Bewijs uit de literatuur}
-  \begin{columns}[c]
-    \begin{column}{0.62\textwidth}
-      \includegraphics[width=\textwidth]{results_meta_analysis.jpg}
-    \end{column}
-    \begin{column}{0.38\textwidth}
-      \footnotesize
-      Meta-analyse van \citeauthor{Zhan2022}~\footfullcite{Zhan2022} over gamification in programmeeronderwijs:
-      \begin{itemize}
-        \item \(SMD \approx 0{,}77\) op motivatie
-        \item \(SMD \approx 0{,}75\) op prestaties
-      \end{itemize}
-      Niet elk element draagt evenveel bij:
-      \begin{itemize}
-        \item puzzels en uitdagingen: sterkst op motivatie (\(g \approx 1{,}72\))
-        \item rollenspel en verhaal: verwaarloosbaar (\(g \approx 0{,}06\))
-      \end{itemize}
-      \alert{Boodschap: bouw rond uitdagingen en beloningen, houd narratief beperkt.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-%==============================================================================
-\section{Methodologie}
-
-\begin{frame}{Methodologie: vier fasen}
-  \makebox[\textwidth][c]{%
-  \begin{tikzpicture}[
-      fase/.style={rectangle, rounded corners=6pt, draw=hgreen, line width=1pt,
-                   fill=hgreen!12, text width=2.7cm, align=center, inner sep=6pt,
-                   font=\scriptsize, minimum height=2.4cm},
-      pijl/.style={-{Latex[length=3mm]}, line width=1.5pt, hgreen}
-    ]
-    \node[fase] (f1) {\textbf{1. Literatuur\-studie}\\ mainframe, COBOL versus Python, gamification};
-    \node[fase, right=0.8cm of f1] (f2) {\textbf{2. Proof-of-Concept}\\ bouw van \textit{Learn COBOL}};
-    \node[fase, right=0.8cm of f2] (f3) {\textbf{3. Evaluatie}\\ literatuur\-evaluatie en pilotontwerp};
-    \node[fase, right=0.8cm of f3] (f4) {\textbf{4. Conclusie}\\ antwoord en aanbevelingen};
-    \draw[pijl] (f1) -- (f2);
-    \draw[pijl] (f2) -- (f3);
-    \draw[pijl] (f3) -- (f4);
-  \end{tikzpicture}%
-  }
-  \vfill
-  \footnotesize\raggedright
-  De oorspronkelijk geplande gebruikersstudie met twee focusgroepen viel buiten het tijdsbestek. In plaats daarvan combineert fase 3 een uitgevoerde literatuurevaluatie met een uitgewerkt, reproduceerbaar pilotontwerp.
-\end{frame}
-
-%==============================================================================
-\section{Proof-of-Concept}
-
-\begin{frame}{Proof-of-Concept: Learn COBOL}
-  \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      Een interactieve webapplicatie die COBOL aanleert via een gamified leerpad van zeven levels, gericht op junioren met een Python-achtergrond.
-      \medskip
-      \begin{block}{Kernkeuze: heuristische validatie}
-        \footnotesize Geen volledige compiler, maar een checklist van leerdoelen per level. De feedback is direct en in dezelfde taal als de opdracht.
-      \end{block}
-    \end{column}
-    \begin{column}{0.45\textwidth}
-      \textbf{Technologie}
-      \begin{itemize}\small
-        \item React, TypeScript en Vite
-        \item Supabase (PostgreSQL en auth)
-        \item Monaco-editor met COBOL-highlighting
-        \item gehost op Vercel
-      \end{itemize}
-      \medskip
-      \footnotesize Naast de COBOL-editor staat steeds een Python-referentie, zodat onbekende syntax aan een vertrouwd concept gekoppeld wordt.
-    \end{column}
-  \end{columns}
-\end{frame}
-
-%==============================================================================
-\begin{frame}{Het leerpad: zeven levels}
-  \centering
-  \small
-  \begin{tabularx}{0.92\textwidth}{@{}c X@{}}
-    \toprule
-    \textbf{Level} & \textbf{Onderwerp} \\
-    \midrule
-    1 & Vier divisions en minimale programmastructuur \\
-    2 & \texttt{PIC}-clausules: numeriek, alfanumeriek, decimaal \\
-    3 & Datahierarchie: level \texttt{01}, \texttt{05} en \texttt{77} \\
-    4 & Conditionele logica: \texttt{IF}, \texttt{ELSE}, \texttt{END-IF} \\
-    5 & Iteraties: \texttt{PERFORM VARYING ... UNTIL} \\
-    6 & Paragrafen en \texttt{PERFORM} \\
-    7 & Foutafhandeling: \texttt{FILE STATUS} en code \texttt{35} \\
-    \bottomrule
-  \end{tabularx}
-  \vfill
-  \footnotesize Levels worden sequentieel ontgrendeld, zodat beginners de programmaskelet beheersen voor ze complexere concepten zien.
-\end{frame}
-
-%==============================================================================
-\begin{frame}{Gamification in de PoC: Octalysis}
-  \small
-  \begin{tabularx}{\textwidth}{@{}>{\bfseries}p{5.2cm} X@{}}
-    \toprule
-    Core Drive & Vertaling in de PoC \\
-    \midrule
-    Development \& Accomplishment & levels, voortgangsbalk, punten, badges, viering \\
-    Empowerment \& Feedback & vrije code-invoer met onmiddellijke validatie \\
-    Ownership \& Possession & profiel met avatar, punten en badge-collectie \\
-    Social Influence \& Relatedness & vrienden, top drie en volledig leaderboard \\
-    Scarcity \& Impatience & sequentieel ontgrendelen, vergrendelde badges \\
-    Loss \& Avoidance & bewust beperkt, enkel een first-try bonus \\
-    \bottomrule
-  \end{tabularx}
-  \vfill
-  \footnotesize Het ontwerp is bewust \textit{White Hat}-zwaar en mikt op positieve langetermijnmotivatie. Schaarste en verliesangst worden spaarzaam ingezet \autocite{Chou2015}.
-\end{frame}
-
-%==============================================================================
-\begin{frame}{Van mechanieken naar beleving (MDA)}
-  \centering
-  \includegraphics[height=0.62\textheight]{MDA-flow-poc.png}
-  \vfill
-  \footnotesize De ontwerper start bij de mechanieken en hoopt op een ervaring. De speler start bij de ervaring en ontdekt pas later de regels \autocite{Hunicke2004}.
-\end{frame}
-
-%==============================================================================
-\begin{frame}{Waarom dit ontwerp?}
+\begin{frame}{Welke elementen werken?}
   \footnotesize
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \textbf{Alternatief A: narratieve gamification}
+    \begin{column}{0.56\textwidth}
+      \includegraphics[height=0.42\textheight]{results_meta_analysis.jpg}
+      \par\medskip
+      \centering\scriptsize
+      \setlength{\tabcolsep}{4pt}%
+      \renewcommand{\arraystretch}{1.1}%
+      \begin{tabular}{@{}l@{\hspace{1.2em}}l@{\hspace{1.8em}}l@{\hspace{1.2em}}l@{}}
+        \multicolumn{4}{c}{\textbf{Legende}} \\[0.2em]
+        \textbf{Rp} & prestatiebeloningen & \textbf{AC} & academische prestaties \\
+        \textbf{Rs} & sociale beloningen & \textbf{MO} & motivatie \\
+        \textbf{Pu} & puzzels/uitdagingen & \textbf{SK} & denkvaardigheden \\
+        \textbf{Ro} & rollenspel & \textbf{CO} & cognitieve belasting \\
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      Meta-analyse van Zhan et al.:
       \begin{itemize}
-        \item spreekt \textit{Epic Meaning} sterk aan
-        \item maar rollenspel scoort verwaarloosbaar op motivatie (\(g \approx 0{,}06\)) \autocite{Zhan2022}
-        \item duur om te bouwen en te onderhouden
+        \item Geaggregeerd (SMD): \(\approx 0{,}77\) op motivatie
+        \item Geaggregeerd (SMD): \(\approx 0{,}75\) op prestaties
+        \item Puzzels/Challenges (Pu): sterkst op motivatie (\(g \approx 1{,}72\))
+        \item Rollenspel (Ro): verwaarloosbaar (\(g \approx 0{,}06\))
       \end{itemize}
       \medskip
-      \textbf{Alternatief B: echte compiler of mainframe}
-      \begin{itemize}
-        \item realistische foutmeldingen
-        \item maar hoge technische complexiteit en tragere feedback
-        \item botst met de sandbox-verwachting van junioren
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{block}{Gekozen ontwerp}
-        Volledig in de browser, geen installatie of mainframe nodig. Regex-checks maken de PoC snel en flexibel. Een Python-voorbeeld staat steeds naast de COBOL-code.
-      \end{block}
+      \scriptsize SMD = totale meta-analyse; \(g\) = Hedges' \(g\) per elementcategorie.
     \end{column}
   \end{columns}
+  \vfill
+  \scriptsize\mbox{}\autocite{Zhan2022}
+\end{frame}
+
+%==============================================================================
+\section*{Proof-of-Concept}
+
+\begin{frame}{Proof-of-Concept}
+  \centering
+  {\large\textcolor{hgblue}{\href{https://bap-cobol-gamification.vercel.app/}{bap-cobol-gamification.vercel.app}}}
+  \vfill
 \end{frame}
 
 %==============================================================================
@@ -469,7 +314,7 @@ print(greeting)
   \begin{columns}[T]
     \begin{column}{0.5\textwidth}
       \begin{block}{Deel 1: literatuurevaluatie (uitgevoerd)}
-        \footnotesize Elke ontwerpkeuze wordt afgezet tegen empirisch onderzoek. Per keuze: beschrijven, een claim uit de literatuur zoeken en de uitlijning beoordelen.
+        \footnotesize Elke ontwerpkeuze wordt afgezet tegen empirisch onderzoek. Per keuze: beschrijven, een claim uit de literatuur zoeken en beoordelen.
       \end{block}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -478,50 +323,47 @@ print(greeting)
       \end{block}
     \end{column}
   \end{columns}
-  \vfill
-  \footnotesize\raggedright
-  De literatuurevaluatie levert geen causale claim over \textit{Learn COBOL} zelf, wel een onderbouwde uitspraak over de plausibiliteit van de ontwerpkeuzes.
 \end{frame}
 
 %==============================================================================
-\begin{frame}{Resultaten van de literatuurevaluatie}
-  \begin{itemize}
-    \item \textbf{PBL:} punten, badges en leaderboard zijn ingebed in een breder ontwerp en vermijden zo de PBL-fallacy \autocite{KevinWerbach2020}.
-    \item \textbf{Octalysis:} de PoC is duidelijk White Hat-zwaar (Core Drives 1 tot 3), met spaarzaam gebruik van schaarste en verliesangst \autocite{Chou2015}.
-    \item \textbf{MDA:} checklist, voortgangsbalk en viering laten \textit{Challenge} en beloning op hetzelfde moment samenkomen \autocite{Hunicke2004}.
-    \item \textbf{Didactiek:} leerdoel-gerichte feedback en herhaalbare levels sluiten aan bij distributed practice en het spacing effect \autocite{Cepeda2006}.
-  \end{itemize}
-  \pause
-  \begin{block}{Verwacht effect}
-    \footnotesize Omdat de PoC de kerncomponenten uit \citeauthor{Zhan2022}~\footfullcite{Zhan2022} implementeert, is een effect in dezelfde grootteorde aannemelijk. Dit blijft een verwachting, er werden geen metingen op deelnemers uitgevoerd.
-  \end{block}
-\end{frame}
-
-%==============================================================================
-\begin{frame}{Pilotontwerp ter validatie}
+\begin{frame}{Resultaten literatuurevaluatie}
   \footnotesize
-  \begin{itemize}
-    \item \textbf{Doelgroep:} junioren met een Python-basis en geen COBOL-ervaring.
-    \item \textbf{Steekproef:} \(N = 12\) tot \(20\), ongeveer 6 tot 10 per groep.
-    \item \textbf{Opzet:} tussen-proefpersoon, willekeurige toewijzing aan groep A (papieren cursus) of groep B (PoC).
-    \item \textbf{Hoofdmeting:} dezelfde kennistest na een leerdag, vergelijking van de groepsgemiddelden.
-  \end{itemize}
-  \vfill
+  \begin{columns}[T]
+    \begin{column}{0.4\textwidth}
+      \textbf{Ontwerpkeuzes en literatuur}
+      \begin{itemize}
+        \item \textbf{PBL} \autocite{KevinWerbach2020}
+        \item \textbf{Octalysis} \autocite{Chou2015}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \centering\includegraphics[width=0.9\textheight,keepaspectratio]{octalysis.jpg}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Verwacht effect op basis van literatuur}
+  \footnotesize
+  De PoC implementeert kerncomponenten uit de meta-analyse van Zhan et al.
+  Effecten in vergelijkbare grootteorde zijn aannemelijk:
+  \medskip
   \centering
-  \begin{tikzpicture}[font=\scriptsize, lbl/.style={align=center, text width=2.5cm}]
-    \draw[-{Latex[length=2mm]}, line width=1pt] (-0.2,0) -- (11,0);
-    \foreach \x in {0,3,6,9} \draw (\x,-0.12) -- (\x,0.12);
-    \node[lbl, below=4pt] at (0,-0.12){\textbf{Week 1}\\ materiaal en consent};
-    \node[lbl, above=4pt] at (3,0.12){\textbf{Week 2}\\ screening en toewijzing};
-    \node[lbl, below=4pt] at (6,-0.12){\textbf{Week 3-4}\\ leerdag en test};
-    \node[lbl, above=4pt] at (9,0.12){\textbf{Week 5}\\ analyse en rapport};
+  \begin{tikzpicture}[scale=0.78, transform shape]
+    \node (e1) {\statcard{hgdarkgreen}{0{,}77}{motivatie (SMD)}{}};
+    \node[right=0.32cm of e1] (e2) {\statcard{hgblue}{0{,}75}{prestaties (SMD)}{}};
+    \node[right=0.32cm of e2] (e3) {\statcard{hgorange}{1{,}72}{challenges/puzzels op motivatie (\(g\))}{}};
+    \node[right=0.32cm of e3] (e4) {\statcard{hgpurple}{0{,}06}{rollenspel op motivatie (\(g\))}{}};
   \end{tikzpicture}
+  \vfill
+  \scriptsize
+  SMD = geaggregeerde meta-analyse;\\
+  \(g\) = Hedges' \(g\) per elementcategorie.\autocite{Zhan2022}
 \end{frame}
 
 %==============================================================================
 \begin{frame}{Beperkingen}
   \begin{itemize}
-    \item \textbf{Geen empirische geldigheid voor de PoC zelf:} de evaluatie ondersteunt plausibiliteit, geen gemeten leerwinst.
+    \item \textbf{Geen empirische geldigheid voor de PoC zelf}
     \item \textbf{Selectiebias:} de meta-analyses gaan vooral over moderne talen, niet over COBOL.
     \item \textbf{Confounding:} een deel van het effect komt door interactiviteit op zich, niet enkel door gamification \autocite{Zhan2022}.
     \item \textbf{Heuristische validatie:} regex-checks kunnen false positives en false negatives geven.
@@ -529,61 +371,13 @@ print(greeting)
 \end{frame}
 
 %==============================================================================
-\section{Conclusie}
-
-\begin{frame}{Conclusie en bijdrage}
-  \begin{block}{Antwoord op de onderzoeksvraag}
-    Op basis van de literatuurevaluatie is het aannemelijk dat de gamification-elementen in \textit{Learn COBOL} een positief effect hebben op motivatie en leerwinst.
-  \end{block}
-  \textbf{Viervoudige bijdrage}
-  \begin{itemize}\small
-    \item een theoretisch kader dat gamification koppelt aan mainframe-onderwijs
-    \item een functionele Proof-of-Concept op moderne webtechnologie
-    \item een literatuurevaluatie die elke ontwerpkeuze onderbouwt
-    \item een herbruikbaar pilotontwerp voor empirische validatie
-  \end{itemize}
-\end{frame}
-
-%==============================================================================
-\begin{frame}{Toekomstig onderzoek}
-  \begin{itemize}
-    \item Voer het uitgewerkte pilotontwerp daadwerkelijk uit met deelnemers.
-    \item Toets of de PoC tot betere leeruitkomsten leidt dan een papieren cursus na een leerdag.
-    \item Onderzoek de overdraagbaarheid van de gamification-effecten specifiek naar COBOL.
-  \end{itemize}
-  \vfill
-  \centering\emph{Wat ontbreekt is enkel de uitvoering met deelnemers. Het onderzoeksdesign ligt klaar.}
-\end{frame}
-
-%==============================================================================
-\section{Demo}
-
-\begin{frame}{Demo: Learn COBOL}
-  \centering
-  {\large\color{hblue}\href{https://bap-cobol-gamification.vercel.app/}{bap-cobol-gamification.vercel.app}}
-  \vfill
-  \begin{block}{Demoscenario}
-    \begin{enumerate}
-      \item Inloggen en het dashboard tonen (voortgang, streak, top drie vrienden, badges).
-      \item Een level oplossen in de editor met de Python-referentie ernaast.
-      \item Code indienen, de checklist-feedback en de viering tonen.
-      \item Het leaderboard en de badge-registry tonen.
-    \end{enumerate}
-  \end{block}
-\end{frame}
-
-%==============================================================================
-\begin{frame}[plain]
-  \begin{tikzpicture}[remember picture,overlay]
-    \fill[hgreen] (current page.north west) rectangle ([yshift=-0.55cm]current page.north east);
-    \fill[hblue!12] ([yshift=0.55cm]current page.south west) rectangle (current page.south east);
-  \end{tikzpicture}%
+\begin{frame}
   \centering
   \vfill
-  {\Huge\color{hdark}\textbf{Bedankt}}\\[14pt]
-  {\Large\color{hdark!75}Vragen?}\\[20pt]
+  {\Huge\textbf{Bedankt}}\\[14pt]
+  {\Large Vragen?}\\[20pt]
   \footnotesize Silas De Vuyst \quad\textbar\quad
-  \color{hblue}\href{https://bap-cobol-gamification.vercel.app/}{bap-cobol-gamification.vercel.app}
+  \textcolor{hgblue}{\href{https://bap-cobol-gamification.vercel.app/}{bap-cobol-gamification.vercel.app}}
   \vfill
 \end{frame}
 

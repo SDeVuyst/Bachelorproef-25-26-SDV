@@ -26,11 +26,131 @@
 \addbibresource{../bachproef/bachproef.bib}
 \renewcommand*{\bibfont}{\scriptsize}
 \setlength{\bibitemsep}{2pt}
+\setlength{\bibparsep}{0pt}
 
 % Compactere verticale ruimte rond koppen zodat alles op een pagina past
 \titlespacing{\section}{0pt}{0.45\baselineskip}{2pt}
 \titlespacing{\subsection}{0pt}{0.3\baselineskip}{2pt}
 \setlength{\abovecaptionskip}{10pt}
+
+% HoGent-logo dichter bij de rechterrand
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyfoot[R]{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node [anchor=south east, shift={(-1cm, \the\wd\logopart)},
+             inner sep=0, outer sep=0] at (current page.south east) {%
+        \includegraphics[height=\the\ht\logopart]{hogent_logo}%
+      };%
+    \end{tikzpicture}%
+  }%
+}
+
+% Titel full width; promotor en co-promotor naast elkaar
+\makeatletter
+\renewcommand{\@maketitle}{%
+  \begingroup
+  \raggedright\titlefont\color{title}\Large
+  \textsc{\@course\ \@studyprogramme\ (\@academicyear)}
+  \endgroup
+
+  \begingroup
+  \medskip
+  \raggedright\titlefont\color{title}\VeryHuge\@title
+
+  \if\@subtitle\@empty\else
+    \medskip
+    \raggedright\titlefont\Huge\textit{\@subtitle}
+  \fi
+  \endgroup
+
+  \begingroup
+  \bigskip
+  \raggedright\huge\textbf{\@author}
+
+  \if\@email\@empty\else
+    \medskip
+    \raggedright\@email
+  \fi
+  \endgroup
+
+  \begingroup
+  \if\@supervisor\@empty
+    \if\@cosupervisor\@empty\else
+      \medskip
+      \raggedright\Large Co-promotor: \@cosupervisor
+    \fi
+  \else
+    \if\@cosupervisor\@empty
+      \medskip
+      \raggedright\Large Promotor: \@supervisor
+    \else
+      \medskip
+      \noindent
+      \begin{minipage}[t]{0.5\textwidth}
+        \raggedright\Large Promotor: \@supervisor
+      \end{minipage}%
+      \begin{minipage}[t]{0.5\textwidth}
+        \raggedright\Large Co-promotor: \@cosupervisor
+      \end{minipage}
+    \fi
+  \fi
+  \endgroup
+
+  \begingroup
+  \bigskip
+  \raggedright\Large\@institution
+  \endgroup
+
+  \bigskip
+}
+\makeatother
+
+% Keuzerichting, sleutelwoorden en broncode in drie kolommen
+\makeatletter
+\renewenvironment{abstract}
+{%
+  \bigskip\bigskip
+  \addtolength{\leftmargin}{1em}
+  \begin{center}
+    {\Large\titlefont\abstractname}
+  \end{center}
+  \list{}{%
+    \setlength{\leftmargin}{2cm}
+    \setlength{\rightmargin}{\leftmargin}}%
+  \item\relax\normalfont\itshape
+}{%
+  \endlist
+  \bigskip
+  \noindent\makebox[\textwidth]{%
+    \begin{minipage}[t]{0.31\textwidth}
+      \centering
+      \if\@specialisation\@empty\else
+        \if@english Specialisation: \else Keuzerichting: \fi
+        \@specialisation
+      \fi
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.31\textwidth}
+      \centering
+      \if\@keywords\@empty\else
+        \if@english Keywords: \else Sleutelwoorden: \fi
+        \@keywords
+      \fi
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.31\textwidth}
+      \centering
+      \if\@projectrepo\@empty\else
+        \if@english Source code: \else Broncode: \fi
+        \url{\@projectrepo}
+      \fi
+    \end{minipage}%
+  }
+  \bigskip
+}
+\makeatother
 
 % Hulpkleuren afgeleid van de HOGENT-huisstijl
 \colorlet{accent}{hogent-blue}
@@ -55,7 +175,7 @@
 \institution{Hogeschool Gent, Valentin Vaerwyckweg 1, 9000 Gent}
 
 % Info over de bachelorproef
-\title{Gamification voor het aanleren van COBOL}
+\title{De effectiviteit van gamification bij het aanleren van COBOL aan junior developers.}
 \subtitle{Learn COBOL, een gamified leerpad voor junior developers}
 \author{Silas De Vuyst}
 \email{silas.devuyst@student.hogent.be}
@@ -64,7 +184,7 @@
 
 \specialisation{Mainframe}
 \keywords{COBOL, gamification, Octalysis, mainframe, junior developers}
-\projectrepo{https://bap-cobol-gamification.vercel.app/}
+\projectrepo{https://github.com/SDeVuyst/BAP-Cobol-Gamification}
 
 \begin{document}
 
@@ -97,8 +217,6 @@ Het echte knelpunt ligt niet enkel bij de taal, maar bij de verouderde didactiek
 \statbox{hogent-orange}{2,9 $\to$ 5,6}{mld \$ mainframemarkt, 2022 naar 2032 \autocite{Allied2022}}\hfill
 \statbox{hogent-purple}{66\%}{mainframe-pros zijn Millennial of Gen Z \autocite{BMC2025}}\par
 \medskip
-
-\emph{Boodschap: COBOL blijft kritieke en groeiende infrastructuur, maar de kennisoverdracht naar een nieuwe generatie moet evolueren.}
 
 %==============================================================================
 \section{Onderzoeksvraag}
@@ -173,13 +291,14 @@ De gamification rust op drie kaders: de PBL-triade van punten, badges en leaderb
 \end{tabularx}
 \end{center}
 
-\emph{Boodschap: levels worden sequentieel ontgrendeld, zodat beginners de programmaskelet beheersen voor ze complexere concepten zien.}
-
 %------------------------------------------------------------------------------
 \subsection{Gamification per Octalysis Core Drive}
 
 \small
-\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{6.2cm} X@{}}
+\noindent
+\begin{tabularx}{\linewidth}{@{}%
+  >{\bfseries\raggedright\arraybackslash\hsize=1.35\hsize}X
+  >{\raggedright\arraybackslash\hsize=0.45\hsize}X@{}}
 \toprule
 Core Drive & Vertaling in de PoC \\
 \midrule
@@ -193,7 +312,6 @@ Loss \& Avoidance & bewust beperkt, enkel een first-try bonus \\
 \end{tabularx}
 
 \normalsize
-Het ontwerp is bewust \textit{White Hat}-zwaar: het mikt op positieve, langetermijnmotivatie en zet schaarste en verliesangst spaarzaam in \autocite{Chou2015}.
 
 %==============================================================================
 \section{Evaluatie en resultaten}
@@ -221,7 +339,14 @@ De voornaamste aanbeveling is het uitvoeren van het uitgewerkte pilotontwerp. Da
 
 %==============================================================================
 \section{Referenties}
-\printbibliography[heading=none]
+\begingroup
+\renewcommand*{\bibfont}{\tiny}
+\setlength{\bibitemsep}{0pt}
+\noindent
+\begin{minipage}[t]{0.68\linewidth}
+  \printbibliography[heading=none]
+\end{minipage}
+\endgroup
 
 \end{multicols}
 \end{document}
